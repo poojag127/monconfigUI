@@ -8,7 +8,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+   "postinstall": "npm rebuild node-sass; node get-external-dependency.js"
   },
   "private": true,
   "dependencies": {
@@ -18,12 +19,16 @@
     "@angular/core": "^4.2.4",
     "@angular/forms": "^4.2.4",
     "@angular/http": "^4.2.4",
+    "@angular/cdk": "2.0.0-beta.8",
+    "@angular/material": "2.0.0-beta.8",
     "@angular/platform-browser": "^4.2.4",
     "@angular/platform-browser-dynamic": "^4.2.4",
     "@angular/router": "^4.2.4",
     "core-js": "^2.4.1",
     "rxjs": "^5.4.2",
-    "zone.js": "^0.8.14"
+    "zone.js": "^0.8.14",
+    "font-awesome": "4.7.0",
+    "primeng": "4.1.1"
   },
   "devDependencies": {
     "@angular/cli": "1.4.9",
