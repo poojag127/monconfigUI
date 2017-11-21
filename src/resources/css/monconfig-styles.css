@@ -61,9 +61,13 @@
     height: 24px;
 }
 
+.mon-ui .ui-datatable .ui-datatable-header{
+  text-align: left;
+}
+
 .mon-hometable {
     /*margin-bottom: 10px;*/
-    border: ridge;
+    /* border: ridge; */
 }
 
 
@@ -206,7 +210,7 @@ custom-breadcrumb .ui-breadcrumb {
 
  .monconfigui-rghtpane {
     margin-left: 11px;
-    height: 340px;
+    /* height: 340px; */
     margin-top: 5px;
     overflow-y: auto;
     overflow-x: hidden;
