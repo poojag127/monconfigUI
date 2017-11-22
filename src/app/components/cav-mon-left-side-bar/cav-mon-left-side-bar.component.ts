@@ -24,14 +24,13 @@ export class CavMonLeftSideBarComponent implements OnInit
      /* Main Menu Array.  */
    this.navMenuArray = [
          { label: "Home", route: `${ROUTING_PATH}/home`, icon: "ndeicon ndegui-home1", tooltip: "Home" },
-        //  { label: "Application", route: `${ROUTING_PATH}/application-list`, icon: "icon ndegui-application", tooltip: "Application" },
-        //  { label: "Profile", route: `${ROUTING_PATH}/profile/profile-list`, icon: "icon ndegui-profile", tooltip: "Profile" },
-        //  { label: "Topology", route: `${ROUTING_PATH}/topology-list`, icon: "icon ndegui-topology", tooltip: "Topology" },
-        //  { label: "Instrumentation Profile Maker" , route: `${ROUTING_PATH}/instrumentation-profile-maker`, icon: "icon ndegui-instrmentation-profile", tooltip: "Instrumentation Profile Maker"},
-        //  { label: "Auto Discover", route: `${ROUTING_PATH}/auto-discover-main`, icon: "icon ndegui-auto-discover", tooltip: "Auto Discover" },
-        //  { label: "Audit Log", route: `${ROUTING_PATH}/audit-log-view`, icon: "icon ndegui-audit-logs", tooltip: "Audit Log" },
-      // { label: "ND Agent", route: `${ROUTING_PATH}/nd-agent`, icon: "icon ndegui-nd-agent", tooltip: "ND Agent" },
-     // { label: "Discover Instrumentation Profile", route: `${ROUTING_PATH}/nd-agent`, icon: "fa fa-tint", tooltip: "Discover Instrumentation Profile" }
+         { label: "Version Commit", route: `${ROUTING_PATH}/versionCommit`, icon: "ndeicon fa fa-dropbox", tooltip: "Version Commit" },
+         { label: "Version logs", route: `${ROUTING_PATH}/versionLogs`, icon: "ndeicon fa fa-history", tooltip: "Version Logs" },
+         { label: "Summary", route: `${ROUTING_PATH}/summaryReport`, icon: "ndeicon fa fa-newspaper-o reports", tooltip: "Summary Report" },
+         { label: "Download" , route: `${ROUTING_PATH}/downloadJson`, icon: "ndeicon fa fa-download", tooltip: "Download JSON"},
+         { label: "Export JSON", route: `${ROUTING_PATH}/expJson`, icon: "ndeicon fa fa-file-excel-o ", tooltip: "Export JSON" },
+         { label: "Import JSON", route: `${ROUTING_PATH}/impJson`, icon: "ndeicon fa fa-file ", tooltip: "Import JSON"},
+         { label: "Audit Log", route: `${ROUTING_PATH}/audit-log-view`, icon: "ndeicon ndegui-audit-logs", tooltip: "Audit Log" },
     ];
   }
 

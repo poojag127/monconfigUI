@@ -2,24 +2,18 @@
   cav-mon-right-pane works!
 </p>-->
 <div style="margin: 21px 0px">
-<p-fieldset  [style]="{'font-size':'13px' }"  legend="Select a topology" [toggleable]="true" [collapsed]="false">
+<p-fieldset  [style]="{'font-size':'13px' }"  legend="Select a topology">
   <div class = "ui-g-9">
     <p-dropdown  [style]="{'width':'60%' ,'font-size':'13px'}" class ="homedropdown" [options]="topologyList" [(ngModel)]="selectedTopology" (onChange)="topoChange($event.value)" ></p-dropdown>
   </div>
 </p-fieldset>
 </div>
 
-
 <div class="ui-g mon-hometable" >
     <!--For showing Session Attribute(s) list -->
-    <p-dataTable class="mon-ui" [value]="jsonsTableData" [(selection)]="selectedJson" [rows]="4" [paginator]="jsonsTableData?.length >4" [pageLinks]="3">
+<p-dataTable class="mon-ui" [value]="jsonsTableData" [(selection)]="selectedJson" [rows]="5" [paginator]="jsonsTableData?.length >5" [pageLinks]="3" [style]="{'height':'200px'}">
         <p-header>
-            <span style = "font-size:13px"><b>Profile(s) of  Topology  {{selectedTopology}}</b></span>
-            <span class="configui-float">
-                       <button pButton type="button" title="Add" [disabled]="saveDisable" (click)="openAddDialog()" icon="fa-plus"></button>
-                       <button pButton type="button" title="Edit"[disabled]="saveDisable" (click)="editSessionAttribute()" icon="fa-pencil" ></button>
-                       <button pButton type="button"class="ui-button-danger" title="Delete" [disabled]="saveDisable"  (click)="deleteSessionAttribute()" icon="fa-trash"></button>
-                    </span>
+            <span style = "font-size:13px"><b>MJson of  Topology  {{selectedTopology}}</b></span>
         </p-header>
 
         <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
@@ -50,6 +44,11 @@
     </p-dataTable>
 </div>
 
+<div class="configui">
+        <button pButton type="button"   [disabled]="saveDisable"  (click)="openAddDialog()" label="Create" icon="fa-plus"></button>
+        <button pButton type="button"   [disabled]="saveDisable" (click)="editSessionAttribute()" label="Edit" icon="fa-pencil"></button>
+        <button pButton type="button"  [disabled]="saveDisable"  (click)="deleteSessionAttribute()" label="Delete" icon="fa-trash-o"></button>
+</div>
 
 <!--Dialog for adding MJson-->
 
@@ -86,7 +85,7 @@
         <footer>
             <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
                 <button type="submit" pButton icon="fa-check" label="Save"></button>
-                <button type="button" pButton icon="fa-close" (click)="closeDialog()" label="Cancel"></button>
+                <button type="button" pButton icon="fa-close" (click)="addEditMJsonDialog = false;" label="Cancel"></button>
             </div>
         </footer>
     </form>

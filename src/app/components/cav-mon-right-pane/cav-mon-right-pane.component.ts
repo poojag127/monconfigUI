@@ -7,6 +7,7 @@ import {MJsonData} from '../../containers/mjson-data';
 import { Router } from '@angular/router';
 
 import { CavmonHomeService } from '../../services/cavmon-home.service';
+import { ConfigUtilityService } from '../../services/config-utility.service';
 import { ImmutableArray } from '../../utility/immutable-array';
 import { ROUTING_PATH } from '../../constants/monconfig-url-constant';
 
@@ -71,14 +72,12 @@ import { ROUTING_PATH } from '../../constants/monconfig-url-constant';
     console.log(this.jsonsTableData)
     
      //to insert new row in table ImmutableArray.push() is created as primeng 4.0.0 does not support above line 
-    this.jsonsTableData=ImmutableArray.push(this.jsonsTableData, this.mJsonData);
-
+     this.jsonsTableData=ImmutableArray.push(this.jsonsTableData, this.mJsonData);
   }
-
   routeToConfiguration(jsonName)
   {
     console.log(jsonName)
-    this.router.navigate([ROUTING_PATH + '/mjson', jsonName]);
+    this.router.navigate([ROUTING_PATH + '/mjson',jsonName]);
   }
 
 }

@@ -76,9 +76,13 @@
     height: 24px;
 }
 
+.mon-ui .ui-datatable .ui-datatable-header{
+  text-align: left;
+}
+
 .mon-hometable {
     /*margin-bottom: 10px;*/
-    border: ridge;
+    /* border: ridge; */
 }
 
 
@@ -110,6 +114,7 @@ ul.cav-menu-ul {
     width: 100%;
     height: 50px;
     border-radius: 0%;
+    border-bottom: 1px #f6f7f930 solid
 }
 
 
@@ -138,9 +143,10 @@ ul.cav-menu-ul {
 
 .ndeicon
  {
-    margin: 0;
+    margin: 10px;
     overflow: hidden;
-    font-size: 2em;
+    font-size: 2.1em;
+    color:#fff;
 }
 
 .ndegui-application:before {
@@ -221,7 +227,7 @@ custom-breadcrumb .ui-breadcrumb {
 
  .monconfigui-rghtpane {
     margin-left: 11px;
-    height: 340px;
+    /* height: 340px; */
     margin-top: 5px;
     overflow-y: auto;
     overflow-x: hidden;
@@ -254,6 +260,7 @@ margin: 5px 0px;
     cursor: pointer;
 }
 
+<<<<<<< HEAD
 /** Configuration home screen css **/
 #top-div {
     background: rgba(255, 255, 255, 0.65);
@@ -286,4 +293,35 @@ margin: 5px 0px;
 
   
 
+=======
+
+/* for icons in left pane */
+.fa fa-dropbox:before {
+  content: "\F16B";
+}
+
+.fa-history:before {
+  content: "\F1DA";
+}
+
+.fa fa-newspaper-o reports:before {
+  content: "\F16B";
+}
+
+.fa-download:before {
+  content: "\F019";
+}
+
+.fa-file-excel-o:before {
+  content: "\F1C3";
+}
+
+.fa-file:before {
+  content: "\F15B";
+}
+
+ndegui-audit-logs:before {
+  content: "\E00C";
+}
+>>>>>>> 1d275fb4a6e0792f5041b29da17b2d837d6db7d0
 
