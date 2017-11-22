@@ -46,6 +46,21 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.mon-ui .ui-treetable  .ui-treetable -thead>tr>th {
+    font-weight: 600;
+}
+
+.mon-ui .ui-treetable  .ui-treetable -tfoot>tr>td,
+.mon-ui .ui-treetable  .ui-treetable  table-data>tr>td {
+    height: 26px;
+    text-overflow: ellipsis;
+}
+
+.mon-ui .ui-treetable  thead tr {
+    height: 24px;
+}
+
+
 
 .mon-ui .ui-datatable .ui-datatable-thead>tr>th {
     font-weight: 600;
@@ -238,3 +253,37 @@ margin: 5px 0px;
     text-decoration: underline;
     cursor: pointer;
 }
+
+/** Configuration home screen css **/
+#top-div {
+    background: rgba(255, 255, 255, 0.65);
+    box-shadow: 0 0 6px 2px #565656;
+    border-radius: 4px;
+}
+    
+    
+
+    /*** tree table css****/
+  ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight
+  {
+
+  }
+
+  .mon-ui .ui-treetable  .ui-treetable -thead>tr>th {
+    font-weight: 600;
+  }
+
+.mon-ui .ui-treetable  .ui-treetable -tfoot>tr>td,
+.mon-ui .ui-treetable  .ui-treetable  table-data>tr>td {
+    height: 26px;
+    text-overflow: ellipsis;
+}
+
+.mon-ui .ui-treetable  thead tr {
+    height: 24px;
+}
+
+
+  
+
+
