@@ -36,7 +36,7 @@ import { ConfigurationHomeComponent } from '../components/cav-mon-mjson/configur
 const routes: Routes = [
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: CavMonRightPaneComponent },
-            { path: 'mjson/:mjsonName', component: ConfigurationHomeComponent },
+            { path: 'mjson/:mjsonName/:topoName', component: ConfigurationHomeComponent },
           ];
 
 @NgModule({

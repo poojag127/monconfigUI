@@ -20,9 +20,12 @@ import { MaterialModule } from '@angular/material';
 import { ConfigRestApiService } from './services/config-rest-api.service';
 import { ConfigUtilityService } from './services/config-utility.service';
 import { CavmonHomeService } from './services/cavmon-home.service';
+import { CavmonConfigService } from './services/cavmon-config.service';
 
 /** Routing Module */
 import { ConfigRoutingModule } from './routes/monconfig-routing.module';
+
+import { CommonModule } from '@angular/common';
 
 
 
@@ -35,7 +38,11 @@ import {TooltipModule,
         PanelModule,
         DataTableModule,
         ButtonModule,
-        DialogModule
+        DialogModule,
+        TreeTableModule,
+        TreeNode,
+        SharedModule,
+        TriStateCheckboxModule
      
       
     } from 'primeng/primeng';
@@ -61,6 +68,7 @@ import { ConfigurationHomeComponent } from './components/cav-mon-mjson/configura
     // CavMonMenuComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     MaterialModule,
     TooltipModule,
@@ -74,9 +82,11 @@ import { ConfigurationHomeComponent } from './components/cav-mon-mjson/configura
     ButtonModule,
     HttpModule,
     DialogModule,
-    ConfigRoutingModule
+    ConfigRoutingModule,
+    TreeTableModule,
+    TriStateCheckboxModule
   ],
-  providers: [CavmonHomeService,ConfigRestApiService,ConfigUtilityService
+  providers: [CavmonHomeService,ConfigRestApiService,ConfigUtilityService,CavmonConfigService
 ,  { provide: LocationStrategy, useClass: HashLocationStrategy},
 
   ],

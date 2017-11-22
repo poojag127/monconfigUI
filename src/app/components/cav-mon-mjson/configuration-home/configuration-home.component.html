@@ -1,3 +1,23 @@
-<p>
+<!--<p>
   configuration-home works!
-</p>
+</p>-->
+
+<div class="ui-g-12" id="top-div">
+
+<p-treeTable class="mon-ui" [value]="compData" selectionMode="checkbox"  [style]="{'margin-top':'50px'}">
+  <p-header>Checkbox Selection</p-header>
+    <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header">
+      <template   let-data="rowData" pTemplate >
+        <p-triStateCheckbox *ngIf="col.field != 'monitor'" onChange="onChangeCheckbox()"></p-triStateCheckbox>
+       <a  *ngIf="col.field != 'monitor'"> <i class="fa fa-pencil fa-fw" aria-hidden="true"></i> </a>
+        <span  *ngIf="col.field == 'monitor'" >{{data.data[col.field]}}</span>
+      </template>
+    </p-column>
+
+
+    <!--<p-column field="name" header="Name"></p-column>
+    <p-column field="size" header="Size"></p-column>
+    <p-column field="type" header="Type"></p-column>-->
+</p-treeTable>
+
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-cav-mon-home-right-pane',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CavMonHomeRightPaneComponent implements OnInit {
 
-  constructor() 
+  constructor(private router: Router) 
   { 
     
   }

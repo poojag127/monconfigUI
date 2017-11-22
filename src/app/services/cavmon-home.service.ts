@@ -8,7 +8,7 @@ import { ConfigRestApiService } from './config-rest-api.service';
 @Injectable()
 export class CavmonHomeService 
 {
-
+   
   constructor(private _restApi: ConfigRestApiService) 
   {
 

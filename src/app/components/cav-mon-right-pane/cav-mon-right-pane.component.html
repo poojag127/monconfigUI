@@ -19,7 +19,7 @@
         <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
         <p-column class="col-overflow" field="name" header="Name" [sortable]="true">
             <template let-col let-json="rowData" pTemplate type="body">
-                <span title="{{json[col.field]}}"> <a class="hyperlink" (click)="routeToConfiguration(json['name'])" >{{json[col.field]}}</a></span>
+                <span title="{{json[col.field]}}"> <a class="hyperlink" (click)="routeToConfiguration(json['name'],selectedTopology)" >{{json[col.field]}}</a></span>
             </template>
         </p-column>
 
