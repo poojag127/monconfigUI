@@ -42,7 +42,7 @@ import {TooltipModule,
         TreeTableModule,
         TreeNode,
         SharedModule,
-        TriStateCheckboxModule
+        TriStateCheckboxModule,
      
       
     } from 'primeng/primeng';
@@ -84,7 +84,7 @@ import { ConfigurationHomeComponent } from './components/cav-mon-mjson/configura
     DialogModule,
     ConfigRoutingModule,
     TreeTableModule,
-    TriStateCheckboxModule
+    TriStateCheckboxModule,
   ],
   providers: [CavmonHomeService,ConfigRestApiService,ConfigUtilityService,CavmonConfigService
 ,  { provide: LocationStrategy, useClass: HashLocationStrategy},
