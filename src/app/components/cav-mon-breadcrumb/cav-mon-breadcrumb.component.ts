@@ -10,11 +10,13 @@ import * as BREADCRUMB from '../../constants/monconfig-breadcrumb-constant';
 export class CavMonBreadcrumbComponent implements OnInit {
 
   items: MenuItem[];
+  home: MenuItem;
   constructor() { }
 
   ngOnInit() 
   {
      this.items = [{ routerLink: [BREADCRUMB.URL.HOME], label: BREADCRUMB.LABEL.HOME }];
-  }
 
+     this.home = {icon: 'fa fa-home'};
+  }
 }
