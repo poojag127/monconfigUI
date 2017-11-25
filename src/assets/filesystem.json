@@ -4,78 +4,32 @@
     [  
         {  
             "data":{  
-                "monitor":"Weblogic",
-                "stresshle-blue-accservice":"Configure",
-                "stresshle-kafka-mirrormaker":"Configure",
-                "stresshle-bluecopy-searchrestapi":"Configure",
-                "stresshle-blue-cncservice":"Configure",
-                "stresshle-blue-snbservice-stage":"Configure",
-                "stresshle-blue-searchrestapi":"Configure",
-                "stresshle-blue-snbservice-prod":"Configure",
-                "stresshle-blue-batch-slave-vm":"Configure",
-                "stresshle-blue-tvsecompublisher":"Configure",
-                "stresshle-main-zk":"Configure"
+                "monitor":"Weblogic"
+              
             },
             "children":[
                 {  
                  "data":{  
-                        "monitor":"WeblogicJvmStats",
-                        "stresshle-blue-accservice":"Configure",
-                        "stresshle-kafka-mirrormaker":"Configure",
-                        "stresshle-bluecopy-searchrestapi":"Configure",
-                        "stresshle-blue-cncservice":"Configure",
-                        "stresshle-blue-snbservice-stage":"Configure",
-                        "stresshle-blue-searchrestapi":"Configure",
-                        "stresshle-blue-snbservice-prod":"Configure",
-                         "stresshle-blue-batch-slave-vm":"Configure",
-                        "stresshle-blue-tvsecompublisher":"Configure",
-                        "stresshle-main-zk":"Configure"
+                        "monitor":"WeblogicJvmStats"
+                      
                     }
                  },
                  {
                     "data":{
-                        "monitor":"WeblogicThreadPoolStats",
-                        "stresshle-blue-accservice":"Configure",
-                        "stresshle-kafka-mirrormaker":"Configure",
-                        "stresshle-bluecopy-searchrestapi":"Configure",
-                        "stresshle-blue-cncservice":"Configure",
-                        "stresshle-blue-snbservice-stage":"Configure",
-                        "stresshle-blue-searchrestapi":"Configure",
-                        "stresshle-blue-snbservice-prod":"Configure",
-                         "stresshle-blue-batch-slave-vm":"Configure",
-                        "stresshle-blue-tvsecompublisher":"Configure",
-                        "stresshle-main-zk":"Configure"
+                        "monitor":"WeblogicThreadPoolStats"                        
                     }
                 },
 
                  {
                     "data":{
-                        "monitor":"WeblogicSessionStats",
-                        "stresshle-blue-accservice":"Configure",
-                        "stresshle-kafka-mirrormaker":"Configure",
-                        "stresshle-bluecopy-searchrestapi":"Configure",
-                        "stresshle-blue-cncservice":"Configure",
-                        "stresshle-blue-snbservice-stage":"Configure",
-                        "stresshle-blue-searchrestapi":"Configure",
-                        "stresshle-blue-snbservice-prod":"Configure",
-                         "stresshle-blue-batch-slave-vm":"Configure",
-                        "stresshle-blue-tvsecompublisher":"Configure",
-                        "stresshle-main-zk":"Configure"
+                        "monitor":"WeblogicSessionStats"
+                        
                     }
                 },
                  {
                     "data":{
-                        "monitor":"WeblogicJMSQueueStats",
-                        "stresshle-blue-accservice":"Configure",
-                        "stresshle-kafka-mirrormaker":"Configure",
-                        "stresshle-bluecopy-searchrestapi":"Configure",
-                        "stresshle-blue-cncservice":"Configure",
-                        "stresshle-blue-snbservice-stage":"Configure",
-                        "stresshle-blue-searchrestapi":"Configure",
-                        "stresshle-blue-snbservice-prod":"Configure",
-                         "stresshle-blue-batch-slave-vm":"Configure",
-                        "stresshle-blue-tvsecompublisher":"Configure",
-                        "stresshle-main-zk":"Configure"
+                        "monitor":"WeblogicJMSQueueStats"
+                        
                     }
                 }
 
@@ -83,78 +37,29 @@
         },
          {  
             "data":{  
-                "monitor":"Tomcat",
-                "stresshle-blue-accservice":"Configure",
-                "stresshle-kafka-mirrormaker":"Configure",
-                "stresshle-bluecopy-searchrestapi":"Configure",
-                "stresshle-blue-cncservice":"Configure",
-                "stresshle-blue-snbservice-stage":"Configure",
-                "stresshle-blue-searchrestapi":"Configure",
-                "stresshle-blue-snbservice-prod":"Configure",
-                "stresshle-blue-batch-slave-vm":"Configure",
-                "stresshle-blue-tvsecompublisher":"Configure",
-                "stresshle-main-zk":"Configure"
+                "monitor":"Tomcat"
+               
             },
             "children":[
                 {  
                  "data":{  
-                        "monitor":"Tomcat Service Stats",
-                        "stresshle-blue-accservice":"Configure",
-                        "stresshle-kafka-mirrormaker":"Configure",
-                        "stresshle-bluecopy-searchrestapi":"Configure",
-                        "stresshle-blue-cncservice":"Configure",
-                        "stresshle-blue-snbservice-stage":"Configure",
-                        "stresshle-blue-searchrestapi":"Configure",
-                        "stresshle-blue-snbservice-prod":"Configure",
-                         "stresshle-blue-batch-slave-vm":"Configure",
-                        "stresshle-blue-tvsecompublisher":"Configure",
-                        "stresshle-main-zk":"Configure"
+                        "monitor":"Tomcat Service Stats"
                     }
                  },
                  {
                     "data":{
-                        "monitor":"Tomcat Servlet Stats",
-                        "stresshle-blue-accservice":"Configure",
-                        "stresshle-kafka-mirrormaker":"Configure",
-                        "stresshle-bluecopy-searchrestapi":"Configure",
-                        "stresshle-blue-cncservice":"Configure",
-                        "stresshle-blue-snbservice-stage":"Configure",
-                        "stresshle-blue-searchrestapi":"Configure",
-                        "stresshle-blue-snbservice-prod":"Configure",
-                         "stresshle-blue-batch-slave-vm":"Configure",
-                        "stresshle-blue-tvsecompublisher":"Configure",
-                        "stresshle-main-zk":"Configure"
+                        "monitor":"Tomcat Servlet Stats"
                     }
                 },
 
                  {
                     "data":{
-                        "monitor":"Tomcat Session Manager Stats",
-                        "stresshle-blue-accservice":"Configure",
-                        "stresshle-kafka-mirrormaker":"Configure",
-                        "stresshle-bluecopy-searchrestapi":"Configure",
-                        "stresshle-blue-cncservice":"Configure",
-                        "stresshle-blue-snbservice-stage":"Configure",
-                        "stresshle-blue-searchrestapi":"Configure",
-                        "stresshle-blue-snbservice-prod":"Configure",
-                         "stresshle-blue-batch-slave-vm":"Configure",
-                        "stresshle-blue-tvsecompublisher":"Configure",
-                        "stresshle-main-zk":"Configure"
+                        "monitor":"Tomcat Session Manager Stats"
                     }
                 },
                  {
                     "data":{
-                        "monitor":"Tomcat Cache Stats",
-                        "stresshle-blue-accservice":"Configure",
-                        "stresshle-kafka-mirrormaker":"Configure",
-                        "stresshle-bluecopy-searchrestapi":"Configure",
-                        "stresshle-blue-cncservice":"Configure",
-                        "stresshle-blue-snbservice-stage":"Configure",
-                        "stresshle-blue-searchrestapi":"Configure",
-                        "stresshle-blue-snbservice-prod":"Configure",
-                         "stresshle-blue-batch-slave-vm":"Configure",
-                        "stresshle-blue-tvsecompublisher":"Configure",
-                        "stresshle-main-zk":"Configure"
+                        "monitor":"Tomcat Cache Stats"
                     }
                 }
 
@@ -162,78 +67,32 @@
         },
         {  
             "data":{  
-                "monitor":"Tomcat",
-                "stresshle-blue-accservice":"Configure",
-                "stresshle-kafka-mirrormaker":"Configure",
-                "stresshle-bluecopy-searchrestapi":"Configure",
-                "stresshle-blue-cncservice":"Configure",
-                "stresshle-blue-snbservice-stage":"Configure",
-                "stresshle-blue-searchrestapi":"Configure",
-                "stresshle-blue-snbservice-prod":"Configure",
-                "stresshle-blue-batch-slave-vm":"Configure",
-                "stresshle-blue-tvsecompublisher":"Configure",
-                "stresshle-main-zk":"Configure"
+                "monitor":"Java GC"
+              
             },
             "children":[
                 {  
                  "data":{  
-                        "monitor":"Tomcat Service Stats",
-                        "stresshle-blue-accservice":"Configure",
-                        "stresshle-kafka-mirrormaker":"Configure",
-                        "stresshle-bluecopy-searchrestapi":"Configure",
-                        "stresshle-blue-cncservice":"Configure",
-                        "stresshle-blue-snbservice-stage":"Configure",
-                        "stresshle-blue-searchrestapi":"Configure",
-                        "stresshle-blue-snbservice-prod":"Configure",
-                         "stresshle-blue-batch-slave-vm":"Configure",
-                        "stresshle-blue-tvsecompublisher":"Configure",
-                        "stresshle-main-zk":"Configure"
+                        "monitor":"JavaGCExtended Stats"
+                       
                     }
                  },
                  {
                     "data":{
-                        "monitor":"Tomcat Servlet Stats",
-                        "stresshle-blue-accservice":"Configure",
-                        "stresshle-kafka-mirrormaker":"Configure",
-                        "stresshle-bluecopy-searchrestapi":"Configure",
-                        "stresshle-blue-cncservice":"Configure",
-                        "stresshle-blue-snbservice-stage":"Configure",
-                        "stresshle-blue-searchrestapi":"Configure",
-                        "stresshle-blue-snbservice-prod":"Configure",
-                         "stresshle-blue-batch-slave-vm":"Configure",
-                        "stresshle-blue-tvsecompublisher":"Configure",
-                        "stresshle-main-zk":"Configure"
+                        "monitor":"JavaGCExtendedV2 Stats"
+                        
                     }
                 },
 
                  {
                     "data":{
-                        "monitor":"Tomcat Session Manager Stats",
-                        "stresshle-blue-accservice":"Configure",
-                        "stresshle-kafka-mirrormaker":"Configure",
-                        "stresshle-bluecopy-searchrestapi":"Configure",
-                        "stresshle-blue-cncservice":"Configure",
-                        "stresshle-blue-snbservice-stage":"Configure",
-                        "stresshle-blue-searchrestapi":"Configure",
-                        "stresshle-blue-snbservice-prod":"Configure",
-                         "stresshle-blue-batch-slave-vm":"Configure",
-                        "stresshle-blue-tvsecompublisher":"Configure",
-                        "stresshle-main-zk":"Configure"
+                        "monitor":"JavaGCJrockit Stats"
                     }
                 },
                  {
                     "data":{
-                        "monitor":"Tomcat Cache Stats",
-                        "stresshle-blue-accservice":"Configure",
-                        "stresshle-kafka-mirrormaker":"Configure",
-                        "stresshle-bluecopy-searchrestapi":"Configure",
-                        "stresshle-blue-cncservice":"Configure",
-                        "stresshle-blue-snbservice-stage":"Configure",
-                        "stresshle-blue-searchrestapi":"Configure",
-                        "stresshle-blue-snbservice-prod":"Configure",
-                         "stresshle-blue-batch-slave-vm":"Configure",
-                        "stresshle-blue-tvsecompublisher":"Configure",
-                        "stresshle-main-zk":"Configure"
+                        "monitor":"JavaGCJMX Stats"
+                       
                     }
                 }
 
@@ -241,78 +100,32 @@
         },
         {  
             "data":{  
-                "monitor":"Tomcat",
-                "stresshle-blue-accservice":"Configure",
-                "stresshle-kafka-mirrormaker":"Configure",
-                "stresshle-bluecopy-searchrestapi":"Configure",
-                "stresshle-blue-cncservice":"Configure",
-                "stresshle-blue-snbservice-stage":"Configure",
-                "stresshle-blue-searchrestapi":"Configure",
-                "stresshle-blue-snbservice-prod":"Configure",
-                "stresshle-blue-batch-slave-vm":"Configure",
-                "stresshle-blue-tvsecompublisher":"Configure",
-                "stresshle-main-zk":"Configure"
+                "monitor":"JBoss Stats"
+               
             },
             "children":[
                 {  
                  "data":{  
-                        "monitor":"Tomcat Service Stats",
-                        "stresshle-blue-accservice":"Configure",
-                        "stresshle-kafka-mirrormaker":"Configure",
-                        "stresshle-bluecopy-searchrestapi":"Configure",
-                        "stresshle-blue-cncservice":"Configure",
-                        "stresshle-blue-snbservice-stage":"Configure",
-                        "stresshle-blue-searchrestapi":"Configure",
-                        "stresshle-blue-snbservice-prod":"Configure",
-                         "stresshle-blue-batch-slave-vm":"Configure",
-                        "stresshle-blue-tvsecompublisher":"Configure",
-                        "stresshle-main-zk":"Configure"
+                        "monitor":"JBossEAPThreadPoolStats Stats"
+                       
                     }
                  },
                  {
                     "data":{
-                        "monitor":"Tomcat Servlet Stats",
-                        "stresshle-blue-accservice":"Configure",
-                        "stresshle-kafka-mirrormaker":"Configure",
-                        "stresshle-bluecopy-searchrestapi":"Configure",
-                        "stresshle-blue-cncservice":"Configure",
-                        "stresshle-blue-snbservice-stage":"Configure",
-                        "stresshle-blue-searchrestapi":"Configure",
-                        "stresshle-blue-snbservice-prod":"Configure",
-                         "stresshle-blue-batch-slave-vm":"Configure",
-                        "stresshle-blue-tvsecompublisher":"Configure",
-                        "stresshle-main-zk":"Configure"
-                    }
-                },
+                        "monitor":"JBossEAPJdbcPool Stats"
 
-                 {
-                    "data":{
-                        "monitor":"Tomcat Session Manager Stats",
-                        "stresshle-blue-accservice":"Configure",
-                        "stresshle-kafka-mirrormaker":"Configure",
-                        "stresshle-bluecopy-searchrestapi":"Configure",
-                        "stresshle-blue-cncservice":"Configure",
-                        "stresshle-blue-snbservice-stage":"Configure",
-                        "stresshle-blue-searchrestapi":"Configure",
-                        "stresshle-blue-snbservice-prod":"Configure",
-                         "stresshle-blue-batch-slave-vm":"Configure",
-                        "stresshle-blue-tvsecompublisher":"Configure",
-                        "stresshle-main-zk":"Configure"
                     }
                 },
                  {
                     "data":{
-                        "monitor":"Tomcat Cache Stats",
-                        "stresshle-blue-accservice":"Configure",
-                        "stresshle-kafka-mirrormaker":"Configure",
-                        "stresshle-bluecopy-searchrestapi":"Configure",
-                        "stresshle-blue-cncservice":"Configure",
-                        "stresshle-blue-snbservice-stage":"Configure",
-                        "stresshle-blue-searchrestapi":"Configure",
-                        "stresshle-blue-snbservice-prod":"Configure",
-                         "stresshle-blue-batch-slave-vm":"Configure",
-                        "stresshle-blue-tvsecompublisher":"Configure",
-                        "stresshle-main-zk":"Configure"
+                        "monitor":"JBossEAPSession Stats"
+                        
+                    }
+                },
+                 {
+                    "data":{
+                        "monitor":"JBossEAPServlet Stats"
+                       
                     }
                 }
 

@@ -371,18 +371,19 @@ ndegui-audit-logs:before {
   background-image: -webkit-gradient(linear, left bottom,left top, color-stop(0.44, rgb(40,40,40)), color-stop(0.72, rgb(40,40,40)), color-stop(0.86, rgb(40,40,40)));
 }
 
- .derivedadvanced
- {
- overflow-x: auto;
-    overflow: auto; 
-    /*border: 1px solid black;*/
-}
-
+ 
 .ui-treetable table {
     border-collapse: collapse;
     width: 100%;
-    table-layout: inherit;
+    table-layout:auto;
+}
+.ui-treetable th span.ui-column-title {
+   transform: rotate(90deg);
+   transform-origin: left top 0;
+
 }
 
-
-
+.monitorColumn
+{
+  width:20em !important;
+}
