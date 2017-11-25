@@ -374,8 +374,8 @@ ndegui-audit-logs:before {
  
 .ui-treetable table {
     border-collapse: collapse;
-    width: 100%;
-    table-layout:auto;
+    width: auto !important;
+    table-layout: inherit;
 }
 .ui-treetable th span.ui-column-title {
    transform: rotate(90deg);
@@ -386,4 +386,13 @@ ndegui-audit-logs:before {
 .monitorColumn
 {
   width:20em !important;
+}
+
+.mon-hometable .ui-datatable th.ui-state-default{
+  background: rgba(65, 126, 191, 0.9);
+  color:#fff;
+}
+
+.mon-hometable .ui-datatable .ui-datatable-thead>tr>th{
+  font-weight: 100;
 }

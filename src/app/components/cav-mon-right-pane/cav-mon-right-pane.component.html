@@ -35,7 +35,7 @@
                     </template>
         </p-column>
 
-         <p-column class="col-overflow" field="lastModified" header="Last Updated On" [sortable]="true">
+         <p-column class="col-overflow" field="lastModified" header="Last Modified" [sortable]="true">
             <template let-col let-json="rowData" pTemplate type="body">
                        <span title="{{json[col.field]}}">{{json[col.field]}}</span>
                     </template>
