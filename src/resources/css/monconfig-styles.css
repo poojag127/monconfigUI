@@ -380,9 +380,14 @@ ndegui-audit-logs:before {
 
 .ui-treetable table {
     border-collapse: collapse;
-    width: 100%;
+    width: auto !important;
     table-layout: inherit;
 }
 
-
-
+.mon-hometable .ui-datatable th.ui-state-default{
+  background: rgba(65, 126, 191, 0.9);
+  color:#fff;
+}
+.mon-hometable .ui-datatable .ui-datatable-thead>tr>th{
+  font-weight: 100;
+}
