@@ -32,7 +32,8 @@ export class ConfigurationHomeComponent implements OnInit
 
   ngOnInit()
   {
-   this.cols = [{field: 'monitor' ,header:'Monitor'}];
+  //  this.cols = [{field: 'monitor' ,header:'Monitor'}];
+  this.cols=[];
    this.route.params.subscribe((params: Params) => {
       this.topoName = params['topoName'];
       this.jsonName = params['jsonName']

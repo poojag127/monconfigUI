@@ -2,15 +2,21 @@
   configuration-home works!
 </p>-->
 
-<div class="ui-g-12" id="top-div">
+<div class="ui-g-12 derivedadvanced" id="top-div">
 
-<p-treeTable class="mon-ui" [value]="compData" selectionMode="checkbox"  [style]="{'margin-top':'50px'}">
+<p-treeTable class="mon-ui "  scrollable="true" [value]="compData" selectionMode="checkbox"  [style]="{'margin-top':'50px'}">
   <p-header>Checkbox Selection</p-header>
-    <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header">
+    <p-column [style]="{'width':'17%'}" field="monitor" header="Monitor">
+       <template  let-col let-data="rowData" pTemplate >
+        <span >{{data.data[col.field]}}</span>
+       </template>
+    </p-column>
+
+    <p-column  *ngFor="let col of cols" [field]="col.field" [header]="col.header">
       <template   let-data="rowData" pTemplate >
         <p-triStateCheckbox *ngIf="col.field != 'monitor'" onChange="onChangeCheckbox()"></p-triStateCheckbox>
        <a  *ngIf="col.field != 'monitor'"> <i class="fa fa-pencil fa-fw" aria-hidden="true"></i> </a>
-        <span  *ngIf="col.field == 'monitor'" >{{data.data[col.field]}}</span>
+        <!--<span [style]="{'width':'2%','padding':'1px'}" *ngIf="col.field == 'monitor'" >{{data.data[col.field]}}</span>-->
       </template>
     </p-column>
 
