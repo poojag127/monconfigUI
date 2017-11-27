@@ -1,11 +1,17 @@
 <!--<p>
   configuration-home works!
 </p>-->
+<p-toolbar styleClass="toolbarCss">
+   <b style="margin: 10px">Topology : {{topoName}}</b>
+    <div style="float: right">
+    <button pButton type="button" label="Reset" icon="fa fa-refresh"></button>
+    <button pButton type="button" label="Save" icon="fa-check" ></button>
+    </div>
+</p-toolbar>
 
 <div class="ui-g-12 derivedadvanced" id="top-div">
 
 <p-treeTable class="mon-ui "  scrollable="true" [value]="compData" selectionMode="checkbox"  [style]="{'margin-top':'50px'}">
-  <p-header>Checkbox Selection</p-header>
     <p-column [style]="{'min-width':'208px'}" field="monitor" header="Monitor">
        <template  let-col let-data="rowData" pTemplate >
        <span>{{data.data[col.field]}}</span>  

@@ -396,3 +396,11 @@ ndegui-audit-logs:before {
 .mon-hometable .ui-datatable .ui-datatable-thead>tr>th{
   font-weight: 100;
 }
+
+.toolbarCss{
+  margin-bottom: 10px;
+  background:hsl(203, 75%, 32%);
+  color:white;
+  border:none;
+  height:31px;
+}

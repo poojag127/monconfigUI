@@ -33,7 +33,6 @@ export class ConfigurationHomeComponent implements OnInit
 
   ngOnInit()
   {
-  //  this.cols = [{field: 'monitor' ,header:'Monitor'}];
   this.cols=[];
    this.route.params.subscribe((params: Params) => {
       this.topoName = params['topoName'];
@@ -48,31 +47,13 @@ export class ConfigurationHomeComponent implements OnInit
         data.forEach((function(val){
          that.cols.push({field:val ,header :val})
         }
+        
     ))
+    that.getData();
    })
 
-   this.cavMonConfigService.getTreeTableData().then(data =>
-     {
-      console.log("data---",data)
-      data.map(function(val)
-      {
-        that.tierList.map(function(eachTier)
-        {
-          //adding Tier to parent monitor node
-          val.data.eachTier = "configure";
-
-          //adding Tier to children monitor node
-          val.children.map(function(eachChildNode)
-          {
-            eachChildNode.data.eachTier = "configure";
-          }
-         )
-        }
-       ) 
-      })
-      this.compData = data
-     } 
-    )
+   
+    
  /*  this.cols = [
             {field: 'monitor' ,header:'Monitor'},
             {field: 'stresshle-blue-accservice',header:'stresshle-blue-accservice'},
@@ -84,6 +65,33 @@ export class ConfigurationHomeComponent implements OnInit
             {field:'stresshle-main-zk',header:'stresshle-blue-snbservice-prod'}
         ];
         */
+  }
+
+  getData()
+  {
+    let that = this;
+    this.cavMonConfigService.getTreeTableData().then(data =>
+      {
+       console.log("data---",data)
+       data.map(function(val)
+       {
+         that.tierList.map(function(eachTier)
+         {
+           //adding Tier to parent monitor node
+           val.data.eachTier = "configure";
+ 
+           //adding Tier to children monitor node
+           val.children.map(function(eachChildNode)
+           {
+             eachChildNode.data.eachTier = "configure";
+           }
+          )
+         }
+        ) 
+       })
+       this.compData = data;
+      })
+
   }
 
   onChangeCheckbox()
