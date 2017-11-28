@@ -53,6 +53,7 @@ import { CavMonBreadcrumbComponent } from './components/cav-mon-breadcrumb/cav-m
 import { CavMonRightPaneComponent } from './components/cav-mon-right-pane/cav-mon-right-pane.component';
 import { CavMonHomeRightPaneComponent } from './components/cav-mon-home-right-pane/cav-mon-home-right-pane.component';
 import { ConfigurationHomeComponent } from './components/cav-mon-mjson/configuration-home/configuration-home.component';
+import { AdvanceSettingsComponent } from './components/cav-mon-mjson/advance-settings/advance-settings.component';
 
 
 @NgModule({
@@ -66,6 +67,7 @@ import { ConfigurationHomeComponent } from './components/cav-mon-mjson/configura
     CavMonRightPaneComponent,
     CavMonHomeRightPaneComponent,
     ConfigurationHomeComponent,
+    AdvanceSettingsComponent,
     // CavMonMenuComponent
   ],
   imports: [

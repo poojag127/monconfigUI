@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { TreeNode } from 'primeng/primeng';
 import { CavmonConfigService } from '../../../services/cavmon-config.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ROUTING_PATH } from '../../../constants/monconfig-url-constant';
+
+import {ProfileData} from '../../../containers/profile-data';
+import {MJsonData} from '../../../containers/mjson-data';
 
 @Component({
   selector: 'app-configuration-home',
@@ -20,6 +24,10 @@ export class ConfigurationHomeComponent implements OnInit
   topoName:String;
 
   jsonName :String;
+
+  monName :String; //variable to hold monitor name 
+
+  tierfield:String; // variable to hold tier name for each monitor
 
   tierList: any[];
 
@@ -99,6 +107,10 @@ export class ConfigurationHomeComponent implements OnInit
     console.log("onChangeCheckbox method called")
   }
 
-
-
+/** for advance settings */
+  advanceSettings(monName,tierfield)
+  {
+     this.router.navigate([ROUTING_PATH + '/advanceSettings',monName,tierfield]);
+  }
+  
 }
