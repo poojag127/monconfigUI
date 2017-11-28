@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TreeNode } from 'primeng/primeng';
 import { CavmonConfigService } from '../../../services/cavmon-config.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import * as _ from "lodash";
 
 @Component({
   selector: 'app-configuration-home',
@@ -23,6 +24,9 @@ export class ConfigurationHomeComponent implements OnInit
 
   tierList: any[];
 
+  selectedRow: TreeNode;
+
+  dynamicKey:any[]=[];
 
   constructor(private cavMonConfigService:CavmonConfigService,
              private router:Router,
@@ -59,12 +63,17 @@ export class ConfigurationHomeComponent implements OnInit
         that.tierList.map(function(eachTier)
         {
           //adding Tier to parent monitor node
-          val.data.eachTier = "configure";
+          val.data[eachTier] = "configure";
+          that.createKeyForCheckBox(val.data.monitor,eachTier)
+          
+       
+          
 
           //adding Tier to children monitor node
           val.children.map(function(eachChildNode)
           {
-            eachChildNode.data.eachTier = "configure";
+            eachChildNode.data[eachTier] = "configure";
+            that.createKeyForCheckBox(eachChildNode.data.monitor,eachTier)
           }
          )
         }
@@ -90,6 +99,40 @@ export class ConfigurationHomeComponent implements OnInit
   {
     console.log("onChangeCheckbox method called")
   }
+
+  createKeyForCheckBox(monitorName,TierName)
+  {
+    let key = monitorName + TierName;
+    let obj = {[key] : false}
+    this.dynamicKey.push(obj);
+  }
+
+  nodeSelect(event)
+  {
+    console.log("this.dynamickey--",this.dynamicKey)
+   console.log("event--",event)
+   let monitorName = event.node.data.monitor;
+   console.log(monitorName);
+   let that = this;
+   _.forEach(event.node.data, function(value, key) {
+    console.log(key);
+    let node = monitorName + key;
+    console.log(node)
+    that.dynamicKey.map(function(each)
+    {
+      if(each.hasOwnProperty(node))
+      {
+        each[node] = true;
+      }
+    })
+  });
+  console.log("dynamickey-",this.dynamicKey)
+ }
+
+ nodeUnselect(event)
+ {
+   console.log("unselecting the event--",event)
+ }
 
 
 

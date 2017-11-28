@@ -2,11 +2,15 @@
   configuration-home works!
 </p>-->
 
-<div class="ui-g-12 derivedadvanced" id="top-div">
+<div class="ui-g config-ui">
+  
+  </div>
 
-<p-treeTable class="mon-ui "  scrollable="true" [value]="compData" selectionMode="checkbox"  [style]="{'margin-top':'50px'}">
-  <p-header>Checkbox Selection</p-header>
-    <p-column [style]="{'min-width':'208px'}" field="monitor" header="Monitor">
+<div class="ui-g-12" id="top-div">
+
+
+<p-treeTable class="mon-ui "  scrollable="true" [value]="compData" selectionMode="checkbox"  (onNodeSelect)="nodeSelect($event)" (onNodeUnselect)="nodeUnselect($event)"  [(selection)]="selectedRow"  [style]="{'margin-top':'50px'}">
+    <p-column [style]="{'min-width':'224px'}" field="monitor" header="Monitor">
        <template  let-col let-data="rowData" pTemplate >
        <span>{{data.data[col.field]}}</span>  
        </template>
@@ -14,8 +18,11 @@
 
     <p-column  *ngFor="let col of cols" [field]="col.field" [header]="col.header">
       <template   let-data="rowData" pTemplate >
-        <p-triStateCheckbox *ngIf="col.field != 'monitor'" onChange="onChangeCheckbox()"></p-triStateCheckbox>
-       <a  *ngIf="col.field != 'monitor'"> <i class="fa fa-cog" aria-hidden="true" title="Advance settings"></i> </a>
+        <!--{{dynamicKey[data.data.monitor + col.field]}}-->
+        <!--{{dynamicKey.map(a => a[data.data.monitor + col.field])}}-->
+        <!--<p-checkbox  *ngIf="col.field != 'monitor'"  *ngFor="let key of dynamicKey"  [(ngModel)]="key[data.data.monitor + col.field]"   binary="false"></p-checkbox>-->
+        <p-checkbox  *ngFor="let key of dynamicKey"  [(ngModel)]="key[data.data.monitor + col.field]"   binary="false"></p-checkbox>
+       <a  class="hyperlink" (click)="routeToConfiguration(json['name'],selectedTopology)" *ngIf="col.field != 'monitor'"> <i class="fa fa-cog" aria-hidden="true" title="Advance settings"></i> </a>
         <!-- <span [style]="{'width':'2%','padding':'1px'}" *ngIf="col.field == 'monitor'" >{{data.data[col.field]}}</span> -->
       </template>
     </p-column>

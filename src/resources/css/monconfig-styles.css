@@ -114,7 +114,7 @@ ul.cav-menu-ul {
     width: 100%;
     height: 50px;
     border-radius: 0%;
-    border-bottom: 1px #f6f7f930 solid
+    border-bottom: 1px #f6f7f930 solid;
 }
 
 
@@ -375,7 +375,7 @@ ndegui-audit-logs:before {
 .ui-treetable table {
     border-collapse: collapse;
     width: auto !important;
-    table-layout: inherit;
+    
 }
 .ui-treetable th span.ui-column-title {
    transform: rotate(90deg);
@@ -395,4 +395,16 @@ ndegui-audit-logs:before {
 
 .mon-hometable .ui-datatable .ui-datatable-thead>tr>th{
   font-weight: 100;
+}
+
+
+.ui-treetable td.ui-treetable-child-table-container 
+{
+ column-span: none;
+
+}
+
+.ui-treetable tbody .ui-treetable-row td
+{
+  column-span: 0;
 }
