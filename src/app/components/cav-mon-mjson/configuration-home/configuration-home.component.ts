@@ -37,7 +37,6 @@ export class ConfigurationHomeComponent implements OnInit
 
   ngOnInit()
   {
-  //  this.cols = [{field: 'monitor' ,header:'Monitor'}];
   this.cols=[];
    this.route.params.subscribe((params: Params) => {
       this.topoName = params['topoName'];
@@ -52,36 +51,11 @@ export class ConfigurationHomeComponent implements OnInit
         data.forEach((function(val){
          that.cols.push({field:val ,header :val})
         }
+        
     ))
+    that.getData();
    })
 
-   this.cavMonConfigService.getTreeTableData().then(data =>
-     {
-      console.log("data---",data)
-      data.map(function(val)
-      {
-        that.tierList.map(function(eachTier)
-        {
-          //adding Tier to parent monitor node
-          val.data[eachTier] = "configure";
-          that.createKeyForCheckBox(val.data.monitor,eachTier)
-          
-       
-          
-
-          //adding Tier to children monitor node
-          val.children.map(function(eachChildNode)
-          {
-            eachChildNode.data[eachTier] = "configure";
-            that.createKeyForCheckBox(eachChildNode.data.monitor,eachTier)
-          }
-         )
-        }
-       ) 
-      })
-      this.compData = data
-     } 
-    )
  /*  this.cols = [
             {field: 'monitor' ,header:'Monitor'},
             {field: 'stresshle-blue-accservice',header:'stresshle-blue-accservice'},
@@ -93,6 +67,40 @@ export class ConfigurationHomeComponent implements OnInit
             {field:'stresshle-main-zk',header:'stresshle-blue-snbservice-prod'}
         ];
         */
+  }
+
+  getData()
+  {
+    let that = this;
+    this.cavMonConfigService.getTreeTableData().then(data =>
+      {
+       console.log("data---",data)
+       data.map(function(val)
+       {
+         that.tierList.map(function(eachTier)
+         {
+           //adding Tier to parent monitor node
+          val.data[eachTier] = false;
+          console.log("val--",val.data[eachTier])
+          // that.createKeyForCheckBox(val.data.monitor,eachTier)
+          
+
+           if(val.hasOwnProperty('children'))
+           {
+           //adding Tier to children monitor node
+           val.children.map(function(eachChildNode)
+           {
+            eachChildNode.data[eachTier] = false
+            // that.createKeyForCheckBox(eachChildNode.data.monitor,eachTier)
+           }
+          )
+          }
+         }
+        ) 
+       })
+       this.compData = data;
+      })
+
   }
 
   onChangeCheckbox()
@@ -109,29 +117,34 @@ export class ConfigurationHomeComponent implements OnInit
 
   nodeSelect(event)
   {
-    console.log("this.dynamickey--",this.dynamicKey)
    console.log("event--",event)
    let monitorName = event.node.data.monitor;
    console.log(monitorName);
    let that = this;
-   _.forEach(event.node.data, function(value, key) {
-    console.log(key);
-    let node = monitorName + key;
-    console.log(node)
-    that.dynamicKey.map(function(each)
-    {
-      if(each.hasOwnProperty(node))
-      {
-        each[node] = true;
-      }
-    })
-  });
+   for(let each in event.node.data)
+   {
+     console.log("each--",each)
+     if(each != "monitor")
+        event.node.data[each] = true;
+   }
   console.log("dynamickey-",this.dynamicKey)
  }
 
  nodeUnselect(event)
  {
-   console.log("unselecting the event--",event)
+   console.log("event--",event)
+   let monitorName = event.node.data.monitor;
+   let that = this;
+   for(let each in event.node.data)
+   {
+    if(each != "monitor")
+     event.node.data[each] = false;
+   }
+ }
+
+ onCheckBoxChange()
+ {
+   console.log("onCheckBoxChange method called")
  }
 
 

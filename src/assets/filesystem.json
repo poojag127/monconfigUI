@@ -100,6 +100,27 @@
         },
         {  
             "data":{  
+                "monitor":"System Stats"
+               
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"SystemStatsExtended"
+                       
+                    }
+                 },
+                 {
+                    "data":{
+                        "monitor":"SystemStats"
+
+                    }
+                }
+               
+            ]
+        },
+        {  
+            "data":{  
                 "monitor":"JBoss Stats"
                
             },
@@ -130,7 +151,459 @@
                 }
 
             ]
+        },
+
+        {  
+            "data":{  
+                "monitor":"Cassandra Stats"
+               
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"CassandraThreadPoolMsg Stats"
+                       
+                    }
+                 },
+                 {
+                    "data":{
+                        "monitor":"CassandraNode Stats"
+
+                    }
+                },
+                 {
+                    "data":{
+                        "monitor":"CassandraCompaction Stats"
+                        
+                    }
+                },
+                 {
+                    "data":{
+                        "monitor":"CassandraColumnFamily Stats"
+                       
+                    }
+                },
+                 {
+                    "data":{
+                        "monitor":"CassandraCompactionStatsV2 "
+                       
+                    }
+                }
+            ]
+        },
+
+        
+        {  
+            "data":{  
+                "monitor":"Coherence Stats"
+               
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"CoherenceCacheExCum Stats "
+                       
+                    }
+                 },
+                 {
+                    "data":{
+                        "monitor":"CoherenceCacheExCumV2 Stats"
+
+                    }
+                },
+                 {
+                    "data":{
+                        "monitor":"CoherenceCacheEx Stats"
+                        
+                    }
+                },
+                 {
+                    "data":{
+                        "monitor":"CoherenceClusterNode Stats "
+                       
+                    }
+                },
+                 {
+                    "data":{
+                        "monitor":"CoherenceCluster Stats "
+                       
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"CoherenceService Stats  "
+                       
+                    }
+                },
+                 {
+                    "data":{
+                        "monitor":"CoherenceStorageCache Stats "
+                       
+                    }
+                }
+            ]
+        },
+
+        {  
+            "data":{  
+                "monitor":"Kubernetes Stats"
+               
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"KubernetesHostCPU Stats "
+                       
+                    }
+                 },
+                 {
+                    "data":{
+                        "monitor":"KubernetesHostMemory Stats"
+
+                    }
+                },
+                 {
+                    "data":{
+                        "monitor":"KubernetesHostBlockIo Stats"
+                        
+                    }
+                },
+                 {
+                    "data":{
+                        "monitor":"KubernetesContainer Stats "
+                       
+                    }
+                },
+                 {
+                    "data":{
+                        "monitor":"KubernetesHostDevice Stats "
+                       
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"KubernetesNodeStatsEx Stats  "
+                       
+                    }
+                },
+                 {
+                    "data":{
+                        "monitor":"KubernetesAutoScaleConfigStats Stats "
+                       
+                    }
+                },
+                 {
+                    "data":{
+                        "monitor":"KubernetesServices Stats  "
+                       
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"KubernetesServiceStatus Stats  "
+                       
+                    }
+                }
+
+            ]
+        },
+         {  
+            "data":{  
+                "monitor":"Azkaban Stats"
+               
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"AzkabanFlow Stats "
+                       
+                    }
+                 },
+                 {  
+                 "data":{  
+                        "monitor":"AzkabanSubFlow Stats "
+                    }
+                 }
+            ]
+        },
+         {  
+            "data":{  
+                "monitor":"ApacheSolr Stats"
+               
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"ApacheSolrCache Stats "
+                       
+                    }
+                 },
+                 {  
+                 "data":{  
+                        "monitor":"ApacheSolrCacheEx Stats "
+                    }
+                 }
+            ]
+        },
+         {  
+            "data":{  
+                "monitor":"Websphere Stats"
+               
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"WebsphereJDBC Stats "
+                       
+                    }
+                 },
+                 {  
+                 "data":{  
+                        "monitor":"WebsphereThreadPool Stats  "
+                    }
+                 },
+                 {  
+                 "data":{  
+                        "monitor":"WebsphereServlet Stats "
+                    }
+                 },
+                 {  
+                 "data":{  
+                        "monitor":"WebsphereSession Stats"
+                    }
+                 }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"Spring DM Stats"
+               
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"SpringDmThreadPool Stats "
+                       
+                    }
+                 },
+                 {  
+                 "data":{  
+                        "monitor":"SpringDmRequestProcessor Stats  "
+                    }
+                 },
+                 {  
+                 "data":{  
+                        "monitor":"SpringDmServlet Stats  "
+                    }
+                 },
+                 {  
+                 "data":{  
+                        "monitor":"SpringDmWebModule Stats"
+                    }
+                 },
+                  {  
+                 "data":{  
+                        "monitor":"SpringDmJKHandler Stats "
+                    }
+                 },
+                  {  
+                 "data":{  
+                        "monitor":"SpringDmExecutorServices Stats "
+                    }
+                 }
+            ]
+        },
+
+        {  
+            "data":{  
+                "monitor":"Docker Stats"
+               
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"DockerSystem Stats "
+                       
+                    }
+                 },
+                 {  
+                 "data":{  
+                        "monitor":"DockerNetwork Stats  "
+                    }
+                 },
+                 {  
+                 "data":{  
+                        "monitor":"DockerMemory Stats  "
+                    }
+                 },
+                 {  
+                 "data":{  
+                        "monitor":"DockerIO Stats"
+                    }
+                 },
+                  {  
+                 "data":{  
+                        "monitor":"DockerInfo Stats "
+                    }
+                 },
+                  {  
+                 "data":{  
+                        "monitor":"DockerCPU Stats "
+                    }
+                 }
+            ]
+        },
+         {  
+            "data":{  
+                "monitor":"HA  Proxy Stats"
+               
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"HAProxyFrontend Stats "
+                       
+                    }
+                 },
+                 {  
+                 "data":{  
+                        "monitor":"HAProxyBackend Stats  "
+                    }
+                 }
+                 
+            ]
+        },
+         {  
+            "data":{  
+                "monitor":"Rabbit MQ Stats"
+               
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"RabbitMQNode Stats "
+                       
+                    }
+                 },
+                 {  
+                 "data":{  
+                        "monitor":"RabbitMQQueue Stats  "
+                    }
+                 },
+                 {  
+                 "data":{  
+                        "monitor":"RabbitMQCluster Stats  "
+                    }
+                 }
+                 
+            ]
+        },
+         {  
+            "data":{  
+                "monitor":"Hadoop Rest API Stats"
+               
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"HDFSCluster Stats "
+                       
+                    }
+                 },
+                 {  
+                 "data":{  
+                        "monitor":"HDFSDataNode Stats  "
+                    }
+                 },
+                 {  
+                 "data":{  
+                        "monitor":"HBaseCluster Stats  "
+                    }
+                 }
+                 
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"Elastic Search  Stats"
+               
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"ElasticSearchCluster Stats "
+                       
+                    }
+                 },
+                 {  
+                 "data":{  
+                        "monitor":"ElasticSearchNodeStats Stats  "
+                    }
+                 },
+                 {  
+                 "data":{  
+                        "monitor":"ElasticSearchNodeThreadPoolStats Stats  "
+                    }
+                 },
+                 {  
+                 "data":{  
+                        "monitor":"ElasticSearchIndex Stats  "
+                    }
+                 }
+                 
+            ]
+        },
+
+        {  
+            "data":{  
+                "monitor":"Cloud Foundry Stats"
+               
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"CloudfoundryApp Stats "
+                       
+                    }
+                 },
+                 {  
+                 "data":{  
+                        "monitor":"CloudfoundryProcess Stats  "
+                    }
+                 },
+                 {  
+                 "data":{  
+                        "monitor":"ElasticSearchNodeThreadPoolStats Stats  "
+                    }
+                 },
+                 {  
+                 "data":{  
+                        "monitor":"ElasticSearchIndex Stats  "
+                    }
+                 }
+                 
+            ]
+        },
+
+
+         {  
+            "data":{  
+                "monitor":"IBM MQ Stats"
+            }
+           
+        },
+         {  
+            "data":{  
+                "monitor":"Tibco Queue Stats"
+            }
+           
         }
+
+        
+
+
+
+
       ]
 }
        

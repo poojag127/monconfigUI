@@ -43,9 +43,8 @@ import {TooltipModule,
         TreeNode,
         SharedModule,
         TriStateCheckboxModule,
-        CheckboxModule
-     
-      
+        CheckboxModule,
+        ToolbarModule
     } from 'primeng/primeng';
 
 import { CavMonTopNavBarComponent } from './components/cav-mon-top-nav-bar/cav-mon-top-nav-bar.component';
@@ -86,7 +85,8 @@ import { ConfigurationHomeComponent } from './components/cav-mon-mjson/configura
     ConfigRoutingModule,
     TreeTableModule,
     TriStateCheckboxModule,
-    CheckboxModule
+    CheckboxModule,
+    ToolbarModule
   ],
   providers: [CavmonHomeService,ConfigRestApiService,ConfigUtilityService,CavmonConfigService
 ,  { provide: LocationStrategy, useClass: HashLocationStrategy},

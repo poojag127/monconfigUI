@@ -308,6 +308,8 @@ margin: 5px 0px;
     background: linear-gradient(to bottom, #417ebf 0%, #3b77b6 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#417ebf', endColorstr='#3b77b6',GradientType=0 );
     color: white;
+    /*height: 90px;*/
+    padding: 12em 0 0 ;
 }
 
 
@@ -374,9 +376,10 @@ ndegui-audit-logs:before {
  
 .ui-treetable table {
     border-collapse: collapse;
-    width: auto !important;
+    /*width: auto !important;*/
     
 }
+
 .ui-treetable th span.ui-column-title {
    transform: rotate(90deg);
    transform-origin: left top 0;
@@ -385,7 +388,7 @@ ndegui-audit-logs:before {
 
 .monitorColumn
 {
-  width:20em !important;
+  /*width:20em !important;*/
 }
 
 .mon-hometable .ui-datatable th.ui-state-default{
@@ -401,10 +404,43 @@ ndegui-audit-logs:before {
 .ui-treetable td.ui-treetable-child-table-container 
 {
  column-span: none;
-
 }
 
 .ui-treetable tbody .ui-treetable-row td
 {
   column-span: 0;
 }
+
+.toolbarCss{
+  margin-bottom: 10px;
+  background:hsl(203, 75%, 32%);
+  color:white;
+  border:none;
+  height:31px;
+}
+
+.mon-ui .ui-treetable  th span.ui-column-title
+{
+   transform: rotate(-90deg);
+   display: block;
+   text-align: left;
+   /*padding: 12em 0 0;*/
+}
+
+.monitorHeader
+{
+  width:176px;
+  transform: rotate(0deg);
+}
+
+.mon-ui .ui-treetable  th:first-child  span.ui-column-title  
+{
+    transform: rotate(0deg); 
+    display: block;
+    width: 176px;
+    text-align: center;
+    padding-bottom: 18px;
+    font-size: 17px;
+}
+
+
