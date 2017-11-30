@@ -376,8 +376,8 @@ ndegui-audit-logs:before {
  
 .ui-treetable table {
     border-collapse: collapse;
-    /*width: auto !important;*/
-    
+    /* width: auto !important; */
+    /*table-layout: inherit;*/
 }
 
 .ui-treetable th span.ui-column-title {

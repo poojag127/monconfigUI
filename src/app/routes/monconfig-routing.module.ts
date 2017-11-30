@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 /**Import Config Components */
 import { CavMonRightPaneComponent } from '../components/cav-mon-right-pane/cav-mon-right-pane.component';
 import { ConfigurationHomeComponent } from '../components/cav-mon-mjson/configuration-home/configuration-home.component';
-
+import { AdvanceSettingsComponent } from '../components/cav-mon-mjson/advance-settings/advance-settings.component';
 
 /**For ProductUI */
 // const routes: Routes = [
@@ -37,6 +37,7 @@ const routes: Routes = [
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: CavMonRightPaneComponent },
             { path: 'mjson/:mjsonName/:topoName', component: ConfigurationHomeComponent },
+            { path: 'advanceSettings/:monName/:tierfield', component: AdvanceSettingsComponent},
           ];
 
 @NgModule({

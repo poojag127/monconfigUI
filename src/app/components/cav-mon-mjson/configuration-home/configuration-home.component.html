@@ -19,7 +19,7 @@
     <p-column [style]="{'width':'176px'}" field="monitor" header="Monitor">
         <!--<p-column  field="monitor" header="Monitor">-->
        <template  let-col let-data="rowData" pTemplate >
-       <span>{{data.data[col.field]}}</span>  
+       <span>{{data.data[col.field]}}</span> <i class="fa fa-cog"  (click)="advanceSettings(data.data['monitor'],col.field)" aria-hidden="true" title="Advance settings"></i> 
        </template>
     </p-column>
 

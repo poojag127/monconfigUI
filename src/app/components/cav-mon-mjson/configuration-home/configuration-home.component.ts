@@ -2,7 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { TreeNode } from 'primeng/primeng';
 import { CavmonConfigService } from '../../../services/cavmon-config.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+<<<<<<< HEAD
 import * as _ from "lodash";
+=======
+import { ROUTING_PATH } from '../../../constants/monconfig-url-constant';
+
+import {ProfileData} from '../../../containers/profile-data';
+import {MJsonData} from '../../../containers/mjson-data';
+>>>>>>> ceeadcc1561b6a87e2ae53f3b8e1b87853d83d7f
 
 @Component({
   selector: 'app-configuration-home',
@@ -21,6 +28,10 @@ export class ConfigurationHomeComponent implements OnInit
   topoName:String;
 
   jsonName :String;
+
+  monName :String; //variable to hold monitor name 
+
+  tierfield:String; // variable to hold tier name for each monitor
 
   tierList: any[];
 
@@ -149,4 +160,10 @@ export class ConfigurationHomeComponent implements OnInit
 
 
 
+/** for advance settings */
+  advanceSettings(monName,tierfield)
+  {
+     this.router.navigate([ROUTING_PATH + '/advanceSettings',monName,tierfield]);
+  }
+  
 }
