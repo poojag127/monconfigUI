@@ -310,6 +310,7 @@ margin: 5px 0px;
     color: white;
     /*height: 90px;*/
     padding: 12em 0 0 ;
+    width: 43px;
 }
 
 
@@ -443,4 +444,64 @@ ndegui-audit-logs:before {
     font-size: 17px;
 }
 
+mon-ui .ui-treetable th.ui-state-default {
+    background: #417ebf;
+    background: linear-gradient(to bottom, #417ebf 0%, #3b77b6 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#417ebf', endColorstr='#3b77b6',GradientType=0 );
+    color: white;
+    /* height: 90px; */
+    padding: 12em 0 0;
+   
+}
+
+
+/******Weblocic configur3e screen ****/
+
+.tabsincontent
+{
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.tabsincontent .header
+{
+    color: #fff;
+    background: #183D65;
+    height:29px;
+
+}
+
+.hideheader .ui-panel.ui-widget .ui-panel-titlebar.ui-corner-all {
+    opacity: 0;
+}
+
+.md-card-css .mat-card {
+    padding: 0px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    height: 225px;
+}
+
+.header-Name
+{
+  color: white;
+  font-size: 12px;
+  padding: 9px;
+  float: left; 
+  font-weight: 500;
+}
+
+.webLogicConfigureCss
+{
+background:white;
+}
+
+.weblogicLeftPaneCss
+{
+padding:10px;  
+}
+
+.configureLeftPaneCss:hover
+{
+  text-decoration: underline;
+}
 

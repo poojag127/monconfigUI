@@ -15,13 +15,16 @@
   </div>
    
 <div class="ui-g-12" id="top-div">
- <p-treeTable class="mon-ui "  scrollable="true" [value]="compData" selectionMode="checkbox"   selection ="false"  >
+ <p-treeTable class="mon-ui "  scrollable="true" [value]="compData"  selection="false">
     <p-column [style]="{'width':'176px'}" field="monitor" header="Monitor">
         <!--<p-column  field="monitor" header="Monitor">-->
        <template  let-col let-data="rowData" pTemplate >
-       <span>{{data.data[col.field]}}</span> <i class="fa fa-cog"  (click)="advanceSettings(data.data['monitor'],col.field)" aria-hidden="true" title="Advance settings"></i> 
+       <p-checkbox   [(ngModel)]="data.data['monitorState']" (click)="onTreeNodeCheckBoxChange(data)"   binary="false"></p-checkbox>
+       <span>{{data.data[col.field]}}</span><i class="fa fa-cog"  (click)="advanceSettings(data.data['monitor'],col.field)" aria-hidden="true" title="Advance settings"></i> 
        </template>
     </p-column>
+
+    
 
     <p-column  *ngFor="let col of cols" [field]="col.field" [header]="col.header">
       <template   let-data="rowData" pTemplate >
