@@ -473,7 +473,7 @@ mon-ui .ui-treetable th.ui-state-default {
     color: #fff;
     background: #183D65;
     height:29px;
-
+    padding-top: 9px;
 }
 
 .hideheader .ui-panel.ui-widget .ui-panel-titlebar.ui-corner-all {
@@ -527,4 +527,12 @@ padding:10px;
   -ms-transform: rotate(45deg);
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+.monConfigRow{
+  width:21.333%
+}
+
+.pull-right{
+  padding-right: 5px;
 }

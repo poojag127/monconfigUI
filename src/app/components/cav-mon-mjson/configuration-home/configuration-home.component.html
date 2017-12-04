@@ -21,7 +21,7 @@
         <!--<p-column  field="monitor" header="Monitor">-->
        <template  let-col let-data="rowData" pTemplate >
        <p-checkbox   [(ngModel)]="data.data['monitorState']" (click)="onTreeNodeCheckBoxChange(data)"   binary="false"></p-checkbox>
-       <span>{{data.data[col.field]}}</span><i class="fa fa-cog"  (click)="advanceSettings(data.data['monitor'],col.field)" aria-hidden="true" title="Advance settings"></i> 
+       <span>{{data.data[col.field]}}</span>
        </template>
       </p-column>
 
