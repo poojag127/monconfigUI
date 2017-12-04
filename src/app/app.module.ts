@@ -44,7 +44,9 @@ import {TooltipModule,
         SharedModule,
         TriStateCheckboxModule,
         CheckboxModule,
-        ToolbarModule
+        ToolbarModule,
+        TabViewModule
+        
     } from 'primeng/primeng';
 
 import { CavMonTopNavBarComponent } from './components/cav-mon-top-nav-bar/cav-mon-top-nav-bar.component';
@@ -53,6 +55,7 @@ import { CavMonRightPaneComponent } from './components/cav-mon-right-pane/cav-mo
 import { CavMonHomeRightPaneComponent } from './components/cav-mon-home-right-pane/cav-mon-home-right-pane.component';
 import { ConfigurationHomeComponent } from './components/cav-mon-mjson/configuration-home/configuration-home.component';
 import { AdvanceSettingsComponent } from './components/cav-mon-mjson/advance-settings/advance-settings.component';
+import { WeblogicConfigureComponent } from './components/cav-mon-mjson/weblogic-configure/weblogic-configure.component';
 
 
 @NgModule({
@@ -67,6 +70,7 @@ import { AdvanceSettingsComponent } from './components/cav-mon-mjson/advance-set
     CavMonHomeRightPaneComponent,
     ConfigurationHomeComponent,
     AdvanceSettingsComponent,
+    WeblogicConfigureComponent,
     // CavMonMenuComponent
   ],
   imports: [
@@ -88,7 +92,8 @@ import { AdvanceSettingsComponent } from './components/cav-mon-mjson/advance-set
     TreeTableModule,
     TriStateCheckboxModule,
     CheckboxModule,
-    ToolbarModule
+    ToolbarModule,
+    TabViewModule
   ],
   providers: [CavmonHomeService,ConfigRestApiService,ConfigUtilityService,CavmonConfigService
 ,  { provide: LocationStrategy, useClass: HashLocationStrategy},

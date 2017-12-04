@@ -25,6 +25,7 @@ export class ConfigurationHomeComponent implements OnInit
 
   jsonName :String;
 
+
   monName :String; //variable to hold monitor name 
 
   tierfield:String; // variable to hold tier name for each monitor
@@ -52,16 +53,27 @@ export class ConfigurationHomeComponent implements OnInit
 
    console.log("topoName--",this.topoName)
    let that = this;
-   this.cavMonConfigService.getTierList(this.topoName).subscribe(data =>
-       {
-        this.tierList = data;
-        data.forEach((function(val){
-         that.cols.push({field:val ,header :val})
-        }
+  //  this.cavMonConfigService.getTierList(this.topoName).subscribe(data =>
+  //      {
+  //       this.tierList = data;
+  //       data.forEach((function(val){
+  //        that.cols.push({field:val ,header :val})
+  //       }
         
-    ))
-    that.getData();
-   })
+  //   ))
+  //   that.getData();
+  //  })
+
+
+  let data = this.cavMonConfigService.getTierList(this.topoName)
+  this.tierList = data;
+  data.forEach((function(val){
+      that.cols.push({field:val ,header :val})
+    }));
+  this.getData();
+
+    
+
 
  /*  this.cols = [
             {field: 'monitor' ,header:'Monitor'},
@@ -84,6 +96,7 @@ export class ConfigurationHomeComponent implements OnInit
        console.log("data---",data)
        data.map(function(val)
        {
+         val.data["monitorState"] = false;
          that.tierList.map(function(eachTier)
          {
            //adding Tier to parent monitor node
@@ -97,6 +110,7 @@ export class ConfigurationHomeComponent implements OnInit
            //adding Tier to children monitor node
            val.children.map(function(eachChildNode)
            {
+            eachChildNode.data["monitorState"] = false;
             eachChildNode.data[eachTier] = false
             // that.createKeyForCheckBox(eachChildNode.data.monitor,eachTier)
            }
@@ -122,20 +136,20 @@ export class ConfigurationHomeComponent implements OnInit
     this.dynamicKey.push(obj);
   }
 
-  nodeSelect(event)
-  {
-   console.log("event--",event)
-   let monitorName = event.node.data.monitor;
-   console.log(monitorName);
-   let that = this;
-   for(let each in event.node.data)
-   {
-     console.log("each--",each)
-     if(each != "monitor")
-        event.node.data[each] = true;
-   }
-  console.log("dynamickey-",this.dynamicKey)
- }
+//   nodeSelect(event)
+//   {
+//    console.log("event--",event)
+//    let monitorName = event.node.data.monitor;
+//    console.log(monitorName);
+//    let that = this;
+//    for(let each in event.node.data)
+//    {
+//      console.log("each--",each)
+//      if(each != "monitor")
+//         event.node.data[each] = true;
+//    }
+//   console.log("dynamickey-",this.dynamicKey)
+//  }
 
  nodeUnselect(event)
  {
@@ -149,9 +163,9 @@ export class ConfigurationHomeComponent implements OnInit
    }
  }
 
- onCheckBoxChange()
+ onCheckBoxChange(event)
  {
-   console.log("onCheckBoxChange method called")
+   console.log("onCheckBoxChange method called--",event)
  }
 
 
@@ -160,6 +174,26 @@ export class ConfigurationHomeComponent implements OnInit
   advanceSettings(monName,tierfield)
   {
      this.router.navigate([ROUTING_PATH + '/advanceSettings',monName,tierfield]);
+  }
+
+  onTreeNodeCheckBoxChange(rowData)
+  {
+    console.log("rowData--",rowData)
+    for(let each in rowData.data)
+    {
+     if(each != 'monitor')
+     {
+        rowData.data[each] = this.getValueOfTierCheckBox(rowData.data);
+        console.log(this.getValueOfTierCheckBox(rowData.data))
+     }
+    }
+    console.log("rowData-- aftr modified",rowData)
+  }
+
+/*** returns tier checkbox value true or false**************/
+  getValueOfTierCheckBox(data)
+  {
+   return data["monitorState"];
   }
   
 }
