@@ -1,10 +1,10 @@
 
 <div class="tabsincontent">
     <div class="header">Weblogic Monitors
-       <div class="pull-right">
+       <!--<div class="pull-right">
          <button type="button" pButton icon="fa-refresh" (click)="resetKeywordData()" label="Reset"></button>
          <button type="submit" pButton icon="fa-check" [disabled]="saveDisable" label="Save"></button>
-       </div>
+       </div>-->
     </div>
 
     <div class="ui-g">
@@ -12,7 +12,7 @@
         <p-panel  class="hideheader">
 
         <div class="ui-g weblogicLeftPaneCss">
-         <p-checkbox name="enableJDBCstats"   binary="true"></p-checkbox>
+         <p-checkbox name="enableJDBCstats"   [(ngModel)]="weblogic.instanceName"  binary="true"></p-checkbox>
          <a  class="configureLeftPaneCss" (click)="openConfigure('JDBC')">Enable JDBC Stats </a>
         </div>
 
@@ -46,14 +46,20 @@
         <a   class="configureLeftPaneCss" (click)="openConfigure('Transaction')">Enable Transaction Stats</a>
       </div>
      
-     
+     ` 
       </p-panel>
       </div>
 
       
       <div class="ui-g-8">
-         <p-panel header = "Configure  {{statsName}} Stats for  All tier">
          <form (ngSubmit)="saveWeblogicConfiguration(groupForm)" #groupForm="ngForm" ngNativeValidate>
+        <div class="header">Configure  {{statsName}} Stats for  All tier
+         <div class="pull-right">
+          <button type="button" pButton icon="fa-refresh" (click)="resetKeywordData()" label="Reset"></button>
+          <button type="submit" pButton icon="fa-check" [disabled]="saveDisable" label="Save"></button>
+         </div>
+        </div>
+         <p-panel class="hideheader">
           <div class="ui-g">
             <div class="ui-g-4">
                 <label>User Name</label>
@@ -116,13 +122,15 @@
 
             <div class="ui-g-8">
               <!--<input name="topoId" type="text" class='hidden-validator' pInputText [(ngModel)]="weblogic.type" required ngModel/>-->
-              <p-dropdown name="topoId" [options]="typeItems" placeholder="--Select Mbeans Type--" [style]="{'width':'72%','margin-left': '-19px'}" [(ngModel)]="weblogic.type" appendTo="body" required ngModel></p-dropdown>
+              <p-dropdown name="topoId" [options]="typeItems" placeholder="--Select Mbeans Type--" [style]="{'width':'72%','margin-left': '-19px'}"  appendTo="body" required ngModel></p-dropdown>
             </div>
         </div>
 
 
-         </form>
         </p-panel>
+         </form>
+
+      
       </div>
 
     </div>

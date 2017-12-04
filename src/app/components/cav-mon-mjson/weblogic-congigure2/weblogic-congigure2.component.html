@@ -1,0 +1,121 @@
+
+
+
+<div class="tabsincontent">
+    <form (ngSubmit)="saveWeblogicConfiguration(groupForm)" #groupForm="ngForm" ngNativeValidate>
+    <div class="header"> Configure Weblogic Monitors for All Tier
+       <div class="pull-right">
+         <button type="button" pButton icon="fa-refresh" (click)="resetKeywordData()" label="Reset"></button>
+         <button type="submit" pButton icon="fa-check" [disabled]="saveDisable" label="Save"></button>
+       </div>
+    </div>
+
+    <div class="ui-g">
+     <div  class="ui-g-12">
+        <p-panel  class="hideheader">
+          
+         <p-fieldset  [style]="{'font-size':'13px' }"  legend="JBDC Stats"  [toggleable]="true">
+          <div class="ui-g-12">
+            <div class="ui-g-1">
+
+            </div>
+            <div class="ui-g-11">
+             <p-checkbox name="enableJDBCstats"    binary="true"></p-checkbox>
+             <a  class="configureLeftPaneCss" (click)="openConfigure('JDBC')">Enable JDBC Stats </a>
+          </div>
+          </div>
+
+          <div class="ui-g-12">
+             <div class="ui-g-1"> </div>
+             <div class="ui-g-1">
+                <label>User Name</label>
+             </div>
+             <div class="ui-g-4">
+               <input name="userName" type="text"  
+                size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+             </div>
+
+             <div class="ui-g-1">
+                <label>Password</label>
+             </div>
+             <div class="ui-g-4">
+               <input name="pwd" type="text"  
+                size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+             </div>
+          </div>
+
+          <div class="ui-g-12">
+             <div class="ui-g-1"> </div>
+             <div class="ui-g-1">
+                <label>Host Name</label>
+             </div>
+             <div class="ui-g-4">
+               <input name="hostName" type="text"  
+                size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+             </div>
+
+             <div class="ui-g-1">
+                <label>Port</label>
+             </div>
+             <div class="ui-g-4">
+               <input name="port" type="text"  
+                size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+             </div>
+          </div>
+
+           <div class="ui-g-12">
+             <div class="ui-g-1"> </div>
+             <div class="ui-g-1">
+                <label>Instance Name</label>
+             </div>
+             <div class="ui-g-4">
+               <input name="instanceName" type="text"  
+                size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+             </div>
+
+             <div class="ui-g-1">
+                <label>MBean Type</label>
+             </div>
+             <div class="ui-g-4">
+                <p-dropdown name="topoId" [options]="typeItems" placeholder="--Select Mbeans Type--" [style]="{'width':'72%','margin-left': '-19px'}"  appendTo="body" required ngModel></p-dropdown>
+             </div>
+          </div>
+         </p-fieldset>
+
+
+        <div class="ui-g weblogicLeftPaneCss">
+          <p-checkbox name="enableJVMStats"   binary="true"></p-checkbox>
+          <a  class="configureLeftPaneCss" (click)="openConfigure('JVM')"> Enable JVM Stats</a>
+        </div>
+
+       <div class="ui-g weblogicLeftPaneCss">
+        <p-checkbox name="enableThreadPoolStats"   binary="true"></p-checkbox>
+        <a  class="configureLeftPaneCss" (click)="openConfigure('ThreadPool')">Enable Thread Pool Stats</a>
+       </div>
+
+      <div class="ui-g weblogicLeftPaneCss">
+        <p-checkbox name="enableSessionStats"   binary="true"></p-checkbox>
+        <a  class="configureLeftPaneCss"  (click)="openConfigure('Session')">Enable Session Stats</a>
+       </div>
+
+       <div class="ui-g weblogicLeftPaneCss">
+        <p-checkbox name="enableJMSQueueStats"  binary="true"></p-checkbox>
+        <a  class="configureLeftPaneCss"  (click)="openConfigure('JMS Queue')">Enable JMS Queue Stats</a>
+      </div>
+
+      <div class="ui-g weblogicLeftPaneCss">
+        <p-checkbox name="enableJMSQueueStats"  binary="true"></p-checkbox>
+        <a  class="configureLeftPaneCss" (click)="openConfigure('Min Thread Constraints')">Enable Min Thread Constraint Stats</a>
+      </div>
+
+       <div class="ui-g weblogicLeftPaneCss">
+        <p-checkbox name="enableJMSQueueStats"  binary="true"></p-checkbox>
+        <a   class="configureLeftPaneCss" (click)="openConfigure('Transaction')">Enable Transaction Stats</a>
+      </div>
+     
+      </p-panel>
+    </div>
+    </div>
+      </form>
+      </div>
+

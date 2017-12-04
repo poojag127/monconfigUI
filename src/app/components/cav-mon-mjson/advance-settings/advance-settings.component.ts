@@ -12,4 +12,8 @@ export class AdvanceSettingsComponent implements OnInit {
   ngOnInit() {
   }
 
+  handleChange(){
+    
+  }
+
 }
