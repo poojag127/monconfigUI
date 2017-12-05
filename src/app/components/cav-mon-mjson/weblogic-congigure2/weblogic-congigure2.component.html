@@ -15,7 +15,7 @@
      <div  class="ui-g-12">
         <p-panel  class="hideheader">
           
-         <p-fieldset  [style]="{'font-size':'13px' }"  legend="JBDC Stats"  [toggleable]="true">
+         <p-fieldset styleClass="weblogicStats" legend="JBDC Stats" [toggleable]="true" [collapsed]="true">
           <div class="ui-g-12">
             <div class="ui-g-1">
 
@@ -32,7 +32,7 @@
                 <label>User Name</label>
              </div>
              <div class="ui-g-4 monConfigRow">
-               <input name="userName" style="width:180px" type="text"  [disabled]="!this.enableJDBC_Stats" 
+               <input name="userName" style="width:192px" type="text"  [disabled]="!this.enableJDBC_Stats" 
                 size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
              </div>
 
@@ -40,7 +40,7 @@
                 <label>Password</label>
              </div>
              <div class="ui-g-4 monConfigRow">
-               <input name="pwd" style="width:180px" type="text"  [disabled]="!this.enableJDBC_Stats"
+               <input name="pwd" style="width:192px" type="text"  [disabled]="!this.enableJDBC_Stats"
                 size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
              </div>
 
@@ -48,7 +48,7 @@
               <label>Host Name</label>
            </div>
            <div class="ui-g-4 monConfigRow">
-             <input name="hostName" style="width:180px" type="text"  [disabled]="!this.enableJDBC_Stats"
+             <input name="hostName" style="width:192px" type="text"  [disabled]="!this.enableJDBC_Stats"
               size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
            </div>
           </div>
@@ -59,7 +59,7 @@
                 <label>Port</label>
              </div>
              <div class="ui-g-4 monConfigRow">
-               <input name="port" type="text"  style="width:180px" [disabled]="!this.enableJDBC_Stats"
+               <input name="port" type="text"  style="width:192px" [disabled]="!this.enableJDBC_Stats"
                 size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
              </div>
              
@@ -67,21 +67,21 @@
                 <label>Instance Name</label>
              </div>
              <div class="ui-g-4 monConfigRow">
-               <input name="instanceName" type="text"  style="width:180px" [disabled]="!this.enableJDBC_Stats"
+               <input name="instanceName" type="text"  style="width:192px" [disabled]="!this.enableJDBC_Stats"
                 size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
              </div>
 
              <div class="ui-g-1">
                 <label>MBean Type</label>
              </div>
-             <div class="ui-g-4 monConfigRow">
+             <div class="ui-g-4 mbeanDrpdown">
                 <p-dropdown name="topoId" [disabled]="!this.enableJDBC_Stats" [options]="typeItems" placeholder="--Select Mbeans Type--" [style]="{'width':'77%','margin-left': '-1px'}"  appendTo="body" required ngModel></p-dropdown>
              </div>
           </div>
          </p-fieldset>
  
          <!-- for JVM stats -->
-         <p-fieldset  [style]="{'font-size':'13px' ,'margin-top':'34px'}"  legend="JVM Stats"  [toggleable]="true" [collapsed]="true">
+         <p-fieldset styleClass="weblogicStats" legend="JVM Stats"  [toggleable]="true" [collapsed]="true">
           <div class="ui-g-12">
             <div class="ui-g-1">
 
@@ -98,7 +98,7 @@
                 <label>User Name</label>
              </div>
              <div class="ui-g-4 monConfigRow">
-               <input name="userName" style="width:180px" type="text"  [disabled]="!this.enableJDBC_Stats" 
+               <input name="userName" style="width:192px" type="text"  [disabled]="!this.enableJDBC_Stats" 
                 size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
              </div>
 
@@ -106,7 +106,7 @@
                 <label>Password</label>
              </div>
              <div class="ui-g-4 monConfigRow">
-               <input name="pwd" style="width:180px" type="text"  [disabled]="!this.enableJDBC_Stats"
+               <input name="pwd" style="width:192px" type="text"  [disabled]="!this.enableJDBC_Stats"
                 size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
              </div>
 
@@ -114,7 +114,7 @@
               <label>Host Name</label>
            </div>
            <div class="ui-g-4 monConfigRow">
-             <input name="hostName" style="width:180px" type="text"  [disabled]="!this.enableJDBC_Stats"
+             <input name="hostName" style="width:192px" type="text"  [disabled]="!this.enableJDBC_Stats"
               size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
            </div>
           </div>
@@ -125,7 +125,7 @@
                 <label>Port</label>
              </div>
              <div class="ui-g-4 monConfigRow">
-               <input name="port" type="text"  style="width:180px" [disabled]="!this.enableJDBC_Stats"
+               <input name="port" type="text"  style="width:192px" [disabled]="!this.enableJDBC_Stats"
                 size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
              </div>
              
@@ -133,14 +133,14 @@
                 <label>Instance Name</label>
              </div>
              <div class="ui-g-4 monConfigRow">
-               <input name="instanceName" type="text"  style="width:180px" [disabled]="!this.enableJDBC_Stats"
+               <input name="instanceName" type="text"  style="width:192px" [disabled]="!this.enableJDBC_Stats"
                 size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
              </div>
 
              <div class="ui-g-1">
                 <label>MBean Type</label>
              </div>
-             <div class="ui-g-4 monConfigRow">
+             <div class="ui-g-4 mbeanDrpdown">
                 <p-dropdown name="topoId" [disabled]="!this.enableJDBC_Stats" [options]="typeItems" placeholder="--Select Mbeans Type--" [style]="{'width':'77%','margin-left': '-1px'}"  appendTo="body" required ngModel></p-dropdown>
              </div>
           </div>
@@ -148,7 +148,7 @@
 
          
          <!-- for Thread Pool stats -->
-         <p-fieldset  [style]="{'font-size':'13px','margin-top':'34px'}"  legend="Thread Pool Stats"  [toggleable]="true" [collapsed]="true">
+         <p-fieldset styleClass="weblogicStats" legend="Thread Pool Stats"  [toggleable]="true" [collapsed]="true">
           <div class="ui-g-12">
             <div class="ui-g-1">
 
@@ -165,7 +165,7 @@
                 <label>User Name</label>
              </div>
              <div class="ui-g-4 monConfigRow">
-               <input name="userName" style="width:180px" type="text"  [disabled]="!this.enableJDBC_Stats" 
+               <input name="userName" style="width:192px" type="text"  [disabled]="!this.enableJDBC_Stats" 
                 size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
              </div>
 
@@ -173,7 +173,7 @@
                 <label>Password</label>
              </div>
              <div class="ui-g-4 monConfigRow">
-               <input name="pwd" style="width:180px" type="text"  [disabled]="!this.enableJDBC_Stats"
+               <input name="pwd" style="width:192px" type="text"  [disabled]="!this.enableJDBC_Stats"
                 size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
              </div>
 
@@ -181,7 +181,7 @@
               <label>Host Name</label>
            </div>
            <div class="ui-g-4 monConfigRow">
-             <input name="hostName" style="width:180px" type="text"  [disabled]="!this.enableJDBC_Stats"
+             <input name="hostName" style="width:192px" type="text"  [disabled]="!this.enableJDBC_Stats"
               size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
            </div>
           </div>
@@ -192,7 +192,7 @@
                 <label>Port</label>
              </div>
              <div class="ui-g-4 monConfigRow">
-               <input name="port" type="text"  style="width:180px" [disabled]="!this.enableJDBC_Stats"
+               <input name="port" type="text"  style="width:192px" [disabled]="!this.enableJDBC_Stats"
                 size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
              </div>
              
@@ -200,21 +200,21 @@
                 <label>Instance Name</label>
              </div>
              <div class="ui-g-4 monConfigRow">
-               <input name="instanceName" type="text"  style="width:180px" [disabled]="!this.enableJDBC_Stats"
+               <input name="instanceName" type="text"  style="width:192px" [disabled]="!this.enableJDBC_Stats"
                 size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
              </div>
 
              <div class="ui-g-1">
                 <label>MBean Type</label>
              </div>
-             <div class="ui-g-4 monConfigRow">
+             <div class="ui-g-4 mbeanDrpdown">
                 <p-dropdown name="topoId" [disabled]="!this.enableJDBC_Stats" [options]="typeItems" placeholder="--Select Mbeans Type--" [style]="{'width':'77%','margin-left': '-1px'}"  appendTo="body" required ngModel></p-dropdown>
              </div>
           </div>
          </p-fieldset>
 
          <!-- for Session Stats -->
-         <p-fieldset  [style]="{'font-size':'13px' ,'margin-top':'34px' }"  legend="Session Stats"  [toggleable]="true" [collapsed]="true">
+         <p-fieldset styleClass="weblogicStats" legend="Session Stats"  [toggleable]="true" [collapsed]="true">
           <div class="ui-g-12">
             <div class="ui-g-1">
 
@@ -231,7 +231,7 @@
                 <label>User Name</label>
              </div>
              <div class="ui-g-4 monConfigRow">
-               <input name="userName" style="width:180px" type="text"  [disabled]="!this.enableJDBC_Stats" 
+               <input name="userName" style="width:192px" type="text"  [disabled]="!this.enableJDBC_Stats" 
                 size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
              </div>
 
@@ -239,7 +239,7 @@
                 <label>Password</label>
              </div>
              <div class="ui-g-4 monConfigRow">
-               <input name="pwd" style="width:180px" type="text"  [disabled]="!this.enableJDBC_Stats"
+               <input name="pwd" style="width:192px" type="text"  [disabled]="!this.enableJDBC_Stats"
                 size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
              </div>
 
@@ -247,7 +247,7 @@
               <label>Host Name</label>
            </div>
            <div class="ui-g-4 monConfigRow">
-             <input name="hostName" style="width:180px" type="text"  [disabled]="!this.enableJDBC_Stats"
+             <input name="hostName" style="width:192px" type="text"  [disabled]="!this.enableJDBC_Stats"
               size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
            </div>
           </div>
@@ -258,7 +258,7 @@
                 <label>Port</label>
              </div>
              <div class="ui-g-4 monConfigRow">
-               <input name="port" type="text"  style="width:180px" [disabled]="!this.enableJDBC_Stats"
+               <input name="port" type="text"  style="width:192px" [disabled]="!this.enableJDBC_Stats"
                 size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
              </div>
              
@@ -266,21 +266,21 @@
                 <label>Instance Name</label>
              </div>
              <div class="ui-g-4 monConfigRow">
-               <input name="instanceName" type="text"  style="width:180px" [disabled]="!this.enableJDBC_Stats"
+               <input name="instanceName" type="text"  style="width:192px" [disabled]="!this.enableJDBC_Stats"
                 size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
              </div>
 
              <div class="ui-g-1">
                 <label>MBean Type</label>
              </div>
-             <div class="ui-g-4 monConfigRow">
+             <div class="ui-g-4 mbeanDrpdown">
                 <p-dropdown name="topoId" [disabled]="!this.enableJDBC_Stats" [options]="typeItems" placeholder="--Select Mbeans Type--" [style]="{'width':'77%','margin-left': '-1px'}"  appendTo="body" required ngModel></p-dropdown>
              </div>
           </div>
          </p-fieldset>
 
          <!-- for JMS Queue Stats -->
-         <p-fieldset  [style]="{'font-size':'13px' ,'margin-top':'34px' }"  legend="JMS Queue Stats"  [toggleable]="true" [collapsed]="true">
+         <p-fieldset  styleClass="weblogicStats" legend="JMS Queue Stats"  [toggleable]="true" [collapsed]="true">
           <div class="ui-g-12">
             <div class="ui-g-1">
 
@@ -297,7 +297,7 @@
                 <label>User Name</label>
              </div>
              <div class="ui-g-4 monConfigRow">
-               <input name="userName" style="width:180px" type="text"  [disabled]="!this.enableJDBC_Stats" 
+               <input name="userName" style="width:192px" type="text"  [disabled]="!this.enableJDBC_Stats" 
                 size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
              </div>
 
@@ -305,7 +305,7 @@
                 <label>Password</label>
              </div>
              <div class="ui-g-4 monConfigRow">
-               <input name="pwd" style="width:180px" type="text"  [disabled]="!this.enableJDBC_Stats"
+               <input name="pwd" style="width:192px" type="text"  [disabled]="!this.enableJDBC_Stats"
                 size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
              </div>
 
@@ -313,7 +313,7 @@
               <label>Host Name</label>
            </div>
            <div class="ui-g-4 monConfigRow">
-             <input name="hostName" style="width:180px" type="text"  [disabled]="!this.enableJDBC_Stats"
+             <input name="hostName" style="width:192px" type="text"  [disabled]="!this.enableJDBC_Stats"
               size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
            </div>
           </div>
@@ -324,7 +324,7 @@
                 <label>Port</label>
              </div>
              <div class="ui-g-4 monConfigRow">
-               <input name="port" type="text"  style="width:180px" [disabled]="!this.enableJDBC_Stats"
+               <input name="port" type="text"  style="width:192px" [disabled]="!this.enableJDBC_Stats"
                 size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
              </div>
              
@@ -332,21 +332,21 @@
                 <label>Instance Name</label>
              </div>
              <div class="ui-g-4 monConfigRow">
-               <input name="instanceName" type="text"  style="width:180px" [disabled]="!this.enableJDBC_Stats"
+               <input name="instanceName" type="text"  style="width:192px" [disabled]="!this.enableJDBC_Stats"
                 size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
              </div>
 
              <div class="ui-g-1">
                 <label>MBean Type</label>
              </div>
-             <div class="ui-g-4 monConfigRow">
+             <div class="ui-g-4 mbeanDrpdown">
                 <p-dropdown name="topoId" [disabled]="!this.enableJDBC_Stats" [options]="typeItems" placeholder="--Select Mbeans Type--" [style]="{'width':'77%','margin-left': '-1px'}"  appendTo="body" required ngModel></p-dropdown>
              </div>
           </div>
          </p-fieldset>
 
          <!-- for Min Thread Constraint Extended Stats -->
-         <p-fieldset  [style]="{'font-size':'13px' ,'margin-top':'34px' }"  legend="Min Thread Constraint Extended Stats"  [toggleable]="true" [collapsed]="true">
+         <p-fieldset styleClass="weblogicStats" legend="Min Thread Constraint Extended Stats"  [toggleable]="true" [collapsed]="true">
           <div class="ui-g-12">
             <div class="ui-g-1">
 
@@ -363,7 +363,7 @@
                 <label>User Name</label>
              </div>
              <div class="ui-g-4 monConfigRow">
-               <input name="userName" style="width:180px" type="text"  [disabled]="!this.enableJDBC_Stats" 
+               <input name="userName" style="width:192px" type="text"  [disabled]="!this.enableJDBC_Stats" 
                 size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
              </div>
 
@@ -371,7 +371,7 @@
                 <label>Password</label>
              </div>
              <div class="ui-g-4 monConfigRow">
-               <input name="pwd" style="width:180px" type="text"  [disabled]="!this.enableJDBC_Stats"
+               <input name="pwd" style="width:192px" type="text"  [disabled]="!this.enableJDBC_Stats"
                 size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
              </div>
 
@@ -379,7 +379,7 @@
               <label>Host Name</label>
            </div>
            <div class="ui-g-4 monConfigRow">
-             <input name="hostName" style="width:180px" type="text"  [disabled]="!this.enableJDBC_Stats"
+             <input name="hostName" style="width:192px" type="text"  [disabled]="!this.enableJDBC_Stats"
               size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
            </div>
           </div>
@@ -390,7 +390,7 @@
                 <label>Port</label>
              </div>
              <div class="ui-g-4 monConfigRow">
-               <input name="port" type="text"  style="width:180px" [disabled]="!this.enableJDBC_Stats"
+               <input name="port" type="text"  style="width:192px" [disabled]="!this.enableJDBC_Stats"
                 size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
              </div>
              
@@ -398,21 +398,21 @@
                 <label>Instance Name</label>
              </div>
              <div class="ui-g-4 monConfigRow">
-               <input name="instanceName" type="text"  style="width:180px" [disabled]="!this.enableJDBC_Stats"
+               <input name="instanceName" type="text"  style="width:192px" [disabled]="!this.enableJDBC_Stats"
                 size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
              </div>
 
              <div class="ui-g-1">
                 <label>MBean Type</label>
              </div>
-             <div class="ui-g-4 monConfigRow">
+             <div class="ui-g-4 mbeanDrpdown">
                 <p-dropdown name="topoId" [disabled]="!this.enableJDBC_Stats" [options]="typeItems" placeholder="--Select Mbeans Type--" [style]="{'width':'77%','margin-left': '-1px'}"  appendTo="body" required ngModel></p-dropdown>
              </div>
           </div>
          </p-fieldset>
 
          <!-- for weblogic Transaction Stats -->
-         <p-fieldset  [style]="{'font-size':'13px' ,'margin-top':'34px' }"  legend="Transaction Stats"  [toggleable]="true" [collapsed]="true">
+         <p-fieldset  styleClass="weblogicTransStats " legend="Transaction Stats"  [toggleable]="true" [collapsed]="true">
           <div class="ui-g-12">
             <div class="ui-g-1">
 
@@ -429,7 +429,7 @@
                 <label>User Name</label>
              </div>
              <div class="ui-g-4 monConfigRow">
-               <input name="userName" style="width:180px" type="text"  [disabled]="!this.enableJDBC_Stats" 
+               <input name="userName" style="width:192px" type="text"  [disabled]="!this.enableJDBC_Stats" 
                 size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
              </div>
 
@@ -437,7 +437,7 @@
                 <label>Password</label>
              </div>
              <div class="ui-g-4 monConfigRow">
-               <input name="pwd" style="width:180px" type="text"  [disabled]="!this.enableJDBC_Stats"
+               <input name="pwd" style="width:192px" type="text"  [disabled]="!this.enableJDBC_Stats"
                 size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
              </div>
 
@@ -445,7 +445,7 @@
               <label>Host Name</label>
            </div>
            <div class="ui-g-4 monConfigRow">
-             <input name="hostName" style="width:180px" type="text"  [disabled]="!this.enableJDBC_Stats"
+             <input name="hostName" style="width:192px" type="text"  [disabled]="!this.enableJDBC_Stats"
               size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
            </div>
           </div>
@@ -456,7 +456,7 @@
                 <label>Port</label>
              </div>
              <div class="ui-g-4 monConfigRow">
-               <input name="port" type="text"  style="width:180px" [disabled]="!this.enableJDBC_Stats"
+               <input name="port" type="text"  style="width:192px" [disabled]="!this.enableJDBC_Stats"
                 size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
              </div>
              
@@ -464,14 +464,14 @@
                 <label>Instance Name</label>
              </div>
              <div class="ui-g-4 monConfigRow">
-               <input name="instanceName" type="text"  style="width:180px" [disabled]="!this.enableJDBC_Stats"
+               <input name="instanceName" type="text"  style="width:192px" [disabled]="!this.enableJDBC_Stats"
                 size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
              </div>
 
              <div class="ui-g-1">
                 <label>MBean Type</label>
              </div>
-             <div class="ui-g-4 monConfigRow">
+             <div class="ui-g-4 mbeanDrpdown">
                 <p-dropdown name="topoId" [disabled]="!this.enableJDBC_Stats" [options]="typeItems" placeholder="--Select Mbeans Type--" [style]="{'width':'77%','margin-left': '-1px'}"  appendTo="body" required ngModel></p-dropdown>
              </div>
           </div>

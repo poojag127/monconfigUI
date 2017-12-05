@@ -536,3 +536,21 @@ padding:10px;
 .pull-right{
   padding-right: 5px;
 }
+
+/* css for mbean type for weblogic monitors */
+.mbeanDrpdown{
+  width: 22.64%
+}
+
+/* css for fieldset of all weblogic stats except transaction stats */
+.weblogicStats{
+  font-size: 13px;
+  margin-top: 34px;
+}
+
+/* css for fieldset of weblogic transaction stats */
+.weblogicTransStats{
+  font-size: 13px;
+  margin-top: 34px;
+  margin-bottom: 44px;
+}
