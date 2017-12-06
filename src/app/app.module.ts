@@ -45,7 +45,8 @@ import {TooltipModule,
         TriStateCheckboxModule,
         CheckboxModule,
         ToolbarModule,
-        TabViewModule
+        TabViewModule,
+        GrowlModule
         
     } from 'primeng/primeng';
 
@@ -95,7 +96,8 @@ import { WeblogicCongigure2Component } from './components/cav-mon-mjson/weblogic
     TriStateCheckboxModule,
     CheckboxModule,
     ToolbarModule,
-    TabViewModule
+    TabViewModule,
+    GrowlModule
   ],
   providers: [CavmonHomeService,ConfigRestApiService,ConfigUtilityService,CavmonConfigService
 ,  { provide: LocationStrategy, useClass: HashLocationStrategy},

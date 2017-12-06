@@ -246,6 +246,10 @@ margin: 5px 0px;
    width: 224px;
 }
 
+/* for adjusting the height of the dropdown */
+.homedropdown .ui-dropdown-items-wrapper{
+  max-height: 85px !important;
+}
 .configui-float {
     float: right;
     margin-top: -3px;
@@ -414,11 +418,12 @@ ndegui-audit-logs:before {
 }
 
 .toolbarCss{
-  margin-bottom: 10px;
-  background:hsl(203, 75%, 32%);
+  margin-bottom: 5px;
+  background:#183D65;
   color:white;
   border:none;
-  height:31px;
+  height:40px;
+  padding-top:8px;
 }
 
 .mon-ui .ui-treetable  th span.ui-column-title
@@ -478,6 +483,7 @@ mon-ui .ui-treetable th.ui-state-default {
 
 .hideheader .ui-panel.ui-widget .ui-panel-titlebar.ui-corner-all {
     opacity: 0;
+    margin-bottom: -42px;
 }
 
 .md-card-css .mat-card {
@@ -511,14 +517,15 @@ padding:10px;
   text-decoration: underline;
 }
 
+/* for fieldset border in the weblogic configuration screen */
 .ui-fieldset.ui-widget.ui-widget-content.ui-corner-all.ui-fieldset-toggleable {
     border: 1px solid #D5D5D5;
 }
 
 
-.ui-widget-header .ui-state-default, .ui-widget-content .ui-state-default, .ui-state-default {
+/* .ui-widget-header .ui-state-default, .ui-widget-content .ui-state-default, .ui-state-default {
     background: #f7f7f7;
-}
+} */
 
 /* for rotating the up-arrow icon in the tree table */
 .fa-rotate-45 {
@@ -553,4 +560,38 @@ padding:10px;
   font-size: 13px;
   margin-top: 34px;
   margin-bottom: 44px;
+}
+
+/* Css  for Growl info message */
+.ui-growl-item-container.ui-state-highlight.ui-growl-message-info {
+  background-color: #2196f3;
+  border-color :#2196f3;
+}
+
+.ui-growl-item-container.ui-state-highlight.ui-growl-message-error {
+  background-color: #f44336;
+  border-color :#f44336;
+}
+
+.ui-growl-item-container.ui-state-highlight.ui-growl-message-warn {
+  background-color: #FFB300;
+  border-color :#FFB300;
+}
+
+.ui-growl-item-container.ui-state-highlight.ui-growl-message-success {
+  /* background-color: #4CAF50;
+  border-color :#4CAF50; */
+  background-color: #56dc5c;
+  border-color :#56dc5c;
+}
+
+/* for growl close icon */
+.ui-growl-icon-close{
+  color:#fff;
+}
+
+/* for growl check icon */
+.ui-growl-image
+{
+  color:#fff;
 }
