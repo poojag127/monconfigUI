@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { CavMonHomeComponent } from './components/cav-mon-home/cav-mon-home.component';
@@ -15,20 +16,21 @@ import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 /**Import materiapl module */
 import { MaterialModule } from '@angular/material';
 
+/**Reducer */
+import { MonitorReducer } from './reducers/monitor-reducer';
+
 
 /**Importing services  ****/
 import { ConfigRestApiService } from './services/config-rest-api.service';
 import { ConfigUtilityService } from './services/config-utility.service';
 import { CavmonHomeService } from './services/cavmon-home.service';
 import { CavmonConfigService } from './services/cavmon-config.service';
+import { CavmonMonitorsdataService} from './services/cavmon-monitorsdata.service';
 
 /** Routing Module */
 import { ConfigRoutingModule } from './routes/monconfig-routing.module';
 
 import { CommonModule } from '@angular/common';
-
-
-
 
 /**Import ngprime module ****/
 import {TooltipModule,
@@ -95,9 +97,11 @@ import { WeblogicCongigure2Component } from './components/cav-mon-mjson/weblogic
     TriStateCheckboxModule,
     CheckboxModule,
     ToolbarModule,
-    TabViewModule
+    TabViewModule,
+    StoreModule.provideStore({ monitorData: MonitorReducer }),
+
   ],
-  providers: [CavmonHomeService,ConfigRestApiService,ConfigUtilityService,CavmonConfigService
+  providers: [CavmonHomeService,ConfigRestApiService,ConfigUtilityService,CavmonConfigService,CavmonMonitorsdataService
 ,  { provide: LocationStrategy, useClass: HashLocationStrategy},
 
   ],

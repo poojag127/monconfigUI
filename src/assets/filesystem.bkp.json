@@ -5,10 +5,38 @@
         {  
             "data":{  
                 "monitor":"Weblogic"
-            }
+              
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"WeblogicJvmStats"
+                      
+                    }
+                 },
+                 {
+                    "data":{
+                        "monitor":"WeblogicThreadPoolStats"                        
+                    }
+                },
+
+                 {
+                    "data":{
+                        "monitor":"WeblogicSessionStats"
+                        
+                    }
+                },
+                 {
+                    "data":{
+                        "monitor":"WeblogicJMSQueueStats"
+                        
+                    }
+                }
+
+            ]
         },
          {  
-          "data":{  
+            "data":{  
                 "monitor":"Tomcat"
                
             },

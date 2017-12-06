@@ -1,18 +1,9 @@
-export class monitorsData
+import  { WeblogicTypesData } from './weblogic-typesdata';
+
+export class MonitorsData
 {
- weblogic: configureData[];
+ weblogic:WeblogicTypesData;
 }
 
-export class configureData
-{
- tierName:string;
- monName:string;
- enable:boolean;
- hostName:string;
- port:number;
- userName:string;
- pwd:string;
- mBeanType:string;
- instanceName:string;
-}
+
 

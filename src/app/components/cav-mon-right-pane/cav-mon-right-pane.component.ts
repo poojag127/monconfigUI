@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/primeng';
 import { ConfigUiUtility } from '../../utility/monconfig-utility';
-import {ProfileData} from '../../containers/profile-data';
+// import {ProfileData} from '../../containers/profile-data';
 import {MJsonData} from '../../containers/mjson-data';
 
 import { Router } from '@angular/router';

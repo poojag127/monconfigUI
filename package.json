@@ -28,7 +28,9 @@
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14",
     "font-awesome": "4.7.0",
-    "primeng": "4.1.1"
+    "primeng": "4.1.1",
+    "@ngrx/core": "1.2.0",
+    "@ngrx/store": "2.2.1"
   },
   "devDependencies": {
     "@angular/cli": "1.4.9",

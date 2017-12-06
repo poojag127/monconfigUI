@@ -3,14 +3,17 @@ import { Http } from '@angular/http';
 import { TreeNode } from 'primeng/primeng';
 import {ConfigRestApiService} from './config-rest-api.service';
 import * as URL from '../constants/monconfig-url-constant';
+import { MONITOR_DATA } from '../reducers/monitor-reducer';
+import { Store } from '@ngrx/store';
 
 
 @Injectable()
 export class CavmonConfigService {
 
   tierList:any[]=[];
+  data :{};
 
-  constructor(private http: Http,private _restApi: ConfigRestApiService)
+  constructor(private http: Http,private _restApi: ConfigRestApiService,private store: Store<Object>)
   { 
     this.tierList = [
     "Cavisson",
@@ -60,9 +63,10 @@ export class CavmonConfigService {
     "ecom-tvs-stress-mysql",
     "-staging-searchrestapi",
     "stress-webstoreui"
-]
+  ];
 
-  }
+
+}
 
   getTreeTableData() 
   {
@@ -74,20 +78,46 @@ export class CavmonConfigService {
       //           .subscribe(res => this.data = res.json());
   }
 
-  // /** getting tier List ***/
-  // getTierList(topoName)
-  // {
-  //   let url = `${URL.GET_TIER_LIST}`+"?topoName="+`${topoName}`;
-  //   console.log(url)
-  //   return this._restApi.getDataByPostReq(url);
-
-  // }
-
+  /** getting tier List ***/
   getTierList(topoName)
   {
-     return this.tierList;
-
+    let url = `${URL.GET_TIER_LIST}`+"?topoName="+`${topoName}`;
+    console.log(url)
+    return this._restApi.getDataByPostReq(url);
   }
+
+/** for running without server **/
+  // getTierList(topoName)
+  // {
+  //    return this.tierList;
+  // }
+
+
+  /** For Getting all keywordData data */
+  getMonitorsData(topoName) {
+     
+    let data =  { 
+    "weblogic":{'JDBCStats':[{'tierName':'All Tier','monName':'WeblogicJdbcStats','enable':false,'hostName':'127.0.0.1','port':'17000','userName':'weblogic','pwd':'weblogic','mBeanType':'JMSDestinationRuntimeMBean','instanceName':''}],
+            'JVMStats':[{'tierName':'All Tier','monName':'WeblogicJdbcStats','enable':false,'hostName':'127.0.0.1','port':'17000','userName':'weblogic','pwd':'weblogic','mBeanType':'JMSDestinationRuntimeMBean','instanceName':''}],
+            'ThreadPoolStats':[{'tierName':'All Tier','monName':'WeblogicJdbcStats','enable':false,'hostName':'127.0.0.1','port':'17000','userName':'weblogic','pwd':'weblogic','mBeanType':'JMSDestinationRuntimeMBean','instanceName':''}],
+            'SessionStats':[{'tierName':'All Tier','monName':'WeblogicJdbcStats','enable':false,'hostName':'127.0.0.1','port':'17000','userName':'weblogic','pwd':'weblogic','mBeanType':'JMSDestinationRuntimeMBean','instanceName':''}],
+            'JMSQueueStats':[{'tierName':'All Tier','monName':'WeblogicJpcavdbcStats','enable':false,'hostName':'127.0.0.1','port':'17000','userName':'weblogic','pwd':'weblogic','mBeanType':'JMSDestinationRuntimeMBean','instanceName':''}],
+            'MinThreadConstraintStats':[{'tierName':'All Tier','monName':'WeblogicJdbcStats','enable':false,'hostName':'127.0.0.1','port':'17000','userName':'weblogic','pwd':'weblogic','mBeanType':'JMSDestinationRuntimeMBean','instanceName':''}],
+            'TransactionStats':[{'tierName':'All Tier','monName':'WeblogicJdbcStats','enable':false,'hostName':'127.0.0.1','port':'17000','userName':'weblogic','pwd':'weblogic','mBeanType':'JMSDestinationRuntimeMBean','instanceName':''}]
+          }
+     }
+    this.store.dispatch({type: MONITOR_DATA, payload:data });
+
+
+    // this._restApi.getDataByGetReq(`${URL.GET_MONITORS_DATA}/${topoName}`)
+    //   .subscribe(data => {
+    //     // this.keywordData = data;
+    //     this.store.dispatch({ type: MONITOR_DATA, payload: data });
+    //   });
+  }
+
+
+  
 
 
 

@@ -11,11 +11,9 @@
 
 
 <div class="ui-g config-ui">
-  
-  </div>
+</div>
    
 <div class="ui-g-12" id="top-div">
-
  <p-treeTable class="mon-ui "  scrollable="true" [value]="compData"  selection="false">
     <p-column [style]="{'width':'176px'}" field="monitor" header="Monitor">
         <!--<p-column  field="monitor" header="Monitor">-->
@@ -27,7 +25,7 @@
 
       <p-column [sortable]="true" [style]="{'width':'80px'}">
           <template let-col let-data="rowData" pTemplate>
-              <i style="font-size: 16px ; margin-right:30%; cursor: pointer;" class="fa fa-cog" (click)="advanceSettings(data.data['monitor'],col.field)" aria-hidden="true" title="Advance settings"></i>
+              <i style="font-size: 16px ; margin-right:30%; cursor: pointer;" class="fa fa-cog" (click)="advanceSettings(data.data['monitor'],'All_Tier')" aria-hidden="true" title="Advance settings"></i>
           </template>
       </p-column>
   
@@ -45,5 +43,4 @@
     <p-column field="size" header="Size"></p-column>
     <p-column field="type" header="Type"></p-column>-->
 </p-treeTable>
-
 </div>

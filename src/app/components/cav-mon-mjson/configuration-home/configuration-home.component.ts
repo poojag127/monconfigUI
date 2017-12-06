@@ -4,7 +4,7 @@ import { CavmonConfigService } from '../../../services/cavmon-config.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import * as _ from "lodash";
 import { ROUTING_PATH } from '../../../constants/monconfig-url-constant';
-import {ProfileData} from '../../../containers/profile-data';
+// import {ProfileData} from '../../../containers/profile-data';
 import {MJsonData} from '../../../containers/mjson-data';
 
 @Component({
@@ -28,7 +28,7 @@ export class ConfigurationHomeComponent implements OnInit
 
   monName :String; //variable to hold monitor name 
 
-  tierfield:String; // variable to hold tier name for each monitor
+  tierfield:String; //variable to hold tier name for each monitor
 
   tierList: any[];
 
@@ -45,32 +45,40 @@ export class ConfigurationHomeComponent implements OnInit
 
   ngOnInit()
   {
-  this.cols=[];
+   this.cols=[];
    this.route.params.subscribe((params: Params) => {
       this.topoName = params['topoName'];
       this.jsonName = params['jsonName']
     });
+    
+
+  /*** Getting monitorsData from the server for respective profile ****/
+  this.cavMonConfigService.getMonitorsData(this.topoName);
+  
+
+
 
    console.log("topoName--",this.topoName)
+   /****** Creating json data for tree table component****************/
    let that = this;
-  //  this.cavMonConfigService.getTierList(this.topoName).subscribe(data =>
-  //      {
-  //       this.tierList = data;
-  //       data.forEach((function(val){
-  //        that.cols.push({field:val ,header :val})
-  //       }
-        
-  //   ))
-  //   that.getData();
-  //  })
+   this.cavMonConfigService.getTierList(this.topoName).subscribe(data =>
+       {
+        this.tierList = data;
+        data.forEach((function(val){
+         that.cols.push({field:val ,header :val})
+        }
+    ))
+    that.getData();
+   })
 
 
-  let data = this.cavMonConfigService.getTierList(this.topoName)
-  this.tierList = data;
-  data.forEach((function(val){
-      that.cols.push({field:val ,header :val})
-    }));
-  this.getData();
+/*** This piece of code is for running project without server ****/
+  // let data = this.cavMonConfigService.getTierList(this.topoName)
+  // this.tierList = data;
+  // data.forEach((function(val){
+  //     that.cols.push({field:val ,header :val})
+  //   }));
+  // this.getData();
 
     
 
@@ -173,6 +181,8 @@ export class ConfigurationHomeComponent implements OnInit
 /** for advance settings */
   advanceSettings(monName,tierfield)
   {
+    console.log("monName--",monName)
+    console.log("tierfield--",tierfield)
      this.router.navigate([ROUTING_PATH + '/advanceSettings',monName,tierfield]);
   }
 
