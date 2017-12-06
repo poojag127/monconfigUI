@@ -7,6 +7,8 @@ import { CavmonMonitorsdataService } from '../../../services/cavmon-monitorsdata
 import * as _ from "lodash";
 import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
+import {ConfigUtilityService} from '../../../services/config-utility.service';
+import {Messages} from '../../../constants/monconfig-constants';
 
 @Component({
   selector: 'app-weblogic-congigure2',
@@ -25,7 +27,7 @@ export class WeblogicCongigure2Component implements OnInit {
 
   weblogic:any;
 
-  constructor(private cavMonDataService :CavmonMonitorsdataService,private store: Store<MonitorsData>) { 
+  constructor(private cavMonDataService :CavmonMonitorsdataService,private store: Store<MonitorsData>,private monConfigUtilityService:ConfigUtilityService ) { 
 
      this.subscription = this.store.select("monitorData")
       .subscribe(data => {
@@ -55,8 +57,6 @@ export class WeblogicCongigure2Component implements OnInit {
 
   ngOnInit() {
 
-   
-
     // let monitorData = this.cavMonDataService.getMonitorData().subscribe()
     // let weblogicData = _.find(monitorData, function(each) { return each.hasOwnProperty('weblogic')}); //TO DO
     // console.log("weblogicDatas",weblogicData)
@@ -84,7 +84,6 @@ export class WeblogicCongigure2Component implements OnInit {
 
   saveWeblogicConfiguration(){
    console.log("saveWeblogicConfiguration method called",this.weblogic)
+    this.monConfigUtilityService.successMessage(Messages);
   }
-
-
 }

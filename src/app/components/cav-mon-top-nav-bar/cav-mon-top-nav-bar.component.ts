@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Message, ConfirmationService} from 'primeng/primeng';
+import {ConfigUtilityService} from '../../services/config-utility.service';
 
 @Component({
   selector: 'app-cav-mon-top-nav-bar',
@@ -8,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 export class CavMonTopNavBarComponent implements OnInit {
 
   
-  constructor() { }
+  constructor(private monConfigUtilityService: ConfigUtilityService) {}
 
-  ngOnInit() {
+    message: Message[] = [];
+
+  ngOnInit() 
+  {
+    this.monConfigUtilityService.messageProvider$.subscribe(data=> this.message = data);
   }
+
 
 }
