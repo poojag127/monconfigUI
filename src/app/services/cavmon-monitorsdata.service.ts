@@ -10,7 +10,7 @@ export class CavmonMonitorsdataService {
 
   constructor(private http: Http,private _restApi: ConfigRestApiService) {
     //to do  convert into object 
-  this.data = {"weblogic":{'JDBCStats':[{'tierName' :'All Tier','monName':'WeblogicJdbcStats','enable':false,'hostName':'127.0.0.1','port':'17000','userName':'weblogic','pwd':'weblogic','mBeanType':'JMSDestinationRuntimeMBean','instanceName':''}],
+  this.data = {"weblogic":{'JDBCStats':[{'tierName' :'All Tier','monName':'WeblogicJdbcStats','enable':true,'hostName':'127.0.0.1','port':'17000','userName':'weblogic','pwd':'weblogic','mBeanType':'JMSDestinationRuntimeMBean','instanceName':''}],
                            'JVMStats':[{'tierName' :'All Tier','monName':'WeblogicJdbcStats','enable':false,'hostName':'127.0.0.1','port':'17000','userName':'weblogic','pwd':'weblogic','mBeanType':'JMSDestinationRuntimeMBean','instanceName':''}],
                            'ThreadPoolStats':[{'tierName' :'All Tier','monName':'WeblogicJdbcStats','enable':false,'hostName':'127.0.0.1','port':'17000','userName':'weblogic','pwd':'weblogic','mBeanType':'JMSDestinationRuntimeMBean','instanceName':''}],
                            'SessionStats':[{'tierName' :'All Tier','monName':'WeblogicJdbcStats','enable':false,'hostName':'127.0.0.1','port':'17000','userName':'weblogic','pwd':'weblogic','mBeanType':'JMSDestinationRuntimeMBean','instanceName':''}],

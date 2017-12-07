@@ -12,7 +12,7 @@
     <div class="ui-g">
      <div  class="ui-g-12">
         <p-panel  class="hideheader">
-         <p-fieldset styleClass="weblogic" legend="JDBC Stats" [toggleable]="true" [collapsed]="true">
+         <p-fieldset  styleClass="weblogicStats" legend="JBDC Stats" [toggleable]="true" [collapsed]="true">
           <div class="ui-g-12">
             <div class="ui-g-1"></div>
             <div class="ui-g-11">
@@ -27,7 +27,6 @@
                 <label>User Name</label>
              </div>
              <div class="ui-g-4 monConfigRow">
-               <pre>{{weblogic.JDBCStats.userName}}</pre>
                <input name="userName" style="width:192px" type="text"  pInputText  [(ngModel)]="weblogic.JDBCStats.userName"  [disabled]="!weblogic.JDBCStats.enable" 
                 pInputText   required ngModel />
              </div>
@@ -77,7 +76,7 @@
          </p-fieldset>
  
          <!-- for JVM stats -->
-         <p-fieldset styleClass="weblogic" legend="JVM Stats"  [toggleable]="true" [collapsed]="true">
+         <p-fieldset styleClass="weblogicStats" legend="JVM Stats"  [toggleable]="true" [collapsed]="true">
           <div class="ui-g-12">
             <div class="ui-g-1"></div>
             <div class="ui-g-11">
@@ -142,7 +141,7 @@
 
          
          <!-- for Thread Pool stats -->
-         <p-fieldset styleClass="weblogic" legend="Thread Pool Stats"  [toggleable]="true" [collapsed]="true">
+         <p-fieldset styleClass="weblogicStats" legend="Thread Pool Stats"  [toggleable]="true" [collapsed]="true">
           <div class="ui-g-12">
             <div class="ui-g-1">
 
@@ -208,7 +207,7 @@
          </p-fieldset>
 
          <!-- for Session Stats -->
-         <p-fieldset styleClass="weblogic" legend="Session Stats"  [toggleable]="true" [collapsed]="true">
+         <p-fieldset styleClass="weblogicStats" legend="Session Stats"  [toggleable]="true" [collapsed]="true">
           <div class="ui-g-12">
             <div class="ui-g-1">
 
@@ -274,7 +273,7 @@
          </p-fieldset>
 
          <!-- for JMS Queue Stats -->
-         <p-fieldset  styleClass="weblogic" legend="JMS Queue Stats"  [toggleable]="true" [collapsed]="true">
+         <p-fieldset  styleClass="weblogicStats" legend="JMS Queue Stats"  [toggleable]="true" [collapsed]="true">
           <div class="ui-g-12">
             <div class="ui-g-1">
 
@@ -340,7 +339,7 @@
          </p-fieldset>
 
          <!-- for Min Thread Constraint Extended Stats -->
-         <p-fieldset styleClass="weblogic" legend="Min Thread Constraint Extended Stats"  [toggleable]="true" [collapsed]="true">
+         <p-fieldset styleClass="weblogicStats" legend="Min Thread Constraint Extended Stats"  [toggleable]="true" [collapsed]="true">
           <div class="ui-g-12">
             <div class="ui-g-1">
 
@@ -406,7 +405,7 @@
          </p-fieldset>
 
          <!-- for weblogic Transaction Stats -->
-         <p-fieldset  styleClass="weblogicTransStats " legend="Transaction Stats"  [toggleable]="true" [collapsed]="true">
+         <p-fieldset  styleClass="weblogicTransStats" legend="Transaction Stats"  [toggleable]="true" [collapsed]="true">
           <div class="ui-g-12">
             <div class="ui-g-1">
 
