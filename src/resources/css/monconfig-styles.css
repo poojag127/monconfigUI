@@ -246,10 +246,6 @@ margin: 5px 0px;
    width: 224px;
 }
 
-/* for adjusting the height of the dropdown */
-.homedropdown .ui-dropdown-items-wrapper{
-  max-height: 85px !important;
-}
 .configui-float {
     float: right;
     margin-top: -3px;
