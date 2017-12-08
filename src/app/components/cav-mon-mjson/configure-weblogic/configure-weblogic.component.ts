@@ -9,26 +9,36 @@ import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
 import {ConfigUtilityService} from '../../../services/config-utility.service';
 import {Messages} from '../../../constants/monconfig-constants';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-weblogic-congigure2',
-  templateUrl: './weblogic-congigure2.component.html',
-  styleUrls: ['./weblogic-congigure2.component.css']
+  selector: 'app-configure-weblogic',
+  templateUrl: './configure-weblogic.component.html',
+  styleUrls: ['./configure-weblogic.component.css']
 })
 
-export class WeblogicCongigure2Component implements OnInit {
+export class ConfigureWeblogicComponent implements OnInit {
   
   typeItems: SelectItem[];
   statsName:string = "JDBC";
   subscription: Subscription;
   test:string ;
+  monName:string;
+  tierfield:string;
+
   
  /**These are those monitors which are used in current screen. */
   monitorList: string[] = ['JDBCStats', 'JVMStats', 'ThreadPoolStats', 'SessionStats', 'JMSQueueStats', 'MinThreadConstraintStats', 'TransactionStats'];
 
   weblogic:any;
 
-  constructor(private cavMonDataService :CavmonMonitorsdataService,private store: Store<MonitorsData>,private monConfigUtilityService:ConfigUtilityService ) { 
+  constructor(private cavMonDataService :CavmonMonitorsdataService,
+              private store: Store<MonitorsData>,
+              private monConfigUtilityService:ConfigUtilityService,
+              private router:Router,
+              private route: ActivatedRoute
+              
+               ) { 
 
      this.subscription = this.store.select("monitorData")
       .subscribe(data => {
@@ -54,7 +64,7 @@ export class WeblogicCongigure2Component implements OnInit {
          this.weblogic = keywordDataVal;
       })
       console.log("weblogic--",this.weblogic)
-      this.test = "neelu";
+     
   }
 
   ngOnInit() {
@@ -77,7 +87,12 @@ export class WeblogicCongigure2Component implements OnInit {
     //    })
     //     that.weblogic = keywordDataVal;
     //    })
-
+   
+     this.route.params.subscribe((params: Params) => {
+      this.tierfield = params['tierfield'];
+      this.monName = params['monName']
+    });
+    
     console.log("weblogic data--",this.weblogic)
     let arrLabel = ['JMSDestinationRuntimeMBean', 'JDBCDataSourceRuntimeMBeans', 'WebAppComponentRuntime'];
     let arrValue = ['JMSDestinationRuntimeMBean', 'JDBCDataSourceRuntimeMBeans', 'WebAppComponentRuntime'];
@@ -89,3 +104,5 @@ export class WeblogicCongigure2Component implements OnInit {
     this.monConfigUtilityService.successMessage(Messages);
   }
 }
+
+

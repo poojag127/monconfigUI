@@ -60,6 +60,8 @@ import { ConfigurationHomeComponent } from './components/cav-mon-mjson/configura
 import { AdvanceSettingsComponent } from './components/cav-mon-mjson/advance-settings/advance-settings.component';
 import { WeblogicConfigureComponent } from './components/cav-mon-mjson/weblogic-configure/weblogic-configure.component';
 import { WeblogicCongigure2Component } from './components/cav-mon-mjson/weblogic-congigure2/weblogic-congigure2.component';
+import { ConfigureWeblogicComponent } from './components/cav-mon-mjson/configure-weblogic/configure-weblogic.component';
+import { ConfigureWeblogic2Component } from './components/cav-mon-mjson/configure-weblogic2/configure-weblogic2.component';
 
 
 @NgModule({
@@ -76,6 +78,8 @@ import { WeblogicCongigure2Component } from './components/cav-mon-mjson/weblogic
     AdvanceSettingsComponent,
     WeblogicConfigureComponent,
     WeblogicCongigure2Component,
+    ConfigureWeblogicComponent,
+    ConfigureWeblogic2Component,
     // CavMonMenuComponent
   ],
   imports: [

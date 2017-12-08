@@ -2,10 +2,90 @@
 {
  "data":
     [  
+          {  
+            "data":{  
+                "monitor":"System Stats"
+               
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"SystemStatsExtended"
+                       
+                    }
+                 },
+                 {
+                    "data":{
+                        "monitor":"ProcessStats"
+
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"IOStats"
+
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"TCPStats"
+
+                    }
+                },
+
+                {
+                    "data":{
+                        "monitor":"TCPStatsCount"
+
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"MPStats"
+
+                    }
+                }
+               
+            ]
+        },
         {  
             "data":{  
                 "monitor":"Weblogic"
-            }
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"JDBCStats"
+                    }
+                 },
+                 {
+                    "data":{
+                        "monitor":"JMS Queue Stats"
+                    }
+                },
+
+                 {
+                    "data":{
+                        "monitor":"JVM Stats"
+                    }
+                },
+                 {
+                    "data":{
+                        "monitor":"MIn Thread Constraints Stats"
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"Transaction Stats"
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"Session Stats"
+                    }
+                }
+
+            ]
         },
          {  
           "data":{  
@@ -70,27 +150,7 @@
 
             ]
         },
-        {  
-            "data":{  
-                "monitor":"System Stats"
-               
-            },
-            "children":[
-                {  
-                 "data":{  
-                        "monitor":"SystemStatsExtended"
-                       
-                    }
-                 },
-                 {
-                    "data":{
-                        "monitor":"SystemStats"
-
-                    }
-                }
-               
-            ]
-        },
+      
         {  
             "data":{  
                 "monitor":"JBoss Stats"

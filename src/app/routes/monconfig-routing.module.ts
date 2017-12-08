@@ -6,7 +6,9 @@ import { CavMonRightPaneComponent } from '../components/cav-mon-right-pane/cav-m
 import { ConfigurationHomeComponent } from '../components/cav-mon-mjson/configuration-home/configuration-home.component';
 import { AdvanceSettingsComponent } from '../components/cav-mon-mjson/advance-settings/advance-settings.component';
 // import { WeblogicConfigureComponent} from '../components/cav-mon-mjson/weblogic-configure/weblogic-configure.component';
-import { WeblogicCongigure2Component} from '../components/cav-mon-mjson/weblogic-congigure2/weblogic-congigure2.component';
+// import { WeblogicCongigure2Component} from '../components/cav-mon-mjson/weblogic-congigure2/weblogic-congigure2.component';
+import { ConfigureWeblogicComponent } from '../components/cav-mon-mjson/configure-weblogic/configure-weblogic.component';
+import { ConfigureWeblogic2Component } from '../components/cav-mon-mjson/configure-weblogic2/configure-weblogic2.component';
 
 
 /**For ProductUI */
@@ -41,7 +43,7 @@ const routes: Routes = [
             { path: 'home', component: CavMonRightPaneComponent },
             { path: 'mjson/:mjsonName/:topoName', component: ConfigurationHomeComponent },
             // { path: 'advanceSettings/:monName/:tierfield', component: WeblogicConfigureComponent},
-            { path: 'advanceSettings/:monName/:tierfield', component: WeblogicCongigure2Component},
+            { path: 'advanceSettings/:monName/:tierfield', component: ConfigureWeblogic2Component}
           ];
 
 @NgModule({
