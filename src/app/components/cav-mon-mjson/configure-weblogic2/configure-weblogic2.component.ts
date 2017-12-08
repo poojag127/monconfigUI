@@ -7,6 +7,8 @@ import { CavmonMonitorsdataService } from '../../../services/cavmon-monitorsdata
 import {ConfigUtilityService} from '../../../services/config-utility.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { SelectItem } from 'primeng/primeng';
+import { WeblogicConfigureData } from '../../../containers/weblogic-typesdata';
+import { ImmutableArray } from '../../../utility/immutable-array';
 
 @Component({
   selector: 'app-configure-weblogic2',
@@ -17,6 +19,7 @@ import { SelectItem } from 'primeng/primeng';
 export class ConfigureWeblogic2Component implements OnInit {
 
   subscription: Subscription;
+
   /**These are those monitors which are used in current screen. */
   monitorList: string[] = ['JDBCStats', 'JVMStats', 'ThreadPoolStats', 'SessionStats', 'JMSQueueStats', 'MinThreadConstraintStats', 'TransactionStats'];
 
@@ -32,7 +35,15 @@ export class ConfigureWeblogic2Component implements OnInit {
 
   typeItems:SelectItem[];
 
+/**for header of table */
   cols: any[];
+
+/**for form ***/
+  weblogicData:WeblogicConfigureData;
+
+/**stores table data */
+  weblogicStatsTableData:WeblogicConfigureData[]=[];
+
 
   constructor(private cavMonDataService :CavmonMonitorsdataService,
               private store: Store<MonitorsData>,
@@ -69,6 +80,7 @@ export class ConfigureWeblogic2Component implements OnInit {
    }
 
   ngOnInit() {
+     this.weblogicData = new WeblogicConfigureData();
      this.route.params.subscribe((params: Params) => {
       this.tierfield = params['tierfield'];
       this.monName = params['monName']
@@ -95,9 +107,20 @@ export class ConfigureWeblogic2Component implements OnInit {
             {field:'port',header:'Port'},
             {field:'instanceName',header:'Instance Name'},
             {field:'mBeanType',header:'MBean Type'},
-             {field:'enable',header:'Enable'},
+            {field:'enable',header:'Enable'},
 
         ];
   }
+  
+
+  saveWeblogicConfiguration()
+  {
+    console.log("this.weblogicData",this.weblogicData)
+     //to insert new row in table ImmutableArray.push() is created as primeng 4.0.0 does not support above line 
+     this.weblogicStatsTableData=ImmutableArray.push(this.weblogicStatsTableData, this.weblogicData);
+     this.weblogicData = new WeblogicConfigureData();
+  }
+
+
 
 }

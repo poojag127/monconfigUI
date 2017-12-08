@@ -26,7 +26,7 @@
                 <label>Select Server</label>
              </div>
              <div class="ui-g-4 mbeanDrpdown">
-                <p-dropdown name="topoId"    [options]="serverList" placeholder="--Select text --" [style]="{'width':'77%','margin-left': '-1px'}"  appendTo="body" required ngModel></p-dropdown>
+                <p-dropdown name="topoId"[(ngModel)]="weblogicData.server"  [options]="serverList" placeholder="--Select text --" [style]="{'width':'77%','margin-left': '-1px'}"  appendTo="body" required ngModel></p-dropdown>
              </div>
           </div>
 
@@ -36,21 +36,21 @@
                 <label>User Name</label>
              </div>
              <div class="ui-g-4 monConfigRow">
-               <input name="userName" style="width:192px" type="text"  pInputText  [(ngModel)]="weblogic.JDBCStats.userName"   
+               <input name="userName" style="width:192px" type="text"  pInputText  [(ngModel)]="weblogicData.userName"   
                 pInputText   required ngModel />
              </div>
               <div class="ui-g-1">
                 <label>Password</label>
              </div>
              <div class="ui-g-4 monConfigRow">
-               <input name="pwd" style="width:192px" type="text"   [(ngModel)]="weblogic.JDBCStats.pwd" 
+               <input name="pwd" style="width:192px" type="text"   [(ngModel)]="weblogicData.pwd" 
                 size="30" pInputText  required ngModel/>
              </div>
               <div class="ui-g-1">
                <label>Host Name</label>
               </div>
               <div class="ui-g-4 monConfigRow">
-               <input name="hostName" style="width:192px" type="text"   [(ngModel)]="weblogic.JDBCStats.hostName" 
+               <input name="hostName" style="width:192px" type="text"   [(ngModel)]="weblogicData.hostName" 
                size="30" pInputText  pattern="[^\s]{0,49}$"  required ngModel/>
               </div>
           </div>
@@ -61,7 +61,7 @@
                 <label>Port</label>
              </div>
              <div class="ui-g-4 monConfigRow">
-               <input name="port" type="text"  style="width:192px"  [(ngModel)]="weblogic.JDBCStats.port" 
+               <input name="port" type="text"  style="width:192px"  [(ngModel)]="weblogicData.port" 
                 size="30" pInputText   required ngModel/>
              </div>
 
@@ -74,7 +74,7 @@
             </div>
 
              <div class="ui-g-4 mbeanDrpdown">
-                <p-dropdown name="weblogicStats"  [(ngModel)]="weblogic.JDBCStats.mBeanType" [options]="weblogicStats" placeholder="--Select Weblogic Stats--" [style]="{'width':'77%','margin-left': '-1px'}"  appendTo="body" required ngModel></p-dropdown>
+                <p-dropdown name="weblogicStats"  [(ngModel)]="weblogicData.weblogicStats" [options]="weblogicStats" placeholder="--Select Weblogic Stats--" [style]="{'width':'77%','margin-left': '-1px'}"  appendTo="body" required ngModel></p-dropdown>
              </div>
           </div>
 
@@ -82,20 +82,20 @@
            <div class="ui-g-12">
               <div class="ui-g-1"> </div>
               <div class ="ui-g-2">
-               <p-checkbox name="enable"  binary="false" label = "Enable"></p-checkbox>
+               <p-checkbox name="enable"  binary="false" [(ngModel)]="weblogicData.enable" label = "Enable"></p-checkbox>
              </div>
              <div class="ui-g-1">
                 <label>Instance Name</label>
              </div>
              <div class="ui-g-4 monConfigRow">
-               <input name="instanceName" type="text"   [(ngModel)]="weblogic.JDBCStats.instanceName" style="width:192px" 
+               <input name="instanceName" type="text"   [(ngModel)]="weblogicData.instanceName" style="width:192px" 
                 size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
              </div>
              <div class="ui-g-1">
                 <label>MBean Type</label>
              </div>
              <div class="ui-g-4 mbeanDrpdown">
-                <p-dropdown name="topoId"  [(ngModel)]="weblogic.JDBCStats.mBeanType" [options]="typeItems" placeholder="--Select Mbeans Type--" [style]="{'width':'77%','margin-left': '-1px'}"  appendTo="body" required ngModel></p-dropdown>
+                <p-dropdown name="topoId"  [(ngModel)]="weblogicData.mBeanType" [options]="typeItems" placeholder="--Select Mbeans Type--" [style]="{'width':'77%','margin-left': '-1px'}"  appendTo="body" required ngModel></p-dropdown>
              </div>
           </div>
 
@@ -108,11 +108,10 @@
              <div>
              <p-dataTable class="mon-ui" [value]="weblogicStatsTableData" [(selection)]="selectedJson" [rows]="5" [paginator]="weblogicStatsTableData?.length >5" [pageLinks]="3" [style]="{'height':'200px'}">
               <p-header>
-              <span style = "font-size:13px"><b>MJson of  Topology  {{selectedTopology}}</b></span>
+              <span style = "font-size:13px"><b>Weblogic Stats Configuration data</b></span>
               </p-header>
 
               <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
-
               <p-column   [style]="{'width':'46px'}" *ngFor="let col of cols" [field]="col.field" [header]="col.header">
                <template   let-data="rowData" pTemplate >
                 <span [style]="{'width':'2%','padding':'1px'}" >{{data[col.field]}}</span> 

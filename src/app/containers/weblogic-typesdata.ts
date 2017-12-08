@@ -14,12 +14,13 @@ export class WeblogicTypesData
 export class WeblogicConfigureData
 {
  tierName:string;
- monName:string;
- enable:boolean;
- hostName:string;
- port:number;
- userName:string;
- pwd:string;
+ weblogicStats:string;
+ enable:boolean=false;
+ hostName:string ='127.0.0.1';
+ port:number=17000;
+ userName:string='weblogic';
+ pwd:string='weblogic';
  mBeanType:string;
  instanceName:string;
+ server:string;
 }
