@@ -466,7 +466,8 @@ mon-ui .ui-treetable th.ui-state-default {
 
 .tabsincontent
 {
-  background: rgba(255, 255, 255, 0.85);
+  /* background: rgba(255, 255, 255, 0.85); */
+  background: rgb(158, 201, 230);
 }
 
 .tabsincontent .header
@@ -533,7 +534,7 @@ padding:10px;
 }
 
 .monConfigRow{
-  width:21.333%
+  width:18.333%
 }
 
 .pull-right{

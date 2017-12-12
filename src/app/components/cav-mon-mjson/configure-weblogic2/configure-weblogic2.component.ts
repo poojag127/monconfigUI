@@ -91,7 +91,7 @@ export class ConfigureWeblogic2Component implements OnInit {
 
     /*creating weblogicStats dropdown serverList*/
     let weblogicStatsLabel = ['JDBC Stats','JVM Stats','JMS Queue Stats','Session Stats','Min Thread Constraint Stats','Transaction Stats','Thread Pool Stats',];
-    let weblogicStatsValue= ['JDBCStats','JVMStats',,'JMSQueueStats','SessionStats','MinThreadConstraintStats','TransactionStats','ThreadPoolStats'];
+    let weblogicStatsValue= ['JDBCStats','JVMStats','JMSQueueStats','SessionStats','MinThreadConstraintStats','TransactionStats','ThreadPoolStats'];
     this.weblogicStats =  ConfigUiUtility.createListWithKeyValue(weblogicStatsLabel, weblogicStatsValue);
 
     /*creating server list */
