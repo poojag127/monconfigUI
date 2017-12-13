@@ -9,6 +9,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { SelectItem } from 'primeng/primeng';
 import { WeblogicConfigureData } from '../../../containers/weblogic-typesdata';
 import { ImmutableArray } from '../../../utility/immutable-array';
+import { ROUTING_PATH } from '../../../constants/monconfig-url-constant';
 
 @Component({
   selector: 'app-configure-weblogic2',
@@ -43,6 +44,8 @@ export class ConfigureWeblogic2Component implements OnInit {
 
 /**stores table data */
   weblogicStatsTableData:WeblogicConfigureData[]=[];
+
+
 
 
   constructor(private cavMonDataService :CavmonMonitorsdataService,

@@ -20,28 +20,32 @@ export class CavMonBreadcrumbComponent implements OnInit {
   {
      this.items = [{ routerLink: [BREADCRUMB.URL.HOME], label: BREADCRUMB.LABEL.HOME }];
      this.breadcrumbSubscription = this.router.events.filter(event => event instanceof NavigationEnd).subscribe(event => {
+     
       this.items = [{ routerLink: [BREADCRUMB.URL.HOME], label: BREADCRUMB.LABEL.HOME }];
 
       let url = event["url"];
       console.log("ConfigBreadcrumbComponent", "ngOnInit", "url ", url);
+
       if (url.startsWith(BREADCRUMB.URL.CONFIGURATION)) 
       {
-        this.items.push({ label: BREADCRUMB.LABEL.CONFIGURATION , routerLink: [BREADCRUMB.URL.CONFIGURATION]});
-      }
-      
-      else if (url.startsWith(BREADCRUMB.URL.WEBLOGIC_CONFIGURATION)) 
-      {
         let arrURL = url.split("/");
-        
-        let tabId = arrURL[arrURL.length - 1];
-        console.log("tabId ================ ",tabId)
-        let profileId = arrURL[arrURL.length - 2];
-        console.log("ProfileId ================ ",tabId)
-        
-        this.items.push({ routerLink: [`${BREADCRUMB.URL.CONFIGURATION}/${profileId}/${tabId}`], label: BREADCRUMB.LABEL.CONFIGURATION });
-        this.items.push({ label: BREADCRUMB.LABEL.WEBLOGIC_CONFIGURATION });
-      }
+        let topoName = '';
+        let mjsonName='';
 
+        if(url.startsWith(BREADCRUMB.URL.CONFIGURATION_HOME))
+        {
+         this.items.push({ label: BREADCRUMB.LABEL.CONFIGURATION});
+        }
+        else if(url.startsWith(BREADCRUMB.URL.WEBLOGIC_CONFIGURATION))
+        {
+          // url--- /mjson/advanceSettings/poo/mosaic_stress_as1/Weblogic/All_Tier
+         topoName = arrURL[arrURL.length - 3];
+         mjsonName = arrURL[arrURL.length - 4];
+         console.log("ConfigBreadcrumbComponent", "ngOnInit", "mjsonName ", mjsonName);
+         this.items.push({ label: BREADCRUMB.LABEL.CONFIGURATION , routerLink: [`${BREADCRUMB.URL.CONFIGURATION_HOME}/${mjsonName}/${topoName}`]});
+         this.items.push({ label: BREADCRUMB.LABEL.WEBLOGIC_CONFIGURATION});
+        }
+      }
      this.home = {icon: 'fa fa-home'};
   });
 }

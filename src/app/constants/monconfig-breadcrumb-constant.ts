@@ -3,12 +3,14 @@ import { ROUTING_PATH } from './monconfig-url-constant';
 export const LABEL = {
     HOME: 'Home',
     CONFIGURATION:'Configuration',
-    WEBLOGIC_CONFIGURATION:'Weblogic-Config',
+    CONFIGURATION_HOME:'Configuration',
+    WEBLOGIC_CONFIGURATION:'WeblogicConfigure',
 } 
 
 export const URL = {
     HOME: `${ROUTING_PATH}/home`,
     CONFIGURATION: `${ROUTING_PATH}/mjson`,
-    WEBLOGIC_CONFIGURATION:`${ROUTING_PATH}/advanceSettings`,
+    CONFIGURATION_HOME: `${ROUTING_PATH}/mjson/configuration`,
+    WEBLOGIC_CONFIGURATION:`${ROUTING_PATH}/mjson/weblogicSettings`,
     
 };  

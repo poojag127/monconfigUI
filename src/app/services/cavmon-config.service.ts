@@ -74,9 +74,9 @@ export class CavmonConfigService {
                     .toPromise()
                     .then(res => <TreeNode[]> res.json().data);
       
+  }
       //  return  this.http.get('../utility/filesystem.json')
       //           .subscribe(res => this.data = res.json());
-  }
 
   /** getting tier List ***/
   getTierList(topoName)

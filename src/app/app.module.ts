@@ -52,6 +52,7 @@ import {TooltipModule,
         
     } from 'primeng/primeng';
 
+import { ConfigurationMonitorsRoutingComponent } from './components/cav-mon-mjson/configuration-monitors-routing/configuration-monitors-routing.component';
 import { CavMonTopNavBarComponent } from './components/cav-mon-top-nav-bar/cav-mon-top-nav-bar.component';
 import { CavMonBreadcrumbComponent } from './components/cav-mon-breadcrumb/cav-mon-breadcrumb.component';
 import { CavMonRightPaneComponent } from './components/cav-mon-right-pane/cav-mon-right-pane.component';
@@ -80,6 +81,7 @@ import { ConfigureWeblogic2Component } from './components/cav-mon-mjson/configur
     WeblogicCongigure2Component,
     ConfigureWeblogicComponent,
     ConfigureWeblogic2Component,
+    ConfigurationMonitorsRoutingComponent,
     // CavMonMenuComponent
   ],
   imports: [

@@ -23,7 +23,7 @@ export class ConfigurationHomeComponent implements OnInit
 
   topoName:String;
 
-  jsonName :String;
+  mjsonName :String;
 
 
   monName :String; //variable to hold monitor name 
@@ -35,6 +35,8 @@ export class ConfigurationHomeComponent implements OnInit
   selectedRow: TreeNode;
 
   dynamicKey:any[]=[];
+
+  ROUTING_PATH = ROUTING_PATH;
 
   constructor(private cavMonConfigService:CavmonConfigService,
              private router:Router,
@@ -48,7 +50,7 @@ export class ConfigurationHomeComponent implements OnInit
    this.cols=[];
    this.route.params.subscribe((params: Params) => {
       this.topoName = params['topoName'];
-      this.jsonName = params['jsonName']
+      this.mjsonName = params['mjsonName']
     });
     
 
@@ -100,8 +102,7 @@ export class ConfigurationHomeComponent implements OnInit
   {
     let that = this;
     this.cavMonConfigService.getTreeTableData().then(data =>
-      {
-       console.log("data---",data)
+     {
        data.map(function(val)
        {
          val.data["monitorState"] = false;
@@ -109,9 +110,7 @@ export class ConfigurationHomeComponent implements OnInit
          {
            //adding Tier to parent monitor node
           val.data[eachTier] = false;
-          console.log("val--",val.data[eachTier])
           // that.createKeyForCheckBox(val.data.monitor,eachTier)
-          
 
            if(val.hasOwnProperty('children'))
            {
@@ -176,19 +175,14 @@ export class ConfigurationHomeComponent implements OnInit
    console.log("onCheckBoxChange method called--",event)
  }
 
-
-
 /** for advance settings */
   advanceSettings(monName,tierfield)
   {
-    console.log("monName--",monName)
-    console.log("tierfield--",tierfield)
-     this.router.navigate([ROUTING_PATH + '/advanceSettings',monName,tierfield]);
+    this.router.navigate(['../../../weblogicSettings',this.mjsonName,this.topoName,monName,tierfield],{ relativeTo: this.route });
   }
 
   onTreeNodeCheckBoxChange(rowData)
   {
-    console.log("rowData--",rowData)
     for(let each in rowData.data)
     {
      if(each != 'monitor')
@@ -197,7 +191,6 @@ export class ConfigurationHomeComponent implements OnInit
         console.log(this.getValueOfTierCheckBox(rowData.data))
      }
     }
-    console.log("rowData-- aftr modified",rowData)
   }
 
 /*** returns tier checkbox value true or false**************/

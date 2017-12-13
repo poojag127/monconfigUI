@@ -28,20 +28,179 @@
                 },
                 {
                     "data":{
-                        "monitor":"TCPStats"
-
-                    }
-                },
-
-                {
-                    "data":{
-                        "monitor":"TCPStatsCount"
+                        "monitor":"DeviceStats"
 
                     }
                 },
                 {
                     "data":{
                         "monitor":"MPStats"
+                    }
+            
+                },
+                {
+                    "data":{
+                        "monitor":"MPStatLite"
+                    }
+            
+                },
+                {
+                    "data":{
+                        "monitor":"FileSystemStats"
+                    }
+            
+                },
+                {
+                    "data":{
+                        "monitor":"F5SystemStats"
+                    }
+            
+                },
+                {
+                    "data":{
+                        "monitor":"SNMPF5PoolStats"
+                    }
+            
+                },
+                {
+                    "data":{
+                        "monitor":"EthStat"
+                    }
+            
+                },
+                {
+                    "data":{
+                        "monitor":"EthThroughputStat"
+                    }
+            
+                },
+                {
+                    "data":{
+                        "monitor":"EhCacheStats"
+                    }
+            
+                },
+                {
+                    "data":{
+                        "monitor":"MemStats"
+                    }
+            
+                },
+                {
+                    "data":{
+                        "monitor":"MemStatsEx"
+                    }
+            
+                },
+                {
+                    "data":{
+                        "monitor":"MemStatsEx2"
+                    }
+            
+                },
+                {
+                    "data":{
+                        "monitor":"MemCacheStats"
+
+                    }
+                }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"Socket Stats"
+               
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"SockStats"
+                       
+                    }
+                 }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"Network Stats"
+               
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"NetworkDelay"
+                       
+                    }
+                 }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"Uptime Stats"
+               
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"Uptime"
+                       
+                    }
+                 },
+                 {  
+                    "data":{  
+                           "monitor":"UpTimeEx"
+                          
+                       }
+                }
+
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"Process Stats"
+               
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"ProcessData"
+                       
+                    }
+                 },
+                 {
+                    "data":{
+                        "monitor":"ProcessDataExtended"
+
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"ProcessDataExDVM"
+
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"ProcessDataExDVMV2"
+
+                    }
+                },
+
+                {
+                    "data":{
+                        "monitor":"ProcessDataExV2"
+
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"ProcessCountByState"
+
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"ThreadStats"
 
                     }
                 }
@@ -50,38 +209,116 @@
         },
         {  
             "data":{  
+                "monitor":"Connection Stats"
+               
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"TCPStats"
+                       
+                    }
+                 },
+                 {
+                    "data":{
+                        "monitor":"TCPStatsCount"
+
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"TCPStatsRate"
+
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"TCPQueueStats"
+
+                    }
+                },
+
+                {
+                    "data":{
+                        "monitor":"TCPListenQueueStats"
+
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"UdpStats"
+
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"UdpStatsRate"
+
+                    }
+                }
+                
+            ]
+        },
+        
+        {  
+            "data":{  
                 "monitor":"Weblogic"
             },
             "children":[
                 {  
                  "data":{  
-                        "monitor":"JDBCStats"
+                        "monitor":"WeblogicJdbcStats"
                     }
                  },
                  {
                     "data":{
-                        "monitor":"JMS Queue Stats"
+                        "monitor":"WeblogicJMSQueueStats"
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"WeblogicJdbcExtendedStats"
                     }
                 },
 
                  {
                     "data":{
-                        "monitor":"JVM Stats"
+                        "monitor":"WeblogicJvmStats"
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"WeblogicThreadPoolStats"
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"WeblogicThreadPoolStatsV2"
                     }
                 },
                  {
                     "data":{
-                        "monitor":"MIn Thread Constraints Stats"
+                        "monitor":"WeblogicMinThreadConstraintStats"
                     }
                 },
                 {
                     "data":{
-                        "monitor":"Transaction Stats"
+                        "monitor":"WeblogicMinThreadConstraintExtendedStats"
                     }
                 },
                 {
                     "data":{
-                        "monitor":"Session Stats"
+                        "monitor":"WeblogicTransactionStats"
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"WeblogicSessionStats"
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"WeblogicSvcTime"
                     }
                 }
 
@@ -95,23 +332,28 @@
             "children":[
                 {  
                  "data":{  
-                        "monitor":"Tomcat Service Stats"
+                        "monitor":"TomcatServiceStats"
                     }
                  },
                  {
                     "data":{
-                        "monitor":"Tomcat Servlet Stats"
+                        "monitor":"TomcatServletStats"
                     }
                 },
 
                  {
                     "data":{
-                        "monitor":"Tomcat Session Manager Stats"
+                        "monitor":"TomcatSessionManagerStats"
                     }
                 },
                  {
                     "data":{
-                        "monitor":"Tomcat Cache Stats"
+                        "monitor":"TomcatCacheStats"
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"TomcatThreadPoolStats"
                     }
                 }
 
@@ -125,67 +367,294 @@
             "children":[
                 {  
                  "data":{  
-                        "monitor":"JavaGCExtended Stats"
+                        "monitor":"JavaGCExtendedStats"
                        
                     }
                  },
                  {
                     "data":{
-                        "monitor":"JavaGCExtendedV2 Stats"
+                        "monitor":"JavaGCExtendedV2Stats"
                         
                     }
                 },
-
-                 {
+                {
                     "data":{
-                        "monitor":"JavaGCJrockit Stats"
+                        "monitor":"JavaGCExtendedV3Stats"
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"JavaGCExtendedV4Stats"
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"JavaGCJrockitStats"
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"JavaGCJMXStats"
                     }
                 },
                  {
                     "data":{
-                        "monitor":"JavaGCJMX Stats"
+                        "monitor":"JavaGCJrockitJMXStats"
+                       
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"JavaJStatGCStats"
+                       
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"JavaGCIBMJMXStats"
+                       
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"JavaGCJMXSun8"
                        
                     }
                 }
+                
 
             ]
         },
-      
+                {  
+                    "data":{  
+                        "monitor":"VMWare Host Stats"
+                      
+                    },
+                    "children":[
+                        {  
+                         "data":{  
+                                "monitor":"VMEsxiHostCPUStats"
+                               
+                            }
+                         },
+                         {
+                            "data":{
+                                "monitor":"VMEsxiHostMemoryStats"
+                                
+                            }
+                        },
+                        {
+                            "data":{
+                                "monitor":"VMEsxiHostNetworkStats"
+                            }
+                        },
+                        {
+                            "data":{
+                                "monitor":"VMEsxiHostDiskStats"
+                            }
+                        },
+                        {
+                            "data":{
+                                "monitor":"VMEsxiCPUStats"
+                            }
+                        },
+                        {
+                            "data":{
+                                "monitor":"VMEsxiMemoryStats"
+                            }
+                        },
+                        {
+                            "data":{
+                                "monitor":"VMEsxiDiskStats"
+                            }
+                        },
+                        {
+                            "data":{
+                                "monitor":"VMWareStats"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "data":{
+                        "monitor":"Java System Stats"
+                       
+                    },
+                
+                "children":[
+                    {  
+                     "data":{  
+                            "monitor":"JavaOperatingSystemStats"
+                           
+                        }
+                    },
+                    {
+                     "data":{  
+                        "monitor":"JavaThreadingStats"
+                       
+                    }
+                 }
+            ]
+        },
         {  
             "data":{  
-                "monitor":"JBoss Stats"
+                "monitor":"JBoss_EAP Stats"
                
             },
             "children":[
                 {  
                  "data":{  
-                        "monitor":"JBossEAPThreadPoolStats Stats"
+                        "monitor":"JBossEAPThreadPoolStats"
                        
                     }
                  },
                  {
                     "data":{
-                        "monitor":"JBossEAPJdbcPool Stats"
+                        "monitor":"JBossEAPJdbcPoolStats"
 
                     }
                 },
                  {
                     "data":{
-                        "monitor":"JBossEAPSession Stats"
+                        "monitor":"JBossEAPSessionStats"
                         
                     }
                 },
                  {
                     "data":{
-                        "monitor":"JBossEAPServlet Stats"
+                        "monitor":"JBossEAPServletStats"
+                       
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"JBoss7ASJdbcPoolStats"
+                       
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"JBossThreadPoolStats"
+                        
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"JBossCacheStats"
+                        
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"JBossServletStats"
+                        
+                    }
+                },
+                 {
+                    "data":{
+                        "monitor":"JBossSessionManagerStats"
+                        
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"JBossRequestProcessorStats"
+                        
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"JBossConnectionPoolStats"
+                        
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"JBossGlobalRequestProcessorStats"
+                        
+                    }
+                }
+
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"Access Log Stats "
+               
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"AccessLogStats"
+                       
+                    }
+                 },
+                 {  
+                    "data":{  
+                           "monitor":"AccessLogStatsExtended"
+                          
+                       }
+                    },
+                 {
+                    "data":{
+                        "monitor":"AccessLogStatsExtendedV2"
+
+                    }
+                },
+                 {
+                    "data":{
+                        "monitor":"AccessLogStatsExtendedV3"
+                        
+                    }
+                },
+                 {
+                    "data":{
+                        "monitor":"AccessLogStatsExtendedV4"
+                       
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"AccessLogStatsExtendedV5"
+                       
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"AccessLogStatsExtendedV6"
+                       
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"AccessLogStatusStats"
+                       
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"AccessLogCustomStats"
                        
                     }
                 }
 
             ]
         },
-
         {  
+            "data":{  
+                "monitor":"Service Stats "
+               
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"ServiceStats"
+                       
+                    }
+                 }
+            ]
+        },
+            { 
             "data":{  
                 "monitor":"Cassandra Stats"
                
@@ -193,25 +662,37 @@
             "children":[
                 {  
                  "data":{  
-                        "monitor":"CassandraThreadPoolMsg Stats"
+                        "monitor":"CassandraThreadPoolMsgStats"
                        
                     }
                  },
+                 {  
+                    "data":{  
+                           "monitor":"CassandraThreadPoolStats"
+                          
+                       }
+                    },
                  {
                     "data":{
-                        "monitor":"CassandraNode Stats"
+                        "monitor":"CassandraNodeStats"
 
                     }
                 },
                  {
                     "data":{
-                        "monitor":"CassandraCompaction Stats"
+                        "monitor":"CassandraCompactionStats"
                         
                     }
                 },
                  {
                     "data":{
-                        "monitor":"CassandraColumnFamily Stats"
+                        "monitor":"CassandraColumnFamilyStats"
+                       
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"CassandraColumnFamilyStatsV2"
                        
                     }
                 },
@@ -223,8 +704,18 @@
                 }
             ]
         },
-
-        
+        {  
+            "data":{  
+                "monitor":"Cache Stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"CacheStats"
+                    }
+                 }
+            ]
+        },
         {  
             "data":{  
                 "monitor":"Coherence Stats"
@@ -233,49 +724,48 @@
             "children":[
                 {  
                  "data":{  
-                        "monitor":"CoherenceCacheExCum Stats "
+                        "monitor":"CoherenceCacheExCumStats "
                        
                     }
                  },
                  {
                     "data":{
-                        "monitor":"CoherenceCacheExCumV2 Stats"
+                        "monitor":"CoherenceCacheExCumStatsv2"
 
                     }
                 },
                  {
                     "data":{
-                        "monitor":"CoherenceCacheEx Stats"
+                        "monitor":"CoherenceCacheExStats"
                         
                     }
                 },
                  {
                     "data":{
-                        "monitor":"CoherenceClusterNode Stats "
+                        "monitor":"CoherenceClusterNodeStats "
                        
                     }
                 },
                  {
                     "data":{
-                        "monitor":"CoherenceCluster Stats "
+                        "monitor":"CoherenceClusterStats "
                        
                     }
                 },
                 {
                     "data":{
-                        "monitor":"CoherenceService Stats  "
+                        "monitor":"CoherenceServiceStats  "
                        
                     }
                 },
                  {
                     "data":{
-                        "monitor":"CoherenceStorageCache Stats "
+                        "monitor":"CoherenceStorageCacheStats "
                        
                     }
                 }
             ]
         },
-
         {  
             "data":{  
                 "monitor":"Kubernetes Stats"
@@ -284,59 +774,118 @@
             "children":[
                 {  
                  "data":{  
-                        "monitor":"KubernetesHostCPU Stats "
+                        "monitor":"KubernetesHostCPUStats "
                        
                     }
                  },
                  {
                     "data":{
-                        "monitor":"KubernetesHostMemory Stats"
+                        "monitor":"KubernetesHostMemoryStats"
 
                     }
                 },
                  {
                     "data":{
-                        "monitor":"KubernetesHostBlockIo Stats"
+                        "monitor":"KubernetesHostBlockIoStats"
                         
                     }
                 },
                  {
                     "data":{
-                        "monitor":"KubernetesContainer Stats "
+                        "monitor":"KubernetesContainerStats "
                        
                     }
                 },
                  {
                     "data":{
-                        "monitor":"KubernetesHostDevice Stats "
+                        "monitor":"KubernetesHostDeviceStats "
                        
                     }
                 },
                 {
                     "data":{
-                        "monitor":"KubernetesNodeStatsEx Stats  "
+                        "monitor":"KubernetesNodeStatsEx"
                        
                     }
                 },
                  {
                     "data":{
-                        "monitor":"KubernetesAutoScaleConfigStats Stats "
+                        "monitor":"KubernetesAutoScaleConfigStats"
                        
                     }
                 },
                  {
                     "data":{
-                        "monitor":"KubernetesServices Stats  "
+                        "monitor":"KubernetesServicesStats"
                        
                     }
                 },
                 {
                     "data":{
-                        "monitor":"KubernetesServiceStatus Stats  "
+                        "monitor":"KubernetesServiceStatus"
                        
                     }
-                }
-
+                },
+                {
+                    "data":{
+                        "monitor":"KubernetesImageMon"
+                       
+                    }
+                },
+                {  
+                    "data":{  
+                           "monitor":"KubernetesClusterStats"
+                          
+                       }
+                    },
+                    {  
+                        "data":{  
+                               "monitor":"KubernetesNodeStats"
+                              
+                           }
+                        },
+                        {  
+                            "data":{  
+                                   "monitor":"KubernetesPodPerNameSpaceStats"
+                                  
+                               }
+                            },
+                            {  
+                                "data":{  
+                                       "monitor":"KubernetesPodsPerNodeStats"
+                                      
+                                   }
+                            },
+                            {  
+                                "data":{  
+                                       "monitor":"KubernetesFileSystemStats"
+                                      
+                                   }
+                            },
+                            {  
+                                "data":{  
+                                       "monitor":"KubernetesDeploymentReplicStats"
+                                      
+                                   }
+                            },
+                            {  
+                                "data":{  
+                                       "monitor":"KubernetesNetworkStats"
+                                      
+                                   }
+                            },
+                            {  
+                                "data":{  
+                                       "monitor":"KubernetesContainerProcessStats"
+                                      
+                                   }
+                            },
+                            {  
+                                "data":{  
+                                       "monitor":"KubernetesHostNetworkstats"
+                                      
+                                   }
+                            }
             ]
         },
          {  
@@ -347,34 +896,231 @@
             "children":[
                 {  
                  "data":{  
-                        "monitor":"AzkabanFlow Stats "
+                        "monitor":"AzkabanFlowStats"
                        
                     }
                  },
                  {  
                  "data":{  
-                        "monitor":"AzkabanSubFlow Stats "
+                        "monitor":"AzkabanSubFlowStats"
                     }
                  }
             ]
         },
          {  
             "data":{  
-                "monitor":"ApacheSolr Stats"
+                "monitor":"Apache Stats"
                
             },
             "children":[
                 {  
                  "data":{  
-                        "monitor":"ApacheSolrCache Stats "
+                        "monitor":"ApacheSolrCacheStats"
                        
                     }
                  },
                  {  
                  "data":{  
-                        "monitor":"ApacheSolrCacheEx Stats "
+                        "monitor":"ApacheSolrCacheExStats "
+                    }
+                 },
+                 {  
+                    "data":{  
+                           "monitor":"ApacheSolrQueryHandlerStats "
+                       }
+                    },
+                    {  
+                        "data":{  
+                               "monitor":"ApacheSolrUpdateHandlerStats "
+                           }
+                        },
+                 {  
+                    "data":{  
+                           "monitor":"ApacheServerJKStat"
+                       }
+                    },
+                    {  
+                        "data":{  
+                               "monitor":"ApacheServerJKStatEx "
+                           }
+                        },
+                        {  
+                            "data":{  
+                                   "monitor":"ApacheSolrCacheJMXStats "
+                               }
+                            },
+                            {  
+                                "data":{  
+                                       "monitor":"ApacheSolrCacheExtendedJMXStats "
+                                   }
+                                },
+                                {  
+                                    "data":{  
+                                           "monitor":"ApacheSolrQueryHandlerJMXStats "
+                                       }
+                                    },
+                                    {  
+                                        "data":{  
+                                               "monitor":"ApacheSolrUpdateHandlerJMXStats "
+                                           }
+                                        }
+                                    ]
+        },
+        {  
+            "data":{  
+                "monitor":"NetFunction Traffic Stats"
+               
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"SimulatedServiceStats"
+                       
+                    }
+                 },
+                 {  
+                 "data":{  
+                        "monitor":"SimulatedProtocolStats "
                     }
                  }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"NetFunction kpi stats"
+               
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"KpiStats"
+                       
+                    }
+                 }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"App Dynamics Stats"
+               
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"AppDynamics"
+                       
+                    }
+                 }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"Log Parser Stats"
+               
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"Log_Parser_Hazelcast"
+                       
+                    }
+                 },
+                 {
+                    "data":{
+                        "monitor":"Log_Parser_Tomcat"
+
+                    }
+                },
+                 {
+                    "data":{
+                        "monitor":"Log_Parser_Async"
+                        
+                    }
+                },
+                 {
+                    "data":{
+                        "monitor":"Log_Parser_Eureka"
+                       
+                    }
+                },
+                 {
+                    "data":{
+                        "monitor":"Log_Parser_Kafka"
+                       
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"Log_Parser_HAProxy"
+                       
+                    }
+                },
+                 {
+                    "data":{
+                        "monitor":"LogParserNginx"
+                       
+                    }
+                },
+                 {
+                    "data":{
+                        "monitor":"LogParserMsp"
+                       
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"LogParserMui"
+                       
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"LogParserEncryp"
+                       
+                    }
+                },
+                {  
+                    "data":{  
+                           "monitor":"LogParserLoyalty"
+                          
+                       }
+                    },
+                    {  
+                        "data":{  
+                               "monitor":"NginxResourceStatsV2"
+                              
+                           }
+                        },
+                        {  
+                            "data":{  
+                                   "monitor":"LogParserCBP"
+                                  
+                               }
+                            },
+                            {  
+                                "data":{  
+                                       "monitor":"LogParserBrowse"
+                                      
+                                   }
+                            },
+                            {  
+                                "data":{  
+                                       "monitor":"LogParserProfile"
+                                      
+                                   }
+                            },
+                            {  
+                                "data":{  
+                                       "monitor":"LogParserCBPMessage"
+                                      
+                                   }
+                            },
+                            {  
+                                "data":{  
+                                       "monitor":"LogParser"
+                                      
+                                   }
+                            }
             ]
         },
          {  
@@ -385,67 +1131,149 @@
             "children":[
                 {  
                  "data":{  
-                        "monitor":"WebsphereJDBC Stats "
+                        "monitor":"WebsphereJDBCStats "
                        
                     }
                  },
                  {  
                  "data":{  
-                        "monitor":"WebsphereThreadPool Stats  "
+                        "monitor":"WebsphereThreadPoolStats"
                     }
                  },
                  {  
                  "data":{  
-                        "monitor":"WebsphereServlet Stats "
+                        "monitor":"WebsphereServletStats "
                     }
                  },
                  {  
                  "data":{  
-                        "monitor":"WebsphereSession Stats"
+                        "monitor":"WebsphereSessionStats"
                     }
                  }
             ]
         },
         {  
             "data":{  
-                "monitor":"Spring DM Stats"
+                "monitor":"Spring Stats"
                
             },
             "children":[
                 {  
+                    "data":{  
+                           "monitor":"SpringTCThreadPoolStats"
+                          
+                       }
+                },
+                {  
+                    "data":{  
+                            "monitor":"SpringTCExecutorStats"
+                              
+                    }
+                },
+                {  
+                    "data":{  
+                             "monitor":"SpringTCServletStats"
+                           }
+                        },
+                {  
                  "data":{  
-                        "monitor":"SpringDmThreadPool Stats "
+                        "monitor":"SpringDmThreadPoolStats "
                        
                     }
                  },
                  {  
                  "data":{  
-                        "monitor":"SpringDmRequestProcessor Stats  "
+                        "monitor":"SpringDmRequestProcessorStats  "
                     }
                  },
                  {  
                  "data":{  
-                        "monitor":"SpringDmServlet Stats  "
+                        "monitor":"SpringDmServletStats "
                     }
                  },
                  {  
                  "data":{  
-                        "monitor":"SpringDmWebModule Stats"
+                        "monitor":"SpringDmWebModuleStats"
                     }
                  },
                   {  
                  "data":{  
-                        "monitor":"SpringDmJKHandler Stats "
+                        "monitor":"SpringDmJKHandlerStats "
                     }
                  },
+                 {  
+                    "data":{  
+                           "monitor":"SpringDmThreadingStats "
+                       }
+                    },
                   {  
                  "data":{  
-                        "monitor":"SpringDmExecutorServices Stats "
+                        "monitor":"SpringDmExecutorServicesStats "
+                    }
+                 },
+                 {  
+                    "data":{  
+                           "monitor":"SpringBootServiceStats "
+                       }
+                    },
+                    {  
+                        "data":{  
+                               "monitor":"SpringBootActuatorStats "
+                           }
+                        },
+                        {  
+                            "data":{  
+                                   "monitor":"SpringBootServiceExtendedStats "
+                               }
+                            }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"Hazelcast Stats"
+               
+            },
+            "children":[
+                {  
+                    "data":{  
+                           "monitor":"HazelcastMapStats"
+                          
+                       }
+                },
+                {  
+                    "data":{  
+                            "monitor":"HazelcastMultiMapStats"
+                              
+                    }
+                },
+                {  
+                    "data":{  
+                             "monitor":"HazelcastReplicatedMapStats"
+                           }
+                        },
+                {  
+                 "data":{  
+                        "monitor":"HazelcastQueueStats "
+                       
+                    }
+                 },
+                 {  
+                 "data":{  
+                        "monitor":"HazelcastExecutorServiceStats  "
+                    }
+                 },
+                 {  
+                 "data":{  
+                        "monitor":"HazelcastCacheStats "
+                    }
+                 },
+                 {  
+                 "data":{  
+                        "monitor":"HazelcastTopicStats"
                     }
                  }
             ]
         },
-
         {  
             "data":{  
                 "monitor":"Docker Stats"
@@ -454,52 +1282,79 @@
             "children":[
                 {  
                  "data":{  
-                        "monitor":"DockerSystem Stats "
+                        "monitor":"DockerSystemStat "
                        
                     }
                  },
                  {  
                  "data":{  
-                        "monitor":"DockerNetwork Stats  "
+                        "monitor":"DockerNetworkStat"
                     }
                  },
                  {  
                  "data":{  
-                        "monitor":"DockerMemory Stats  "
+                        "monitor":"DockerMemoryStat"
                     }
                  },
                  {  
                  "data":{  
-                        "monitor":"DockerIO Stats"
+                        "monitor":"DockerIOStat"
                     }
                  },
                   {  
                  "data":{  
-                        "monitor":"DockerInfo Stats "
+                        "monitor":"DockerInfoStat "
                     }
                  },
                   {  
                  "data":{  
-                        "monitor":"DockerCPU Stats "
+                        "monitor":"DockerCPUStat"
                     }
                  }
             ]
         },
+        {  
+            "data":{  
+                "monitor":"Postgres Stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"PostgresStats"
+                    }
+                 },
+                 {  
+                    "data":{  
+                           "monitor":"PostgreSQLDBActivityStats"
+                       }
+                    },
+                    {  
+                        "data":{  
+                               "monitor":"PostgreSQLIOActivityStats"
+                           }
+                        },
+                        {  
+                            "data":{  
+                                   "monitor":"PostgreSQLBGWriterStats"
+                               }
+                            }
+            ]
+        },
          {  
             "data":{  
-                "monitor":"HA  Proxy Stats"
+                "monitor":"HAProxy Stats"
                
             },
             "children":[
                 {  
                  "data":{  
-                        "monitor":"HAProxyFrontend Stats "
+                        "monitor":"HAProxyFrontendStats"
                        
                     }
                  },
                  {  
                  "data":{  
-                        "monitor":"HAProxyBackend Stats  "
+                        "monitor":"HAProxyBackendStats  "
                     }
                  }
                  
@@ -513,18 +1368,43 @@
             "children":[
                 {  
                  "data":{  
-                        "monitor":"RabbitMQNode Stats "
+                        "monitor":"RabbitMQNodeStats"
                        
                     }
                  },
                  {  
                  "data":{  
-                        "monitor":"RabbitMQQueue Stats  "
+                        "monitor":"RabbitMQQueueStats"
                     }
                  },
                  {  
                  "data":{  
-                        "monitor":"RabbitMQCluster Stats  "
+                        "monitor":"RabbitMQClusterStats"
+                    }
+                 }
+                 
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"ETCD Stats"
+               
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"EtcdFollowerStats"
+                       
+                    }
+                 },
+                 {  
+                 "data":{  
+                        "monitor":"EtcdStoreStats"
+                    }
+                 },
+                 {  
+                 "data":{  
+                        "monitor":"EtcdNodeStats"
                     }
                  }
                  
@@ -538,21 +1418,30 @@
             "children":[
                 {  
                  "data":{  
-                        "monitor":"HDFSCluster Stats "
+                        "monitor":"HDFSClusterStats "
                        
                     }
                  },
                  {  
                  "data":{  
-                        "monitor":"HDFSDataNode Stats  "
+                        "monitor":"HDFSDataNodeStats  "
                     }
                  },
                  {  
                  "data":{  
-                        "monitor":"HBaseCluster Stats  "
+                        "monitor":"HBaseClusterStats  "
                     }
-                 }
-                 
+                 },
+                 {  
+                    "data":{  
+                           "monitor":"HBaseRegionServerStats "
+                       }
+                    },
+                 {  
+                    "data":{  
+                           "monitor":"ResourceManagerServiceStats "
+                       }
+                    }
             ]
         },
         {  
@@ -563,23 +1452,23 @@
             "children":[
                 {  
                  "data":{  
-                        "monitor":"ElasticSearchCluster Stats "
+                        "monitor":"ElasticSearchClusterStats "
                        
                     }
                  },
                  {  
                  "data":{  
-                        "monitor":"ElasticSearchNodeStats Stats  "
+                        "monitor":"ElasticSearchNodeStats  "
                     }
                  },
                  {  
                  "data":{  
-                        "monitor":"ElasticSearchNodeThreadPoolStats Stats  "
+                        "monitor":"ElasticSearchNodeThreadPoolStats"
                     }
                  },
                  {  
                  "data":{  
-                        "monitor":"ElasticSearchIndex Stats  "
+                        "monitor":"ElasticSearchIndexStats"
                     }
                  }
                  
@@ -588,19 +1477,19 @@
 
         {  
             "data":{  
-                "monitor":"Cloud Foundry Stats"
+                "monitor":"Cloud Foundry"
                
             },
             "children":[
                 {  
                  "data":{  
-                        "monitor":"CloudfoundryApp Stats "
+                        "monitor":"CloudfoundryAppStats"
                        
                     }
                  },
                  {  
                  "data":{  
-                        "monitor":"CloudfoundryProcess Stats  "
+                        "monitor":"CloudfoundryProcessStats"
                     }
                  },
                  {  
@@ -616,25 +1505,1038 @@
                  
             ]
         },
+        {  
+            "data":{  
+                "monitor":"Dyno Stats"
+               
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"DynoSystemStats"
+                       
+                    }
+                 },
+                 {  
+                    "data":{  
+                           "monitor":"DynoServiceStats"
+                          
+                       }
+                    }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"Jetty"
+               
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"JettyThreadpoolStats"
+                       
+                    }
+                 },
+                 {  
+                    "data":{  
+                           "monitor":"JettySessionStats"
+                          
+                       }
+                    }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"Couchbase"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"CouchbaseClusterStats"
+                    }
+                 },
+                 {
+                    "data":{
+                        "monitor":"CouchbaseNodeStats"
+                    }
+                },
 
+                 {
+                    "data":{
+                        "monitor":"CouchbaseBucketStats"
+                    }
+                }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"Oracle Stats"
+               
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"OracleRacSystemStats"
+                       
+                    }
+                 },
+                 {  
+                 "data":{  
+                        "monitor":"OracleRacTimeModelStats"
+                    }
+                 },
+                 {  
+                 "data":{  
+                        "monitor":"OracleRacDBStats"
+                    }
+                 },
+                 {  
+                 "data":{  
+                        "monitor":"OracleRacWaitStats"
+                    }
+                 },
+                 {  
+                    "data":{  
+                           "monitor":"OracleRacBlockStats"
+                       }
+                },
+                {  
+                    "data":{  
+                           "monitor":"OracleStats"
+                       }
+                },
+                {  
+                    "data":{  
+                           "monitor":"OracleActivityStats"
+                          
+                       }
+                    },
+                    {  
+                    "data":{  
+                           "monitor":"OracleEfficiencyStats"
+                       }
+                    },
+                    {  
+                    "data":{  
+                           "monitor":"OracleResourceUsageStats"
+                       }
+                    },
+                    {  
+                    "data":{  
+                           "monitor":"OracleWaitEventStats"
+                       }
+                    },
+                    {  
+                       "data":{  
+                              "monitor":"racleSQLStats"
+                          }
+                   },
+                   {  
+                    "data":{  
+                           "monitor":"CPULoad"
+                       }
+                }
+                 
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"GCPStoragePermission"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"GCPStoragePermissionStats"
+                    }
+                 }
+            ]
+        },
 
          {  
             "data":{  
                 "monitor":"IBM MQ Stats"
-            }
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"IBMMQStats"
+                    }
+                 }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"RMI Port Check Stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"RMIPortCheck"
+                    }
+                 }
+            ]
            
         },
-         {  
+        {  
             "data":{  
-                "monitor":"Tibco Queue Stats"
-            }
+                "monitor":"Netty Access Log Stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"NettyAccessLogStats"
+                       
+                    }
+                 }
+            ]
            
-        }
-
+        },
+        {  
+            "data":{  
+                "monitor":"Macys Ray usage"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"MacysRayUsageStats"
+                       
+                    }
+                 }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"GCP Auto Scaler Stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"gcpAutoScaler"
+                    }
+                 }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"Bloom Reach Monitor Stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"BloomReachLogStats"
+                       
+                    }
+                 }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"VHQ Log Stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"VHQLogStats"
+                    }
+                 }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"VHQ Log Stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"VHQLogStats"
+                    }
+                 }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"Kohls POC Service Time Stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"KohlsPOCServiceTime"
+                    }
+                 }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"Ais SVC Time"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"AISSvcTimeStats"
+                    }
+                 }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"Alert log stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"AlertLogStats"
+                    }
+                 }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"IBM MQ V2 stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"IBMMQStatsV2"
+                    }
+                 }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"GigaSpace Stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"GigaSpaceGauseExtendedStats"
+                    }
+                 },
+                 {
+                    "data":{
+                        "monitor":"GigaSpaceGauseCacheStats"
+                    }
+                }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"Inv Server Stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"InvServerServiceStats"
+                    }
+                 },
+                 {
+                    "data":{
+                        "monitor":"InvServerMessageStats"
+                    }
+                }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"Sms Server Stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"SmsServerServiceStats"
+                    }
+                 },
+                 {
+                    "data":{
+                        "monitor":"SmsServerMessageStats"
+                    }
+                }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"Deltared Server Stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"DeltaredServerServiceStats"
+                    }
+                 },
+                 {
+                    "data":{
+                        "monitor":"DeltaredServerMessageStats"
+                    }
+                }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"Onera Server Stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"OneraServerServiceStats"
+                    }
+                 },
+                 {
+                    "data":{
+                        "monitor":"OneraServerMessageStats"
+                    }
+                }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"Endeca Server Log Monitors"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"EndecaStats"
+                    }
+                 },
+                 {
+                    "data":{
+                        "monitor":"EndecaStatsDVM"
+                    }
+                }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"Open files Stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"LsofStats"
+                    }
+                 }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"Optimizer server stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"OptimizerServerServiceStats"
+                    }
+                 },
+                 {
+                    "data":{
+                        "monitor":"OptimizerServerMessageStats"
+                    }
+                }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"POC Transaction Stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"PocTransactionStats"
+                    }
+                 }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"Spring Boot Spectator Monitor"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"SpringBootSpectatorStats"
+                    }
+                 }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"Server health  Stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"OverallServerHealthStats"
+                    }
+                 },
+                 {
+                    "data":{
+                        "monitor":"ServerHealthStats"
+                    }
+                }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"Async Server Stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"AsyncServerServiceStats"
+                    }
+                 },
+                 {
+                    "data":{
+                        "monitor":"AsyncServerMessageStats"
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"OCF-OICEndResponseStats"
+                    }
+                }
+            ]
+        },
         
+		 {  
+            "data":{  
+                "monitor":"Zookeeper Stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"ZookeeperNodeStats"
+                    }
+                 }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"Hystrix Stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"HystrixCommandServerStats"
+                    }
+                 },
+                 {
+                    "data":{
+                        "monitor":"HystrixThreadPoolStats"
+                    }
+                }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"MySql Monitor Stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"MySqlActivityStats"
+                    }
+                 },
+                 {
+                    "data":{
+                        "monitor":"MySqlEfficencyStats"
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"MySqlResourceStats"
+                    }
+                }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"Tibco Topic Stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"TibcoTopicStats"
+                    }
+                }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"MSSQL DB Stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"MSSQLServerStats"
+                    }
+                 },
+                 {
+                    "data":{
+                        "monitor":"MSSQLIOStats"
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"MSSQLPerfStats"
+                    }
+                }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"Nginx Stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"NginxResourceStats"
+                    }
+                 },
+                 {
+                    "data":{
+                        "monitor":"NginxPlusResourceStats"
+                    }
+                },
 
-
-
+                 {
+                    "data":{
+                        "monitor":"NginxPlusServerZoneStats"
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"NginxPlusServerUpStreamStats"
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"NginxPlusServerCacheStats"
+                    }
+                }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"MultiLine Access Log Stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"MultiLineAccessLogStats"
+                    }
+                 }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"Berkeley db Stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"BerkeleyJE"
+                    }
+                 },
+                 {  
+                    "data":{  
+                           "monitor":"BerkeleyJERep"
+                       }
+                }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"IntegrationPointStats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"NDIntegrationPointStats"
+                       
+                    }
+                 },
+                 {  
+                    "data":{  
+                           "monitor":"NDIntegrationPointStatsEx"
+                          
+                       }
+                    },
+                    {  
+                        "data":{  
+                               "monitor":"NDIntegrationPointThreadStats"
+                              
+                           }
+                        }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"ATG Stats"
+              
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"ATGRepositoryCacheStats"
+                       
+                    }
+                 },
+                 {
+                    "data":{
+                        "monitor":"ATGSessionStats"
+                        
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"ATGDbOrderStats"
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"ATGDbOrderStatsPerMin"
+                    }
+                }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"ATG Stats"
+              
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"ATGRepositoryCacheStats"
+                       
+                    }
+                 },
+                 {
+                    "data":{
+                        "monitor":"ATGSessionStats"
+                        
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"ATGDbOrderStats"
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"ATGDbOrderStatsPerMin"
+                    }
+                }
+            ]
+        },
+        
+		 {  
+            "data":{  
+                "monitor":"Heap object stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"HeapObjectStats"
+                    }
+                 }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"Apigee Stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"ApigeeApiStats"
+                    }
+                 },
+                 {  
+                    "data":{  
+                           "monitor":"ApigeeServiceStatsByHTTP"
+                       }
+                    },
+                    {  
+                        "data":{  
+                               "monitor":"ApigeeServiceStatsByAPI"
+                           }
+                        }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"Redis Stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"RedisSystemStats"
+                    }
+                 },
+                 {  
+                    "data":{  
+                           "monitor":"RedisPerformanceStats"
+                       }
+                    },
+                    {  
+                        "data":{  
+                               "monitor":"RedisCacheStats"
+                           }
+                        },
+                        {  
+                            "data":{  
+                                   "monitor":"RedisActivityStats"
+                               }
+                            },
+                            {  
+                                "data":{  
+                                       "monitor":"RedisSlaveStats"
+                                   }
+                                },
+                                {  
+                                    "data":{  
+                                           "monitor":"RedisLatency"
+                                       }
+                                    },
+                                    {  
+                                        "data":{  
+                                               "monitor":"RedisLatencyV2"
+                                           }
+                                        },
+                                        {  
+                                            "data":{  
+                                                   "monitor":"RedisDatabaseStats"
+                                               }
+                                            },
+                                            {  
+                                                "data":{  
+                                                       "monitor":"RedisCacheStatsV2"
+                                                   }
+                                                },
+                                                {  
+                                                    "data":{  
+                                                           "monitor":"RedisLatency"
+                                                       }
+                                                    },
+                                                    {  
+                                                        "data":{  
+                                                               "monitor":"RedisLatencyV2"
+                                                           }
+                                                        },
+                                                        {  
+                                                            "data":{  
+                                                                   "monitor":"RedisperformanceStatsV2"
+                                                               }
+                                                            },
+                                                            {  
+                                                                "data":{  
+                                                                       "monitor":"RedisActivityStatsV2"
+                                                                   }
+                                                                },
+                                                                {  
+                                                                    "data":{  
+                                                                           "monitor":"RedisReplicationStats"
+                                                                       }
+                                                                    }
+            ]
+        },
+        {  
+            "data":{  
+                  "monitor":"Kafka Jmx Based Stats "
+                 
+              },
+              "children":[
+                  {  
+                   "data":{  
+                          "monitor":"KafkaBrokerStats"
+                      }
+                   },
+                   {
+                      "data":{
+                          "monitor":"KafkaProducerStats"
+                      }
+                  },
+  
+                   {
+                      "data":{
+                          "monitor":"KafkaProducerTopicStats"
+                      }
+                  },
+                   {
+                      "data":{
+                          "monitor":"KafkaConsumerStats"
+                      }
+                  },
+                  {
+                      "data":{
+                          "monitor":"KafkaTopicStats"
+                      }
+                  },
+                  {
+                    "data":{
+                        "monitor":"KafkaBrokerTopicStats"
+                    }
+                },
+                 {
+                    "data":{
+                        "monitor":"KafkaConsumerExtendedStats"
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"KafkaMirrorTopicFatcherManagerStats"
+                    }
+                },
+                {
+                    "data":{
+                        "monitor":"KafkaTopicReplication"
+                    }
+                }
+  
+              ]
+          },
+          {  
+            "data":{  
+                  "monitor":"Apache Nifi Stats"
+                 
+              },
+              "children":[
+                  {  
+                   "data":{  
+                          "monitor":"ApacheNifiControllerStats"
+                      }
+                   },
+                   {
+                      "data":{
+                          "monitor":"ApacheNifiProcessGroupStats"
+                      }
+                  },
+  
+                   {
+                      "data":{
+                          "monitor":"ApacheNifiProcessorStats"
+                      }
+                  },
+                   {
+                      "data":{
+                          "monitor":"ApacheNifiConnectionStats"
+                      }
+                  },
+                  {
+                      "data":{
+                          "monitor":"ApacheNifiPortStats"
+                      }
+                  }  
+              ]
+          },
+          
+		 {  
+            "data":{  
+                "monitor":"Pinpad Process Stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"PinpadProcessStats"
+                    }
+                 }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"IBM Cloudant Stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"CloudantStats"
+                    }
+                 }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"IBM DB2 Stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"DB2BufferPoolStats"
+                    }
+                 },
+                 {  
+                    "data":{  
+                           "monitor":"DB2CacheStats"
+                       }
+                    },
+                    {  
+                        "data":{  
+                               "monitor":"DB2TransactionStats"
+                           }
+                        },
+                        {  
+                            "data":{  
+                                   "monitor":"DB2IOActivityStats"
+                               }
+                            },
+                            {  
+                                "data":{  
+                                       "monitor":"DB2ConnectionStats"
+                                   }
+                                },
+                                {  
+                                    "data":{  
+                                           "monitor":"DB2LogStats"
+                                       }
+                                    }
+            ]
+        },
+		 {  
+            "data":{  
+                "monitor":"Batch Job Stats"
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"MacysBatchJobLogStats"
+                    }
+                 }
+            ]
+        },
+        {  
+            "data":{  
+                "monitor":"Mongo DB Stats"
+               
+            },
+            "children":[
+                {  
+                 "data":{  
+                        "monitor":"MongoDBServerStats "
+                       
+                    }
+                 },
+                 {  
+                 "data":{  
+                        "monitor":"MongoDBDatabaseStats  "
+                    }
+                 },
+                 {  
+                 "data":{  
+                        "monitor":"MongoDBCollectionStats  "
+                    }
+                 },
+                 {  
+                    "data":{  
+                           "monitor":"MongoDBReplicaStats "
+                       }
+                    },
+                 {  
+                    "data":{  
+                           "monitor":"MongoDBReplicationInfo "
+                       }
+                    }
+            ]
+        }
 
       ]
 }
