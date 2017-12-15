@@ -1,10 +1,13 @@
-import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { TreeNode } from 'primeng/primeng';
 import {ConfigRestApiService} from './config-rest-api.service';
 import * as URL from '../constants/monconfig-url-constant';
 import { MONITOR_DATA } from '../reducers/monitor-reducer';
 import { Store } from '@ngrx/store';
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
 
 
 @Injectable()
@@ -12,6 +15,12 @@ export class CavmonConfigService {
 
   tierList:any[]=[];
   data :{};
+
+
+  private monitorsData$: BehaviorSubject<Object> = new BehaviorSubject<Object>([]);
+  public monitorsDataAsObservable$: Observable<Object> = this.monitorsData$.asObservable();
+
+  // public monData: BehaviorSubject<Object> = new BehaviorSubject<Object>([]);
 
   constructor(private http: Http,private _restApi: ConfigRestApiService,private store: Store<Object>)
   { 
@@ -96,18 +105,64 @@ export class CavmonConfigService {
   /** For Getting all keywordData data */
   getMonitorsData(topoName) {
      
-    let data =  { 
-    "weblogic":{'JDBCStats':[{'tierName':'All Tier','monName':'WeblogicJdbcStats','enable':false,'hostName':'127.0.0.1','port':'17000','userName':'weblogic','pwd':'weblogic','mBeanType':'JMSDestinationRuntimeMBean','instanceName':''}],
-            'JVMStats':[{'tierName':'All Tier','monName':'WeblogicJdbcStats','enable':false,'hostName':'127.0.0.1','port':'17000','userName':'weblogic','pwd':'weblogic','mBeanType':'JMSDestinationRuntimeMBean','instanceName':''}],
-            'ThreadPoolStats':[{'tierName':'All Tier','monName':'WeblogicJdbcStats','enable':false,'hostName':'127.0.0.1','port':'17000','userName':'weblogic','pwd':'weblogic','mBeanType':'JMSDestinationRuntimeMBean','instanceName':''}],
-            'SessionStats':[{'tierName':'All Tier','monName':'WeblogicJdbcStats','enable':false,'hostName':'127.0.0.1','port':'17000','userName':'weblogic','pwd':'weblogic','mBeanType':'JMSDestinationRuntimeMBean','instanceName':''}],
-            'JMSQueueStats':[{'tierName':'All Tier','monName':'WeblogicJpcavdbcStats','enable':false,'hostName':'127.0.0.1','port':'17000','userName':'weblogic','pwd':'weblogic','mBeanType':'JMSDestinationRuntimeMBean','instanceName':''}],
-            'MinThreadConstraintStats':[{'tierName':'All Tier','monName':'WeblogicJdbcStats','enable':false,'hostName':'127.0.0.1','port':'17000','userName':'weblogic','pwd':'weblogic','mBeanType':'JMSDestinationRuntimeMBean','instanceName':''}],
-            'TransactionStats':[{'tierName':'All Tier','monName':'WeblogicJdbcStats','enable':false,'hostName':'127.0.0.1','port':'17000','userName':'weblogic','pwd':'weblogic','mBeanType':'JMSDestinationRuntimeMBean','instanceName':''}]
-          }
+    // let data =  { 
+    // "weblogic":{'JDBCStats':[{'tierName':'All Tier','monName':'WeblogicJdbcStats','enable':false,'hostName':'127.0.0.1','port':'17000','userName':'weblogic','pwd':'weblogic','mBeanType':'JMSDestinationRuntimeMBean','instanceName':''}],
+    //         'JVMStats':[{'tierName':'All Tier','monName':'WeblogicJdbcStats','enable':false,'hostName':'127.0.0.1','port':'17000','userName':'weblogic','pwd':'weblogic','mBeanType':'JMSDestinationRuntimeMBean','instanceName':''}],
+    //         'ThreadPoolStats':[{'tierName':'All Tier','monName':'WeblogicJdbcStats','enable':false,'hostName':'127.0.0.1','port':'17000','userName':'weblogic','pwd':'weblogic','mBeanType':'JMSDestinationRuntimeMBean','instanceName':''}],
+    //         'SessionStats':[{'tierName':'All Tier','monName':'WeblogicJdbcStats','enable':false,'hostName':'127.0.0.1','port':'17000','userName':'weblogic','pwd':'weblogic','mBeanType':'JMSDestinationRuntimeMBean','instanceName':''}],
+    //         'JMSQueueStats':[{'tierName':'All Tier','monName':'WeblogicJpcavdbcStats','enable':false,'hostName':'127.0.0.1','port':'17000','userName':'weblogic','pwd':'weblogic','mBeanType':'JMSDestinationRuntimeMBean','instanceName':''}],
+    //         'MinThreadConstraintStats':[{'tierName':'All Tier','monName':'WeblogicJdbcStats','enable':false,'hostName':'127.0.0.1','port':'17000','userName':'weblogic','pwd':'weblogic','mBeanType':'JMSDestinationRuntimeMBean','instanceName':''}],
+    //         'TransactionStats':[{'tierName':'All Tier','monName':'WeblogicJdbcStats','enable':false,'hostName':'127.0.0.1','port':'17000','userName':'weblogic','pwd':'weblogic','mBeanType':'JMSDestinationRuntimeMBean','instanceName':''}]
+    //       }
+    //  }
+    
+  let data = {
+   "weblogic":{
+     "All_Tier":[
+       { "tierName":"All Tier",
+       "monName":"WeblogicJdbcStats",
+       "enable":false,
+       "hostName":"127.0.0.1",
+       "port":"17000",
+       "userName":"weblogic",
+       "pwd":"weblogic",
+       "mBeanType":"JMSDestinationRuntimeMBean",
+       "instanceName":""}],
+       
+       
+                "Tier1":[{},{}],
+                "Tier2":[{},{}],
+                "Tier3":[{},{}],
+                "Tier4":[{},{}]
+               },
+      "tomcat":{
+     "All_Tier":[
+       { "tierName":"All Tier",
+       "monName":"WeblogicJdbcStats",
+       "enable":false,
+       "hostName":"127.0.0.1",
+       "port":"17000",
+       "userName":"weblogic",
+       "pwd":"weblogic",
+       "mBeanType":"JMSDestinationRuntimeMBean",
+       "instanceName":""}],
+       
+       
+                "Tier1":[{},{}],
+                "Tier2":[{},{}],
+                "Tier3":[{},{}],
+                "Tier4":[{},{}]
+               }
      }
-    this.store.dispatch({type: MONITOR_DATA, payload:data });
 
+     console.log("getMonitorsData method called")
+  
+       this.monitorsData$.next(data);
+      //  this.monData.next(data);
+       
+
+
+    // this.store.dispatch({type: MONITOR_DATA, payload:data });
 
     // this._restApi.getDataByGetReq(`${URL.GET_MONITORS_DATA}/${topoName}`)
     //   .subscribe(data => {
@@ -115,10 +170,4 @@ export class CavmonConfigService {
     //     this.store.dispatch({ type: MONITOR_DATA, payload: data });
     //   });
   }
-
-
-  
-
-
-
 }

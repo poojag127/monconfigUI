@@ -10,6 +10,7 @@ import { AdvanceSettingsComponent } from '../components/cav-mon-mjson/advance-se
 import { ConfigureWeblogicComponent } from '../components/cav-mon-mjson/configure-weblogic/configure-weblogic.component';
 import { ConfigureWeblogic2Component } from '../components/cav-mon-mjson/configure-weblogic2/configure-weblogic2.component';
 import { ConfigurationMonitorsRoutingComponent } from '../components/cav-mon-mjson/configuration-monitors-routing/configuration-monitors-routing.component';
+import { MonitorsComponent } from '../components/cav-mon-mjson/monitors/monitors.component';
 
 
 /**For ProductUI */
@@ -45,7 +46,8 @@ const routes: Routes = [
             { path: 'mjson', component: ConfigurationMonitorsRoutingComponent , children  :[
                  { path: '', redirectTo:'configuration/:mjsonName/:topoName', pathMatch: 'full' },
                  { path:'configuration/:mjsonName/:topoName', component: ConfigurationHomeComponent  },
-                 { path:'weblogicSettings/:mjsonName/:topoName/:monName/:tierfield', component: ConfigureWeblogic2Component}
+                 { path:'weblogicSettings/:mjsonName/:topoName/:monName/:tierfield', component: ConfigureWeblogic2Component},
+                 { path:'advanceSettings/:mjsonName/:topoName/:monName/:tierfield', component: MonitorsComponent}
              ]
             }
           ];

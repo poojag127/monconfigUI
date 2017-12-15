@@ -3,6 +3,13 @@ import { cloneObject } from '../utility/monconfig-utility';
 import { MonitorsData } from '../containers/monitors-data';
 
 export const MONITOR_DATA = "monitorData";
+
+const initialState = {data:{},
+                     openNewAppDialog:false,  //initializing varia
+                     appDetailInitializeForm:null,
+                     openAppDialogType:null,
+                     ndConfPath:null
+                   };
   
 //Default Keyword data.
 const DEFAULT_DATA = { 
@@ -16,14 +23,61 @@ const DEFAULT_DATA = {
           }
 }
 
-export function MonitorReducer(data:MonitorsData, action: Action): MonitorsData {
+ export function MonitorReducer(state =initialState, action: Action): MonitorsData {
     switch (action.type) {
         case MONITOR_DATA:
-            // console.log("KeywordList data ", data);
             console.log("action.payload", action.payload);
             console.log("DEFAULT_DATA",DEFAULT_DATA)
-            return cloneObject(action.payload);
+            var newState = Object.assign({}, state);
+            newState.data= action.payload
+            return cloneObject(newState);
+
+        case "updateWeblogic":
+         console.log("updateWeblogic reducder--")
+         var newState = Object.assign({}, state);
+         console.log("newState--",newState.data)
+         console.log("action.payload--",action.payload)
+         var monitorsData = newState.data;
+         let payloadData = action.payload;
+         let newData = payloadData[Object.keys(payloadData)[0]];
+
+         let tierName = Object.keys(payloadData)[0];
+         let tierBasedData = [];
+
+         /****If that tier is configured any monitor */
+         if(monitorsData.hasOwnProperty(tierName))
+         {
+          tierBasedData = monitorsData[Object.keys(payloadData)[0]];
+          console.log("newData--",newData.length)
+          var i,j;
+
+          for(i=0;i<newData.length;i++)
+          {
+           let num2:number = tierBasedData.length;
+           for(j=0;j<=num2;j++)
+           {
+             if(j == num2)
+             {
+              tierBasedData.push(newData[i])
+             }
+             else if(newData[i].monName == tierBasedData[j].monName)
+             {
+              tierBasedData[j] = newData[i];
+              break;
+             }
+           } 
+          }
+         }
+         else
+         {
+           monitorsData[tierName] = newData;
+         }
+        console.log("monitorsData--",newState)
+        return cloneObject(newState)
+
         default:
-            // return DEFAULT_DATA;
+            // returns DEFAULT_DATA;
+
+        
     }
 }
