@@ -79,5 +79,4 @@ import { ROUTING_PATH } from '../../constants/monconfig-url-constant';
     console.log(jsonName)
     this.router.navigate([ROUTING_PATH + '/mjson/configuration',jsonName,topoName]);
   }
-
 }

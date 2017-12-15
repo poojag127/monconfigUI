@@ -64,6 +64,7 @@ import { WeblogicConfigureComponent } from './components/cav-mon-mjson/weblogic-
 import { WeblogicCongigure2Component } from './components/cav-mon-mjson/weblogic-congigure2/weblogic-congigure2.component';
 import { ConfigureWeblogicComponent } from './components/cav-mon-mjson/configure-weblogic/configure-weblogic.component';
 import { ConfigureWeblogic2Component } from './components/cav-mon-mjson/configure-weblogic2/configure-weblogic2.component';
+import { MonitorsComponent } from './components/cav-mon-mjson/monitors/monitors.component';
 
 
 @NgModule({
@@ -83,6 +84,7 @@ import { ConfigureWeblogic2Component } from './components/cav-mon-mjson/configur
     ConfigureWeblogicComponent,
     ConfigureWeblogic2Component,
     ConfigurationMonitorsRoutingComponent,
+    MonitorsComponent,
     // CavMonMenuComponent
   ],
   imports: [

@@ -9,6 +9,7 @@ import { Router, NavigationEnd } from '@angular/router';
   templateUrl: './cav-mon-breadcrumb.component.html',
   styleUrls: ['./cav-mon-breadcrumb.component.css']
 })
+
 export class CavMonBreadcrumbComponent implements OnInit {
 
   items: MenuItem[];
@@ -49,8 +50,8 @@ export class CavMonBreadcrumbComponent implements OnInit {
      this.home = {icon: 'fa fa-home'};
   });
 }
+
   ngOnDestroy() {
-   
     if (this.breadcrumbSubscription)
       this.breadcrumbSubscription.unsubscribe();
   }

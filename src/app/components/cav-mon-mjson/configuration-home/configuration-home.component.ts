@@ -40,7 +40,9 @@ export class ConfigurationHomeComponent implements OnInit
 
   constructor(private cavMonConfigService:CavmonConfigService,
              private router:Router,
-             private route: ActivatedRoute)
+             private route: ActivatedRoute,
+            
+             )
   {
 
   }
@@ -53,13 +55,16 @@ export class ConfigurationHomeComponent implements OnInit
       this.mjsonName = params['mjsonName']
     });
     
-
-  /*** Getting monitorsData from the server for respective profile ****/
-  this.cavMonConfigService.getMonitorsData(this.topoName);
   
 
 
+  /*** Getting monitorsData from the server for respective profile ****/
+  this.cavMonConfigService.getMonitorsData(this.topoName);
 
+  this.cavMonConfigService.monitorsDataAsObservable$.subscribe((data) => {
+      console.log("data--in configuratio home---",data)
+  })
+  
    console.log("topoName--",this.topoName)
    /****** Creating json data for tree table component****************/
    let that = this;
@@ -72,6 +77,7 @@ export class ConfigurationHomeComponent implements OnInit
     ))
     that.getData();
    })
+   this.getMJsonData();
 
 
 /*** This piece of code is for running project without server ****/
@@ -96,6 +102,12 @@ export class ConfigurationHomeComponent implements OnInit
             {field:'stresshle-main-zk',header:'stresshle-blue-snbservice-prod'}
         ];
         */
+  }
+
+  getMJsonData()
+  {
+    console.log("getMJsonData method called")
+    
   }
 
   getData()
@@ -178,7 +190,10 @@ export class ConfigurationHomeComponent implements OnInit
 /** for advance settings */
   advanceSettings(monName,tierfield)
   {
-    this.router.navigate(['../../../weblogicSettings',this.mjsonName,this.topoName,monName,tierfield],{ relativeTo: this.route });
+    if(monName == 'Weblogic')
+      this.router.navigate(['../../../weblogicSettings',this.mjsonName,this.topoName,monName,tierfield],{ relativeTo: this.route });
+    else
+      this.router.navigate(['../../../advanceSettings',this.mjsonName,this.topoName,monName,tierfield],{ relativeTo: this.route });
   }
 
   onTreeNodeCheckBoxChange(rowData)
@@ -194,9 +209,11 @@ export class ConfigurationHomeComponent implements OnInit
   }
 
 /*** returns tier checkbox value true or false**************/
-  getValueOfTierCheckBox(data)
-  {
+  getValueOfTierCheckBox(data){
    return data["monitorState"];
+  }
+
+  saveMonitorsConfigurationData(){
   }
   
 }
