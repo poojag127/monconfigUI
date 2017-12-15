@@ -568,6 +568,7 @@ padding:10px;
 .ui-growl-item-container.ui-state-highlight.ui-growl-message-error {
   background-color: #f44336;
   border-color :#f44336;
+  color: #fff;
 }
 
 .ui-growl-item-container.ui-state-highlight.ui-growl-message-warn {
@@ -591,4 +592,17 @@ padding:10px;
 .ui-growl-image
 {
   color:#fff;
+}
+.configui-progressbar{
+  height: 1px;
+}
+
+/* for edit and delete icons of configuration datatable */
+.appIcon-css{
+  float: right;
+}
+
+.conf-ui .ui-datatable th.ui-state-default{
+  background: rgba(65, 126, 191, 0.9);
+  color :#fff;
 }

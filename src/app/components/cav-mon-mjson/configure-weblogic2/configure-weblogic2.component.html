@@ -96,26 +96,30 @@
       </div>
    </p-panel>
 
-  
-     <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin-top:-28px">
-       <div class = "ui-g">            
-         <div class="ui-g mon-hometable">
-            <p-dataTable class="mon-ui" [value]="weblogicStatsTableData" [(selection)]="selectedJson" [rows]="5" [paginator]="weblogicStatsTableData?.length >5" [pageLinks]="3"  [resizableColumns]='true' [style]="{'margin-top':'30px'}">
-              <p-header>
-                <span style = "font-size:13px"><b>Weblogic Stats Configuration Data</b></span>
-              </p-header>
-              
-              <p-column [style]="{'width':'27px'}" selectionMode="multiple"></p-column>
-              <p-column   *ngFor="let col of cols"  [field]="col.field" [header]="col.header">
-                <template   let-data="rowData" pTemplate >
-                  <span  [title]="data[col.field]">{{data[col.field]}}</span> 
-                </template>
-              </p-column>
-            </p-dataTable>
-          </div>
-        </div>
-      </div>
+    <!-- for the configuration datatable toolbar -->
+<div style="margin-bottom:-32px ; margin-top: 5px">
+   <p-toolbar>
+     <span><b>Weblogic Stats Configuration Data</b></span> 
+     <div  class="appIcon-css">
+        <button pButton class="toolbarIcon" type="button" icon="fa-pencil" (click)="editConfigData()" title="Edit Configuration"></button>
+    </div>
+   </p-toolbar>
+</div>
+
+<p-dataTable class="conf-ui" [value]="weblogicStatsTableData" [(selection)]="selectedWeblogicData" [rows]="5" [paginator]="weblogicStatsTableData?.length >5" [pageLinks]="3"  [resizableColumns]='true' [style]="{'margin-top':'30px'}">
+  <p-column [style]="{'width':'27px'}" selectionMode="multiple"></p-column>
+    <p-column   *ngFor="let col of cols"  [sortable]="true" [field]="col.field" [header]="col.header">
+      <template   let-data="rowData" pTemplate >
+        <span [title]="data[col.field]">{{data[col.field]}}</span> 
+      </template>
+    </p-column>
+
+    <p-column header="Enable">
+      <template let-data='rowData' pTemplate="body">
+        <p-checkbox [(ngModel)]="data.enable"  binary="true"></p-checkbox>
+      </template>
+    </p-column>
+</p-dataTable>
  
-    
-  </div>
+   </div>
 </div>

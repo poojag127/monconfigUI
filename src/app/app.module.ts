@@ -26,6 +26,7 @@ import { ConfigUtilityService } from './services/config-utility.service';
 import { CavmonHomeService } from './services/cavmon-home.service';
 import { CavmonConfigService } from './services/cavmon-config.service';
 import { CavmonMonitorsdataService} from './services/cavmon-monitorsdata.service';
+import { ConfirmationService} from 'primeng/primeng';
 
 /** Routing Module */
 import { ConfigRoutingModule } from './routes/monconfig-routing.module';
@@ -108,7 +109,7 @@ import { ConfigureWeblogic2Component } from './components/cav-mon-mjson/configur
     StoreModule.provideStore({ monitorData: MonitorReducer }),
     GrowlModule
   ],
-  providers: [CavmonHomeService,ConfigRestApiService,ConfigUtilityService,CavmonConfigService,CavmonMonitorsdataService
+  providers: [CavmonHomeService,ConfigRestApiService,ConfigUtilityService,CavmonConfigService,CavmonMonitorsdataService,ConfirmationService
 ,  { provide: LocationStrategy, useClass: HashLocationStrategy},
 
   ],

@@ -10,6 +10,7 @@ import { SelectItem } from 'primeng/primeng';
 import { WeblogicConfigureData } from '../../../containers/weblogic-typesdata';
 import { ImmutableArray } from '../../../utility/immutable-array';
 import { ROUTING_PATH } from '../../../constants/monconfig-url-constant';
+import { ConfirmationService} from 'primeng/primeng';
 
 @Component({
   selector: 'app-configure-weblogic2',
@@ -45,14 +46,16 @@ export class ConfigureWeblogic2Component implements OnInit {
 /**stores table data */
   weblogicStatsTableData:WeblogicConfigureData[]=[];
 
-
+/** used to hold selected row data */
+selectedWeblogicData:WeblogicConfigureData[] = [];
 
 
   constructor(private cavMonDataService :CavmonMonitorsdataService,
               private store: Store<MonitorsData>,
               private monConfigUtilityService:ConfigUtilityService,
               private router:Router,
-              private route: ActivatedRoute
+              private route: ActivatedRoute,
+              private confirmationService: ConfirmationService
               
                ) {
     
@@ -110,7 +113,7 @@ export class ConfigureWeblogic2Component implements OnInit {
             {field:'port',header:'Port'},
             {field:'instanceName',header:'Instance Name'},
             {field:'mBeanType',header:'MBean Type'},
-            {field:'enable',header:'Enable'},
+            // {field:'enable',header:'Enable'},
 
         ];
   }
@@ -119,11 +122,39 @@ export class ConfigureWeblogic2Component implements OnInit {
   saveWeblogicConfiguration()
   {
     console.log("this.weblogicData",this.weblogicData)
-     //to insert new row in table ImmutableArray.push() is created as primeng 4.0.0 does not support above line 
-     this.weblogicStatsTableData=ImmutableArray.push(this.weblogicStatsTableData, this.weblogicData);
-     this.weblogicData = new WeblogicConfigureData();
+    /** check for stats type */
+    if (this.weblogicData.weblogicStats == undefined || this.weblogicData.weblogicStats == "")
+    {
+      this.monConfigUtilityService.errorMessage("Please Select Stats Type")
+      return;
+    }
+    this.weblogicStatsTableData=ImmutableArray.push(this.weblogicStatsTableData, this.weblogicData);
+    this.weblogicData = new WeblogicConfigureData();
+
+    
+}
+
+
+
+  /** Edit weblogic configuration data   */ 
+  // editConfigData():void 
+  // {   
+  //   if (!this.selectedWeblogicData || this.selectedWeblogicData.length < 1) 
+  //   {
+  //     this.monConfigUtilityService.errorMessage("Select a configuration to edit");
+  //     return;
+  //   }
+  //   else if (this.selectedWeblogicData.length > 1)
+  //   {
+  //     this.monConfigUtilityService.errorMessage("Select only one configuration row to edit");
+  //     return;
+  //   }
+  //     this.weblogicData = Object.assign({}, this.selectedWeblogicData[0]);
+  //   }
+
+
   }
 
 
-
-}
+   
+  
