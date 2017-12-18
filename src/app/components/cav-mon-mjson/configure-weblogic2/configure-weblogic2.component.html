@@ -89,7 +89,8 @@
           </div>
 
             <div class="pull-right">
-              <button type="submit" pButton  icon="fa-check" style="width: 63px ; margin :2px "label="Add"></button>
+              <button type="submit" pButton  icon="fa-check" style="width: 63px ; margin :2px " *ngIf="isNewConfig == true" label="Add"></button>
+              <button type="submit" pButton  icon="fa-check" style="width: 93px ; margin :2px " *ngIf="isNewConfig == false" label="Update"></button>
             </div>
          </form>
         </div>

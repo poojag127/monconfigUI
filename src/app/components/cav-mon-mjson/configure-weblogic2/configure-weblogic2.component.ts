@@ -53,6 +53,10 @@ selectedWeblogicData:WeblogicConfigureData[] = [];
   @Output()
   monitorsData = new EventEmitter();
 
+/** flag for label */
+isNewConfig :boolean = true;
+
+countEntry:number=0;
 
   constructor(private cavMonDataService :CavmonMonitorsdataService,
               private store: Store<MonitorsData>,
@@ -170,42 +174,82 @@ selectedWeblogicData:WeblogicConfigureData[] = [];
     //   })
   }
 
-  saveWeblogicConfiguration()
-  {
-    console.log("this.weblogicData",this.weblogicData)
-    /** check for stats type */
-    if (this.weblogicData.weblogicStats == undefined || this.weblogicData.weblogicStats == "")
+  // saveWeblogicConfiguration()
+  // {
+  //   if (this.weblogicData.monName == "" || this.weblogicData.monName == undefined)
+  //   {
+  //     this.monConfigUtilityService.errorMessage("Please select stats type");
+  //     return;
+  //   }
+  //   this.isNewConfig =false;
+  //   this.weblogicData["id"] = this.countEntry;
+  //   this.weblogicStatsTableData=ImmutableArray.push(this.weblogicStatsTableData, this.weblogicData);
+  //   this.countEntry = this.countEntry + 1;
+  //   console.log ("Count is  ================== ",this.countEntry)
+  //   this.weblogicData = new WeblogicConfigureData();
+  // }
+
+  /** Edit weblogic configuration data   */ 
+  editConfigData():void 
+  {   
+    
+    if (!this.selectedWeblogicData || this.selectedWeblogicData.length < 1) 
     {
-      this.monConfigUtilityService.errorMessage("Please Select Stats Type")
+      this.monConfigUtilityService.errorMessage("No row is selected to edit");
       return;
     }
-    this.weblogicStatsTableData=ImmutableArray.push(this.weblogicStatsTableData, this.weblogicData);
-    this.weblogicData = new WeblogicConfigureData();
+    else if (this.selectedWeblogicData.length > 1)
+    {
+      this.monConfigUtilityService.errorMessage("Select a single row to edit");
+      return;
+    }
+      this.weblogicData = Object.assign({}, this.selectedWeblogicData[0]);
+      this.isNewConfig = false;
+ }
 
+ saveWeblogicConfiguration()
+ {
+   if (this.isNewConfig)
+   {
+    if (this.weblogicData.monName == "" || this.weblogicData.monName == undefined)
+      {
+        this.monConfigUtilityService.errorMessage("Please select stats type");
+        return;
+      }
+     console.log("IsNewConfig value for add *****************************************",this.isNewConfig)
+     this.weblogicData["id"] = this.countEntry;
+     this.weblogicStatsTableData=ImmutableArray.push(this.weblogicStatsTableData, this.weblogicData);
+     this.countEntry = this.countEntry + 1;
+     console.log ("Count is  ================== ",this.countEntry)
+     this.weblogicData = new WeblogicConfigureData();
+    }
+    else
+    { 
+      this.isNewConfig = true;
+      let that = this;
+      this.weblogicStatsTableData.map(function(val){
+        if(val.id == that.weblogicData.id){
+          console.log("val---",val)
+          console.log("that.weblogic",that.weblogicData)
+          that.weblogicStatsTableData = ImmutableArray.replace(that.weblogicStatsTableData,val,val.id)
+          console.log("val---",val)
+          console.log(" that.weblogicStatsTableData--- ", that.weblogicStatsTableData)
+        }
+      });
+      this.selectedWeblogicData = []; 
+    }
+    console.log("tableData--",this.weblogicStatsTableData)
+  }
+
+  getIndexOfRow()
+  {
+    console.log("getIndexOfRow method valled")
+
+  }
     
+
 }
 
 
-
-  /** Edit weblogic configuration data   */ 
-  // editConfigData():void 
-  // {   
-  //   if (!this.selectedWeblogicData || this.selectedWeblogicData.length < 1) 
-  //   {
-  //     this.monConfigUtilityService.errorMessage("Select a configuration to edit");
-  //     return;
-  //   }
-  //   else if (this.selectedWeblogicData.length > 1)
-  //   {
-  //     this.monConfigUtilityService.errorMessage("Select only one configuration row to edit");
-  //     return;
-  //   }
-  //     this.weblogicData = Object.assign({}, this.selectedWeblogicData[0]);
-  //   }
-
-
-  }
-
-
-   
+  
   

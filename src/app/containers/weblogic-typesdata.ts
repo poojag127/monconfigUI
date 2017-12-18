@@ -24,4 +24,5 @@ export class WeblogicConfigureData
  mBeanType:string;
  instanceName:string;
  server:string;
+ id:number = 0;
 }
