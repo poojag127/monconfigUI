@@ -174,25 +174,8 @@ countEntry:number=0;
     //   })
   }
 
-  // saveWeblogicConfiguration()
-  // {
-  //   if (this.weblogicData.monName == "" || this.weblogicData.monName == undefined)
-  //   {
-  //     this.monConfigUtilityService.errorMessage("Please select stats type");
-  //     return;
-  //   }
-  //   this.isNewConfig =false;
-  //   this.weblogicData["id"] = this.countEntry;
-  //   this.weblogicStatsTableData=ImmutableArray.push(this.weblogicStatsTableData, this.weblogicData);
-  //   this.countEntry = this.countEntry + 1;
-  //   console.log ("Count is  ================== ",this.countEntry)
-  //   this.weblogicData = new WeblogicConfigureData();
-  // }
-
-  /** Edit weblogic configuration data   */ 
-  editConfigData():void 
-  {   
-    
+  /** UPDATE functionality for weblogic configuration data   */ 
+  editConfigData():void {   
     if (!this.selectedWeblogicData || this.selectedWeblogicData.length < 1) 
     {
       this.monConfigUtilityService.errorMessage("No row is selected to edit");
@@ -207,8 +190,10 @@ countEntry:number=0;
       this.isNewConfig = false;
  }
 
+ /** This method is to save data when ADD and UPDATE is performed */
  saveWeblogicConfiguration()
  {
+  //  for saving data when new configuration is performed - ADD functionality
    if (this.isNewConfig)
    {
     if (this.weblogicData.monName == "" || this.weblogicData.monName == undefined)
@@ -216,34 +201,49 @@ countEntry:number=0;
         this.monConfigUtilityService.errorMessage("Please select stats type");
         return;
       }
-     console.log("IsNewConfig value for add *****************************************",this.isNewConfig)
+    if (this.tierfield == 'All_Tier')
+      {  
+        this.weblogicData["server"] = 'All Tier';
+      }
+    else
+      {
+         this.weblogicData["server"] = this.weblogicData.server;
+         if(this.weblogicData.server == "" || this.weblogicData.server == undefined)
+         {
+           this.monConfigUtilityService.errorMessage("Please select server ");
+           return;
+         }
+      }
+
      this.weblogicData["id"] = this.countEntry;
      this.weblogicStatsTableData=ImmutableArray.push(this.weblogicStatsTableData, this.weblogicData);
      this.countEntry = this.countEntry + 1;
-     console.log ("Count is  ================== ",this.countEntry)
      this.weblogicData = new WeblogicConfigureData();
     }
+
+    //for saving data when existing row is updated -- UPDATE functionality 
     else
     { 
       this.isNewConfig = true;
       let that = this;
       this.weblogicStatsTableData.map(function(val){
-        if(val.id == that.weblogicData.id){
-          console.log("val---",val)
-          console.log("that.weblogic",that.weblogicData)
-          that.weblogicStatsTableData = ImmutableArray.replace(that.weblogicStatsTableData,val,val.id)
-          console.log("val---",val)
-          console.log(" that.weblogicStatsTableData--- ", that.weblogicStatsTableData)
+        if(val.id == that.weblogicData.id)
+        {
+          val["userName"] = that.weblogicData.userName;
+          val["pwd"] = that.weblogicData.pwd;
+          val["port"] = that.weblogicData.port;
+          val["hostName"] = that.weblogicData.hostName;
+          val["enable"] = that.weblogicData.enable;
+          val["instanceName"]= that.weblogicData.instanceName;
+          val["mBeanType"] = that.weblogicData.mBeanType;
+          val["monName"] = that.weblogicData.monName;
+          val["server"] = that.weblogicData.server;
         }
       });
-      this.selectedWeblogicData = []; 
-    }
-    console.log("tableData--",this.weblogicStatsTableData)
-  }
 
-  getIndexOfRow()
-  {
-    console.log("getIndexOfRow method valled")
+      this.selectedWeblogicData = []; 
+      this.monConfigUtilityService.successMessage("Updated successfully");
+    }
 
   }
     

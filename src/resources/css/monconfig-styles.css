@@ -446,11 +446,6 @@ ndegui-audit-logs:before {
     font-size: 17px;
 }
 
-/* for applying css to the second column of the tree table */
-.mon-ui .ui-treetable th:nth-child(2) {
-border-style: hidden;
-}
-
 mon-ui .ui-treetable th.ui-state-default {
     background: #417ebf;
     background: linear-gradient(to bottom, #417ebf 0%, #3b77b6 100%);
@@ -581,6 +576,7 @@ padding:10px;
   border-color :#4CAF50; */
   background-color: #56dc5c;
   border-color :#56dc5c;
+  color: #fff;
 }
 
 /* for growl close icon */
@@ -605,4 +601,10 @@ padding:10px;
 .conf-ui .ui-datatable th.ui-state-default{
   background: rgba(65, 126, 191, 0.9);
   color :#fff;
+}
+
+[mode=indeterminate][_nghost-c5] .mat-progress-bar-secondary[_ngcontent-c5], [mode=query][_nghost-c5] .mat-progress-bar-secondary[_ngcontent-c5]{
+  /* background: blue; */
+  background: #3f51b5;
+  /* position: relative; */
 }
