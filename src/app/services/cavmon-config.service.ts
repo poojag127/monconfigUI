@@ -17,7 +17,7 @@ export class CavmonConfigService {
   data :{};
 
 
-  private monitorsData$: BehaviorSubject<Object> = new BehaviorSubject<Object>([]);
+  public monitorsData$: BehaviorSubject<Object> = new BehaviorSubject<Object>([]);
   public monitorsDataAsObservable$: Observable<Object> = this.monitorsData$.asObservable();
 
   // public monData: BehaviorSubject<Object> = new BehaviorSubject<Object>([]);
@@ -77,6 +77,14 @@ export class CavmonConfigService {
 
 }
 
+
+ getTierMonitorsData(topoName,mjsonName)
+ {
+   let url = `${URL.GET_TIER_MONITORS_DATA}`+"?topoName="+`${topoName}`+"&jsonName="+`${mjsonName}`;
+   console.log(url)
+   return this._restApi.getDataByGetReq(url);
+ }
+
   getTreeTableData() 
   {
     return this.http.get('../../assets/filesystem.json')
@@ -88,18 +96,19 @@ export class CavmonConfigService {
       //           .subscribe(res => this.data = res.json());
 
   /** getting tier List ***/
-  getTierList(topoName)
+  /*getTierList(topoName)
   {
     let url = `${URL.GET_TIER_LIST}`+"?topoName="+`${topoName}`;
     console.log(url)
     return this._restApi.getDataByPostReq(url);
   }
+  */
 
 /** for running without server **/
-  // getTierList(topoName)
-  // {
-  //    return this.tierList;
-  // }
+  getTierList(topoName)
+  {
+     return this.tierList;
+  }
 
 
   /** For Getting all keywordData data */
@@ -169,5 +178,49 @@ export class CavmonConfigService {
     //     // this.keywordData = data;
     //     this.store.dispatch({ type: MONITOR_DATA, payload: data });
     //   });
+  }
+
+  updateMonitorsData(data){
+    console.log("updateMonitorsData method called")
+    var monitorsData = this.monitorsData$.getValue()["weblogic"];
+    console.log("earlier monitorsData",monitorsData)
+    let newData = data[Object.keys(data)[0]];
+
+    let tierName = Object.keys(data)[0];
+    let tierBasedData = [];
+      console.log("tierName--",data)
+    console.log("tierName--",tierName)
+    console.log("monitorsData.hasOwnProperty(tierName)",monitorsData.hasOwnProperty(tierName))
+
+    /****If that tier is configured any monitor */
+    if(monitorsData.hasOwnProperty(tierName))
+    {
+     tierBasedData = monitorsData[Object.keys(data)[0]];
+     console.log("newData--",newData.length)
+     var i,j;
+
+     for(i=0;i<newData.length;i++)
+     {
+      let num2:number = tierBasedData.length;
+      for(j=0;j<=num2;j++)
+      {
+       if(j == num2)
+        {
+         tierBasedData.push(newData[i])
+        }
+       else if(newData[i].monName == tierBasedData[j].monName)
+        {
+         tierBasedData[j] = newData[i];
+         break;
+        }
+      } 
+    }
+   }
+   else
+   {
+     monitorsData[tierName] = newData;
+   }
+   console.log("monitorsData---",monitorsData)
+   this.monitorsData$.next(monitorsData);
   }
 }

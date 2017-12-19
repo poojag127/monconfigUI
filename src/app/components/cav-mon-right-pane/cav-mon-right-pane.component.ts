@@ -37,15 +37,12 @@ import { ROUTING_PATH } from '../../constants/monconfig-url-constant';
 
   constructor(private cavMonHomeService :CavmonHomeService,private router: Router) 
   {
-    console.log("comp loaded")
-    console.log(this.mJsonData)
 
   }
 
   ngOnInit() 
   {
-    console.log("comp loaded")
-    console.log(this.mJsonData)
+    console.log("CavMonRightPaneComponent", "ngOnInit", "Method called ");
     this.cavMonHomeService.getTopologyList()
       .subscribe(data => {
                  this.topologyList = ConfigUiUtility.createDropdown(data);
@@ -74,6 +71,7 @@ import { ROUTING_PATH } from '../../constants/monconfig-url-constant';
      //to insert new row in table ImmutableArray.push() is created as primeng 4.0.0 does not support above line 
      this.jsonsTableData=ImmutableArray.push(this.jsonsTableData, this.mJsonData);
   }
+  
   routeToConfiguration(jsonName,topoName)
   {
     console.log(jsonName)

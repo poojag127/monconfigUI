@@ -55,43 +55,27 @@ export class ConfigurationHomeComponent implements OnInit
       this.mjsonName = params['mjsonName']
     });
     
-  
-
-
-  /*** Getting monitorsData from the server for respective profile ****/
-  this.cavMonConfigService.getMonitorsData(this.topoName);
-
-  this.cavMonConfigService.monitorsDataAsObservable$.subscribe((data) => {
-      console.log("data--in configuratio home---",data)
+   /*** getting data of tierlist,treetable data ****/
+   this.cavMonConfigService.getTierMonitorsData(this.topoName,this.mjsonName).subscribe(data =>
+  {
+    this.createHeadersList(data.tierList);
+    this.compData = data.treeTableData.data;
   })
-  
-   console.log("topoName--",this.topoName)
-   /****** Creating json data for tree table component****************/
-   let that = this;
-   this.cavMonConfigService.getTierList(this.topoName).subscribe(data =>
-       {
-        this.tierList = data;
-        data.forEach((function(val){
-         that.cols.push({field:val ,header :val})
-        }
-    ))
-    that.getData();
-   })
-   this.getMJsonData();
+   
+ 
 
 
 /*** This piece of code is for running project without server ****/
-  // let data = this.cavMonConfigService.getTierList(this.topoName)
-  // this.tierList = data;
-  // data.forEach((function(val){
-  //     that.cols.push({field:val ,header :val})
-  //   }));
-  // this.getData();
+ /* let data = this.cavMonConfigService.getTierList(this.topoName)
+  this.tierList = data;
+  let that = this;
+  data.forEach((function(val){
+      that.cols.push({field:val ,header :val})
+    }));
+  this.getData();
 
-    
 
-
- /*  this.cols = [
+   this.cols = [
             {field: 'monitor' ,header:'Monitor'},
             {field: 'stresshle-blue-accservice',header:'stresshle-blue-accservice'},
             {field: 'stresshle-kafka-mirrormaker',header:'stresshle-kafka-mirrormaker'},
@@ -104,12 +88,16 @@ export class ConfigurationHomeComponent implements OnInit
         */
   }
 
-  getMJsonData()
+  /***Function used to create header list array for treetable component *****/
+  createHeadersList(tierList)
   {
-    console.log("getMJsonData method called")
-    
+    let that = this;
+     tierList.forEach((function(val){
+      that.cols.push({field:val ,header :val})
+    }));
   }
 
+ 
   getData()
   {
     let that = this;
@@ -190,7 +178,8 @@ export class ConfigurationHomeComponent implements OnInit
 /** for advance settings */
   advanceSettings(monName,tierfield)
   {
-    if(monName == 'Weblogic')
+    console.log("monName",monName)
+    if(monName.startsWith('Weblogic'))
       this.router.navigate(['../../../weblogicSettings',this.mjsonName,this.topoName,monName,tierfield],{ relativeTo: this.route });
     else
       this.router.navigate(['../../../advanceSettings',this.mjsonName,this.topoName,monName,tierfield],{ relativeTo: this.route });

@@ -12,3 +12,4 @@ export const GET_TIER_LIST = `${SERVICE_URL}/getTiers`;
 
 /* Url for configuration Screen */
 export const GET_MONITORS_DATA = `${SERVICE_URL}/getMonitorsData`;
+export const GET_TIER_MONITORS_DATA = `${SERVICE_URL}/getTreeTableData`; 
