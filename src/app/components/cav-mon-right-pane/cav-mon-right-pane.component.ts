@@ -70,11 +70,20 @@ import { ROUTING_PATH } from '../../constants/monconfig-url-constant';
     
      //to insert new row in table ImmutableArray.push() is created as primeng 4.0.0 does not support above line 
      this.jsonsTableData=ImmutableArray.push(this.jsonsTableData, this.mJsonData);
+     this.routeOnSave(this.mJsonData.name,this.selectedTopology)
   }
   
+  /** for routing to selected profile */
   routeToConfiguration(jsonName,topoName)
   {
     console.log(jsonName)
     this.router.navigate([ROUTING_PATH + '/mjson/configuration',jsonName,topoName]);
+  }
+
+  /**On saving the new profile entry */
+  routeOnSave(mjsonname,topoName)
+  {
+    console.log("routeOnSave method is called ",mjsonname,topoName)
+    this.router.navigate([ROUTING_PATH + '/mjson/configuration',mjsonname,topoName])
   }
 }

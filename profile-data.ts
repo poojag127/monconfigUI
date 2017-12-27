@@ -5,4 +5,5 @@ export class ProfileData
  profName: string;
  monCount :number;
  lastModified :string;
+ profUser : string;
 }

@@ -38,6 +38,8 @@ export class ConfigurationHomeComponent implements OnInit
 
   ROUTING_PATH = ROUTING_PATH;
 
+  tierId : number;
+
   constructor(private cavMonConfigService:CavmonConfigService,
              private router:Router,
              private route: ActivatedRoute,
@@ -93,7 +95,7 @@ export class ConfigurationHomeComponent implements OnInit
   {
     let that = this;
      tierList.forEach((function(val){
-      that.cols.push({field:val ,header :val})
+      that.cols.push({field:val.id ,header :val.name})
     }));
   }
 
@@ -176,13 +178,12 @@ export class ConfigurationHomeComponent implements OnInit
  }
 
 /** for advance settings */
-  advanceSettings(monName,tierfield)
+  advanceSettings(monName,tierId)
   {
-    console.log("monName",monName)
     if(monName.startsWith('Weblogic'))
-      this.router.navigate(['../../../weblogicSettings',this.mjsonName,this.topoName,monName,tierfield],{ relativeTo: this.route });
+      this.router.navigate(['../../../weblogicSettings',this.mjsonName,this.topoName,monName,tierId],{ relativeTo: this.route });
     else
-      this.router.navigate(['../../../advanceSettings',this.mjsonName,this.topoName,monName,tierfield],{ relativeTo: this.route });
+      this.router.navigate(['../../../advanceSettings',this.mjsonName,this.topoName,monName,tierId],{ relativeTo: this.route });
   }
 
   onTreeNodeCheckBoxChange(rowData)
