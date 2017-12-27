@@ -18,6 +18,7 @@ import { MaterialModule } from '@angular/material';
 
 /**Reducer */
 import { MonitorReducer } from './reducers/monitor-reducer';
+import { MonitorCompReducer } from './reducers/monitor-comp-reducer';
 
 
 /**Importing services  ****/
@@ -49,7 +50,9 @@ import {TooltipModule,
         CheckboxModule,
         ToolbarModule,
         TabViewModule,
-        GrowlModule
+        GrowlModule,
+        SpinnerModule,
+        RadioButtonModule
         
     } from 'primeng/primeng';
 
@@ -108,7 +111,9 @@ import { MonitorsComponent } from './components/cav-mon-mjson/monitors/monitors.
     CheckboxModule,
     ToolbarModule,
     TabViewModule,
-    StoreModule.provideStore({ monitorData: MonitorReducer }),
+    SpinnerModule,
+    RadioButtonModule,
+    StoreModule.provideStore({ monitorData: MonitorReducer ,selectedMon:MonitorCompReducer }),
     GrowlModule
   ],
   providers: [CavmonHomeService,ConfigRestApiService,ConfigUtilityService,CavmonConfigService,CavmonMonitorsdataService,ConfirmationService
