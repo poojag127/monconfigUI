@@ -1,0 +1,8 @@
+<p-tieredMenu class="left-menu" [model]="items" [popup]="true" #menu></p-tieredMenu>
+<li class="left-nav">
+    <a style="color:dimgray" pTooltip={{navMenu.tooltip}} tooltipPosition="right">
+        <button md-icon-button (click)="openMenu($event)">
+      <i class={{navMenu.class}}></i>
+    </button>
+    </a>
+</li>

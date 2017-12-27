@@ -34,55 +34,47 @@ export class ConfigureWeblogic2Component implements OnInit {
 
   monName:string;
 
-  /**to hold tier id */ 
-  tierId:number;
-
-  /**to hold topology name  */
-  topoName:string;
-
   weblogicStats:SelectItem[];
 
   typeItems:SelectItem[];
 
-/**for header of table */
+ /** for header of table **/
   cols: any[];
 
-/**for form ***/
+ /** for form ***/
   weblogicData:WeblogicConfigureData;
 
-/**stores table data */
+ /** stores table data ***/
   weblogicStatsTableData:WeblogicConfigureData[]=[];
 
-/** used to hold selected row data */
-selectedWeblogicData:WeblogicConfigureData[] = [];
+  /** used to hold selected row data **/
+  selectedWeblogicData:WeblogicConfigureData[] = [];
+
   /**This is to send data to parent component(Configuration home Screen Component) for creating final keyword data */
   @Output()
   monitorsData = new EventEmitter();
 
 /** flag for label */
-isNewConfig :boolean = true;
+  isNewConfig :boolean = true;
 
-countEntry:number=0;
+  countEntry:number=0;
 
   constructor(private cavMonDataService :CavmonMonitorsdataService,
-              private store: Store<MonitorsData>,
-              private monConfigUtilityService:ConfigUtilityService,
-              private router:Router,
-              private route: ActivatedRoute,
-              private confirmationService: ConfirmationService,
-              private cavMonConfigService:CavmonConfigService
-              
-               ) {
+            private store: Store<MonitorsData>,
+            private monConfigUtilityService:ConfigUtilityService,
+            private router:Router,
+            private route: ActivatedRoute,
+            private confirmationService: ConfirmationService,
+            private cavMonConfigService:CavmonConfigService
+            ) {
 
     this.route.params.subscribe((params: Params) => {
-      console.log("params--",params)
-      this.topoName = params['topoName'];
-      this.monName = params['monName'];
-      this.tierId = params['tierId'];
-      // this.tierfield = params['tierfield'];
-      // console.log("tierfield--",this.tierfield)
+      this.tierfield = params['tierfield'];
+      this.monName = params['monName']
     });
 
+   console.log("monName--",this.monName)
+   console.log("tierfield--",this.tierfield)
     
    let that = this;
   //  this.subscription = this.store.select("monitorData")
@@ -103,13 +95,12 @@ countEntry:number=0;
       console.log("weblogic--",this.weblogic)
    }
 
-  ngOnInit() 
-  {
+  ngOnInit() {
+   
     this.weblogicData = new WeblogicConfigureData();
     this.route.params.subscribe((params: Params) => {
-      this.topoName = params['topoName'];
-      this.monName = params['monName'];
-      this.tierId = params['tierId'];
+      this.tierfield = params['tierfield'];
+      this.monName = params['monName']
     });
 
     // let data2 = this.cavMonConfigService.monitorsDataAsObservable$
@@ -119,16 +110,7 @@ countEntry:number=0;
 
     // let abc = this.cavMonConfigService.monitorsData$.getValue();
     // console.log("abc---",abc)
-
-
-
-    
-    /** to get the server list in the dropdown */
-    this.cavMonDataService.getServerList(this.topoName,this.tierId)
-             .subscribe(data => {
-                        this.serverList = ConfigUiUtility.createDropdown(data);
-                        })
-  
+    // console.log("in weblofic--",data)
 
     this.getTableData();
 
@@ -142,8 +124,8 @@ countEntry:number=0;
     this.weblogicStats =  ConfigUiUtility.createListWithKeyValue(weblogicStatsLabel, weblogicStatsValue);
 
     /*creating server list */
-    // let data = ['All Server' ,'Server1','Server2'];
-    // this.serverList = ConfigUiUtility.createDropdown(data);
+    let data = ['All Server' ,'Server1','Server2'];
+    this.serverList = ConfigUiUtility.createDropdown(data);
 
     this.cols = [
             {field:'server',header:'Server'},
@@ -184,7 +166,6 @@ countEntry:number=0;
     //     }
     //   })
   }
-  
 
   /** UPDATE functionality for weblogic configuration data   */ 
   editConfigData():void {   
@@ -213,9 +194,8 @@ countEntry:number=0;
         this.monConfigUtilityService.errorMessage("Please select stats type");
         return;
       }
-    if (this.tierId == -1)
+    if (this.tierfield == 'All_Tier')
       {  
-        console.log("TierId -------------------------" , this.tierId)
         this.weblogicData["server"] = 'All Tier';
       }
     else

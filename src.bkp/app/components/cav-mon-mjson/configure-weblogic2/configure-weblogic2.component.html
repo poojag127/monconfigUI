@@ -1,0 +1,126 @@
+<div class="tabsincontent">
+    <div class="header"> 
+      <span style="padding-left:10px">Configure Weblogic Monitors for Tier : {{tierfield}}</span>
+    </div> 
+
+    <div class="ui-g">
+     <div  class="ui-g-12">
+        <p-panel  class="hideheader">
+           <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid">
+          <div class = "ui-g">
+          <form (ngSubmit)="saveWeblogicConfiguration()" #form="ngForm" ngNativeValidate>
+          
+          <div class = "ui-g-12">
+          </div>
+          
+           <div class = "ui-g-12">
+          </div>
+          
+          <div class = "ui-g-12"  *ngIf="tierId != '-1'" style="margin-top: 15px; margin-bottom: -11px">
+           <div class="ui-g-1"  style="width:7.333%">
+                <label>Server Name</label>
+             </div>
+             <div class="ui-g-4 mbeanDrpdown">
+                <p-dropdown name="topoId"[(ngModel)]="weblogicData.server"  [options]="serverList" placeholder="-- Select Server Name --" [style]="{'width':'77%','margin-left': '-1px'}"  appendTo="body" required ngModel></p-dropdown>
+             </div>
+          </div>
+
+          <div class="ui-g-12" style="margin-top: 15px">
+             <div class="ui-g-1"  style="width:6.333%">
+                <label>User Name</label>
+             </div>
+             <div class="ui-g-4 monConfigRow">
+               <input name="userName" style="width:192px" type="text"  pInputText  [(ngModel)]="weblogicData.userName"   
+                pInputText   required ngModel />
+             </div>
+              <div class="ui-g-1"  style="width:6.333%">
+                <label>Password</label>
+             </div>
+             <div class="ui-g-4 monConfigRow">
+               <input name="pwd" style="width:192px" type="text"   [(ngModel)]="weblogicData.pwd" 
+                size="30" pInputText  required ngModel/>
+             </div>
+              <div class="ui-g-1"  style="width:6.333%">
+               <label>Host Name</label>
+              </div>
+              <div class="ui-g-4 monConfigRow">
+               <input name="hostName" style="width:192px" type="text"   [(ngModel)]="weblogicData.hostName" 
+               size="30" pInputText  pattern="[^\s]{0,49}$"  required ngModel/>
+              </div>
+              <div class="ui-g-1" style="width:6.333%">
+                <label>Port</label>
+             </div>
+             <div class="ui-g-4 monConfigRow">
+               <input name="port" type="text"  style="width:160px"  [(ngModel)]="weblogicData.port" 
+                size="30" pInputText   required ngModel/>
+             </div>
+          </div>
+
+
+          <div class = "ui-g-12">
+            <div class="ui-g-1"  style="width:6.333%">
+              <label>Stats Type</label>
+            </div>
+
+             <div class="ui-g-4 mbeanDrpdown">
+                <p-dropdown name="weblogicStats"  [(ngModel)]="weblogicData.monName" [options]="weblogicStats" placeholder="-- Select Weblogic Stats --" [style]="{'width':'73%','margin-left': '-1px'}"  appendTo="body" required ngModel></p-dropdown>
+             </div>
+          </div>
+
+
+           <div class="ui-g-12">
+              <div class="ui-g-1" style="width:6.333%"> </div>
+              <div class ="ui-g-2">
+               <p-checkbox name="enable"  binary="false" [(ngModel)]="weblogicData.enable" label = "Enable"></p-checkbox>
+             </div>
+             <div class="ui-g-1" >
+                <label>Instance Name</label>
+             </div>
+             <div class="ui-g-4 monConfigRow">
+               <input name="instanceName" type="text"  [(ngModel)]="weblogicData.instanceName" style="width:192px" 
+                size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+             </div>
+             <div class="ui-g-1">
+                <label>MBean Type</label>
+             </div>
+             <div class="ui-g-4 mbeanDrpdown">
+                <p-dropdown name="topoId"  [(ngModel)]="weblogicData.mBeanType" [options]="typeItems" placeholder="-- Select Mbeans Type --" [style]="{'width':'77%','margin-left': '-1px'}"  appendTo="body" required ngModel></p-dropdown>
+             </div>
+          </div>
+
+            <div class="pull-right">
+              <button type="submit" pButton  icon="fa-check" style="width: 63px ; margin :2px " *ngIf="isNewConfig == true" label="Add"></button>
+              <button type="submit" pButton  icon="fa-check" style="width: 93px ; margin :2px " *ngIf="isNewConfig == false" label="Update"></button>
+            </div>
+         </form>
+        </div>
+      </div>
+   </p-panel>
+
+    <!-- for the configuration datatable toolbar -->
+<div style="margin-bottom:-32px ; margin-top: 5px">
+   <p-toolbar>
+     <span><b>Weblogic Stats Configuration Data</b></span> 
+     <div  class="appIcon-css">
+        <button pButton class="toolbarIcon" type="button" icon="fa-pencil" (click)="editConfigData()" title="Edit Configuration"></button>
+    </div>
+   </p-toolbar>
+</div>
+
+<p-dataTable class="conf-ui" [value]="weblogicStatsTableData" [(selection)]="selectedWeblogicData" [rows]="5" [paginator]="weblogicStatsTableData?.length >5" [pageLinks]="3"  [resizableColumns]='true' [style]="{'margin-top':'30px'}">
+  <p-column [style]="{'width':'27px'}" selectionMode="multiple"></p-column>
+    <p-column   *ngFor="let col of cols"  [sortable]="true" [field]="col.field" [header]="col.header">
+      <template   let-data="rowData" pTemplate >
+        <span [title]="data[col.field]">{{data[col.field]}}</span> 
+      </template>
+    </p-column>
+
+    <p-column header="Enable">
+      <template let-data='rowData' pTemplate="body">
+        <p-checkbox [(ngModel)]="data.enable"  binary="true"></p-checkbox>
+      </template>
+    </p-column>
+</p-dataTable>
+ 
+   </div>
+</div>

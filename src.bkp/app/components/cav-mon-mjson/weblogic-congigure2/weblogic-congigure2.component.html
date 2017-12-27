@@ -1,0 +1,479 @@
+
+<div class="tabsincontent">
+    <form (ngSubmit)="saveWeblogicConfiguration()" #form="ngForm" ngNativeValidate>
+    <div class="header"> 
+      <span style="padding-left:10px">Configure Weblogic Monitors for All Tier</span>
+       <div class="pull-right">
+         <button type="button" pButton icon="fa-refresh" (click)="resetKeywordData()" label="Reset"></button>
+         <button type="submit" pButton icon="fa-check" [disabled]="saveDisable" label="Save"></button>
+       </div>
+    </div>
+
+    <div class="ui-g">
+     <div  class="ui-g-12">
+        <p-panel  class="hideheader">
+         <p-fieldset  styleClass="weblogicStats" legend="JBDC Stats" [toggleable]="true" [collapsed]="true">
+          <div class="ui-g-12">
+            <div class="ui-g-1"></div>
+            <div class="ui-g-11">
+             <p-checkbox name="enableJDBCstats" [(ngModel)]="weblogic.JDBCStats.enable" binary="false"></p-checkbox>
+             <a  class="configureLeftPaneCss" (click)="openConfigure('JDBC')">Enable JDBC Stats </a>
+          </div>
+          </div>
+
+          <div class="ui-g-12">
+             <div class="ui-g-1"></div>
+             <div class="ui-g-1">
+                <label>User Name</label>
+             </div>
+             <div class="ui-g-4 monConfigRow">
+               {{weblogic.JDBCStats.userName}}
+               {{test}}
+               <input name="userName" style="width:192px" type="text"  pInputText  [(ngModel)]="test"  [disabled]="!weblogic.JDBCStats.enable" 
+                pInputText   required ngModel />
+             </div>
+
+             <div class="ui-g-1">
+                <label>Password</label>
+             </div>
+             <div class="ui-g-4 monConfigRow">
+               <input name="pwd" style="width:192px" type="text"   [(ngModel)]="weblogic.JDBCStats.pwd"  [disabled]="!weblogic.JDBCStats.enable"
+                size="30" pInputText  required ngModel/>
+             </div>
+
+             <div class="ui-g-1">
+              <label>Host Name</label>
+           </div>
+           <div class="ui-g-4 monConfigRow">
+             <input name="hostName" style="width:192px" type="text"   [(ngModel)]="weblogic.JDBCStats.hostName"  [disabled]="!weblogic.JDBCStats.enable"
+              size="30" pInputText  pattern="[^\s]{0,49}$"  required ngModel/>
+           </div>
+          </div>
+
+          <div class="ui-g-12">
+             <div class="ui-g-1"> </div>
+             <div class="ui-g-1">
+                <label>Port</label>
+             </div>
+             <div class="ui-g-4 monConfigRow">
+               <input name="port" type="text"  style="width:192px"  [(ngModel)]="weblogic.JDBCStats.port" [disabled]="!weblogic.JDBCStats.enable"
+                size="30" pInputText   required ngModel/>
+             </div>
+             
+             <div class="ui-g-1">
+                <label>Instance Name</label>
+             </div>
+             <div class="ui-g-4 monConfigRow">
+               <input name="instanceName" type="text"   [(ngModel)]="weblogic.JDBCStats.instanceName" style="width:192px" [disabled]="!weblogic.JDBCStats.enable"
+                size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+             </div>
+
+             <div class="ui-g-1">
+                <label>MBean Type</label>
+             </div>
+             <div class="ui-g-4 mbeanDrpdown">
+                <p-dropdown name="topoId" [disabled]="!weblogic.JDBCStats.enable"  [(ngModel)]="weblogic.JDBCStats.mBeanType" [options]="typeItems" placeholder="--Select Mbeans Type--" [style]="{'width':'77%','margin-left': '-1px'}"  appendTo="body" required ngModel></p-dropdown>
+             </div>
+          </div>
+         </p-fieldset>
+ 
+         <!-- for JVM stats -->
+         <p-fieldset styleClass="weblogicStats" legend="JVM Stats"  [toggleable]="true" [collapsed]="true">
+          <div class="ui-g-12">
+            <div class="ui-g-1"></div>
+            <div class="ui-g-11">
+             <p-checkbox name="enableJVMStats" [(ngModel)]="weblogic.JVMStats.enable" binary="false"></p-checkbox>
+             <a  class="configureLeftPaneCss" (click)="openConfigure('JDBC')">Enable JVM Stats </a>
+          </div>
+          </div>
+
+          <div class="ui-g-12">
+             <div class="ui-g-1"> </div>
+             <div class="ui-g-1">
+                <label>User Name</label>
+             </div>
+             <div class="ui-g-4 monConfigRow">
+               <input name="userName" style="width:192px" type="text"  [(ngModel)]="weblogic.JVMStats.userName"  [disabled]="!weblogic.JVMStats.enable" 
+                size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+             </div>
+
+             <div class="ui-g-1">
+                <label>Password</label>
+             </div>
+             <div class="ui-g-4 monConfigRow">
+               <input name="pwd" style="width:192px" type="text"   [(ngModel)]="weblogic.JVMStats.pwd" [disabled]="!weblogic.JVMStats.enable"
+                size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+             </div>
+
+             <div class="ui-g-1">
+              <label>Host Name</label>
+           </div>
+           <div class="ui-g-4 monConfigRow">
+             <input name="hostName" style="width:192px" type="text"  [(ngModel)]="weblogic.JVMStats.hostName"  [disabled]="!weblogic.JVMStats.enable"
+              size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+           </div>
+          </div>
+
+          <div class="ui-g-12">
+             <div class="ui-g-1"> </div>
+             <div class="ui-g-1">
+                <label>Port</label>
+             </div>
+             <div class="ui-g-4 monConfigRow">
+               <input name="port" type="text"  style="width:192px"  [(ngModel)]="weblogic.JVMStats.port"  [disabled]="!weblogic.JVMStats.enable"
+                size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+             </div>
+             
+             <div class="ui-g-1">
+                <label>Instance Name</label>
+             </div>
+             <div class="ui-g-4 monConfigRow">
+               <input name="instanceName" type="text"  style="width:192px"  [(ngModel)]="weblogic.JVMStats.instanceName"  [disabled]="!weblogic.JVMStats.enable"
+                size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+             </div>
+
+             <div class="ui-g-1">
+                <label>MBean Type</label>
+             </div>
+             <div class="ui-g-4 mbeanDrpdown">
+                <p-dropdown name="topoId" [disabled]="!weblogic.JVMStats.enable" [(ngModel)]="weblogic.JVMStats.mBeanType" [options]="typeItems" placeholder="--Select Mbeans Type--" [style]="{'width':'77%','margin-left': '-1px'}"  appendTo="body" required ngModel></p-dropdown>
+             </div>
+          </div>
+         </p-fieldset>
+
+         
+         <!-- for Thread Pool stats -->
+         <p-fieldset styleClass="weblogicStats" legend="Thread Pool Stats"  [toggleable]="true" [collapsed]="true">
+          <div class="ui-g-12">
+            <div class="ui-g-1">
+
+            </div>
+            <div class="ui-g-11">
+             <p-checkbox name="enableJDBCstats" [(ngModel)]="weblogic.ThreadPoolStats.enable" binary="false"></p-checkbox>
+             <a  class="configureLeftPaneCss" (click)="openConfigure('JDBC')">Enable Thread Pool Stats </a>
+          </div>
+          </div>
+
+          <div class="ui-g-12">
+             <div class="ui-g-1"> </div>
+             <div class="ui-g-1">
+                <label>User Name</label>
+             </div>
+             <div class="ui-g-4 monConfigRow">
+               <input name="userName"  [(ngModel)]="weblogic.ThreadPoolStats.userName"  style="width:192px" type="text"  [disabled]="!weblogic.ThreadPoolStats.enable" 
+                size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+             </div>
+
+             <div class="ui-g-1">
+                <label>Password</label>
+             </div>
+             <div class="ui-g-4 monConfigRow">
+               <input name="pwd"  [(ngModel)]="weblogic.ThreadPoolStats.pwd" style="width:192px" type="text"  [disabled]="!weblogic.ThreadPoolStats.enable"
+                size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+             </div>
+
+             <div class="ui-g-1">
+              <label>Host Name</label>
+           </div>
+           <div class="ui-g-4 monConfigRow">
+             <input name="hostName"  [(ngModel)]="weblogic.ThreadPoolStats.hostName" style="width:192px" type="text"  [disabled]="!weblogic.ThreadPoolStats.enable"
+              size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+           </div>
+          </div>
+
+          <div class="ui-g-12">
+             <div class="ui-g-1"> </div>
+             <div class="ui-g-1">
+                <label>Port</label>
+             </div>
+             <div class="ui-g-4 monConfigRow">
+               <input name="port" type="text"  [(ngModel)]="weblogic.ThreadPoolStats.port" style="width:192px" [disabled]="!weblogic.ThreadPoolStats.enable"
+                size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+             </div>
+             
+             <div class="ui-g-1">
+                <label>Instance Name</label>
+             </div>
+             <div class="ui-g-4 monConfigRow">
+               <input name="instanceName"  [(ngModel)]="weblogic.ThreadPoolStats.instanceName" type="text"  style="width:192px" [disabled]="!weblogic.ThreadPoolStats.enable"
+                size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+             </div>
+
+             <div class="ui-g-1">
+                <label>MBean Type</label>
+             </div>
+             <div class="ui-g-4 mbeanDrpdown">
+                <p-dropdown name="topoId"  [(ngModel)]="weblogic.ThreadPoolStats.mBeanType" [disabled]="!weblogic.ThreadPoolStats.enable" [options]="typeItems" placeholder="--Select Mbeans Type--" [style]="{'width':'77%','margin-left': '-1px'}"  appendTo="body" required ngModel></p-dropdown>
+             </div>
+          </div>
+         </p-fieldset>
+
+         <!-- for Session Stats -->
+         <p-fieldset styleClass="weblogicStats" legend="Session Stats"  [toggleable]="true" [collapsed]="true">
+          <div class="ui-g-12">
+            <div class="ui-g-1">
+
+            </div>
+            <div class="ui-g-11">
+             <p-checkbox name="enableJDBCstats" [(ngModel)]="weblogic.SessionStats.enable" binary="false"></p-checkbox>
+             <a  class="configureLeftPaneCss" (click)="openConfigure('JDBC')">Enable Session Stats </a>
+          </div>
+          </div>
+
+          <div class="ui-g-12">
+             <div class="ui-g-1"> </div>
+             <div class="ui-g-1">
+                <label>User Name</label>
+             </div>
+             <div class="ui-g-4 monConfigRow">
+               <input name="userName" [(ngModel)]="weblogic.SessionStats.userName"  style="width:192px" type="text"  [disabled]="!weblogic.SessionStats.enable" 
+                size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+             </div>
+
+             <div class="ui-g-1">
+                <label>Password</label>
+             </div>
+             <div class="ui-g-4 monConfigRow">
+               <input name="pwd" style="width:192px" type="text"  [(ngModel)]="weblogic.SessionStats.pwd" [disabled]="!weblogic.SessionStats.enable"
+                size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+             </div>
+
+             <div class="ui-g-1">
+              <label>Host Name</label>
+           </div>
+           <div class="ui-g-4 monConfigRow">
+             <input name="hostName" style="width:192px" type="text"  [disabled]="!weblogic.SessionStats.enable"
+              size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+           </div>
+          </div>
+
+          <div class="ui-g-12">
+             <div class="ui-g-1"> </div>
+             <div class="ui-g-1">
+                <label>Port</label>
+             </div>
+             <div class="ui-g-4 monConfigRow">
+               <input name="port" type="text"  style="width:192px" [disabled]="!weblogic.SessionStats.enable"
+                size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+             </div>
+             
+             <div class="ui-g-1">
+                <label>Instance Name</label>
+             </div>
+             <div class="ui-g-4 monConfigRow">
+               <input name="instanceName" type="text"  style="width:192px" [disabled]="!weblogic.SessionStats.enable"
+                size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+             </div>
+
+             <div class="ui-g-1">
+                <label>MBean Type</label>
+             </div>
+             <div class="ui-g-4 mbeanDrpdown">
+                <p-dropdown name="topoId" [disabled]="!weblogic.SessionStats.enable" [options]="typeItems" placeholder="--Select Mbeans Type--" [style]="{'width':'77%','margin-left': '-1px'}"  appendTo="body" required ngModel></p-dropdown>
+             </div>
+          </div>
+         </p-fieldset>
+
+         <!-- for JMS Queue Stats -->
+         <p-fieldset  styleClass="weblogicStats" legend="JMS Queue Stats"  [toggleable]="true" [collapsed]="true">
+          <div class="ui-g-12">
+            <div class="ui-g-1">
+
+            </div>
+            <div class="ui-g-11">
+             <p-checkbox name="enableJDBCstats" [(ngModel)]="weblogic.JMSQueueStats.enable" binary="false"></p-checkbox>
+             <a  class="configureLeftPaneCss" (click)="openConfigure('JDBC')">Enable JMS Queue Stats </a>
+          </div>
+          </div>
+
+          <div class="ui-g-12">
+             <div class="ui-g-1"> </div>
+             <div class="ui-g-1">
+                <label>User Name</label>
+             </div>
+             <div class="ui-g-4 monConfigRow">
+               <input name="userName" style="width:192px" type="text"  [disabled]="!weblogic.JMSQueueStats.enable" 
+                size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+             </div>
+
+             <div class="ui-g-1">
+                <label>Password</label>
+             </div>
+             <div class="ui-g-4 monConfigRow">
+               <input name="pwd" style="width:192px" type="text"  [disabled]="!weblogic.JMSQueueStats.enable"
+                size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+             </div>
+
+             <div class="ui-g-1">
+              <label>Host Name</label>
+           </div>
+           <div class="ui-g-4 monConfigRow">
+             <input name="hostName" style="width:192px" type="text"  [disabled]="!weblogic.JMSQueueStats.enable"
+              size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+           </div>
+          </div>
+
+          <div class="ui-g-12">
+             <div class="ui-g-1"> </div>
+             <div class="ui-g-1">
+                <label>Port</label>
+             </div>
+             <div class="ui-g-4 monConfigRow">
+               <input name="port" type="text"  style="width:192px" [disabled]="!weblogic.JMSQueueStats.enable"
+                size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+             </div>
+             
+             <div class="ui-g-1">
+                <label>Instance Name</label>
+             </div>
+             <div class="ui-g-4 monConfigRow">
+               <input name="instanceName" type="text"  style="width:192px" [disabled]="!weblogic.JMSQueueStats.enable"
+                size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+             </div>
+
+             <div class="ui-g-1">
+                <label>MBean Type</label>
+             </div>
+             <div class="ui-g-4 mbeanDrpdown">
+                <p-dropdown name="topoId" [disabled]="!weblogic.JMSQueueStats.enable" [options]="typeItems" placeholder="--Select Mbeans Type--" [style]="{'width':'77%','margin-left': '-1px'}"  appendTo="body" required ngModel></p-dropdown>
+             </div>
+          </div>
+         </p-fieldset>
+
+         <!-- for Min Thread Constraint Extended Stats -->
+         <p-fieldset styleClass="weblogicStats" legend="Min Thread Constraint Extended Stats"  [toggleable]="true" [collapsed]="true">
+          <div class="ui-g-12">
+            <div class="ui-g-1">
+
+            </div>
+            <div class="ui-g-11">
+             <p-checkbox name="enableJDBCstats" [(ngModel)]="weblogic.MinThreadConstraintStats.enable" binary="false"></p-checkbox>
+             <a  class="configureLeftPaneCss" (click)="openConfigure('JDBC')">Enable Min Thread Constraint Extended Stats </a>
+          </div>
+          </div>
+
+          <div class="ui-g-12">
+             <div class="ui-g-1"> </div>
+             <div class="ui-g-1">
+                <label>User Name</label>
+             </div>
+             <div class="ui-g-4 monConfigRow">
+               <input name="userName" style="width:192px" type="text"  [disabled]="!weblogic.MinThreadConstraintStats.enable" 
+                size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+             </div>
+
+             <div class="ui-g-1">
+                <label>Password</label>
+             </div>
+             <div class="ui-g-4 monConfigRow">
+               <input name="pwd" style="width:192px" type="text"  [disabled]="!weblogic.MinThreadConstraintStats.enable"
+                size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+             </div>
+
+             <div class="ui-g-1">
+              <label>Host Name</label>
+           </div>
+           <div class="ui-g-4 monConfigRow">
+             <input name="hostName" style="width:192px" type="text"  [disabled]="!weblogic.MinThreadConstraintStats.enable"
+              size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+           </div>
+          </div>
+
+          <div class="ui-g-12">
+             <div class="ui-g-1"> </div>
+             <div class="ui-g-1">
+                <label>Port</label>
+             </div>
+             <div class="ui-g-4 monConfigRow">
+               <input name="port" type="text"  style="width:192px" [disabled]="!weblogic.MinThreadConstraintStats.enable"
+                size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+             </div>
+             
+             <div class="ui-g-1">
+                <label>Instance Name</label>
+             </div>
+             <div class="ui-g-4 monConfigRow">
+               <input name="instanceName" type="text"  style="width:192px" [disabled]="!weblogic.MinThreadConstraintStats.enable"
+                size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+             </div>
+
+             <div class="ui-g-1">
+                <label>MBean Type</label>
+             </div>
+             <div class="ui-g-4 mbeanDrpdown">
+                <p-dropdown name="topoId" [disabled]="!weblogic.MinThreadConstraintStats.enable" [options]="typeItems" placeholder="--Select Mbeans Type--" [style]="{'width':'77%','margin-left': '-1px'}"  appendTo="body" required ngModel></p-dropdown>
+             </div>
+          </div>
+         </p-fieldset>
+
+         <!-- for weblogic Transaction Stats -->
+         <p-fieldset  styleClass="weblogicTransStats" legend="Transaction Stats"  [toggleable]="true" [collapsed]="true">
+          <div class="ui-g-12">
+            <div class="ui-g-1">
+
+            </div>
+            <div class="ui-g-11">
+             <p-checkbox name="enableJDBCstats" [(ngModel)]="weblogic.TransactionStats.enable" binary="false"></p-checkbox>
+             <a  class="configureLeftPaneCss" (click)="openConfigure('JDBC')">Enable Transaction Stats </a>
+          </div>
+          </div>
+
+          <div class="ui-g-12">
+             <div class="ui-g-1"> </div>
+             <div class="ui-g-1">
+                <label>User Name</label>
+             </div>
+             <div class="ui-g-4 monConfigRow">
+               <input name="userName" style="width:192px" type="text"  [disabled]="!weblogic.TransactionStats.enable" 
+                size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+             </div>
+
+             <div class="ui-g-1">
+                <label>Password</label>
+             </div>
+             <div class="ui-g-4 monConfigRow">
+               <input name="pwd" style="width:192px" type="text"  [disabled]="!weblogic.TransactionStats.enable"
+                size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+             </div>
+
+             <div class="ui-g-1">
+              <label>Host Name</label>
+           </div>
+           <div class="ui-g-4 monConfigRow">
+             <input name="hostName" style="width:192px" type="text"  [disabled]="!weblogic.TransactionStats.enable"
+              size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+           </div>
+          </div>
+
+          <div class="ui-g-12">
+             <div class="ui-g-1"> </div>
+             <div class="ui-g-1">
+                <label>Port</label>
+             </div>
+             <div class="ui-g-4 monConfigRow">
+               <input name="port" type="text"  style="width:192px" [disabled]="!weblogic.TransactionStats.enable"
+                size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+             </div>
+             
+             <div class="ui-g-1">
+                <label>Instance Name</label>
+             </div>
+             <div class="ui-g-4 monConfigRow">
+               <input name="instanceName" type="text"  style="width:192px" [disabled]="!weblogic.TransactionStats.enable"
+                size="30" pInputText  pattern="[^\s]{0,49}$" ngModel/>
+             </div>
+
+             <div class="ui-g-1">
+                <label>MBean Type</label>
+             </div>
+             <div class="ui-g-4 mbeanDrpdown">
+                <p-dropdown name="topoId" [disabled]="!weblogic.TransactionStats.enable" [options]="typeItems" placeholder="--Select Mbeans Type--" [style]="{'width':'77%','margin-left': '-1px'}"  appendTo="body" required ngModel></p-dropdown>
+             </div>
+          </div>
+         </p-fieldset>
+      </p-panel>
+    </div>
+    </div>
+      </form>
+      </div>
+

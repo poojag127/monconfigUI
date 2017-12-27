@@ -1,53 +1,41 @@
 <!--<p>
   cav-mon-right-pane works!
 </p>-->
-<div class ="main-box">
 <div style="margin: 21px 0px">
-<p-fieldset  [style]="{'font-size':'13px' }"  legend="Select Topology">
+<p-fieldset  [style]="{'font-size':'13px' }"  legend="Select a topology">
   <div class = "ui-g-9">
     <p-dropdown  [style]="{'width':'60%' ,'font-size':'13px'}" class ="homedropdown" [options]="topologyList" [(ngModel)]="selectedTopology" (onChange)="topoChange($event.value)" ></p-dropdown>
-    <button pButton type="button"   (click)="openAddDialog()" label="Add Profile" icon="fa-plus"></button>
-    <!-- <button pButton type="button"  (click)="editSessionAttribute()" label="Edit Profile" icon="fa-pencil"></button> -->
   </div>
 </p-fieldset>
 </div>
 
 <div class="ui-g mon-hometable" >
     <!--For showing Session Attribute(s) list -->
-<p-dataTable class="mon-ui"  [value]="jsonsTableData" [(selection)]="selectedJson" [rows]="5" [paginator]="jsonsTableData?.length >5" [pageLinks]="3" [style]="{'height':'200px'}">
+<p-dataTable class="mon-ui" [value]="jsonsTableData" [(selection)]="selectedJson" [rows]="5" [paginator]="jsonsTableData?.length >5" [pageLinks]="3" [style]="{'height':'200px'}">
         <p-header>
-            <span style = "font-size:13px"><b>Available Monitor Profile(s)</b></span>
-            <div  class="appIcon-css">
-                <button pButton class="toolbarIcon" type="button" icon="fa-pencil" (click)="editConfigData()" title="Edit Configuration"></button>
-            </div>
+            <span style = "font-size:13px"><b>MJson of  Topology  {{selectedTopology}}</b></span>
         </p-header>
 
         <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
-        <p-column class="col-overflow" field="name" header="Profile Name" [sortable]="true"  [filter]="true">
+        <p-column class="col-overflow" field="name" header="Name" [sortable]="true">
             <template let-col let-json="rowData" pTemplate type="body">
                 <span title="{{json[col.field]}}"> <a class="hyperlink" (click)="routeToConfiguration(json['name'],selectedTopology)" >{{json[col.field]}}</a></span>
             </template>
         </p-column>
 
-        <p-column class="col-overflow" field="desc" header="Description" [sortable]="true"  [filter]="true">
+        <p-column class="col-overflow" field="desc" header="Description" [sortable]="true">
             <template let-col let-json="rowData" pTemplate type="body">
                        <span title="{{json[col.field]}}">{{json[col.field]}}</span>
                     </template>
         </p-column>
 
-        <p-column class="col-overflow" field="profUser" header="Username" [sortable]="true"  [filter]="true">
+        <p-column class="col-overflow" field="monCount" header="Number Of Monitors" [sortable]="true">
             <template let-col let-json="rowData" pTemplate type="body">
                        <span title="{{json[col.field]}}">{{json[col.field]}}</span>
                     </template>
         </p-column>
 
-         <p-column class="col-overflow" field="lastModified" header="Last Modified" [sortable]="true"  [filter]="true">
-            <template let-col let-json="rowData" pTemplate type="body">
-                       <span title="{{json[col.field]}}">{{json[col.field]}}</span>
-                    </template>
-        </p-column>
-
-        <p-column class="col-overflow" field="monCount" header="Actions" [sortable]="true"  [filter]="true">
+         <p-column class="col-overflow" field="lastModified" header="Last Modified" [sortable]="true">
             <template let-col let-json="rowData" pTemplate type="body">
                        <span title="{{json[col.field]}}">{{json[col.field]}}</span>
                     </template>
@@ -56,11 +44,11 @@
     </p-dataTable>
 </div>
 
-<!-- <div class="configui">
+<div class="configui">
         <button pButton type="button"   [disabled]="saveDisable"  (click)="openAddDialog()" label="Create" icon="fa-plus"></button>
         <button pButton type="button"   [disabled]="saveDisable" (click)="editSessionAttribute()" label="Edit" icon="fa-pencil"></button>
         <button pButton type="button"  [disabled]="saveDisable"  (click)="deleteSessionAttribute()" label="Delete" icon="fa-trash-o"></button>
-</div> -->
+</div>
 
 <!--Dialog for adding MJson-->
 
@@ -68,7 +56,7 @@
     <form (ngSubmit)="saveEditMJson()" #groupForm="ngForm" ngNativeValidate>
         <div class="ui-g">
             <div class="ui-g-4">
-                <label>Profile Name</label>
+                <label>Name</label>
             </div>
             <div class="ui-g-8">
                   <input name="appName" type="text" class="config_app" pInputText [(ngModel)]="mJsonData.name" title="Please enter valid json name. &#013;json name is of maximum 32 characters.  &#013;First character must be Alpha.  &#013;Other characters are Alpha, Numeric, Dash or Underscore"
@@ -96,13 +84,13 @@
         </div>
         <footer>
             <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
-                <button type="submit" pButton icon="fa-check" (click)="routeOnSave(mJsonData.name,selectedTopology)" label="Save"></button>
+                <button type="submit" pButton icon="fa-check" label="Save"></button>
                 <button type="button" pButton icon="fa-close" (click)="addEditMJsonDialog = false;" label="Cancel"></button>
             </div>
         </footer>
     </form>
 </p-dialog>
-</div>
+
 
 
 

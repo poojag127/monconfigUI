@@ -78,7 +78,6 @@
 
 .mon-ui .ui-datatable .ui-datatable-header{
   text-align: left;
-  height: 31px;
 }
 
 .mon-hometable {
@@ -203,10 +202,10 @@ ul.cav-menu-ul {
     background: #d4e4f1;
 }
 
-/* .mon-ui-top-nav-css{
+.mon-ui-top-nav-css{
     padding: 0;
     width:93.45%;
-} */
+}
 
 
 custom-breadcrumb .ui-breadcrumb {
@@ -223,17 +222,16 @@ custom-breadcrumb .ui-breadcrumb {
     background: transparent;
 }
 
-.breadcrumb-header {
-    /* background: #a7cffc; */
-    /* margin-left: 13px; */
-}
+/*.breadcrumb-header {
+    background: #a7cffc;
+}*/
 
  .monconfigui-rghtpane {
     /*margin-left: 11px;*/
     /* height: 340px; */
     margin-top: 5px;
-    /* overflow-y: auto;
-    overflow-x: hidden; */
+    overflow-y: auto;
+    overflow-x: hidden;
  }
 
 .homefieldSet
@@ -609,13 +607,4 @@ padding:10px;
   /* background: blue; */
   background: #3f51b5;
   /* position: relative; */
-}
-
-/* for home screen main div */
-.main-box{
-  background: rgba(245, 245, 245, 0.6);
-}
-
-[mode=indeterminate][_nghost-c4] .mat-progress-bar-primary[_ngcontent-c4], [mode=query][_nghost-c4] .mat-progress-bar-primary[_ngcontent-c4]{
-    background: #3f51b5;
 }

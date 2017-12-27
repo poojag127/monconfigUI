@@ -1,0 +1,18 @@
+<!--<p>
+  cav-mon-left-side-bar works!
+</p>-->
+
+<md-sidenav #menuNavSide mode="side" opened="true" class="app-sidenav" layout-padding id="sideNav">
+
+    <!-- Drawing Navigation Menu Here. -->   
+    <ul class="cav-menu-ul ndegui_left">
+        <li *ngFor="let ngMenu of navMenuArray">
+            <a class="iconCss config-ui"  pTooltip="{{ngMenu.tooltip}}" tooltipPosition="right">
+                <button md-icon-button>
+                    <i class="icon {{ngMenu.icon}}"></i>
+             </button>
+            </a>
+        </li>
+    </ul>
+
+</md-sidenav>

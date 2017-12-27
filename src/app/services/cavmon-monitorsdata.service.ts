@@ -26,11 +26,6 @@ export class CavmonMonitorsdataService {
      return  this.data;
    }
 
-   /** to get the list of server in the weblogic configuration screen */
-  getServerList(topoName,tierId)
-  {
-     let url = `${URL.GET_SERVER_LIST}`+"?topoName="+`${topoName}`+"&tierId="+`${tierId}`;
-     console.log(url);
-     return this._restApi.getDataByGetReq(url);
-  }
+   
+
 }

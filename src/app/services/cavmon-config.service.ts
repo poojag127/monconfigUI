@@ -14,16 +14,39 @@ import { Observable } from 'rxjs/Observable';
 export class CavmonConfigService {
 
   tierList:any[]=[];
-  data :{};
+
+  todos: Observable<Object>;
 
 
-  public monitorsData$: BehaviorSubject<Object> = new BehaviorSubject<Object>([]);
-  public monitorsDataAsObservable$: Observable<Object> = this.monitorsData$.asObservable();
+  dataStore:{};
+
+  private _todos: BehaviorSubject<Object>;
+  
+  monCompData = new Subject<any>(); // for Monitor Components
+  
+  _monCompData$ = this.monCompData.asObservable();
+  
+  public setMonCompData(data)
+  {
+    console.log("setMonCompData method called")
+    this.monCompData.next(data)
+  }
+
+  // private _trData: TRData;
+
+  // public monitorsData$: BehaviorSubject<Object> = new BehaviorSubject<Object>([]);
+  // public monitorsDataAsObservable$: Observable<Object> = this.monitorsData$.asObservable();
 
   // public monData: BehaviorSubject<Object> = new BehaviorSubject<Object>([]);
 
   constructor(private http: Http,private _restApi: ConfigRestApiService,private store: Store<Object>)
   { 
+    this._todos = <BehaviorSubject<Object>>new BehaviorSubject([]);
+
+    this.todos = this._todos.asObservable();
+
+    this.dataStore = {};
+
     this.tierList = [
     "Cavisson",
     "Default",
@@ -73,16 +96,21 @@ export class CavmonConfigService {
     "-staging-searchrestapi",
     "stress-webstoreui"
   ];
-
-
 }
 
 
  getTierMonitorsData(topoName,mjsonName)
  {
    let url = `${URL.GET_TIER_MONITORS_DATA}`+"?topoName="+`${topoName}`+"&jsonName="+`${mjsonName}`;
-   console.log(url)
-   return this._restApi.getDataByGetReq(url);
+   this._restApi.getDataByGetReq(url)
+      .subscribe(data => {
+        this.store.dispatch({ type: MONITOR_DATA , payload: data });
+        // console.log("this.dataStore--",this.dataStore)
+        // console.log("data--",data)
+        // this.dataStore["data"] = data;
+        // this._todos.next(Object.assign({}, this.dataStore)["data"]);
+      });
+  // return  this._restApi.getDataByGetReq(url);
  }
 
   getTreeTableData() 
@@ -166,7 +194,7 @@ export class CavmonConfigService {
 
      console.log("getMonitorsData method called")
   
-       this.monitorsData$.next(data);
+      //  this.monitorsData$.next(data);
       //  this.monData.next(data);
        
 
@@ -182,7 +210,7 @@ export class CavmonConfigService {
 
   updateMonitorsData(data){
     console.log("updateMonitorsData method called")
-    var monitorsData = this.monitorsData$.getValue()["weblogic"];
+    var monitorsData = this._todos.getValue()["weblogic"];
     console.log("earlier monitorsData",monitorsData)
     let newData = data[Object.keys(data)[0]];
 
@@ -221,6 +249,6 @@ export class CavmonConfigService {
      monitorsData[tierName] = newData;
    }
    console.log("monitorsData---",monitorsData)
-   this.monitorsData$.next(monitorsData);
+   this._todos.next(monitorsData);
   }
 }

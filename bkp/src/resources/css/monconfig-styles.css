@@ -1,0 +1,621 @@
+/*body {
+    font-family: 'Open Sans', sans-serif !important;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    background: url('images/ocean.jpg') center #000000;
+}*/
+
+@charset "UTF-8";
+
+@font-face {
+  font-family: "ndegui-icon";
+  src:url("../../fonts/ndegui-icon.eot");
+  src:url("../../fonts/ndegui-icon.eot?#iefix") format("embedded-opentype"),
+    url("../../fonts/ndegui-icon.woff") format("woff"),
+    url("../../fonts/ndegui-icon.ttf") format("truetype"),
+    url("../../fonts/ndegui-icon.svg#ndegui-icon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "ndegui-icon" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="ndegui-"]:before,
+[class*=" ndegui-"]:before {
+  font-family: "ndegui-icon" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.mon-ui .ui-treetable  .ui-treetable -thead>tr>th {
+    font-weight: 600;
+}
+
+.mon-ui .ui-treetable  .ui-treetable -tfoot>tr>td,
+.mon-ui .ui-treetable  .ui-treetable  table-data>tr>td {
+    height: 26px;
+    text-overflow: ellipsis;
+}
+
+.mon-ui .ui-treetable  thead tr {
+    height: 24px;
+}
+
+
+
+.mon-ui .ui-datatable .ui-datatable-thead>tr>th {
+    font-weight: 600;
+}
+
+.mon-ui .ui-datatable .ui-datatable-tfoot>tr>td,
+.mon-ui .ui-datatable .ui-datatable-data>tr>td {
+    height: 26px;
+    text-overflow: ellipsis;
+}
+
+.mon-ui .ui-datatable thead tr {
+    height: 24px;
+}
+
+.mon-ui .ui-datatable .ui-datatable-header{
+  text-align: left;
+  height: 31px;
+}
+
+.mon-hometable {
+    /*margin-bottom: 10px;*/
+    /* border: ridge; */
+}
+
+
+
+
+.iconCss {
+    border-radius: 0%;
+    display: inline-block;
+    overflow: hidden;
+    padding: 10px 0 0;
+}
+
+ul.cav-menu-ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+
+
+.left-menu .ui-menu {
+  width: 100%;
+  min-width: 150px;
+}
+
+
+.config-ui .mat-button,
+.config-ui .mat-icon-button,
+.config-ui .mat-raised-button {
+    width: 100%;
+    height: 50px;
+    border-radius: 80%;
+    border-bottom: 4px #f6f7f930 solid;
+}
+
+
+.ndegui-application:before {
+  content: "\e000";
+}
+
+.ndegui_left button {
+    background: transparent !important;
+}
+
+.mongui-sidenav {
+    background:  hsl(203, 75%, 32%);
+    margin-right: 15px;
+    min-width: 4%;
+    overflow: initial;
+    top: 30px;
+    min-height: 620px;
+}
+
+.mongui-sidenav .mat-sidenav {
+    top: 30px;
+    background-color: hsl(203, 75%, 32%) !important;
+    height: 620px;
+}
+
+.ndeicon
+ {
+    margin: 10px;
+    overflow: hidden;
+    font-size: 2.1em;
+    color:#fff;
+}
+
+.ndegui-application:before {
+  content: "\e000";
+}
+.ndegui-group:before {
+  content: "\e001";
+}
+.ndegui-home1:before {
+  content: "\e002";
+}
+.ndegui-instance:before {
+  content: "\e003";
+}
+.ndegui-instrmentation-profile:before {
+  content: "\e004";
+}
+.ndegui-nd-agent:before {
+  content: "\e005";
+}
+.ndegui-profile:before {
+  content: "\e006";
+}
+.ndegui-server:before {
+  content: "\e007";
+}
+.ndegui-tier:before {
+  content: "\e008";
+}
+.ndegui-topology:before {
+  content: "\e009";
+}
+.ndegui-auto-discover:before {
+  content: "\e00b";
+}
+.ndegui-audit-logs:before {
+  content: "\e00c";
+}
+.ndegui-data-collector:before {
+  content: "\e00a";
+}
+.ndegui-topology-1:before {
+  content: "\e00d";
+}
+
+
+
+
+.top-nav-bar {
+    font-size: 12px;
+    margin: 1px -15px;
+    margin-bottom: 8px;
+    background: #d4e4f1;
+}
+
+/* .mon-ui-top-nav-css{
+    padding: 0;
+    width:93.45%;
+} */
+
+
+custom-breadcrumb .ui-breadcrumb {
+    border-radius: 0px;
+    border: 0;
+    padding: 0.5em;
+}
+
+.top-nav-bar .ui-breadcrumb ul li.fa {
+    margin: 0 !important;
+}
+
+.top-nav-bar .ui-widget-header {
+    background: transparent;
+}
+
+.breadcrumb-header {
+    /* background: #a7cffc; */
+    /* margin-left: 13px; */
+}
+
+ .monconfigui-rghtpane {
+    /*margin-left: 11px;*/
+    /* height: 340px; */
+    margin-top: 5px;
+    /* overflow-y: auto;
+    overflow-x: hidden; */
+ }
+
+.homefieldSet
+{
+margin: 5px 0px;
+
+}
+
+.homedropdown
+{
+  padding: .25em 2em .25em .25em;
+   width: 224px;
+}
+
+.configui-float {
+    float: right;
+    margin-top: -3px;
+}
+
+
+
+
+.mon-home-table-hdr
+{
+  float: left;
+}
+
+.hyperlink {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/** Configuration home screen css **/
+#top-div {
+    background: rgba(255, 255, 255, 0.65);
+    box-shadow: 0 0 6px 2px #565656;
+    border-radius: 4px;
+    overflow-x: scroll;
+}
+    
+    
+
+    /*** tree table css****/
+
+    /* It is for overriding it sdefault css of treetable component on selectimg the checkbox coloring the all its child nodes */
+ .ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight 
+ {
+    border: 1px solid #156090;
+    background: white;
+    color:black;
+ }
+
+
+  .mon-ui .ui-treetable  .ui-treetable -thead>tr>th {
+    font-weight: 600;
+  }
+
+.mon-ui .ui-treetable  .ui-treetable -tfoot>tr>td,
+.mon-ui .ui-treetable  .ui-treetable  table-data>tr>td {
+    height: 26px;
+    text-overflow: ellipsis;
+}
+
+.mon-ui .ui-treetable  thead tr {
+    height: 24px;
+}
+
+
+/*.mon-ui .ui-treetable .ui-treetable-thead > tr > th*/
+.mon-ui .ui-treetable th.ui-state-default 
+ {
+    background: #417ebf;
+    background: -moz-linear-gradient(top, #417ebf 0%, #3b77b6 100%);
+    background: -webkit-linear-gradient(top, #417ebf 0%, #3b77b6 100%);
+    background: linear-gradient(to bottom, #417ebf 0%, #3b77b6 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#417ebf', endColorstr='#3b77b6',GradientType=0 );
+    color: white;
+    /*height: 90px;*/
+    padding: 12em 0 0 ;
+    width: 43px;
+}
+
+
+
+
+/* for icons in left pane */
+.fa fa-dropbox:before {
+  content: "\F16B";
+}
+
+.fa-history:before {
+  content: "\F1DA";
+}
+
+.fa fa-newspaper-o reports:before {
+  content: "\F16B";
+}
+
+.fa-download:before {
+  content: "\F019";
+}
+
+.fa-file-excel-o:before {
+  content: "\F1C3";
+}
+
+.fa-file:before {
+  content: "\F15B";
+}
+
+ndegui-audit-logs:before {
+  content: "\E00C";
+}
+
+
+/*******Scroll bar******/
+.monui-scrollbar
+{
+  height: 480px;
+}
+
+
+::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  border-radius: 10px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+  width: 5px;
+  height: 5px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+        /*border-radius: 10px;*/
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-image: -webkit-gradient(linear, left bottom,left top, color-stop(0.44, rgb(40,40,40)), color-stop(0.72, rgb(40,40,40)), color-stop(0.86, rgb(40,40,40)));
+}
+
+ 
+.ui-treetable table {
+    border-collapse: collapse;
+    /* width: auto !important; */
+    /*table-layout: inherit;*/
+}
+
+.ui-treetable th span.ui-column-title {
+   transform: rotate(90deg);
+   transform-origin: left top 0;
+
+}
+
+.monitorColumn
+{
+  /*width:20em !important;*/
+}
+
+.mon-hometable .ui-datatable th.ui-state-default{
+  background: rgba(65, 126, 191, 0.9);
+  color:#fff;
+}
+
+.mon-hometable .ui-datatable .ui-datatable-thead>tr>th{
+  font-weight: 100;
+}
+
+
+.ui-treetable td.ui-treetable-child-table-container 
+{
+ column-span: none;
+}
+
+.ui-treetable tbody .ui-treetable-row td
+{
+  column-span: 0;
+}
+
+.toolbarCss{
+  margin-bottom: 5px;
+  background:#183D65;
+  color:white;
+  border:none;
+  height:40px;
+  padding-top:8px;
+} 
+
+.mon-ui .ui-treetable  th span.ui-column-title
+{
+   transform: rotate(-90deg); 
+   display: block;
+   text-align: left;
+   /*padding: 12em 0 0;*/
+}
+
+.monitorHeader
+{
+  width:176px;
+  transform: rotate(0deg);
+}
+
+.mon-ui .ui-treetable  th:first-child  span.ui-column-title  
+{
+    transform: rotate(0deg); 
+    display: block;
+    /* width: 176px !important; */
+    text-align: center;
+    padding-bottom: 18px;
+    font-size: 17px;
+}
+
+mon-ui .ui-treetable th.ui-state-default {
+    background: #417ebf;
+    background: linear-gradient(to bottom, #417ebf 0%, #3b77b6 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#417ebf', endColorstr='#3b77b6',GradientType=0 );
+    color: white;
+    /* height: 90px; */
+    padding: 12em 0 0;
+   
+}
+
+
+/******Weblocic configur3e screen ****/
+
+.tabsincontent
+{
+  /* background: rgba(255, 255, 255, 0.85); */
+  background: rgb(158, 201, 230);
+}
+
+.tabsincontent .header
+{
+    color: #fff;
+    background: #183D65;
+    height:29px;
+    padding-top: 9px;
+}
+
+.hideheader .ui-panel.ui-widget .ui-panel-titlebar.ui-corner-all {
+    opacity: 0;
+    margin-bottom: -42px;
+}
+
+.md-card-css .mat-card {
+    padding: 0px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    height: 225px;
+}
+
+.header-Name
+{
+  color: white;
+  font-size: 12px;
+  padding: 9px;
+  float: left; 
+  font-weight: 500;
+}
+
+.webLogicConfigureCss
+{
+background:white;
+}
+
+.weblogicLeftPaneCss
+{
+padding:10px;  
+}
+
+.configureLeftPaneCss:hover
+{
+  text-decoration: underline;
+}
+
+/* for fieldset border in the weblogic configuration screen */
+.ui-fieldset.ui-widget.ui-widget-content.ui-corner-all.ui-fieldset-toggleable {
+    border: 1px solid #D5D5D5;
+}
+
+
+/* .ui-widget-header .ui-state-default, .ui-widget-content .ui-state-default, .ui-state-default {
+    background: #f7f7f7;
+} */
+
+/* for rotating the up-arrow icon in the tree table */
+.fa-rotate-45 {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.monConfigRow{
+  width:18.333%
+}
+
+.pull-right{
+  padding-right: 5px;
+}
+
+/* css for mbean type for weblogic monitors */
+.mbeanDrpdown{
+  width: 22.64%
+}
+
+/* css for fieldset of all weblogic stats except transaction stats */
+.weblogicStats{
+  font-size: 13px;
+  margin-top: 34px;
+}
+
+/* css for fieldset of weblogic transaction stats */
+.weblogicTransStats{
+  font-size: 13px;
+  margin-top: 34px;
+  margin-bottom: 44px;
+}
+
+/* Css  for Growl info message */
+.ui-growl-item-container.ui-state-highlight.ui-growl-message-info {
+  background-color: #2196f3;
+  border-color :#2196f3;
+}
+
+.ui-growl-item-container.ui-state-highlight.ui-growl-message-error {
+  background-color: #f44336;
+  border-color :#f44336;
+  color: #fff;
+}
+
+.ui-growl-item-container.ui-state-highlight.ui-growl-message-warn {
+  background-color: #FFB300;
+  border-color :#FFB300;
+}
+
+.ui-growl-item-container.ui-state-highlight.ui-growl-message-success {
+  /* background-color: #4CAF50;
+  border-color :#4CAF50; */
+  background-color: #56dc5c;
+  border-color :#56dc5c;
+  color: #fff;
+}
+
+/* for growl close icon */
+.ui-growl-icon-close{
+  color:#fff;
+}
+
+/* for growl check icon */
+.ui-growl-image
+{
+  color:#fff;
+}
+.configui-progressbar{
+  height: 1px;
+}
+
+/* for edit and delete icons of configuration datatable */
+.appIcon-css{
+  float: right;
+}
+
+.conf-ui .ui-datatable th.ui-state-default{
+  background: rgba(65, 126, 191, 0.9);
+  color :#fff;
+}
+
+[mode=indeterminate][_nghost-c5] .mat-progress-bar-secondary[_ngcontent-c5], [mode=query][_nghost-c5] .mat-progress-bar-secondary[_ngcontent-c5]{
+  /* background: blue; */
+  background: #3f51b5;
+  /* position: relative; */
+}
+
+/* for home screen main div */
+.main-box{
+  background: rgba(245, 245, 245, 0.6);
+}
+
+[mode=indeterminate][_nghost-c4] .mat-progress-bar-primary[_ngcontent-c4], [mode=query][_nghost-c4] .mat-progress-bar-primary[_ngcontent-c4]{
+    background: #3f51b5;
+}

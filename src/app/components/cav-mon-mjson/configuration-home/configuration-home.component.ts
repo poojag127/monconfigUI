@@ -6,6 +6,9 @@ import * as _ from "lodash";
 import { ROUTING_PATH } from '../../../constants/monconfig-url-constant';
 // import {ProfileData} from '../../../containers/profile-data';
 import {MJsonData} from '../../../containers/mjson-data';
+import { Subscription } from 'rxjs/Subscription';
+import { Store } from '@ngrx/store';
+import { SELECTED_MON } from '../../../reducers/monitor-comp-reducer';
 
 @Component({
   selector: 'app-configuration-home',
@@ -15,6 +18,9 @@ import {MJsonData} from '../../../containers/mjson-data';
 
 export class ConfigurationHomeComponent implements OnInit 
 {
+
+  subscription: Subscription;
+
   compData:TreeNode[];
 
   selectedMonitor:TreeNode[];
@@ -38,12 +44,10 @@ export class ConfigurationHomeComponent implements OnInit
 
   ROUTING_PATH = ROUTING_PATH;
 
-  tierId : number;
-
   constructor(private cavMonConfigService:CavmonConfigService,
-             private router:Router,
-             private route: ActivatedRoute,
-            
+              private router:Router,
+              private route: ActivatedRoute,
+              private store: Store<any>         
              )
   {
 
@@ -57,14 +61,44 @@ export class ConfigurationHomeComponent implements OnInit
       this.mjsonName = params['mjsonName']
     });
     
-   /*** getting data of tierlist,treetable data ****/
-   this.cavMonConfigService.getTierMonitorsData(this.topoName,this.mjsonName).subscribe(data =>
-  {
-    this.createHeadersList(data.tierList);
-    this.compData = data.treeTableData.data;
-  })
-   
- 
+  //  /*** getting data of tierlist,treetable data ****/
+  //  this.cavMonConfigService.getTierMonitorsData(this.topoName,this.mjsonName).subscribe(data =>
+  //  {
+  //   this.createHeadersList(data.tierList);
+  //   this.compData = data.treeTableData.data;
+  //  })
+
+  this.cavMonConfigService.getTierMonitorsData(this.topoName,this.mjsonName)
+  
+  // this.cavMonConfigService.todos.subscribe(data => {
+  //       console.log("data---",data)
+  //     if(data.hasOwnProperty("tierList"))
+  //     {
+  //     this.createHeadersList(data["tierList"]);
+  //     this.compData = data["treeTableData"]["data"];
+  //     }
+  // });
+
+  // this.createHeadersList(data["tierList"]);
+  // this.compData = data["treeTableData"]["data"];
+
+  //  this.cavMonConfigService.monitorsDataAsObservable$.subscribe((val)=> {
+  //    console.log("val--",val)
+  //     this.createHeadersList(val["tierList"]);
+  //     this.compData = val["treeTableData"]["data"];
+  // })
+
+
+
+   this.subscription = this.store.select("monitorData")
+            .subscribe(data => {
+        console.log("data--",data)
+        if(data != null)
+        {
+         this.createHeadersList(data["tierList"]);
+         this.compData = data["treeTableData"]["data"];
+        }
+      })
 
 
 /*** This piece of code is for running project without server ****/
@@ -93,10 +127,15 @@ export class ConfigurationHomeComponent implements OnInit
   /***Function used to create header list array for treetable component *****/
   createHeadersList(tierList)
   {
+    if(tierList != null)
+    {
+    console.log("tierList--",tierList)
+
     let that = this;
-     tierList.forEach((function(val){
-      that.cols.push({field:val.id ,header :val.name})
+    tierList.forEach((function(val){
+      that.cols.push({field:val.name ,header :val.name})
     }));
+    }
   }
 
  
@@ -177,13 +216,23 @@ export class ConfigurationHomeComponent implements OnInit
    console.log("onCheckBoxChange method called--",event)
  }
 
-/** for advance settings */
-  advanceSettings(monName,tierId)
+  /*** for advance settings ***/
+  advanceSettings(monData,tierfield)
   {
-    if(monName.startsWith('Weblogic'))
-      this.router.navigate(['../../../weblogicSettings',this.mjsonName,this.topoName,monName,tierId],{ relativeTo: this.route });
+    console.log("monName",monData)
+    if(monData["monitor"].startsWith('Weblogic'))
+    {
+      this.router.navigate(['../../../weblogicSettings',this.mjsonName,this.topoName,monData["monitor"],tierfield],{ relativeTo: this.route });
+    }
     else
-      this.router.navigate(['../../../advanceSettings',this.mjsonName,this.topoName,monName,tierId],{ relativeTo: this.route });
+    {
+      console.log("monData--",monData)
+      console.log("advanceSettings mthod called--",monData['compArgJson'])
+      let arrData = monData['compArgJson'];
+      this.cavMonConfigService.setMonCompData(arrData);
+      this.store.dispatch({type:SELECTED_MON ,payload:arrData})
+      this.router.navigate(['../../../advanceSettings',this.mjsonName,this.topoName,monData['monitor'],tierfield],{ relativeTo: this.route });
+    }
   }
 
   onTreeNodeCheckBoxChange(rowData)

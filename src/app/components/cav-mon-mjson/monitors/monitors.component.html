@@ -1,3 +1,23 @@
-<p>
+<!--<p>
   monitors works!
-</p>
+</p>-->
+ 
+
+     <span  *ngFor="let item of compArgs; let i = index">
+
+           <label *ngIf="item.type == 'TextField'" >{{item.label}}</label>
+           <input type="text"  *ngIf="item.type == 'TextField'"  [(ngModel)]="item.defaultValue" class="spanClass2" style="width:25%" title="{{item.modal}}"/>
+           <!--<p-textbox *ngIf="item.type == 'textbox'" [(ngModel)]="item.modal" class="spanClass2" ></p-textbox>-->
+           <p-checkbox id={{item.id}} class="spanClass2" [(ngModel)]="item.defaultValue" label="{{item.label}}" binary="true" *ngIf="item.type == 'checkbox'"></p-checkbox>
+           <!--<input type="checkbox" id={{item.id}} value={{item.defaultValue}} class="spanClass2" *ngIf="item.type == 'checkbox'"/>-->
+           <p-spinner [min]="0" [max]="100" size="4"  [(ngModel)]="item.defaultValue" (keypress)="eventHandler($event)" *ngIf="item.type == 'spinner'" class="spanClass2"></p-spinner>
+           <span *ngIf="item.type == 'listbox'" class="body1Div"><p-dropdown [autoWidth]="false" class="spanClass2" [options]="item.options" [(ngModel)]="item.modal" (click)="showSelectedCmdGUI()"></p-dropdown></span>
+        <span *ngIf="item.type == 'radiobutton'">
+             <span *ngFor="let item1 of item.components">
+               <p-radioButton  name="item.groupName" [attr.id]="item1.id" [label] ="item1.item" [value] ="item1.arg" [(ngModel)]="item.defaultValue"></p-radioButton>
+             </span>
+        </span>
+    </span>
+
+
+
