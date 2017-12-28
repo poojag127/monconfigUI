@@ -26,6 +26,13 @@ export class CavmonMonitorsdataService {
      return  this.data;
    }
 
+  getServerList(topoName,tierId)
+  {
+     let url = `${URL.GET_SERVER_LIST}`+"?topoName="+`${topoName}`+"&tierId="+`${tierId}`;
+     console.log(url);
+     return this._restApi.getDataByGetReq(url);
+  }
+
    
 
 }

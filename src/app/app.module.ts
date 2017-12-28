@@ -16,6 +16,7 @@ import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 /**Import materiapl module */
 import { MaterialModule } from '@angular/material';
 
+
 /**Reducer */
 import { MonitorReducer } from './reducers/monitor-reducer';
 import { MonitorCompReducer } from './reducers/monitor-comp-reducer';

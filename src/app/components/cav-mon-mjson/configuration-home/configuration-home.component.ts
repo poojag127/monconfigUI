@@ -44,6 +44,8 @@ export class ConfigurationHomeComponent implements OnInit
 
   ROUTING_PATH = ROUTING_PATH;
 
+  tierId:number;
+
   constructor(private cavMonConfigService:CavmonConfigService,
               private router:Router,
               private route: ActivatedRoute,
@@ -133,7 +135,7 @@ export class ConfigurationHomeComponent implements OnInit
 
     let that = this;
     tierList.forEach((function(val){
-      that.cols.push({field:val.name ,header :val.name})
+      that.cols.push({field:val.id ,header :val.name})
     }));
     }
   }
@@ -217,21 +219,29 @@ export class ConfigurationHomeComponent implements OnInit
  }
 
   /*** for advance settings ***/
-  advanceSettings(monData,tierfield)
+  advanceSettings(monData,tierId)
   {
-    console.log("monName",monData)
+
+  //   {
+  //   if(monName.startsWith('Weblogic'))
+  //     this.router.navigate(['../../../weblogicSettings',this.mjsonName,this.topoName,monName,tierId],{ relativeTo: this.route });
+  //   else
+  //     this.router.navigate(['../../../advanceSettings',this.mjsonName,this.topoName,monName,tierId],{ relativeTo: this.route });
+  // }
+    let monName = monData["monitor"];
+    console.log("monName",monName)
     if(monData["monitor"].startsWith('Weblogic'))
     {
-      this.router.navigate(['../../../weblogicSettings',this.mjsonName,this.topoName,monData["monitor"],tierfield],{ relativeTo: this.route });
+      this.router.navigate(['../../../weblogicSettings',this.mjsonName,this.topoName,monName,tierId],{ relativeTo: this.route });
     }
     else
     {
-      console.log("monData--",monData)
+      console.log("monData--",monName)
       console.log("advanceSettings mthod called--",monData['compArgJson'])
       let arrData = monData['compArgJson'];
       this.cavMonConfigService.setMonCompData(arrData);
       this.store.dispatch({type:SELECTED_MON ,payload:arrData})
-      this.router.navigate(['../../../advanceSettings',this.mjsonName,this.topoName,monData['monitor'],tierfield],{ relativeTo: this.route });
+      this.router.navigate(['../../../advanceSettings',this.mjsonName,this.topoName,monName,tierId],{ relativeTo: this.route });
     }
   }
 

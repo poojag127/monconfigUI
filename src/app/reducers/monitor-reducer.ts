@@ -25,8 +25,8 @@ const DEFAULT_DATA = {
 
  export function MonitorReducer(state:{}, action: Action) {
    console.log("reducer called--",action)
-    switch (action.type) {
-        case MONITOR_DATA:
+   switch (action.type) {
+     case MONITOR_DATA:
             console.log("action.payload", action.payload);
             console.log("DEFAULT_DATA",DEFAULT_DATA)
             var newState = Object.assign({}, state);

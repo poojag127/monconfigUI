@@ -46,6 +46,12 @@ export class CavMonBreadcrumbComponent implements OnInit {
          this.items.push({ label: BREADCRUMB.LABEL.CONFIGURATION , routerLink: [`${BREADCRUMB.URL.CONFIGURATION_HOME}/${mjsonName}/${topoName}`]});
          this.items.push({ label: BREADCRUMB.LABEL.WEBLOGIC_CONFIGURATION});
         }
+        else if(url.startsWith(BREADCRUMB.URL.ADVANCE_CONFIGURATION))
+        {
+           topoName = arrURL[arrURL.length - 3];
+           mjsonName = arrURL[arrURL.length - 4];
+           this.items.push({ label: BREADCRUMB.LABEL.CONFIGURATION , routerLink: [`${BREADCRUMB.URL.CONFIGURATION_HOME}/${mjsonName}/${topoName}`]});
+        }
       }
      this.home = {icon: 'fa fa-home'};
   });

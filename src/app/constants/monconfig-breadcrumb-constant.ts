@@ -5,6 +5,7 @@ export const LABEL = {
     CONFIGURATION:'Configuration',
     CONFIGURATION_HOME:'Configuration',
     WEBLOGIC_CONFIGURATION:'WeblogicConfigure',
+    ADVANCE_CONFIGURATION:'advanceSettings'
 } 
 
 export const URL = {
@@ -12,5 +13,5 @@ export const URL = {
     CONFIGURATION: `${ROUTING_PATH}/mjson`,
     CONFIGURATION_HOME: `${ROUTING_PATH}/mjson/configuration`,
     WEBLOGIC_CONFIGURATION:`${ROUTING_PATH}/mjson/weblogicSettings`,
-    
+    ADVANCE_CONFIGURATION:`${ROUTING_PATH}/mjson/advanceSettings`
 };  
