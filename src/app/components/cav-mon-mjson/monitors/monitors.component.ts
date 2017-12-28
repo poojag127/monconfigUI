@@ -35,19 +35,21 @@ export class MonitorsComponent implements OnInit {
       this.monName = params['monName'];
      
     });
-     
-     let that = this;
-     this.subscription = this.store.select("selectedMon")
+    let that = this;
+    this.subscription = this.store.select("selectedMon")
             .subscribe(data => {
-        console.log("data--",data)
-        if(data != null)
-        {
-          this.compArgs = data["data"];
-        }
-      })
+      console.log("data--",data)
+      if(data != null)
+      {
+        this.compArgs = data["data"];
+      }
+    })
+  }
 
 
+  saveData() {
 
+    console.log("function calleed",this.compArgs)
   }
 
 
