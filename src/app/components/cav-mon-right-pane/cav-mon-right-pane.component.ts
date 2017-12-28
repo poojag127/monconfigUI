@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Output ,EventEmitter} from '@angular/core';
 import { SelectItem } from 'primeng/primeng';
 import { ConfigUiUtility } from '../../utility/monconfig-utility';
 // import {ProfileData} from '../../containers/profile-data';
@@ -35,6 +35,13 @@ import { ROUTING_PATH } from '../../constants/monconfig-url-constant';
 
   mJsonData:MJsonData;
 
+  /** Flag to show and hide search filter in the datatable */
+   isShowFilter:boolean;
+   
+  /**This is used to emit "isShowFilter" value */
+     @Output()
+     showFilterEvent = new EventEmitter<boolean>();  
+
   constructor(private cavMonHomeService :CavmonHomeService,private router: Router) 
   {
 
@@ -46,7 +53,9 @@ import { ROUTING_PATH } from '../../constants/monconfig-url-constant';
     this.cavMonHomeService.getTopologyList()
       .subscribe(data => {
                  this.topologyList = ConfigUiUtility.createDropdown(data);
-                 })
+                 });
+    
+    this.isShowFilter = false; //setting default value of show filter to false
   }
 
   topoChange(val)
@@ -76,5 +85,21 @@ import { ROUTING_PATH } from '../../constants/monconfig-url-constant';
   {
     console.log(jsonName)
     this.router.navigate([ROUTING_PATH + '/mjson/configuration',jsonName,topoName]);
+  }
+
+   /**On saving the new profile entry */
+   routeOnSave(mjsonname,topoName)
+   {
+     console.log("routeOnSave method is called ",mjsonname,topoName)
+     this.router.navigate([ROUTING_PATH + '/mjson/configuration',mjsonname,topoName])
+   }
+
+
+  /**Method for the show filter in the datatable */ 
+  showFilter()
+  {
+    this.isShowFilter = !this.isShowFilter;
+    this.showFilterEvent.emit(this.isShowFilter);
+    console.log("CavMonRightPaneComponent", "showFilter", "isShowFilter = ", this.isShowFilter);
   }
 }

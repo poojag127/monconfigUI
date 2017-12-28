@@ -2,14 +2,16 @@
   monitors works!
 </p>-->
  
+ <div class ="monitorPanel">
 <form  #form="ngForm" ngNativeValidate>
- <p-toolbar styleClass="toolbarCss">
-   <b style="margin: 10px">Tier MonName</b>
-    <div style="float: right">
-    <button pButton type="button" label="Reset" icon="fa fa-refresh"></button>
-    <button pButton  (click)="saveData()" type="button" label="Save" icon="fa-check" ></button>
-    </div>
- </p-toolbar>
+    <p-panel class="monitorCss" >
+        <p-header>
+                Monitor Argument
+                <div style="float: right">
+                <button pButton type="button" icon="fa fa-refresh" label="reset"></button>
+                <button pButton type="button" icon="fa-check" label="save" ></button>
+                </div>
+        </p-header>
 
      <div  *ngFor="let item of compArgs; let i = index">
        <div class = "ui-g-2">
@@ -31,7 +33,10 @@
         </span>
 
         </div> 
+    </p-panel>
 </form>
+ </div>
+
 
 
 

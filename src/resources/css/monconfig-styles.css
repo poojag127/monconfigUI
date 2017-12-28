@@ -78,6 +78,7 @@
 
 .mon-ui .ui-datatable .ui-datatable-header{
   text-align: left;
+  height: 31px;
 }
 
 .mon-hometable {
@@ -201,11 +202,11 @@ ul.cav-menu-ul {
     margin-bottom: 8px;
     background: #d4e4f1;
 }
-
+/* 
 .mon-ui-top-nav-css{
     padding: 0;
     width:93.45%;
-}
+} */
 
 
 custom-breadcrumb .ui-breadcrumb {
@@ -230,8 +231,8 @@ custom-breadcrumb .ui-breadcrumb {
     /*margin-left: 11px;*/
     /* height: 340px; */
     margin-top: 5px;
-    overflow-y: auto;
-    overflow-x: hidden;
+    /* overflow-y: auto;
+    overflow-x: hidden; */
  }
 
 .homefieldSet
@@ -270,6 +271,8 @@ margin: 5px 0px;
     box-shadow: 0 0 6px 2px #565656;
     border-radius: 4px;
     overflow-x: scroll;
+    overflow-y: auto;
+    max-height: 529px;
 }
     
     
@@ -589,9 +592,6 @@ padding:10px;
 {
   color:#fff;
 }
-.configui-progressbar{
-  height: 1px;
-}
 
 /* for edit and delete icons of configuration datatable */
 .appIcon-css{
@@ -603,8 +603,39 @@ padding:10px;
   color :#fff;
 }
 
+/* Css for progress bar */
 [mode=indeterminate][_nghost-c5] .mat-progress-bar-secondary[_ngcontent-c5], [mode=query][_nghost-c5] .mat-progress-bar-secondary[_ngcontent-c5]{
   /* background: blue; */
   background: #3f51b5;
   /* position: relative; */
+}
+
+
+/* css for height of the progress bar */
+.configui-progressbar{
+  height: 1px;
+}
+
+
+/* Css for progress bar  */
+[mode=indeterminate][_nghost-c4] .mat-progress-bar-primary[_ngcontent-c4], [mode=query][_nghost-c4] .mat-progress-bar-primary[_ngcontent-c4]{
+  background: #3f51b5;
+}
+
+/* for home screen main div */
+.main-box{
+   background: rgba(245, 245, 245, 0.6);
+}
+
+/* Css for panel header of the monitor configuration screen */
+.monitorCss .ui-panel.ui-widget .ui-panel-titlebar.ui-corner-all{
+  /* display: none; */
+  background: #183D65;
+  color: #fff;
+}
+
+/* Css for panel of the monitor configuration screen */
+.monitorPanel{
+  box-shadow:0 0 6px 2px #565656;
+  border-radius:4px;
 }
