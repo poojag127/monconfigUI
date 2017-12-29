@@ -51,7 +51,8 @@ export class ConfigurationHomeComponent implements OnInit
   constructor(private cavMonConfigService:CavmonConfigService,
               private router:Router,
               private route: ActivatedRoute,
-              private store: Store<any>         
+              private store: Store<any>
+
              )
   {
 
@@ -93,8 +94,7 @@ export class ConfigurationHomeComponent implements OnInit
   //     this.compData = val["treeTableData"]["data"];
   // })
 
-
-
+ 
    this.subscription = this.store.select("monitorData")
             .subscribe(data => {
         console.log("data--",data)
@@ -174,7 +174,6 @@ export class ConfigurationHomeComponent implements OnInit
        })
        this.compData = data;
       })
-
   }
 
   onChangeCheckbox()
@@ -189,24 +188,17 @@ export class ConfigurationHomeComponent implements OnInit
     this.dynamicKey.push(obj);
   }
 
-//   nodeSelect(event)
-//   {
-//    console.log("event--",event)
-//    let monitorName = event.node.data.monitor;
-//    console.log(monitorName);
-//    let that = this;
-//    for(let each in event.node.data)
-//    {
-//      console.log("each--",each)
-//      if(each != "monitor")
-//         event.node.data[each] = true;
-//    }
-//   console.log("dynamickey-",this.dynamicKey)
-//  }
+  loadNode(event)
+  {
+    if(event.node) {
+      //in a real application, make a call to a remote url to load children of the current node and add the new nodes as children
+      if(event.node.children.length == 0)
+         this.cavMonConfigService.getChildNodes(event.node.data.monitor,this.mjsonName,this.topoName);
+    }
+  }
 
  nodeUnselect(event)
  {
-   console.log("event--",event)
    let monitorName = event.node.data.monitor;
    let that = this;
    for(let each in event.node.data)

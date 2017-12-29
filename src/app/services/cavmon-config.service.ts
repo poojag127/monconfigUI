@@ -208,47 +208,21 @@ export class CavmonConfigService {
     //   });
   }
 
-  updateMonitorsData(data){
-    console.log("updateMonitorsData method called")
-    var monitorsData = this._todos.getValue()["weblogic"];
-    console.log("earlier monitorsData",monitorsData)
-    let newData = data[Object.keys(data)[0]];
+  /** This method sends request to server for getting  *****/
 
-    let tierName = Object.keys(data)[0];
-    let tierBasedData = [];
-      console.log("tierName--",data)
-    console.log("tierName--",tierName)
-    console.log("monitorsData.hasOwnProperty(tierName)",monitorsData.hasOwnProperty(tierName))
-
-    /****If that tier is configured any monitor */
-    if(monitorsData.hasOwnProperty(tierName))
-    {
-     tierBasedData = monitorsData[Object.keys(data)[0]];
-     console.log("newData--",newData.length)
-     var i,j;
-
-     for(i=0;i<newData.length;i++)
-     {
-      let num2:number = tierBasedData.length;
-      for(j=0;j<=num2;j++)
-      {
-       if(j == num2)
-        {
-         tierBasedData.push(newData[i])
-        }
-       else if(newData[i].monName == tierBasedData[j].monName)
-        {
-         tierBasedData[j] = newData[i];
-         break;
-        }
-      } 
-    }
-   }
-   else
-   {
-     monitorsData[tierName] = newData;
-   }
-   console.log("monitorsData---",monitorsData)
-   this._todos.next(monitorsData);
+  getChildNodes(categoryName,mjsonName,topoName)
+  {
+    console.log("getChildNodes method called--",event)
+    let url = `${URL.GET_CHILD_NODES}`+"?categoryName="+`${categoryName}`+"&jsonName="+`${mjsonName}`+"&topoName="+`${topoName}`;
+    this._restApi.getDataByGetReq(url)
+      .subscribe(data => {
+        let obj = {'data':data,'categoryName':categoryName}
+        console.log("data--",data)
+        this.store.dispatch({type:"ADD_MONITOR_DATA" , payload: obj });
+      });
   }
+  
 }
+
+
+
