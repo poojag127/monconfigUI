@@ -646,3 +646,7 @@ padding:10px;
   height: 117px !important;
 
 }
+.monConfigPanel ,.ui-panel.ui-widget .ui-panel-titlebar.ui-corner-all{
+  background: #183D65;
+  color: #fff;
+}
