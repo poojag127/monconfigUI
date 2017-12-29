@@ -4,9 +4,14 @@
  
 <div class ="monitorPanel">
 <form  (ngSubmit)="addData()" #form="ngForm" ngNativeValidate>
-    <p-panel class="monitorCss" >
+    <p-panel class="monitorCss">
         <p-header>
-                Configure Monitor :{{monName}}   {{"    "}} Tier :{{tierName}}
+              <span>
+                  Configure Monitor :{{monName}} 
+              </span> 
+              <span style="margin-left:2%;">
+                   Tier :{{tierName}}
+              </span> 
                 <!--<div style="float: right">
                 <button pButton type="button" icon="fa fa-refresh" label="reset"></button>
                 <button pButton type="button" icon="fa-check" label="save" ></button>
@@ -24,11 +29,10 @@
 
 
      <div  *ngFor="let item of compArgs; let i = index">
-       <div class = "ui-g-2">
-           <label *ngIf="item.type == 'TextField'" >{{item.label}}</label>
-       </div>
-       <div class="ui-g-2">
-           <input name={{item.label}} type="text"  *ngIf="item.type == 'TextField'"  [(ngModel)]="item.value" class="spanClass2"  title="{{item.modal}}"/>
+       
+       <div class = "ui-g-3">
+           <label *ngIf="item.type == 'TextField'" style="margin-right: 2%;">{{item.label}}</label>
+           <input name={{item.label}} type="text"  *ngIf="item.type == 'TextField'"  [(ngModel)]="item.value" class="spanClass2"  title="{{item.modal}}" required ng-model/>
        </div>
            <!--<p-textbox *ngIf="item.type == 'textbox'" [(ngModel)]="item.modal" class="spanClass2" ></p-textbox>-->
            <p-checkbox id={{item.id}} class="spanClass2" [(ngModel)]="item.value" label="{{item.label}}" binary="true" *ngIf="item.type == 'checkbox'"></p-checkbox>
