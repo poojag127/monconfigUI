@@ -20,7 +20,7 @@
        <template  let-col let-data="rowData" pTemplate >
        <p-checkbox   [(ngModel)]="data.data['monitorState']" (click)="onTreeNodeCheckBoxChange(data)"   binary="false"></p-checkbox>
        <!--<span>{{data.data[col.field]}}</span>-->
-       <a  style="font-size: 13px ; margin-right:30%; cursor: pointer;" (click)="advanceSettings(data.data,-1)" >{{data.data[col.field]}}</a>
+       <a  style="font-size: 13px ; margin-right:30%; cursor: pointer;" (click)="advanceSettings(data.data,-1,'All Tier')" >{{data.data[col.field]}}</a>
        </template>
       </p-column>
 
@@ -34,7 +34,7 @@
       <template   let-data="rowData" pTemplate >
         <!--<p-checkbox  *ngIf="col.field != 'monitor'"  *ngFor="let key of dynamicKey"  [(ngModel)]="key[data.data.monitor + col.field]"   binary="false"></p-checkbox>-->
        <p-checkbox   [(ngModel)]="data.data[col.field]"  (click)="onCheckBoxChange()"   binary="false"></p-checkbox>
-       <a *ngIf="col.field != 'monitor'"> <i class="fa fa-long-arrow-up fa-rotate-45" (click)="advanceSettings(data.data,col.field)" aria-hidden="true" title="Advance settings"></i> </a>
+       <a *ngIf="col.field != 'monitor'"> <i class="fa fa-long-arrow-up fa-rotate-45" (click)="advanceSettings(data.data,col.field,col.header)" aria-hidden="true" title="Advance settings"></i> </a>
         <!-- <span [style]="{'width':'2%','padding':'1px'}" *ngIf="col.field == 'monitor'" >{{data.data[col.field]}}</span> -->
       </template>
     </p-column>

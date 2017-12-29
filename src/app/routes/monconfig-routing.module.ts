@@ -46,8 +46,8 @@ const routes: Routes = [
             { path: 'mjson', component: ConfigurationMonitorsRoutingComponent , children  :[
                  { path: '', redirectTo:'configuration/:mjsonName/:topoName', pathMatch: 'full' },
                  { path:'configuration/:mjsonName/:topoName', component: ConfigurationHomeComponent  },
-                 { path:'weblogicSettings/:mjsonName/:topoName/:monName/:tierId', component: ConfigureWeblogic2Component},
-                 { path:'advanceSettings/:mjsonName/:topoName/:monName/:tierId', component: MonitorsComponent}
+                 { path:'weblogicSettings/:mjsonName/:topoName/:monName/:tierId/:tierName', component: ConfigureWeblogic2Component},
+                 { path:'advanceSettings/:mjsonName/:topoName/:monName/:tierId/:tierName', component: MonitorsComponent}
              ]
             }
           ];

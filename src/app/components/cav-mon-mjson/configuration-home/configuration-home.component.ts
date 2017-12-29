@@ -46,6 +46,8 @@ export class ConfigurationHomeComponent implements OnInit
 
   tierId:number;
 
+  tierName:string;
+
   constructor(private cavMonConfigService:CavmonConfigService,
               private router:Router,
               private route: ActivatedRoute,
@@ -60,7 +62,7 @@ export class ConfigurationHomeComponent implements OnInit
    this.cols=[];
    this.route.params.subscribe((params: Params) => {
       this.topoName = params['topoName'];
-      this.mjsonName = params['mjsonName']
+      this.mjsonName = params['mjsonName'];
     });
     
   //  /*** getting data of tierlist,treetable data ****/
@@ -219,20 +221,13 @@ export class ConfigurationHomeComponent implements OnInit
  }
 
   /*** for advance settings ***/
-  advanceSettings(monData,tierId)
+  advanceSettings(monData,tierId,tierName)
   {
-
-  //   {
-  //   if(monName.startsWith('Weblogic'))
-  //     this.router.navigate(['../../../weblogicSettings',this.mjsonName,this.topoName,monName,tierId],{ relativeTo: this.route });
-  //   else
-  //     this.router.navigate(['../../../advanceSettings',this.mjsonName,this.topoName,monName,tierId],{ relativeTo: this.route });
-  // }
     let monName = monData["monitor"];
     console.log("monName",monName)
     if(monData["monitor"].startsWith('Weblogic'))
     {
-      this.router.navigate(['../../../weblogicSettings',this.mjsonName,this.topoName,monName,tierId],{ relativeTo: this.route });
+      this.router.navigate(['../../../weblogicSettings',this.mjsonName,this.topoName,monName,tierId,tierName],{ relativeTo: this.route });
     }
     else
     {
@@ -241,7 +236,7 @@ export class ConfigurationHomeComponent implements OnInit
       let arrData = monData['compArgJson'];
       this.cavMonConfigService.setMonCompData(arrData);
       this.store.dispatch({type:SELECTED_MON ,payload:arrData})
-      this.router.navigate(['../../../advanceSettings',this.mjsonName,this.topoName,monName,tierId],{ relativeTo: this.route });
+      this.router.navigate(['../../../advanceSettings',this.mjsonName,this.topoName,monName,tierId,tierName],{ relativeTo: this.route });
     }
   }
 

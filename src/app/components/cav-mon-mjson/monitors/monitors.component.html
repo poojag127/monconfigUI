@@ -3,10 +3,10 @@
 </p>-->
  
 <div class ="monitorPanel">
-<form  #form="ngForm" ngNativeValidate>
+<form  (ngSubmit)="addData()" #form="ngForm" ngNativeValidate>
     <p-panel class="monitorCss" >
         <p-header>
-                Monitor Argument
+                Configure Monitor :{{monName}}   {{"    "}} Tier :{{tierName}}
                 <!--<div style="float: right">
                 <button pButton type="button" icon="fa fa-refresh" label="reset"></button>
                 <button pButton type="button" icon="fa-check" label="save" ></button>
@@ -18,21 +18,22 @@
                 <label>Server Name</label>
         </div>
         <div class="ui-g-4 mbeanDrpdown">
-          <p-dropdown name="topoId"  [options]="serverList" placeholder="-- Select Server Name --" [style]="{'width':'77%','margin-left': '-1px'}"  appendTo="body" required ngModel></p-dropdown>
+          <p-dropdown name="topoId" [(ngModel)]="selectedTableData.serverName" [options]="serverList" placeholder="-- Select Server Name --" [style]="{'width':'77%','margin-left': '-1px'}"  appendTo="body" required ngModel></p-dropdown>
         </div>
      </div>
+
 
      <div  *ngFor="let item of compArgs; let i = index">
        <div class = "ui-g-2">
            <label *ngIf="item.type == 'TextField'" >{{item.label}}</label>
        </div>
        <div class="ui-g-2">
-           <input name={{item.label}} type="text"  *ngIf="item.type == 'TextField'"  [(ngModel)]="item.defaultValue" class="spanClass2"  title="{{item.modal}}"/>
+           <input name={{item.label}} type="text"  *ngIf="item.type == 'TextField'"  [(ngModel)]="item.value" class="spanClass2"  title="{{item.modal}}"/>
        </div>
            <!--<p-textbox *ngIf="item.type == 'textbox'" [(ngModel)]="item.modal" class="spanClass2" ></p-textbox>-->
-           <p-checkbox id={{item.id}} class="spanClass2" [(ngModel)]="item.defaultValue" label="{{item.label}}" binary="true" *ngIf="item.type == 'checkbox'"></p-checkbox>
+           <p-checkbox id={{item.id}} class="spanClass2" [(ngModel)]="item.value" label="{{item.label}}" binary="true" *ngIf="item.type == 'checkbox'"></p-checkbox>
            <!--<input type="checkbox" id={{item.id}} value={{item.defaultValue}} class="spanClass2" *ngIf="item.type == 'checkbox'"/>-->
-           <p-spinner [min]="0" [max]="100" size="4"  [(ngModel)]="item.defaultValue" (keypress)="eventHandler($event)" *ngIf="item.type == 'spinner'" class="spanClass2"></p-spinner>
+           <p-spinner [min]="0" [max]="100" size="4"  [(ngModel)]="item.value" (keypress)="eventHandler($event)" *ngIf="item.type == 'spinner'" class="spanClass2"></p-spinner>
            <span *ngIf="item.type == 'listbox'" class="body1Div"><p-dropdown [autoWidth]="false" class="spanClass2" [options]="item.options" [(ngModel)]="item.modal" (click)="showSelectedCmdGUI()"></p-dropdown></span>
 
         <span *ngIf="item.type == 'radiobutton'">
@@ -64,20 +65,22 @@
 </div>
 
   <p-dataTable class="conf-ui" [value]="tableData" [(selection)]="selectedTableData" [rows]="5" [paginator]="weblogicStatsTableData?.length >5" [pageLinks]="3"  [resizableColumns]='true' [style]="{'margin-top':'30px'}">
-       <p-column [style]="{'width':'27px'}" selectionMode="multiple">
+       
+       <p-column [style]="{'width':'50px'}" selectionMode="multiple">
        </p-column>
-     
-        <p-column header="Server" field="server" >
-          <template let-col let-data="rowData" pTemplate="body">
+
+        <p-column  [style]="{'width':'326px'}" class="col-overflow" header="Server" field="serverName" >
+          <template let-col let-data="rowData" pTemplate type="body">
             <span [title]="data[col.field]">{{data[col.field]}}</span> 
           </template>
         </p-column>
 
-         <p-column header="Arguments" field="arguments">
+         <p-column  class="col-overflow" header="Arguments" field="arguments">
             <template  let-col let-data="rowData" pTemplate="body">
-                    <span [title]="data[col.field]">{{data[col.field]}}</span> 
+              <span [title]="data[col.field]">{{data[col.field]}}</span> 
             </template>
-        </p-column>
+         </p-column>
+
      </p-dataTable>
  </div>
 
