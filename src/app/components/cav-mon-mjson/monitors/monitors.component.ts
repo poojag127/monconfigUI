@@ -52,7 +52,6 @@ export class MonitorsComponent implements OnInit {
   ngOnInit() {
 
     this.selectedTableData = new TableData();
-
     this.route.params.subscribe((params: Params) => {
       console.log("params--",params)
       this.topoName = params['topoName'];
@@ -70,11 +69,16 @@ export class MonitorsComponent implements OnInit {
         }
     })
 
-     /* to get the server list in the dropdown */
+     /*** To get the server list in the dropdown ****/
+     /*** Here unshift is used to insert element at 0 position of array ****/
     this.cavMonDataService.getServerList(this.topoName,this.tierId)
              .subscribe(data => {
-                        this.serverList = ConfigUiUtility.createDropdown(data);
-                        })
+                        if(data != null)
+                        {
+                         data.unshift("ALL Server");
+                         this.serverList = ConfigUiUtility.createDropdown(data);
+                        }
+                      })
    }
 
 
@@ -84,6 +88,10 @@ export class MonitorsComponent implements OnInit {
    console.log("selectedTableDta-",this.selectedTableData)
    let data='';
    let arg='';
+   if(this.tierId == -1)
+   {
+     this.selectedTableData.serverName = 'All Server'
+   }
    this.compArgs.map(function(each)
    {
      if(arg != each.arg)

@@ -61,6 +61,7 @@ export class ConfigurationHomeComponent implements OnInit
   {
    this.cols=[];
    this.route.params.subscribe((params: Params) => {
+     console.log("params--",params)
       this.topoName = params['topoName'];
       this.mjsonName = params['mjsonName'];
     });

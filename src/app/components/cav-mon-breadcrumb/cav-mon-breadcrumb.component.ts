@@ -32,7 +32,8 @@ export class CavMonBreadcrumbComponent implements OnInit {
         let arrURL = url.split("/");
         let topoName = '';
         let mjsonName='';
-
+        
+        console.log("ConfigBreadcrumbComponent", "ngOnInit", "arrURL ", arrURL);
         if(url.startsWith(BREADCRUMB.URL.CONFIGURATION_HOME))
         {
          this.items.push({ label: BREADCRUMB.LABEL.CONFIGURATION});
@@ -40,17 +41,19 @@ export class CavMonBreadcrumbComponent implements OnInit {
         else if(url.startsWith(BREADCRUMB.URL.WEBLOGIC_CONFIGURATION))
         {
           // url--- /mjson/advanceSettings/poo/mosaic_stress_as1/Weblogic/All_Tier
-         topoName = arrURL[arrURL.length - 3];
-         mjsonName = arrURL[arrURL.length - 4];
+         topoName = arrURL[4];
+         mjsonName = arrURL[3];
          console.log("ConfigBreadcrumbComponent", "ngOnInit", "mjsonName ", mjsonName);
          this.items.push({ label: BREADCRUMB.LABEL.CONFIGURATION , routerLink: [`${BREADCRUMB.URL.CONFIGURATION_HOME}/${mjsonName}/${topoName}`]});
          this.items.push({ label: BREADCRUMB.LABEL.WEBLOGIC_CONFIGURATION});
         }
         else if(url.startsWith(BREADCRUMB.URL.ADVANCE_CONFIGURATION))
         {
-           topoName = arrURL[arrURL.length - 3];
-           mjsonName = arrURL[arrURL.length - 4];
-           this.items.push({ label: BREADCRUMB.LABEL.CONFIGURATION , routerLink: [`${BREADCRUMB.URL.CONFIGURATION_HOME}/${mjsonName}/${topoName}`]});
+          console.log("arrURL--",arrURL)
+          console.log("lenhth of arrUrl--",arrURL.length)
+          topoName = arrURL[4];
+          mjsonName = arrURL[3];
+          this.items.push({ label: BREADCRUMB.LABEL.CONFIGURATION , routerLink: [`${BREADCRUMB.URL.CONFIGURATION_HOME}/${mjsonName}/${topoName}`]});
         }
       }
      this.home = {icon: 'fa fa-home'};
