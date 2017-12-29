@@ -63,6 +63,7 @@ export class MonitorsComponent implements OnInit {
     let that = this;
     this.subscription = this.store.select("selectedMon")
         .subscribe(data => {
+        console.log("data--",data)
         if(data != null)
         {
          this.compArgs = data["data"];

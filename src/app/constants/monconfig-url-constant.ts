@@ -11,8 +11,10 @@ export const GET_TIER_LIST = `${SERVICE_URL}/getTiers`;
 // export const UPDATE_TOPOLOGY = `${SERVICE_URL}/uploadtopology`;
 
 
-/* Url for configuration Screen */
+/* Url for configuration Home Screen */
 export const GET_MONITORS_DATA = `${SERVICE_URL}/getMonitorsData`;
 export const GET_TIER_MONITORS_DATA = `${SERVICE_URL}/getTreeTableData`; 
+export const GET_CHILD_NODES = `${SERVICE_URL}/getChildNodesData`;
+
 
 export const GET_SERVER_LIST = `${SERVICE_URL}/getServerList`;
