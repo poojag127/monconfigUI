@@ -20,8 +20,8 @@
 </div> -->
    
 <!-- <div class="ui-g-12" id="top-div"> -->
- <p-treeTable class="mon-ui " (onNodeExpand)="loadNode($event)"  [value]="compData"  selection="false" [style]="{'max-height':'530px', 'overflow':'auto'}">
-    <div class="ui-g-12" id="top-div">
+ <p-treeTable class="mon-ui configTreeTable" (onNodeExpand)="loadNode($event)"  [value]="compData"  selection="false" [style]="{'max-height':'530px', 'overflow':'auto'}">
+    <!-- <div class="ui-g-12" id="top-div"> -->
 
     <p-column [style]="{'width':'176px'}" field="monitor" header="Monitor">
        <template  let-col let-data="rowData" pTemplate >
@@ -40,7 +40,7 @@
       <template   let-data="rowData" pTemplate >
          <!--{{data|json}}      -->
        <p-checkbox  *ngIf="!data.hasOwnProperty('children')" [(ngModel)]="data.data[col.field]"  (click)="onCheckBoxChange()"   binary="false"></p-checkbox>
-        <!--<a *ngIf="col.field != 'monitor'"> <i class="fa fa-long-arrow-up fa-rotate-45" (click)="advanceSettings(data.data,col.field,col.header)" aria-hidden="true" title="Advance settings"></i> </a>-->
+        <a *ngIf="col.field != 'monitor'"> <i class="fa fa-external-link" (click)="advanceSettings(data.data,col.field,col.header)" aria-hidden="true" title="Advance settings"></i> </a>
       </template>
     </p-column>
 
@@ -48,7 +48,7 @@
     <!--<p-column field="name" header="Name"></p-column>
     <p-column field="size" header="Size"></p-column>
     <p-column field="type" header="Type"></p-column>-->
-    </div>
+    <!-- </div> -->
 </p-treeTable>
 <!-- </div> -->
 </p-panel>

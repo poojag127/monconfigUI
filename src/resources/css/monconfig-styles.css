@@ -650,3 +650,16 @@ padding:10px;
   background: #183D65;
   color: #fff;
 }
+
+/* .configTreeTable .ui-widget-content {
+  border: 1px solid #D5D5D5 !important;
+  background: #ffffff !important;
+  color: #222222 !important;
+} */
+
+.configTreeTable .ui-treetable .ui-treetable-row{
+  border: 1px solid #D5D5D5 !important;
+  background: #ffffff !important;
+  color: #222222 !important;
+}
+
