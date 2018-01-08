@@ -1,10 +1,13 @@
 <!--<p>
   monitors works!
 </p>-->
- 
-<div class ="monitorPanel">
-<form  (ngSubmit)="addData()" #form="ngForm" ngNativeValidate>
-    <p-panel class="monitorCss">
+
+<div class="configure">
+    <p-accordion class="ndagent">
+       <p-accordionTab header="Configure monitor:{{monName}} for Tier:{{tierName}}" [selected]="true">
+       <form  (ngSubmit)="addData()" #form="ngForm" ngNativeValidate>
+   
+    <!--<p-panel class="monitorCss">
         <p-header>
               <span>
                   Configure Monitor :{{monName}} 
@@ -12,11 +15,7 @@
               <span style="margin-left:2%;">
                    Tier :{{tierName}}
               </span> 
-                <!--<div style="float: right">
-                <button pButton type="button" icon="fa fa-refresh" label="reset"></button>
-                <button pButton type="button" icon="fa-check" label="save" ></button>
-                </div>-->
-        </p-header>
+        </p-header>-->
 
      <div class = "ui-g-12"  *ngIf="tierId != -1" >
        <div class="ui-g-1"  style="width:7.333%">
@@ -28,25 +27,124 @@
      </div>
 
 
-     <div  *ngFor="let item of compArgs; let i = index">
-       
-       <div class = "ui-g-3">
-           <label *ngIf="item.type == 'TextField'" style="margin-right: 2%;">{{item.label}}</label>
-           <input name={{item.label}} type="text"  *ngIf="item.type == 'TextField'"  [(ngModel)]="item.value" class="spanClass2"  title="{{item.modal}}" required ng-model/>
-       </div>
-           <!--<p-textbox *ngIf="item.type == 'textbox'" [(ngModel)]="item.modal" class="spanClass2" ></p-textbox>-->
-           <p-checkbox id={{item.id}} class="spanClass2" [(ngModel)]="item.value" label="{{item.label}}" binary="true" *ngIf="item.type == 'checkbox'"></p-checkbox>
-           <!--<input type="checkbox" id={{item.id}} value={{item.defaultValue}} class="spanClass2" *ngIf="item.type == 'checkbox'"/>-->
-           <p-spinner [min]="0" [max]="100" size="4"  [(ngModel)]="item.value" (keypress)="eventHandler($event)" *ngIf="item.type == 'spinner'" class="spanClass2"></p-spinner>
-           <span *ngIf="item.type == 'listbox'" class="body1Div"><p-dropdown [autoWidth]="false" class="spanClass2" [options]="item.options" [(ngModel)]="item.modal" (click)="showSelectedCmdGUI()"></p-dropdown></span>
-
-        <span *ngIf="item.type == 'radiobutton'">
-             <span *ngFor="let item1 of item.components">
-               <p-radioButton  name="item.groupName" [attr.id]="item1.id" [label] ="item1.item" [value] ="item1.arg" [(ngModel)]="item.defaultValue"></p-radioButton>
-             </span>
-        </span>
    
-        </div> 
+      
+
+        <!--<div  class="ui-g-12" *ngIf="item.type == 'Table'">
+          <app-dynamic-tableview [columnData]="item.columnData"></app-dynamic-tableview>
+        </div>-->
+
+
+
+      <span *ngFor="let item of compArgs; let i = index">
+        <!--<app-render-comp [item]="item"></app-render-comp>-->
+        <span  *ngIf="item.type == 'TextField'" >
+           <label *ngIf="item.type == 'TextField' && item.label != null" style="margin-right: 2%;">{{item.label}}</label>
+           <input name={{item.label}} type="text"  *ngIf="item.type == 'TextField'"  [(ngModel)]="item.value" class="spanClass2"  title="{{item.modal}}" required ng-model/>
+       </span>
+
+        <span *ngIf="item.type == 'Checkbox'">   
+          <p-checkbox  name="item.label" [(ngModel)]="item.value" label="{{item.label}}" binary="true" ></p-checkbox>
+        </span>
+        
+        <span *ngIf="item.type == 'Spinner'">
+           <label *ngIf="item.type == 'Spinner'" style="margin-right: 2%;">{{item.label}}</label>
+          <p-spinner name="item.label" [min]="0" [max]="100" size="4"  [(ngModel)]="item.value"  *ngIf="item.type == 'Spinner'" class="spanClass2"></p-spinner>
+        </span>
+
+        <span *ngIf="item.type == 'Dropdown'">
+           <label  style="margin-right: 2%;">{{item.label}}</label>   
+           <p-dropdown name="list"  [options]="item.dropDownList" [(ngModel)]="item.value"></p-dropdown>
+        </span>
+
+        <span *ngIf="item.type == 'RadioButtonGroup'">
+          <span  *ngFor="let each of item.items">
+            <div class="ui-g-2">
+             <p-radioButton  name="each.label"  [label] ="each.label" [value] ="each.arg" [(ngModel)]="item.value"></p-radioButton>
+            </div>
+            <div class="ui-g-2" *ngIf="each.dependentComp != null">
+             <app-dependent-comp  [disabled]="item.value != each.arg" [dependentCompData]="each.dependentComp"></app-dependent-comp>
+            </div>
+          </span>     
+        </span>
+        
+      </span>
+
+     
+          
+          
+          <!--<div class = "ui-g-3" *ngIf="item.dependentComp != null">
+            <app-dependent-comp  [dependentCompData]="item.dependentComp"></app-dependent-comp>
+          </div>-->
+
+
+
+        <div class="pull-right">
+           <button type="submit" pButton  icon="fa-check" style="width: 63px ; " *ngIf="isNewConfig == true" label="Add"></button>
+           <button type="submit" pButton  icon="fa-check" style="width: 93px ;" *ngIf="isNewConfig == false" label="Update"></button>
+        </div>
+ 
+       </form>
+        </p-accordionTab>
+
+        <p-accordionTab header="Configured Data" >
+        
+        <p-dataTable class="conf-ui" [value]="tableData" [(selection)]="selectedTableData" [rows]="5" [paginator]="weblogicStatsTableData?.length >5" [pageLinks]="3"  [resizableColumns]='true' [style]="{'margin-top':'30px'}">
+       
+        <p-column [style]="{'width':'50px'}" selectionMode="multiple">
+        </p-column>
+
+        <p-column  [style]="{'width':'326px'}" class="col-overflow" header="Server" field="serverName" >
+          <template let-col let-data="rowData" pTemplate type="body">
+            <span [title]="data[col.field]">{{data[col.field]}}</span> 
+          </template>
+        </p-column>
+
+         <p-column  class="col-overflow" header="Arguments" field="arguments">
+            <template  let-col let-data="rowData" pTemplate="body">
+              <span [title]="data[col.field]">{{data[col.field]}}</span> 
+            </template>
+         </p-column>
+
+     </p-dataTable>
+        </p-accordionTab>
+      </p-accordion>
+     </div>
+ 
+<!--<div class ="monitorPanel">
+<form  (ngSubmit)="addData()" #form="ngForm" ngNativeValidate>
+   
+    <p-panel class="monitorCss">
+        <p-header>
+              <span>
+                  Configure Monitor :{{monName}} 
+              </span> 
+              <span style="margin-left:2%;">
+                   Tier :{{tierName}}
+              </span> 
+        </p-header>
+
+     <div class = "ui-g-12"  *ngIf="tierId != -1" >
+       <div class="ui-g-1"  style="width:7.333%">
+                <label>Server Name</label>
+        </div>
+        <div class="ui-g-4 mbeanDrpdown">
+          <p-dropdown name="topoId" [(ngModel)]="selectedTableData.serverName" [options]="serverList" placeholder="-- Select Server Name --" [style]="{'width':'77%','margin-left': '-1px'}"  appendTo="body" required ngModel></p-dropdown>
+        </div>
+     </div>
+
+      <div *ngFor="let item of compArgs; let i = index">
+        <app-render-comp [item]="item"></app-render-comp>
+      </div>
+
+     
+          
+        
+          <div class = "ui-g-3" *ngIf="item.dependentComp != null">
+            <app-dependent-comp  [dependentCompData]="item.dependentComp"></app-dependent-comp>
+          </div>
+
+
 
         <div class="pull-right">
            <button type="submit" pButton  icon="fa-check" style="width: 63px ; " *ngIf="isNewConfig == true" label="Add"></button>
@@ -59,7 +157,7 @@
 
 <div>
       <!-- for the configuration datatable toolbar -->
-<div style="margin-bottom:-32px ; margin-top: 5px">
+<!--<div style="margin-bottom:-32px ; margin-top: 5px">
    <p-toolbar>
      <span><b>Configuration Data</b></span> 
      <div  class="appIcon-css">
@@ -86,7 +184,7 @@
          </p-column>
 
      </p-dataTable>
- </div>
+ </div>-->
 
 
 

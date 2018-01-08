@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CavmonConfigService } from '../../../services/cavmon-config.service';
 import { Subscription } from 'rxjs/Subscription';
@@ -15,6 +15,10 @@ import { ImmutableArray } from '../../../utility/immutable-array';
   styleUrls: ['./monitors.component.css']
 })
 export class MonitorsComponent implements OnInit {
+
+   //Here profileId is used for fetching list of xml files
+  @Input()
+  dependent: number;
 
   subscription: Subscription;
   
@@ -39,6 +43,8 @@ export class MonitorsComponent implements OnInit {
 
   tierName:string;
 
+  dropDownList:SelectItem[]=[];
+
   constructor( private router:Router,
                private route: ActivatedRoute,
                private cavMonConfigService:CavmonConfigService,
@@ -60,6 +66,8 @@ export class MonitorsComponent implements OnInit {
       this.tierName = params['tierName'];
     });
 
+
+    /** getting data of monitor selected ****/
     let that = this;
     this.subscription = this.store.select("selectedMon")
         .subscribe(data => {
@@ -80,7 +88,11 @@ export class MonitorsComponent implements OnInit {
                          this.serverList = ConfigUiUtility.createDropdown(data);
                         }
                       })
+    
    }
+
+  
+   
 
 
  addData()

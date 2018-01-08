@@ -53,7 +53,8 @@ import {TooltipModule,
         TabViewModule,
         GrowlModule,
         SpinnerModule,
-        RadioButtonModule
+        RadioButtonModule,
+        AccordionModule
         
     } from 'primeng/primeng';
 
@@ -69,6 +70,10 @@ import { WeblogicCongigure2Component } from './components/cav-mon-mjson/weblogic
 import { ConfigureWeblogicComponent } from './components/cav-mon-mjson/configure-weblogic/configure-weblogic.component';
 import { ConfigureWeblogic2Component } from './components/cav-mon-mjson/configure-weblogic2/configure-weblogic2.component';
 import { MonitorsComponent } from './components/cav-mon-mjson/monitors/monitors.component';
+import { DependentCompComponent } from './components/cav-mon-mjson/dependent-comp/dependent-comp.component';
+import { DynamicTableviewComponent } from './components/cav-mon-mjson/dynamic-tableview/dynamic-tableview.component';
+import { RenderCompComponent } from './components/cav-mon-mjson/render-comp/render-comp.component';
+import { TestComponent } from './components/cav-mon-mjson/test/test.component';
 
 
 @NgModule({
@@ -89,6 +94,10 @@ import { MonitorsComponent } from './components/cav-mon-mjson/monitors/monitors.
     ConfigureWeblogic2Component,
     ConfigurationMonitorsRoutingComponent,
     MonitorsComponent,
+    DependentCompComponent,
+    DynamicTableviewComponent,
+    RenderCompComponent,
+    TestComponent
     // CavMonMenuComponent
   ],
   imports: [
@@ -114,6 +123,7 @@ import { MonitorsComponent } from './components/cav-mon-mjson/monitors/monitors.
     TabViewModule,
     SpinnerModule,
     RadioButtonModule,
+    AccordionModule,
     StoreModule.provideStore({ monitorData: MonitorReducer ,selectedMon:MonitorCompReducer }),
     GrowlModule
   ],

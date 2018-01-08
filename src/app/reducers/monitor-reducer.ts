@@ -42,8 +42,6 @@ const DEFAULT_DATA = {
        console.log("newState--",newState)
        return cloneObject(newState);
 
-     
-
         default:
             // returns DEFAULT_DATA;
 

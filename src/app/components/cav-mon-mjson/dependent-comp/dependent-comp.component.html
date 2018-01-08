@@ -1,0 +1,7 @@
+<div  *ngFor="let item of dependentCompData; let i = index">
+   <!--<div  *ngIf="item.type == 'TextField'" >
+        <label *ngIf="item.type == 'TextField' && item.label != null" style="margin-right: 2%;">{{item.label}}</label>
+        <input name={{item.label}} [disabled]="disabled" type="text"  *ngIf="item.type == 'TextField'"  [(ngModel)]="item.value" class="spanClass2"  title="{{item.modal}}" required ng-model/>
+    </div>-->
+    <app-render-comp [item]="item"></app-render-comp>
+</div>
