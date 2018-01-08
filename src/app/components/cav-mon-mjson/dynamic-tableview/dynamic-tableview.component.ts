@@ -1,4 +1,6 @@
 import { Component, OnInit ,Input} from '@angular/core';
+import { ImmutableArray } from '../../../utility/immutable-array';
+
 
 @Component({
   selector: 'app-dynamic-tableview',
@@ -11,10 +13,17 @@ export class DynamicTableviewComponent implements OnInit {
   @Input()
   columnData: any[];
 
+  @Input()
+  disabled:boolean;
+
   /****holds the header data of the table */
   cols: any[]=[];
 
-  addEditMJsonDialog:boolean = false;
+  isNewRow:boolean;
+
+  addEditDialog:boolean;
+
+  tableData:any[]=[];
 
   constructor() { }
 
@@ -30,12 +39,29 @@ export class DynamicTableviewComponent implements OnInit {
 
  
    openAddDialog(){
-
+     console.log("openAddDialog method called")
+     this.isNewRow = true;
+     this.addEditDialog = true;
    }
 
 
   openEditDialog(){
 
+  }
+
+  saveData(){
+    console.log("saveData method called",this.columnData)
+    console.log("this.cols",this.cols)
+    this.addEditDialog = false;
+    let data={};
+    this.columnData.map(function(each)
+    {
+      data[each.label] = each.value;
+    })
+    console.log("data--",data)
+
+     //to insert new row in table ImmutableArray.push() is created as primeng 4.0.0 does not support above line 
+     this.tableData=ImmutableArray.push(this.tableData, data);
   }
 
 }

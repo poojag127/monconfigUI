@@ -16,6 +16,7 @@ export class CavMonHomeComponent implements OnInit {
   calcheight : String = "340px";
 
   ngOnInit() {
+  
     this.configUtilityService.progressBarProvider$.subscribe(flag=> {
       //For resolve this error in Dev Mode add Timeout method -> Error: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked.
       setTimeout(()=>{
@@ -24,7 +25,12 @@ export class CavMonHomeComponent implements OnInit {
       }, 1);
       
     });
-       this.calcheight = window.innerHeight - 104 + "px";	
+      this.calcheight = window.innerHeight - 104 + "px";	
   }
+
+
+
+
+
 
 }

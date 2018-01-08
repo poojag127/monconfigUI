@@ -10,6 +10,9 @@ export class RenderCompComponent implements OnInit {
   @Input()
   item:Object;
 
+  @Input()
+  disabled:boolean;
+
   constructor() { }
 
   ngOnInit() {
