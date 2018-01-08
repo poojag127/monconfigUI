@@ -1,17 +1,24 @@
 
    
       <span  *ngIf="item.type == 'TextField'" >
+          <div class="ui-g-2">
            <label *ngIf="item.type == 'TextField' && item.label != null" style="margin-right: 2%;">{{item.label}}</label>
+           </div>
+           <div class="ui-g-2">
            <input name={{item.label}} type="text"  *ngIf="item.type == 'TextField'"  [(ngModel)]="item.value" class="spanClass2"  title="{{item.modal}}" required ng-model/>
+           </div>
        </span>
 
         <span *ngIf="item.type == 'Checkbox'">   
-          <p-checkbox  name="item.label" [(ngModel)]="item.value" label="{{item.label}}" binary="true" ></p-checkbox>
+            <div class="ui-g-2">
+          <p-checkbox  name="item.label" [(ngModel)]="item.value" label="{{item.label}}" binary="true" ></p-checkbox></div>
         </span>
         
         <span *ngIf="item.type == 'Spinner'">
+            <div class="ui-g-2">
            <label *ngIf="item.type == 'Spinner'" style="margin-right: 2%;">{{item.label}}</label>
           <p-spinner name="item.label" [min]="0" [max]="100" size="4"  [(ngModel)]="item.value"  *ngIf="item.type == 'Spinner'" class="spanClass2"></p-spinner>
+            </div>
         </span>
 
         <span *ngIf="item.type == 'Dropdown'">
@@ -24,7 +31,7 @@
             <div class="ui-g-2">
              <p-radioButton  name="each.label"  [label] ="each.label" [value] ="each.arg" [(ngModel)]="item.value"></p-radioButton>
             </div>
-            <div class="ui-g-2" *ngIf="each.dependentComp != null">
+            <div  *ngIf="each.dependentComp != null">
              <app-dependent-comp  [disabled]="item.value != each.arg" [dependentCompData]="each.dependentComp"></app-dependent-comp>
             </div>
           </span>     
@@ -33,4 +40,8 @@
         <!--<div  class="ui-g-12" *ngIf="item.type == 'Table'">
           <app-dynamic-tableview [columnData]="item.columnData"></app-dynamic-tableview>
         </div>-->
+
+        <span  *ngIf="item.type == 'Table'">
+            <app-dynamic-tableview [columnData]="item.columnData"></app-dynamic-tableview>
+          </span>
 
