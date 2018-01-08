@@ -695,11 +695,15 @@ padding:10px;
   display: -webkit-box;
 }
 
+mon-ui-config-datatable .ui-datatable{
+ margin-bottom: 30px;
+}
+
 /* for datatable header in the configuration screen of each monitor  */
 .mon-ui-config-datatable .ui-datatable .ui-datatable-header{
   text-align: left;
   height: 31px;
-  margin-top: 32px;
+  margin-top: 39px;
 }
 
 /* for datatable css in the configuration screen of each monitor */
@@ -718,4 +722,15 @@ padding:10px;
 .configured-datatable .ui-datatable .ui-datatable-header{
   text-align: left;
   height: 31px;
+}
+
+.spanClass{
+  padding-right: 50px;
+  padding-bottom: 20px;
+}
+
+.innerSpanClass{
+  padding-right: 71px;
+  
+
 }
