@@ -105,12 +105,7 @@ export class CavmonConfigService {
    this._restApi.getDataByGetReq(url)
       .subscribe(data => {
         this.store.dispatch({ type: MONITOR_DATA , payload: data });
-        // console.log("this.dataStore--",this.dataStore)
-        // console.log("data--",data)
-        // this.dataStore["data"] = data;
-        // this._todos.next(Object.assign({}, this.dataStore)["data"]);
       });
-  // return  this._restApi.getDataByGetReq(url);
  }
 
   getTreeTableData() 
@@ -141,17 +136,6 @@ export class CavmonConfigService {
 
   /** For Getting all keywordData data */
   getMonitorsData(topoName) {
-     
-    // let data =  { 
-    // "weblogic":{'JDBCStats':[{'tierName':'All Tier','monName':'WeblogicJdbcStats','enable':false,'hostName':'127.0.0.1','port':'17000','userName':'weblogic','pwd':'weblogic','mBeanType':'JMSDestinationRuntimeMBean','instanceName':''}],
-    //         'JVMStats':[{'tierName':'All Tier','monName':'WeblogicJdbcStats','enable':false,'hostName':'127.0.0.1','port':'17000','userName':'weblogic','pwd':'weblogic','mBeanType':'JMSDestinationRuntimeMBean','instanceName':''}],
-    //         'ThreadPoolStats':[{'tierName':'All Tier','monName':'WeblogicJdbcStats','enable':false,'hostName':'127.0.0.1','port':'17000','userName':'weblogic','pwd':'weblogic','mBeanType':'JMSDestinationRuntimeMBean','instanceName':''}],
-    //         'SessionStats':[{'tierName':'All Tier','monName':'WeblogicJdbcStats','enable':false,'hostName':'127.0.0.1','port':'17000','userName':'weblogic','pwd':'weblogic','mBeanType':'JMSDestinationRuntimeMBean','instanceName':''}],
-    //         'JMSQueueStats':[{'tierName':'All Tier','monName':'WeblogicJpcavdbcStats','enable':false,'hostName':'127.0.0.1','port':'17000','userName':'weblogic','pwd':'weblogic','mBeanType':'JMSDestinationRuntimeMBean','instanceName':''}],
-    //         'MinThreadConstraintStats':[{'tierName':'All Tier','monName':'WeblogicJdbcStats','enable':false,'hostName':'127.0.0.1','port':'17000','userName':'weblogic','pwd':'weblogic','mBeanType':'JMSDestinationRuntimeMBean','instanceName':''}],
-    //         'TransactionStats':[{'tierName':'All Tier','monName':'WeblogicJdbcStats','enable':false,'hostName':'127.0.0.1','port':'17000','userName':'weblogic','pwd':'weblogic','mBeanType':'JMSDestinationRuntimeMBean','instanceName':''}]
-    //       }
-    //  }
     
   let data = {
    "weblogic":{
@@ -193,19 +177,6 @@ export class CavmonConfigService {
      }
 
      console.log("getMonitorsData method called")
-  
-      //  this.monitorsData$.next(data);
-      //  this.monData.next(data);
-       
-
-
-    // this.store.dispatch({type: MONITOR_DATA, payload:data });
-
-    // this._restApi.getDataByGetReq(`${URL.GET_MONITORS_DATA}/${topoName}`)
-    //   .subscribe(data => {
-    //     // this.keywordData = data;
-    //     this.store.dispatch({ type: MONITOR_DATA, payload: data });
-    //   });
   }
 
   /** This method sends request to server for getting  *****/
@@ -221,7 +192,7 @@ export class CavmonConfigService {
         this.store.dispatch({type:"ADD_MONITOR_DATA" , payload: obj });
       });
   }
-  
+
 }
 
 

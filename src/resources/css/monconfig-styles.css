@@ -643,7 +643,7 @@ padding:10px;
 
 
 .monitorCss .ui-panel .ui-panel-content{
-  height: 117px !important;
+  height: 258px !important;
 
 }
 .monConfigPanel ,.ui-panel.ui-widget .ui-panel-titlebar.ui-corner-all{
@@ -663,3 +663,29 @@ padding:10px;
   color: #222222 !important;
 }
 
+.configure .ui-accordion .ui-accordion-header {
+    padding: .1em .2em .1em 0.1em ;
+   /* background: rgba(38, 38, 38, 0.8);*/
+}
+.ui-accordion .ui-accordion-header a {
+    font-size: 1em;
+    font-weight: 500;
+    display: block;
+    padding: .5em .5em .5em 2em;
+    color: #fff;
+}
+
+.configure .ui-accordion .ui-accordion-header {
+    background: #2a3950;
+    color: #fff !important;
+}
+.accordian-css .ui-state-default a:link {
+    color: #fff;
+}
+
+.mongui-mainbox {
+    margin: 6px 3px;
+    box-shadow: 0 0 4px 1px #565656;
+    border-radius:4px;
+    color: #fff;
+}
