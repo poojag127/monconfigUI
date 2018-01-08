@@ -3,7 +3,7 @@
 </p>-->
 
 <div class="configure">
-    <p-accordion class="ndagent">
+    <p-accordion class="mon-ui-accordion">
        <p-accordionTab header="Configure monitor:{{monName}} for Tier:{{tierName}}" [selected]="true">
        <form  (ngSubmit)="addData()" #form="ngForm" ngNativeValidate>
    
@@ -37,8 +37,8 @@
 
 
       <span *ngFor="let item of compArgs; let i = index">
-        <!--<app-render-comp [item]="item"></app-render-comp>-->
-        <span  *ngIf="item.type == 'TextField'" >
+        <app-render-comp [item]="item"></app-render-comp>
+        <!-- <span  *ngIf="item.type == 'TextField'" >
            <label *ngIf="item.type == 'TextField' && item.label != null" style="margin-right: 2%;">{{item.label}}</label>
            <input name={{item.label}} type="text"  *ngIf="item.type == 'TextField'"  [(ngModel)]="item.value" class="spanClass2"  title="{{item.modal}}" required ng-model/>
        </span>
@@ -66,7 +66,7 @@
              <app-dependent-comp  [disabled]="item.value != each.arg" [dependentCompData]="each.dependentComp"></app-dependent-comp>
             </div>
           </span>     
-        </span>
+        </span> -->
         
       </span>
 
