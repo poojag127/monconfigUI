@@ -87,10 +87,17 @@
        </form>
         </p-accordionTab>
 
-        <p-accordionTab header="Configured Data" >
+        <p-accordionTab header="Configured Data">
         
-        <p-dataTable class="conf-ui" [value]="tableData" [(selection)]="selectedTableData" [rows]="5" [paginator]="weblogicStatsTableData?.length >5" [pageLinks]="3"  [resizableColumns]='true' [style]="{'margin-top':'30px'}">
+        <p-dataTable class="configured-datatable" [value]="tableData" [(selection)]="selectedTableData" [rows]="5" [paginator]="weblogicStatsTableData?.length >5" [pageLinks]="3"  [resizableColumns]='true' [style]="{'margin-top':'30px'}">
        
+            <p-header>
+                <div  class="appIcon-css">
+                   <button pButton type="button" title="Add " (click)="openAddDialog()" icon="fa-plus"></button>
+                   <button pButton type="button" title="Edit "(click)="openEditDialog()" icon="fa-pencil" ></button>
+                    <button pButton type="button"class="ui-button-danger" title="Delete " (click)="deleteApp()" icon="fa-trash"></button>
+                </div>
+             </p-header>
         <p-column [style]="{'width':'50px'}" selectionMode="multiple">
         </p-column>
 
