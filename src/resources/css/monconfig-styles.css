@@ -726,11 +726,14 @@ mon-ui-config-datatable .ui-datatable{
 
 .spanClass{
   padding-right: 50px;
-  padding-bottom: 20px;
+  line-height: 21px;
 }
 
 .innerSpanClass{
   padding-right: 71px;
-  
+}
 
+.tableCss
+{
+ padding-bottom: 26px;
 }

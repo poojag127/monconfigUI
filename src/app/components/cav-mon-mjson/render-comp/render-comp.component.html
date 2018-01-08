@@ -30,7 +30,7 @@
           </span>     
         </span>
 
-        <span  *ngIf="item.type == 'Table'">
+        <div class="tableCss" *ngIf="item.type == 'Table'">
             <app-dynamic-tableview [columnData]="item.columnData" [disabled]="disabled"></app-dynamic-tableview>
-        </span>
+        </div>
 
