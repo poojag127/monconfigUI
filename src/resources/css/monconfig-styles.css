@@ -694,3 +694,28 @@ padding:10px;
 .mon-ui-accordion .ui-accordion .ui-accordion-content.ui-widget-content{
   display: -webkit-box;
 }
+
+/* for datatable header in the configuration screen of each monitor  */
+.mon-ui-config-datatable .ui-datatable .ui-datatable-header{
+  text-align: left;
+  height: 31px;
+  margin-top: 32px;
+}
+
+/* for datatable css in the configuration screen of each monitor */
+.mon-ui-config-datatable .ui-datatable th.ui-state-default{
+  background: rgba(65, 126, 191, 0.9);
+  color :#fff;
+}
+
+/* Css for the configured-data datatable */
+.configured-datatable  .ui-datatable th.ui-state-default{
+  background: rgba(65, 126, 191, 0.9);
+  color :#fff;
+}
+
+/* Css for the header of the configured-data datatable */
+.configured-datatable .ui-datatable .ui-datatable-header{
+  text-align: left;
+  height: 31px;
+}

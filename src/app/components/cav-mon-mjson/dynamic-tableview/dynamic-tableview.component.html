@@ -1,4 +1,4 @@
-<p-dataTable class="mon-ui"  [value]="tableData" [(selection)]="selectedJson" [rows]="5" [paginator]="jsonsTableData?.length >5" [pageLinks]="3" [style]="{'height':'200px'}">
+<p-dataTable class="mon-ui-config-datatable"  [value]="tableData" [(selection)]="selectedJson" [rows]="5" [paginator]="tableData?.length >5" [pageLinks]="3">
     <p-header>
         <div  class="appIcon-css">
            <button pButton type="button" title="Add " (click)="openAddDialog()" icon="fa-plus" [disabled]="disabled"></button>

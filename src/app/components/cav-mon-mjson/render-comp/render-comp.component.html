@@ -1,36 +1,36 @@
-
-   
-      <span  *ngIf="item.type == 'TextField'"  >
-           <label *ngIf="item.type == 'TextField' && item.label != null" style="margin-right: 2%;">{{item.label}}</label>
+      <span  *ngIf="item.type == 'TextField'" class="spanClass" >
+          <span  *ngIf="item.type == 'TextField' && item.label != null">
+           <label  style="margin-right: 2%;">{{item.label}}</label>
+           </span>
+           <span>
            <input [disabled]="disabled" name={{item.label}} type="text"  *ngIf="item.type == 'TextField'"  [(ngModel)]="item.value" class="spanClass2"  title="{{item.modal}}" required ng-model/>
+           </span>
        </span>
 
-        <span *ngIf="item.type == 'Checkbox'">   
-          <p-checkbox  [disabled]="disabled" name="item.label" [(ngModel)]="item.value" label="{{item.label}}" binary="true" ></p-checkbox>
+        <span *ngIf="item.type == 'Checkbox'" class="spanClass" >   
+          <p-checkbox   [disabled]="disabled" name="item.label" [(ngModel)]="item.value" label="{{item.label}}" binary="true" ></p-checkbox>
         </span>
         
-        <span *ngIf="item.type == 'Spinner'">
-           <label *ngIf="item.type == 'Spinner'" style="margin-right: 2%;">{{item.label}}</label>
-          <p-spinner [disabled]="disabled" name="item.label" [min]="0" [max]="100" size="4"  [(ngModel)]="item.value"  *ngIf="item.type == 'Spinner'" class="spanClass2"></p-spinner>
+        <span *ngIf="item.type == 'Spinner'" class="spanClass" >
+             <label *ngIf="item.type == 'Spinner'" style="margin-right: 2%;">{{item.label}}</label>
+             <p-spinner  [disabled]="disabled" name="item.label" [min]="0" [max]="100" size="4"  [(ngModel)]="item.value"  *ngIf="item.type == 'Spinner'" class="spanClass2"></p-spinner>
         </span>
 
-        <span *ngIf="item.type == 'Dropdown'">
+        <span *ngIf="item.type == 'Dropdown'" class="spanClass" >
            <label  style="margin-right: 2%;">{{item.label}}</label>   
-           <p-dropdown name="list" [disabled]="disabled"  [options]="item.dropDownList" [(ngModel)]="item.value"></p-dropdown>
+           <p-dropdown [style]="{'width':'14%'}" name="list" [disabled]="disabled"  [options]="item.dropDownList" [(ngModel)]="item.value"></p-dropdown>
         </span>
 
-        <span *ngIf="item.type == 'RadioButtonGroup'">
+        <span *ngIf="item.type == 'RadioButtonGroup'" class="spanClass" >
           <span  *ngFor="let each of item.items">
-            <div class="ui-g-2">
-             <p-radioButton  name="each.label"  [label] ="each.label" [value] ="each.arg" [(ngModel)]="item.value"></p-radioButton>
-            </div>
-            <div class="ui-g-2" *ngIf="each.dependentComp != null">
+             <p-radioButton  class="innerSpanClass" name="each.label"  [label] ="each.label" [value] ="each.arg" [(ngModel)]="item.value"></p-radioButton>
+            <span  *ngIf="each.dependentComp != null">
              <app-dependent-comp  [disabled]="item.value != each.arg" [dependentCompData]="each.dependentComp"></app-dependent-comp>
-            </div>
+            </span>
           </span>     
         </span>
 
-        <div  class="ui-g-12" *ngIf="item.type == 'Table'">
-          <app-dynamic-tableview [columnData]="item.columnData" [disabled]="disabled"></app-dynamic-tableview>
-        </div>
+        <span  *ngIf="item.type == 'Table'">
+            <app-dynamic-tableview [columnData]="item.columnData" [disabled]="disabled"></app-dynamic-tableview>
+        </span>
 
