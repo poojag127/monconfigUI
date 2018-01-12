@@ -34,14 +34,16 @@ export class DynamicTableviewComponent implements OnInit {
    /**Counter for ADD/EDIT  */
    count: number = 0;
 
+   /**Used to hold temporary id of the selected row ,used in edit functionality */
+   tempId:number = 0;
+
   constructor(private monConfigUtilityService:ConfigUtilityService) { }
 
   ngOnInit() {
-    console.log("columnData--",this.columnData)
+    console.log("columnData","ngOnit", this.columnData)
     let that = this;
     this.columnData.map(function(each)
     {
-      console.log("each--",each)
       that.cols.push({"field":each.label,"header":each.label})
     })
   }
@@ -51,19 +53,14 @@ export class DynamicTableviewComponent implements OnInit {
    * This method is used to show ADD Dialog for adding new entries in the dataTable
    */
    openAddDialog(){
-    console.log("this.select===",this.selectedJson)
      console.log("openAddDialog() method called")
      this.isNewRow = true;
      this.addEditDialog = true;
-     let that = this;
-     console.log("this.columnDta--",this.columnData)
-     this.cols.map(function(eachField){
-       if(that.selectedJson.hasOwnProperty("eachField"))
-       {
-        that.selectedJson[eachField]="";
-       }
+
+     /****** to clear fields value used in add form ******/
+     this.columnData.map(function(each){
+       each.value = '';
      })
-     console.log("this.select=aftr creating new obj==",this.selectedJson)
    }
 
 
@@ -71,7 +68,7 @@ export class DynamicTableviewComponent implements OnInit {
   * This method is used to show EDIT Dialog for editing existing entries in the dataTable 
   */
   openEditDialog(){
-    console.log("openEditDialog method called");
+    console.log("openEditDialog method called",this.selectedJson );
     if (!this.selectedJson || this.selectedJson.length < 1) 
     {
       this.monConfigUtilityService.errorMessage("No row is selected to edit");
@@ -82,82 +79,73 @@ export class DynamicTableviewComponent implements OnInit {
       this.monConfigUtilityService.errorMessage("Select a single row to edit");
       return;
     }
+    
+    this.tempId =  this.selectedJson[0]["id"];  
+    console.log("this.tempId--",this.tempId)
+
+    let that = this;
+    this.columnData.map(function(each)
+    {
+      each.value = that.selectedJson[0][each.label]
+    })
+
     this.isNewRow = false;
     this.addEditDialog = true;
   }
-
-//   /** For DELETE Functionality-
-//   * This method is used to delete entries of the dataTable 
-//   */
-//   deleteData(){
-//   console.log("deleteData() method is called")
-//   if (this.selectedJson.length == 0) 
-//   {
-//     this.monConfigUtilityService.errorMessage("No record is present to delete");
-//     return;
-//   }
-
-//   for (let i = 0; i < this.tableData.length; i++)
-//   {
-//     let index = this.tableData.indexOf(this.selectedJson[i]); //getting index of checked row
-
-//     if (index != -1) 
-//     {
-//       this.tableData = ImmutableArray.splice(this.tableData, index, 1);
-//       this.selectedJson = ImmutableArray.splice(this.selectedJson, i, 1);
-//       i = i - 1;
-//     }
-//   }
-// }
 
 
 /** For SAVE Functionality-
   * This is common method used to submit and save data when ADD/EDIT is performed
   */
   saveData(){
-    console.log("saveData method called",this.columnData)
-    console.log("this.cols",this.cols)
+    console.log("saveData() Method called")
     this.addEditDialog = false;
-    let data={};
+    let data = {};
+
+    /**** creating row object for table from the fields of form ****/
     this.columnData.map(function(each)
     {
       data[each.label] = each.value;
     })
-    console.log("data--",data)
+    console.log("Data added--", data)
 
-     //to insert new row in table ImmutableArray.push() is created as primeng 4.0.0 does not support above line 
-     if (this.isNewRow)
+    /***Check for ADD/EDIT operation **/
+    if (this.isNewRow)
+    {
+      data["id"] = this.count;
+      //to insert new row in table ImmutableArray.push() is created as primeng 4.0.0 does not support above line 
+      this.tableData=ImmutableArray.push(this.tableData, data); //adding new entries in the datatable when ADD is performed
+      this.count = this.count + 1;
+    }
+    else
+    {
+      data["id"] = this.tempId; //assign temporary id
+      this.tableData=ImmutableArray.replace(this.tableData, data , this.getSelectedRowIndex(data))
+    }
+    this.selectedJson = [];
+
+    /****clearing the form fields after use (safer side code)*/
+    this.columnData.map(function(each)
      {
-       console.log("this.isNewRow---",this.isNewRow)
-       data["id"]=this.count;
-       this.tableData=ImmutableArray.push(this.tableData, data);
-       this.count = this.count + 1;
-       console.log("Count Value is ---",this.count)
-     }
-     else
-     {
-       console.log("this.isNewRow---",this.isNewRow)
-       console.log("Dataa ------ ^^^", data)
-       this.tableData=ImmutableArray.replace(this.tableData, data , this.getSelectedRowIndex())
-     }
-} 
+       each.value = '';
+     })
+  }
 
 
-/**This method returns selected row on the basis of Id */
-getSelectedRowIndex(): number {
-  for (var i = 0; i < this.selectedJson.length; i++)
-  {
-    let index = this.tableData.indexOf(this.selectedJson[i]);
+  /**This method returns selected row on the basis of Id */
+   getSelectedRowIndex(data): number 
+   {
+    let index = this.tableData.findIndex(each => each["id"] == this.tempId)
     return index;
   }
- }
 
-
- deleteData()
- {
-   console.log("deleteData() method called")
-   console.log("this.selectedJson",this.selectedJson)
-
+ 
+ /** For DELETE Functionality-
+  * This method is used to delete entries of the dataTable 
+  */
+  deleteData()
+  {
+   console.log("deleteData() method called" , this.selectedJson)
    if (this.selectedJson.length == 0) 
     {
      this.monConfigUtilityService.errorMessage("No record is present to delete");
@@ -165,16 +153,16 @@ getSelectedRowIndex(): number {
     }
 
     let arrId = [];
-    console.log("this.selctedJsiojn--",this.selectedJson)
-    arrId.push(this.selectedJson["id"]);
-    console.log("this.tableData---",this.tableData,this.selectedJson['id'])
-    this.tableData = this.tableData.filter(function(val){
-      console.log("Value of Val=== ", arrId.indexOf(val.id) == -1);
-        return arrId.indexOf(val.id) == -1;  //value to be deleted should return false
-        
+    this.selectedJson.map(function(each)
+    {
+      arrId.push(each.id)
     })
-    console.log("TableData ----- ", this.tableData)
 
- }
-
+    this.tableData = this.tableData.filter(function(val)
+    {
+      return arrId.indexOf(val.id) == -1;  //value to be deleted should return false
+    })
+    /**clearing object used for storing data ****/
+    this.selectedJson = [];
+  }
 }

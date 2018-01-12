@@ -18,7 +18,7 @@
 
         <span *ngIf="item.type == 'Dropdown'" class="spanClass" >
            <label  style="margin-right: 2%;">{{item.label}}</label>   
-           <p-dropdown [style]="{'width':'auto'}" name="list" [disabled]="disabled"  [options]="item.dropDownList" [(ngModel)]="item.value" class="spanClass2"></p-dropdown>
+           <p-dropdown [style]="{'width':'auto'}" name="list" [disabled]="disabled" placeholder= "-- Select --"  [options]="item.dropDownList" [(ngModel)]="item.value" class="spanClass2"></p-dropdown>
         </span>
 
         <span *ngIf="item.type == 'RadioButtonGroup'" class="spanClass" >
