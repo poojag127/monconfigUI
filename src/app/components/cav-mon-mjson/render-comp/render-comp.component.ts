@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input,Output,EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-render-comp',
@@ -13,9 +13,27 @@ export class RenderCompComponent implements OnInit {
   @Input()
   disabled:boolean;
 
+  @Output()
+  updateTableVal = new EventEmitter();
+
+
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() 
+  {
+    if(this.item["type"] == 'Checkbox') 
+       this.item["value"] = this.item["value"] == "true"
+  }
+
+  /**
+   * This method used to send data to parent componnet monitors.component
+   * @param data 
+   */
+
+  updateTableValue(data)
+  {
+   console.log("renderCompData Method Called tableData--",data)
+   this.updateTableVal.emit(data)
   }
 
 }

@@ -17,7 +17,7 @@
      </div>
 
       <span *ngFor="let item of compArgs; let i = index">
-        <app-render-comp [item]="item"></app-render-comp>
+        <app-render-comp (updateTableVal)="updateTableData($event)" [item]="item"></app-render-comp>
       </span>
 
       <div class="ui-g-12">
@@ -50,6 +50,12 @@
         </p-column>
 
          <p-column  class="col-overflow" header="Arguments" field="arguments">
+            <template  let-col let-data="rowData" pTemplate="body">
+              <span [title]="data[col.field]">{{data[col.field]}}</span> 
+            </template>
+         </p-column>
+
+          <p-column  class="col-overflow" header="Server Arguments" field="options" hidden="true">
             <template  let-col let-data="rowData" pTemplate="body">
               <span [title]="data[col.field]">{{data[col.field]}}</span> 
             </template>

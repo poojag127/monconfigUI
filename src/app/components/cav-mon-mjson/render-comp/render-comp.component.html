@@ -8,7 +8,7 @@
        </span>
 
         <span *ngIf="item.type == 'Checkbox'" class="spanClass" >   
-          <p-checkbox   [disabled]="disabled" name="item.label" [(ngModel)]="item.value" label="{{item.label}}" binary="true" ></p-checkbox>
+          <p-checkbox  binary="false"  [disabled]="disabled" name="item.label" [(ngModel)]="item.value " label="{{item.label}}" ></p-checkbox>
         </span>
         
         <span *ngIf="item.type == 'Spinner'" class="spanClass" >
@@ -23,14 +23,14 @@
 
         <span *ngIf="item.type == 'RadioButtonGroup'" class="spanClass" >
           <span  *ngFor="let each of item.items">
-             <p-radioButton  class="innerSpanClass" name="each.label"  [label] ="each.label" [value] ="each.arg" [(ngModel)]="item.value"></p-radioButton>
-            <span  *ngIf="each.dependentComp != null">
-             <app-dependent-comp  [disabled]="item.value != each.arg" [dependentCompData]="each.dependentComp"></app-dependent-comp>
+            <p-radioButton  class="innerSpanClass"  name="each.label"  [label] ="each.label" [value] ="each.arg" [(ngModel)]="item.value"></p-radioButton>
+            <span  *ngIf="each.dependentComp != null" >
+              <app-dependent-comp  [disabled]="item.value != each.arg" [dependentCompData]="each.dependentComp"></app-dependent-comp>
             </span>
           </span>     
         </span>
 
         <div class="tableCss" *ngIf="item.type == 'Table'">
-            <app-dynamic-tableview [columnData]="item.columnData" [disabled]="disabled"></app-dynamic-tableview>
+           <app-dynamic-tableview  (updateTableVal)="updateTableValue($event)"   [tableCompData]="item" [disabled]="disabled"></app-dynamic-tableview>
         </div>
 

@@ -1,4 +1,4 @@
-import { Component, OnInit ,Input} from '@angular/core';
+import { Component, OnInit ,Input ,Output, EventEmitter} from '@angular/core';
 import { ImmutableArray } from '../../../utility/immutable-array';
 import {ConfigUtilityService} from '../../../services/config-utility.service';
 
@@ -11,10 +11,15 @@ import {ConfigUtilityService} from '../../../services/config-utility.service';
 export class DynamicTableviewComponent implements OnInit {
 
   @Input()
-  columnData: any[];
+  tableCompData: {};
 
   @Input()
   disabled:boolean;
+
+  @Output()
+  updateTableVal = new EventEmitter();
+
+  columnData:any[]= [];
 
   /**holds the header data of the table */
   cols: any[]=[];
@@ -40,11 +45,12 @@ export class DynamicTableviewComponent implements OnInit {
   constructor(private monConfigUtilityService:ConfigUtilityService) { }
 
   ngOnInit() {
-    console.log("columnData","ngOnit", this.columnData)
+    console.log("columnData--", this.tableCompData["columnData"])
+    this.columnData = this.tableCompData["columnData"];
     let that = this;
     this.columnData.map(function(each)
     {
-      that.cols.push({"field":each.label,"header":each.label})
+      that.cols.push({"field":each.arg,"header":each.label})
     })
   }
 
@@ -105,7 +111,7 @@ export class DynamicTableviewComponent implements OnInit {
     /**** creating row object for table from the fields of form ****/
     this.columnData.map(function(each)
     {
-      data[each.label] = each.value;
+      data[each.arg] = each.value;
     })
     console.log("Data added--", data)
 
