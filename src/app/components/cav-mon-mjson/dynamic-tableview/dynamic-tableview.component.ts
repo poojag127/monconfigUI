@@ -92,7 +92,7 @@ export class DynamicTableviewComponent implements OnInit {
     let that = this;
     this.columnData.map(function(each)
     {
-      each.value = that.selectedJson[0][each.label]
+      each.value = that.selectedJson[0][each.arg]
     })
 
     this.isNewRow = false;
