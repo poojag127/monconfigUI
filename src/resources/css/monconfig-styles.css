@@ -724,11 +724,14 @@ mon-ui-config-datatable .ui-datatable{
   height: 31px;
 }
 
-.spanClass{
+/*Css for each render-comp span*/
+span .spanClass {
   padding-right: 50px;
-  line-height: 21px;
+  line-height: 25px;
+  margin: 10px 0;
 }
 
+/*Css for each render-comp inner span*/
 .innerSpanClass{
   padding-right: 71px;
 }
@@ -736,4 +739,15 @@ mon-ui-config-datatable .ui-datatable{
 .tableCss
 {
  padding-bottom: 26px;
+}
+
+/* for setting height of dropdown in span for each rendered comp*/
+.spanClass2 .ui-dropdown {
+  line-height: 20px;
+}
+
+/* for setting line height of spinner in span for each rendered comp */
+.spanClass2 .ui-spinner {
+  line-height: 20px;
+
 }
