@@ -217,6 +217,7 @@ export class ConfigurationHomeComponent implements OnInit
   advanceSettings(monData,tierId,tierName)
   {
     let monName = monData["monitor"];
+    console.log("monData--",monData)
     console.log("monName",monName)
     if(monData["monitor"].startsWith('Weblogic'))
     {
@@ -225,6 +226,7 @@ export class ConfigurationHomeComponent implements OnInit
     else
     {
       console.log("monData--",monName)
+
       console.log("advanceSettings mthod called--",monData['compArgJson'])
       let arrData = monData['compArgJson'];
       this.cavMonConfigService.setMonCompData(arrData);
