@@ -9,6 +9,7 @@ import { ConfigUiUtility } from '../../../utility/monconfig-utility';
 import { TableData } from '../../../containers/table-data';
 import { ImmutableArray } from '../../../utility/immutable-array';
 import * as _ from "lodash";
+import {ConfigUtilityService} from '../../../services/config-utility.service';
 
 @Component({
   selector: 'app-monitors',
@@ -50,7 +51,8 @@ export class MonitorsComponent implements OnInit {
                private route: ActivatedRoute,
                private cavMonConfigService:CavmonConfigService,
                private store: Store<any>,
-               private cavMonDataService:CavmonMonitorsdataService
+               private cavMonDataService:CavmonMonitorsdataService,
+               private monConfigUtilityService:ConfigUtilityService
                )
    { }
 
@@ -205,6 +207,12 @@ export class MonitorsComponent implements OnInit {
  */
  addData()
  {
+  if(this.tierId == -1) {
+    this.monConfigUtilityService.successMessage(this.monName + " has been configured for All Servers")
+  }
+  else{
+    this.monConfigUtilityService.successMessage(this.monName + " has been configured for " + this.selectedTableData.serverName)
+  }
    console.log("compArgs--",this.compArgs)
    console.log("selectedTableDta-",this.selectedTableData)
    let option = '';         // for column to display to the user
