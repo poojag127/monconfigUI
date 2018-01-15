@@ -51,7 +51,8 @@ export class DynamicTableviewComponent implements OnInit {
     let that = this;
     this.columnData.map(function(each)
     {
-      that.cols.push({"field":each.arg,"header":each.label})
+      let key = "ui-" + each.arg;
+      that.cols.push({"field":key,"header":each.label})
     })
   }
 
@@ -110,14 +111,25 @@ export class DynamicTableviewComponent implements OnInit {
 
     this.addEditDialog = false;
     let data = {};
+    console.log("this.columnData---- " , this.columnData)
 
     /**** creating row object for table from the fields of form ****/
     this.columnData.map(function(each)
     {
-      console.log("each -- ", each)
-      data[each.arg] = each.value;        
+     
+      console.log("each ---------------- ", each)
+      data[each.arg] = each.value;   
       
+      if(each.dropDownList !=  null)
+      {
+        let obj = _.find(each.dropDownList,function(list){  return list.value == each.value})
+        /**creating this key for UI purpose *******/
+        let key = "ui-" + each.arg;
+        data[key] = obj.label;
+      }
+       console.log("data  ------ ",data)
     })
+
     console.log("Data added--", data)
 
     /***Check for ADD/EDIT operation **/
@@ -177,7 +189,7 @@ export class DynamicTableviewComponent implements OnInit {
   {
     console.log("ValidateField called")
     let that = this;
-    let obj = _.find(this.columnData,function(each){ return each.type == 'Dropdown'})
+    let obj = _.find(this.columnData,function(each){return each.type == 'Dropdown'})
     console.log("obj === ", obj)
 
     if(obj["value"] == null || obj["value"] == '' )

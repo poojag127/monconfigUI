@@ -207,21 +207,29 @@ export class MonitorsComponent implements OnInit {
  */
  addData()
  {
-  if(this.tierId == -1) {
-    this.monConfigUtilityService.successMessage(this.monName + " has been configured for All Servers")
-  }
-  else{
-    this.monConfigUtilityService.successMessage(this.monName + " has been configured for " + this.selectedTableData.serverName)
-  }
    console.log("compArgs--",this.compArgs)
    console.log("selectedTableDta-",this.selectedTableData)
    let option = '';         // for column to display to the user
    let argumentData = '';  // for hidden column
    let arg = '';
 
-   if(this.tierId == -1)
-     this.selectedTableData.serverName = 'All Server'
-
+    /*** Check for whether selected monitor is configured for all tier or specific tier **/
+    if(this.tierId == -1)
+    {
+      this.selectedTableData.serverName = 'All Server';
+      this.monConfigUtilityService.successMessage(this.monName + " has been configured for All Servers");
+    }
+    else
+    {
+       if(this.selectedTableData.serverName == "" || this.selectedTableData.serverName == undefined)
+       {
+          this.monConfigUtilityService.errorMessage("Please select server ");
+          return;
+       }
+       
+     this.monConfigUtilityService.successMessage(this.monName + " has been configured for " + this.selectedTableData.serverName)
+    }
+    
    let that = this;
    this.compArgs.map(function(each)
    {
