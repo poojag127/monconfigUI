@@ -1,6 +1,7 @@
 import { Component, OnInit ,Input ,Output, EventEmitter} from '@angular/core';
 import { ImmutableArray } from '../../../utility/immutable-array';
 import {ConfigUtilityService} from '../../../services/config-utility.service';
+import * as _ from "lodash";
 
 @Component({
   selector: 'app-dynamic-tableview',
@@ -50,7 +51,8 @@ export class DynamicTableviewComponent implements OnInit {
     let that = this;
     this.columnData.map(function(each)
     {
-      that.cols.push({"field":each.arg,"header":each.label})
+      let key = "ui-" + each.arg;
+      that.cols.push({"field":key,"header":each.label})
     })
   }
 
@@ -62,11 +64,7 @@ export class DynamicTableviewComponent implements OnInit {
      console.log("openAddDialog() method called")
      this.isNewRow = true;
      this.addEditDialog = true;
-
-     /****** to clear fields value used in add form ******/
-     this.columnData.map(function(each){
-       each.value = '';
-     })
+     this.clearFieldData();
    }
 
 
@@ -104,15 +102,34 @@ export class DynamicTableviewComponent implements OnInit {
   * This is common method used to submit and save data when ADD/EDIT is performed
   */
   saveData(){
-    console.log("saveData() Method called")
+    console.log("saveData() Method called");
+
+    /**** Check for whether an item is selected from the dropdown list or not   */
+    if(!this.validateField()){
+      return;
+    }
+
     this.addEditDialog = false;
     let data = {};
+    console.log("this.columnData---- " , this.columnData)
 
     /**** creating row object for table from the fields of form ****/
     this.columnData.map(function(each)
     {
-      data[each.arg] = each.value;
+     
+      console.log("each ---------------- ", each)
+      data[each.arg] = each.value;   
+      
+      if(each.dropDownList !=  null)
+      {
+        let obj = _.find(each.dropDownList,function(list){  return list.value == each.value})
+        /**creating this key for UI purpose *******/
+        let key = "ui-" + each.arg;
+        data[key] = obj.label;
+      }
+       console.log("data  ------ ",data)
     })
+
     console.log("Data added--", data)
 
     /***Check for ADD/EDIT operation **/
@@ -124,10 +141,11 @@ export class DynamicTableviewComponent implements OnInit {
       this.count = this.count + 1;
     }
     else
-    {
+    { 
       data["id"] = this.tempId; //assign temporary id
       this.tableData=ImmutableArray.replace(this.tableData, data , this.getSelectedRowIndex(data))
     }
+<<<<<<< HEAD
     this.selectedJson = [];
 
 
@@ -142,6 +160,10 @@ export class DynamicTableviewComponent implements OnInit {
      {
        each.value = '';
      })
+=======
+  this.selectedJson = [];
+  this.clearFieldData();
+>>>>>>> ce3499d8236c0a7d6ac3bfb6e5baa81188ee3410
   }
 
 
@@ -178,4 +200,32 @@ export class DynamicTableviewComponent implements OnInit {
     /**clearing object used for storing data ****/
     this.selectedJson = [];
   }
+
+  /** Method to validate whether dropdown item is selected or not in the ADD form  */
+  validateField() : boolean
+  {
+    console.log("ValidateField called")
+    let that = this;
+    let obj = _.find(this.columnData,function(each){return each.type == 'Dropdown'})
+    console.log("obj === ", obj)
+
+    if(obj["value"] == null || obj["value"] == '' )
+    {
+       that.monConfigUtilityService.errorMessage("Please enter " + obj["label"])
+       return false;
+    }
+
+    return true;
+  }
+
+
+  /** clearing the form fields after use (safer side code)  */
+  clearFieldData()
+  {
+    this.columnData.map(function(each)
+    {
+      each.value = '';
+    })
+  }
+
 }
