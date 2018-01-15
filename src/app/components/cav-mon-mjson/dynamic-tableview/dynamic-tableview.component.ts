@@ -51,7 +51,12 @@ export class DynamicTableviewComponent implements OnInit {
     let that = this;
     this.columnData.map(function(each)
     {
-      let key = "ui-" + each.arg;
+      console.log("each---",each)
+      let key = each.arg;
+      if(each.type == "Dropdown")
+      {
+       key = "ui-" + each.arg;
+      }
       that.cols.push({"field":key,"header":each.label})
     })
   }
@@ -101,7 +106,8 @@ export class DynamicTableviewComponent implements OnInit {
 /** For SAVE Functionality-
   * This is common method used to submit and save data when ADD/EDIT is performed
   */
-  saveData(){
+  saveData()
+  {
     console.log("saveData() Method called");
 
     /**** Check for whether an item is selected from the dropdown list or not   */
@@ -116,7 +122,6 @@ export class DynamicTableviewComponent implements OnInit {
     /**** creating row object for table from the fields of form ****/
     this.columnData.map(function(each)
     {
-     
       console.log("each ---------------- ", each)
       data[each.arg] = each.value;   
       
@@ -145,25 +150,13 @@ export class DynamicTableviewComponent implements OnInit {
       data["id"] = this.tempId; //assign temporary id
       this.tableData=ImmutableArray.replace(this.tableData, data , this.getSelectedRowIndex(data))
     }
-<<<<<<< HEAD
-    this.selectedJson = [];
 
-
-    console.log(" this.tableData--" ,this.tableData)
-    
+    console.log("tableData--",this.tableData)
     /**** sending data to parent component *****/
-    let obj = {"data":this.tableData,"id":this.tableCompData["id"]}
-    this.updateTableVal.emit(obj);
-
-    /****clearing the form fields after use (safer side code)*/
-    this.columnData.map(function(each)
-     {
-       each.value = '';
-     })
-=======
-  this.selectedJson = [];
-  this.clearFieldData();
->>>>>>> ce3499d8236c0a7d6ac3bfb6e5baa81188ee3410
+   let obj = {"data":this.tableData,"id":this.tableCompData["id"]}
+   this.updateTableVal.emit(obj);
+   this.selectedJson = [];
+   this.clearFieldData();
   }
 
 

@@ -15,9 +15,16 @@ export class DependentCompComponent implements OnInit {
   @Input()
   disabled:boolean;
 
+  
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  updateTableData(data)
+  {
+   
   }
 
 }

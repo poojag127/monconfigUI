@@ -126,7 +126,8 @@ export class MonitorsComponent implements OnInit {
   updateTableData(data)
   {
    console.log("class monitors.comp called",data)
-   let obj =_.find(this.compArgs,function(each){
+   let obj =_.find(this.compArgs,function(each) {
+     console.log("each---",each)
       return each.id == data.id
     })
    obj["value"] = data.data;
@@ -169,7 +170,7 @@ export class MonitorsComponent implements OnInit {
      /**  getting the object of selected radio   ****/
      let selectedObj = _.find(eachCompData["items"],function(each) { return each.value == eachCompData.value })
 
-     data = data + " " + eachCompData.value;
+    //  data = data + " " + eachCompData.value;
 
      let val = this.getDataForRadioButtons(selectedObj)
      
@@ -204,8 +205,8 @@ export class MonitorsComponent implements OnInit {
        data = data + " " + eachCompData["arg"];  
        argumentData = argumentData + " "+ eachCompData["label"];     
      }
-       data = data + " " +val["options"];
-       argumentData = argumentData + val["argumentData"];
+       data = data + " " +val;
+       argumentData = argumentData + ":" +val;
     }
     else if(eachCompData.type == 'Checkbox') 
     {
