@@ -94,19 +94,22 @@ export class MonitorsComponent implements OnInit {
 
    getDataForDependentComp(dependentCompArr)
    {
-     let val ;
+     let val='';
      let that = this;
      dependentCompArr.map(function(eachDepenComp)
      {
-       val = that.getDataForComp(eachDepenComp);
+       let data = that.getDataForComp(eachDepenComp);
+       val = val + data["options"] + ",";
       })
-      return val;
+      val = val.substring(0,val.length -1);
+      console.log("Method getDataForDependentComp caleed value =",val.trim())
+      return val.trim();
    }
 
    getDataForRadioButtons(item)
    {
      let val;
-     if(item.hasOwnProperty("dependentComp"))
+     if(item.hasOwnProperty("dependentComp") && item["dependentComp"] != null )
         val = this.getDataForDependentComp(item.dependentComp)
 
      return val;
@@ -135,13 +138,16 @@ export class MonitorsComponent implements OnInit {
    {
     let val='';
     tableData.map(function(each) {
+      console.log("each---",each)
       for (let key of Object.keys(each))
       {
-        val = val + key + ":" + each[key]+ ",";
+        if(key != "id")
+           val = val + key + ":" + each[key]+ ",";
       }
     })
     val = val.substring(0, val.length-1);
-    return val;
+    console.log("Methd getDataForTable called value = ",val.trim())
+    return val.trim();
   }
 
   /**
@@ -151,6 +157,7 @@ export class MonitorsComponent implements OnInit {
 
    getDataForComp(eachCompData)
    {
+    console.log("Method getDataForComp called for Component =  ",eachCompData)
     let data = '';
     let argumentData = '';
     
@@ -158,22 +165,45 @@ export class MonitorsComponent implements OnInit {
     if(eachCompData.hasOwnProperty("items") && eachCompData["items"] != null)
     {
      /**  getting the object of selected radio   ****/
-     let selectedObj = _.find(eachCompData["items"],function(each) { return each.args == each.value })
+     let selectedObj = _.find(eachCompData["items"],function(each) { return each.value == eachCompData.value })
 
      data = data + " " + eachCompData.value;
 
      let val = this.getDataForRadioButtons(selectedObj)
      
-     data = data + " " + val["options"];
-     argumentData = argumentData + selectedObj.label + ":" + val["argumentData"];
+     console.log("val--",val)
+     
+     if(val == null || val == '')
+     {
+       /****** case when selected radiobutton doesnot have dependent component ****/
+       data = data + " " + eachCompData.value;
+       argumentData = argumentData + selectedObj.label + ":" + eachCompData.value;
+     }  
+     else
+     {
+      data = data + " " + val;
+      argumentData = argumentData + selectedObj.label + ":" + val;
+     }
     }
-    else if(eachCompData.hasOwnProperty("columnData") && eachCompData["columnData"] != null)
+    else if(eachCompData.hasOwnProperty("columnData") && eachCompData["columnData"] != null && eachCompData.value != null)
     {
       data = data + " " + eachCompData.arg ;
       let val = this.getDataForTable(eachCompData.value);
       data = data + " " + val;
       argumentData = argumentData + eachCompData.label + ":" + val;
       console.log("data for tableData--",data)
+    }
+    else if(eachCompData.hasOwnProperty("dependentComp") && eachCompData["dependentComp"] != null)
+    {
+     let val = this.getDataForDependentComp(eachCompData.dependentComp)
+     
+     if(eachCompData["arg"] != null && eachCompData["arg"] != "")
+     {
+       data = data + " " + eachCompData["arg"];  
+       argumentData = argumentData + " "+ eachCompData["label"];     
+     }
+       data = data + " " +val["options"];
+       argumentData = argumentData + val["argumentData"];
     }
     else if(eachCompData.type == 'Checkbox') 
     {
@@ -183,15 +213,15 @@ export class MonitorsComponent implements OnInit {
          argumentData = argumentData + eachCompData.label + ":" + eachCompData.value;
        }
     }
-    else
+    else 
      {
        if(eachCompData.arg != null && eachCompData.arg != "") 
        {
-           data = data + " " + eachCompData.arg + ":";
-           argumentData = argumentData + eachCompData.label + ":"
+        data = data + " " + eachCompData.arg + ":";
+        argumentData = argumentData + eachCompData.label + ":"
         }
-          data = data + " "+ eachCompData.value 
-          argumentData = argumentData + eachCompData.value ;
+        data = data + " " +eachCompData.value 
+        argumentData = argumentData + eachCompData.value ;
     }
     console.log("data---",data)
     console.log("argumentData---",argumentData)
@@ -227,5 +257,24 @@ export class MonitorsComponent implements OnInit {
 
     //to insert new row in table ImmutableArray.push() is created as primeng 4.0.0 does not support above line 
    this.tableData=ImmutableArray.push(this.tableData, this.selectedTableData);
+
+   /** getting data of monitor selected ****/
+    this.subscription = this.store.select("selectedMon")
+        .subscribe(data => {
+        console.log("data- monitors component ----",data)
+        if(data != null)
+        {
+         this.compArgs = data["data"];
+        }
+    })
  }
+
+
+
+ ngOnDestroy() 
+ {
+  console.log("moving out of compoent--",this.tableData)
+ }
+
+
 }

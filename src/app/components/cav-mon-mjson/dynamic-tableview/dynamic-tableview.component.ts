@@ -130,6 +130,13 @@ export class DynamicTableviewComponent implements OnInit {
     }
     this.selectedJson = [];
 
+
+    console.log(" this.tableData--" ,this.tableData)
+    
+    /**** sending data to parent component *****/
+    let obj = {"data":this.tableData,"id":this.tableCompData["id"]}
+    this.updateTableVal.emit(obj);
+
     /****clearing the form fields after use (safer side code)*/
     this.columnData.map(function(each)
      {

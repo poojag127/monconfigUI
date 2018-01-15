@@ -1,10 +1,10 @@
       <span  *ngIf="item.type == 'TextField'" class="spanClass" >
-          <span  *ngIf="item.type == 'TextField' && item.label != null">
+        <span  *ngIf="item.type == 'TextField' && item.label != null">
            <label  style="margin-right: 2%;">{{item.label}}</label>
-           </span>
-           <span>
-           <input [disabled]="disabled" name={{item.label}} type="text"  *ngIf="item.type == 'TextField'"  [(ngModel)]="item.value" class="spanClass2"  title="{{item.modal}}" required ng-model/>
-           </span>
+         </span>
+         <span>
+          <input [disabled]="disabled" name={{item.label}} type="text"  *ngIf="item.type == 'TextField'"  [(ngModel)]="item.value" class="spanClass2"  title="{{item.modal}}" required ng-model/>
+          </span>
        </span>
 
         <span *ngIf="item.type == 'Checkbox'" class="spanClass" >   
@@ -23,14 +23,24 @@
 
         <span *ngIf="item.type == 'RadioButtonGroup'" class="spanClass" >
           <span  *ngFor="let each of item.items">
-            <p-radioButton  class="innerSpanClass"  name="each.label"  [label] ="each.label" [value] ="each.arg" [(ngModel)]="item.value"></p-radioButton>
+            <p-radioButton  class="innerSpanClass" name="each.label"  [label] ="each.label" [value] ="each.value" [(ngModel)]="item.value"></p-radioButton>
             <span  *ngIf="each.dependentComp != null" >
               <app-dependent-comp  [disabled]="item.value != each.arg" [dependentCompData]="each.dependentComp"></app-dependent-comp>
             </span>
           </span>     
         </span>
+        
+        <span *ngIf="item.type == 'FieldSet'" class="fieldSetCss">
+         <p-fieldset  [style]="{'font-size':'13px' }"  legend={{item.label}} [toggleable]="true" collapsed="true">
+            <span  *ngIf="item.dependentComp != null" >
+              <app-dependent-comp  [dependentCompData]="item.dependentComp"></app-dependent-comp>
+            </span>
+         </p-fieldset>
+        </span>
 
-        <div class="tableCss" *ngIf="item.type == 'Table'">
-           <app-dynamic-tableview  (updateTableVal)="updateTableValue($event)"   [tableCompData]="item" [disabled]="disabled"></app-dynamic-tableview>
-        </div>
+        
+
+      <div class="tableCss" *ngIf="item.type == 'Table'" >
+         <app-dynamic-tableview  (updateTableVal)="updateTableValue($event)"   [tableCompData]="item" [disabled]="disabled"></app-dynamic-tableview>
+      </div>
 
