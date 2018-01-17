@@ -108,6 +108,9 @@ export class CavmonConfigService {
       });
  }
 
+  
+
+
   getTreeTableData() 
   {
     return this.http.get('../../assets/filesystem.json')
@@ -179,19 +182,34 @@ export class CavmonConfigService {
      console.log("getMonitorsData method called")
   }
 
-  /** This method sends request to server for getting  *****/
-
+  /**** This method sends request to server for getting  *****/
   getChildNodes(categoryName,mjsonName,topoName)
   {
     console.log("getChildNodes method called--",event)
-    let url = `${URL.GET_CHILD_NODES}`+"?categoryName="+`${categoryName}`+"&jsonName="+`${mjsonName}`+"&topoName="+`${topoName}`;
+    let url = `${URL.GET_CHILD_NODES}`+"?categoryName="+`${categoryName}`+"&jsonName="+`${mjsonName}`+"&topoName="+`${topoName}+"&userName"+"netstorm"`;
     this._restApi.getDataByGetReq(url)
       .subscribe(data => {
         let obj = {'data':data,'categoryName':categoryName}
         console.log("data--",data)
         this.store.dispatch({type:"ADD_MONITOR_DATA" , payload: obj });
       });
+   }
+
+  /*** Request used to get components data of particular Name******/
+  getComponentData(monData)
+  {
+   console.log("getComponentData method called")
+   let url = `${URL.GET_COMPONENTS}`+ "?menuDrivenJsonName="+monData['drivenJsonName']+"&userName"+"netstorm";
+   console.log("url----",url)
+   this._restApi.getDataByGetReq(url).subscribe(data => {
+      console.log("data ---",data)
+      this.store.dispatch({type:"ADD_COMPONENTS" , payload: data });
+   })
   }
+
+   
+ 
+   
 
 }
 

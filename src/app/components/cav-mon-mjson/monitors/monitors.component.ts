@@ -47,6 +47,9 @@ export class MonitorsComponent implements OnInit {
 
   dropDownList:SelectItem[]=[];
 
+  /***Used to store clone data *****/
+  tempData:any[];
+
   constructor( private router:Router,
                private route: ActivatedRoute,
                private cavMonConfigService:CavmonConfigService,
@@ -75,9 +78,12 @@ export class MonitorsComponent implements OnInit {
     this.subscription = this.store.select("selectedMon")
         .subscribe(data => {
         console.log("data- monitors component ----",data)
-        if(data != null)
+        if(data != null || Object.keys(data).length != 0)  /***handling case when data ="{}"****/
         {
          this.compArgs = data["data"];
+  
+         /******making a deep cloning of  data["data"] ,as initial object is used further ******/
+         this.tempData = JSON.parse (JSON.stringify(data["data"])) 
         }
     })
 
@@ -87,7 +93,7 @@ export class MonitorsComponent implements OnInit {
              .subscribe(data => {
                         if(data != null)
                         {
-                         data.unshift("ALL Server");
+                         data.unshift("All Servers");
                          this.serverList = ConfigUiUtility.createDropdown(data);
                         }
                       })
@@ -106,6 +112,14 @@ export class MonitorsComponent implements OnInit {
       val = val.substring(0,val.length -1);
       console.log("Method getDataForDependentComp caleed value =",val.trim())
       return val.trim();
+   }
+
+
+   openEditMode()
+   {
+     console.log("this.selectedTableData--",this.selectedTableData)
+
+
    }
 
    getDataForRadioButtons(item)
@@ -144,7 +158,7 @@ export class MonitorsComponent implements OnInit {
       console.log("each---",each)
       for (let key of Object.keys(each))
       {
-        if(key != "id")
+        if(key != "id" && !key.startsWith("ui-"))
            val = val + key + ":" + each[key]+ ",";
       }
     })
@@ -275,22 +289,15 @@ export class MonitorsComponent implements OnInit {
     //to insert new row in table ImmutableArray.push() is created as primeng 4.0.0 does not support above line 
    this.tableData=ImmutableArray.push(this.tableData, this.selectedTableData);
 
-   /** getting data of monitor selected ****/
-    this.subscription = this.store.select("selectedMon")
-        .subscribe(data => {
-        console.log("data- monitors component ----",data)
-        if(data != null)
-        {
-         this.compArgs = data["data"];
-        }
-    })
+   /** clearing the fields ****/
+    this.compArgs =  this.tempData;
  }
-
 
 
  ngOnDestroy() 
  {
   console.log("moving out of compoent--",this.tableData)
+  this.store.dispatch({ type: "configuredMonData" ,payload:this.tableData });
  }
 
 

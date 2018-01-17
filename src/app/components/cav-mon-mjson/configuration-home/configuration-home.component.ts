@@ -129,17 +129,18 @@ export class ConfigurationHomeComponent implements OnInit
         */
   }
 
+ 
+
   /***Function used to create header list array for treetable component *****/
   createHeadersList(tierList)
   {
     if(tierList != null)
     {
     console.log("tierList--",tierList)
-
-    let that = this;
-    tierList.forEach((function(val){
+     let that = this;
+     tierList.forEach((function(val){
       that.cols.push({field:val.id ,header :val.name})
-    }));
+     }));
     }
   }
 
@@ -226,12 +227,18 @@ export class ConfigurationHomeComponent implements OnInit
     else
     {
       console.log("monData--",monName)
-
       console.log("advanceSettings mthod called--",monData['compArgJson'])
+      if(!monData.hasOwnProperty("compArgJson") && monData['compArgJson'] == null)
+      {
+        this.cavMonConfigService.getComponentData(monData);   
+      }
+      else
+      {
       let arrData = monData['compArgJson'];
       this.cavMonConfigService.setMonCompData(arrData);
       this.store.dispatch({type:SELECTED_MON ,payload:arrData})
-      this.router.navigate(['../../../advanceSettings',this.mjsonName,this.topoName,monName,tierId,tierName],{ relativeTo: this.route });
+      }
+      // this.router.navigate(['../../../advanceSettings',this.mjsonName,this.topoName,monName,tierId,tierName],{ relativeTo: this.route });
     }
   }
 

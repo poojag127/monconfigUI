@@ -2,6 +2,7 @@ import { Component, OnInit ,Input ,Output, EventEmitter} from '@angular/core';
 import { ImmutableArray } from '../../../utility/immutable-array';
 import {ConfigUtilityService} from '../../../services/config-utility.service';
 import * as _ from "lodash";
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-dynamic-tableview',
@@ -43,7 +44,7 @@ export class DynamicTableviewComponent implements OnInit {
    /**Used to hold temporary id of the selected row ,used in edit functionality */
    tempId:number = 0;
 
-  constructor(private monConfigUtilityService:ConfigUtilityService) { }
+  constructor(private monConfigUtilityService:ConfigUtilityService,private store: Store<Object>) { }
 
   ngOnInit() {
     console.log("columnData--", this.tableCompData["columnData"])
@@ -152,9 +153,13 @@ export class DynamicTableviewComponent implements OnInit {
     }
 
     console.log("tableData--",this.tableData)
+    
     /**** sending data to parent component *****/
    let obj = {"data":this.tableData,"id":this.tableCompData["id"]}
+
    this.updateTableVal.emit(obj);
+  //  this.store.dispatch({ type: MONITOR_DATA , payload: obj });
+
    this.selectedJson = [];
    this.clearFieldData();
   }
