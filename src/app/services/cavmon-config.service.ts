@@ -2,12 +2,13 @@ import { Http } from '@angular/http';
 import { TreeNode } from 'primeng/primeng';
 import {ConfigRestApiService} from './config-rest-api.service';
 import * as URL from '../constants/monconfig-url-constant';
-import { MONITOR_DATA } from '../reducers/monitor-reducer';
+// import { MONITOR_DATA } from '../reducers/monitor-reducer';
 import { Store } from '@ngrx/store';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
+
 
 
 @Injectable()
@@ -104,7 +105,7 @@ export class CavmonConfigService {
    let url = `${URL.GET_TIER_MONITORS_DATA}`+"?topoName="+`${topoName}`+"&jsonName="+`${mjsonName}`;
    this._restApi.getDataByGetReq(url)
       .subscribe(data => {
-        this.store.dispatch({ type: MONITOR_DATA , payload: data });
+        this.store.dispatch({type:"MONITOR_DATA",payload:data });
       });
  }
 
@@ -183,10 +184,10 @@ export class CavmonConfigService {
   }
 
   /**** This method sends request to server for getting  *****/
-  getChildNodes(categoryName,mjsonName,topoName)
+  getChildNodes(categoryName,mjsonName,topoName,id)
   {
     console.log("getChildNodes method called--",event)
-    let url = `${URL.GET_CHILD_NODES}`+"?categoryName="+`${categoryName}`+"&jsonName="+`${mjsonName}`+"&topoName="+`${topoName}+"&userName"+"netstorm"`;
+    let url = `${URL.GET_CHILD_NODES}`+"?categoryName="+`${categoryName}`+"&jsonName="+`${mjsonName}`+"&topoName="+`${topoName}`+"&categoryId="+`${id}`+"&userName=netstorm";
     this._restApi.getDataByGetReq(url)
       .subscribe(data => {
         let obj = {'data':data,'categoryName':categoryName}
@@ -195,16 +196,14 @@ export class CavmonConfigService {
       });
    }
 
+
   /*** Request used to get components data of particular Name******/
   getComponentData(monData)
   {
    console.log("getComponentData method called")
-   let url = `${URL.GET_COMPONENTS}`+ "?menuDrivenJsonName="+monData['drivenJsonName']+"&userName"+"netstorm";
+   let url = `${URL.GET_COMPONENTS}`+ "?menuDrivenJsonName="+monData['drivenJsonName']+"&userName=netstorm";
    console.log("url----",url)
-   this._restApi.getDataByGetReq(url).subscribe(data => {
-      console.log("data ---",data)
-      this.store.dispatch({type:"ADD_COMPONENTS" , payload: data });
-   })
+   return  this._restApi.getDataByGetReq(url);
   }
 
    

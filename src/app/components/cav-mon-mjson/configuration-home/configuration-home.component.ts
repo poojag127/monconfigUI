@@ -31,7 +31,6 @@ export class ConfigurationHomeComponent implements OnInit
 
   mjsonName :String;
 
-
   monName :String; //variable to hold monitor name 
 
   tierfield:String; //variable to hold tier name for each monitor
@@ -97,23 +96,23 @@ export class ConfigurationHomeComponent implements OnInit
  
    this.subscription = this.store.select("monitorData")
             .subscribe(data => {
-        console.log("data--",data)
+              console.log("again constructing monitorTre  table")
         if(data != null)
         {
-         this.createHeadersList(data["tierList"]);
-         this.compData = data["treeTableData"]["data"];
+         this.createHeadersList(data["data"]["tierList"]);
+         this.compData = data["data"]["treeTableData"]["data"];
         }
       })
 
 
-/*** This piece of code is for running project without server ****/
- /* let data = this.cavMonConfigService.getTierList(this.topoName)
-  this.tierList = data;
-  let that = this;
-  data.forEach((function(val){
+ /*** This piece of code is for running project without server ****/
+  /* let data = this.cavMonConfigService.getTierList(this.topoName)
+   this.tierList = data;
+   let that = this;
+   data.forEach((function(val){
       that.cols.push({field:val ,header :val})
     }));
-  this.getData();
+   this.getData();
 
 
    this.cols = [
@@ -194,7 +193,7 @@ export class ConfigurationHomeComponent implements OnInit
     if(event.node) {
       //in a real application, make a call to a remote url to load children of the current node and add the new nodes as children
       if(event.node.children.length == 0)
-         this.cavMonConfigService.getChildNodes(event.node.data.monitor,this.mjsonName,this.topoName);
+         this.cavMonConfigService.getChildNodes(event.node.data.monitor,this.mjsonName,this.topoName,event.node.data.id);
     }
   }
 
@@ -228,17 +227,25 @@ export class ConfigurationHomeComponent implements OnInit
     {
       console.log("monData--",monName)
       console.log("advanceSettings mthod called--",monData['compArgJson'])
-      if(!monData.hasOwnProperty("compArgJson") && monData['compArgJson'] == null)
+      let compData = '';
+      if(!monData.hasOwnProperty("compArgJson"))
       {
-        this.cavMonConfigService.getComponentData(monData);   
+       this.cavMonConfigService.getComponentData(monData).subscribe(data => {
+         console.log("data ---",data)
+        //  routeToMonitorComp(obj);
+        let obj = {'data':data,'id':monData["id"]}
+        this.store.dispatch({type:"ADD_COMPONENTS_DATA",payload: obj });
+        this.router.navigate(['../../../advanceSettings',this.mjsonName,this.topoName,monName,tierId,tierName],{ relativeTo: this.route });
+       })   
       }
       else
       {
-      let arrData = monData['compArgJson'];
-      this.cavMonConfigService.setMonCompData(arrData);
-      this.store.dispatch({type:SELECTED_MON ,payload:arrData})
+       compData = monData['compArgJson'];
+       let obj = {'data':compData,'id':monData["id"]}
+       this.store.dispatch({type:"ADD_COMPONENTS_DATA",payload: obj });
+       this.router.navigate(['../../../advanceSettings',this.mjsonName,this.topoName,monName,tierId,tierName],{ relativeTo: this.route });
       }
-      // this.router.navigate(['../../../advanceSettings',this.mjsonName,this.topoName,monName,tierId,tierName],{ relativeTo: this.route });
+      // this.store.dispatch({type:SELECTED_MON ,payload:compData})
     }
   }
 
@@ -255,7 +262,8 @@ export class ConfigurationHomeComponent implements OnInit
   }
 
 /*** returns tier checkbox value true or false**************/
-  getValueOfTierCheckBox(data){
+  getValueOfTierCheckBox(data) 
+  {
    return data["monitorState"];
   }
 

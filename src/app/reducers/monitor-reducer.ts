@@ -5,11 +5,7 @@ import * as _ from "lodash";
 
 export const MONITOR_DATA = "monitorData";
 
-const initialState = {data:{},
-                     openNewAppDialog:false,  //initializing varia
-                     appDetailInitializeForm:null,
-                     openAppDialogType:null,
-                     ndConfPath:null
+const initialState = {
                    };
   
 //Default Keyword data.
@@ -27,22 +23,57 @@ const DEFAULT_DATA = {
  export function MonitorReducer(state:{}, action: Action) {
    console.log("reducer called--",action)
    switch (action.type) {
-     case MONITOR_DATA:
+     case "MONITOR_DATA":
        console.log("action.payload", action.payload);
        console.log("DEFAULT_DATA",DEFAULT_DATA)
        var newState = Object.assign({}, state);
-       newState= action.payload
+       newState["data"] = action.payload
        return cloneObject(newState);
 
      case "ADD_MONITOR_DATA":
        var newState = Object.assign({}, state);
-       let treeTableData = newState["treeTableData"]["data"];
+       let treeTableData = newState["data"]["treeTableData"]["data"];
        let nodeData = _.find(treeTableData, function(each) { return each['data']['monitor'] == action.payload.categoryName});
+       console.log("action.payload--",action.payload)
        nodeData['children'] = action.payload.data;
        console.log("newState--",newState)
        return cloneObject(newState);
 
-        default:
+
+      case "ADD_COMPONENTS_DATA":
+       var newState = Object.assign({}, state);
+       console.log("newState-- in ADD_COMPONENTS_DATA switch case-p-",newState);
+       console.log("newState---",newState)
+       let tableData = newState["data"]["treeTableData"]["data"];
+       console.log("tableData--",tableData)
+       console.log("actin.payload--",action.payload)
+       let id = action.payload["id"];
+       let arrId = id.split(".");
+
+      /***getting parent  Node if selected node is any of the child node ****/
+       let rowData = _.find(tableData, function(each) { return each['data']['id'] == arrId[0]});
+
+       if(arrId.length > 1)
+       {
+        let childNodes = rowData["children"];
+        console.log("childNodes--",childNodes)
+        rowData = _.find(childNodes, function(each) { return each['data']['id'] == id});
+       }
+       console.log("rowData---",rowData)
+      //  rowData["compArgsJson"] = action.payload.data; 
+       return newState;
+
+      //  case "SELECTED_MON":
+      //   console.log("action.payload", action.payload);
+      //   var newState = Object.assign({}, state);
+      //   console.log("newState-selected monitor-p--",newState)
+      //   let data  = newState["data"]["treeTableData"]["data"];
+      //   let selectedMon =  _.find(data, function(each) { return each['data']['monitor'] == action.payload.monitor});
+      //   newState["selectedMon"] = selectedMon['compArgsJson'];
+      //   console.log("newState--",newState)
+      //   return cloneObject(newState);
+
+       default:
             // returns DEFAULT_DATA;
 
         

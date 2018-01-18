@@ -3,6 +3,7 @@
            <label  style="margin-right: 2%;">{{item.label}}</label>
          </span>
          <span>
+           {{disabled}}
           <input [disabled]="disabled" name={{item.label}} type="text"  *ngIf="item.type == 'TextField'"  [(ngModel)]="item.value" class="spanClass2"  title="{{item.modal}}" required ng-model/>
           </span>
        </span>
@@ -25,7 +26,7 @@
           <span  *ngFor="let each of item.items">
             <p-radioButton  class="innerSpanClass" name="each.label"  [label] ="each.label" [value] ="each.value" [(ngModel)]="item.value"></p-radioButton>
             <span  *ngIf="each.dependentComp != null" >
-              <app-dependent-comp    (updateTableVal)="updateTableValue($event)"  [disabled]="item.value != each.arg" [dependentCompData]="each.dependentComp"></app-dependent-comp>
+              <app-dependent-comp  (updateTableVal)="updateTableValue($event)"  [disabled]="item.value != each.arg" [dependentCompData]="each.dependentComp"></app-dependent-comp>
             </span>
           </span>     
         </span>

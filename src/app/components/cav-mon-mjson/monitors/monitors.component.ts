@@ -41,7 +41,7 @@ export class MonitorsComponent implements OnInit {
   isNewConfig:boolean=true;
 
   /***It holds array of object of component Type ****/
-  compArgs:any[];
+  compArgs:any[]=[];
 
   tierName:string;
 
@@ -78,7 +78,8 @@ export class MonitorsComponent implements OnInit {
     this.subscription = this.store.select("selectedMon")
         .subscribe(data => {
         console.log("data- monitors component ----",data)
-        if(data != null || Object.keys(data).length != 0)  /***handling case when data ="{}"****/
+        // let data = val["selectedMon"];
+        if(data != null &&  Object.keys(data).length != 0)  /***handling case when data ="{}"****/
         {
          this.compArgs = data["data"];
   
@@ -297,7 +298,8 @@ export class MonitorsComponent implements OnInit {
  ngOnDestroy() 
  {
   console.log("moving out of compoent--",this.tableData)
-  this.store.dispatch({ type: "configuredMonData" ,payload:this.tableData });
+  let obj = {"tier":this.tierName,"data":this.tableData,"monName":this.monName}
+  this.store.dispatch({ type:"CONFIGURED_MONDATA" ,payload:this.tableData });
  }
 
 

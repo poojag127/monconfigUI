@@ -23,15 +23,15 @@ const initialState = {data:{},
         newState= action.payload
         return cloneObject(newState);
 
-     case "ADD_MONITOR_DATA":
-       console.log("add child nodes reducer")
-       var newState = Object.assign({}, state);
-       console.log("newState--",newState)
-       console.log("payload---",action.payload)
-       let treeData = newState["treeTableData"];
+    //  case "ADD_MONITOR_DATA":
+    //    console.log("add child nodes reducer")
+    //    var newState = Object.assign({}, state);
+    //    console.log("newState--",newState)
+    //    console.log("payload---",action.payload)
+    //    let treeData = newState["treeTableData"];
  
        
-       return cloneObject(newState);
+    //    return cloneObject(newState);
 
       
 
