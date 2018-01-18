@@ -33,7 +33,7 @@
       <p-column [sortable]="true" [style]="{'width':'40px'}"  header="All Tier">
           <template let-col let-data="rowData" pTemplate>
               <p-checkbox   *ngIf="!data.hasOwnProperty('children')"  [(ngModel)]="data.data['monitorState']" (click)="onCheckBoxChange()"   binary="false"></p-checkbox>
-              <i class="fa fa-external-link" (click)="advanceSettings(data.data['monitor'],'All_Tier')" aria-hidden="true"></i>
+              <i class="fa fa-external-link" (click)="advanceSettings(data.data,'-1',"All Tier")" aria-hidden="true"></i>
           </template>
       </p-column>
   
