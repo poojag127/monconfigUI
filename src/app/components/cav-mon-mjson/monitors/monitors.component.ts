@@ -140,11 +140,12 @@ export class MonitorsComponent implements OnInit {
 
   updateTableData(data)
   {
-   console.log("class monitors.comp called",data)
+   console.log(" updateTableData method class  monitors.comp called",data)
    let obj =_.find(this.compArgs,function(each) {
      console.log("each---",each)
       return each.id == data.id
     })
+    console.log("obj---",obj)
    obj["value"] = data.data;
   }
  
@@ -298,8 +299,9 @@ export class MonitorsComponent implements OnInit {
  ngOnDestroy() 
  {
   console.log("moving out of compoent--",this.tableData)
+  // var newData = _.map(this.tableData, function(o) { return _.omit(o, 'arguments'); });
   let obj = {"tier":this.tierName,"data":this.tableData,"monName":this.monName}
-  this.store.dispatch({ type:"CONFIGURED_MONDATA" ,payload:this.tableData });
+  this.store.dispatch({ type:"CONFIGURED_MONDATA" ,payload:obj });
  }
 
 

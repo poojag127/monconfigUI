@@ -267,7 +267,10 @@ export class ConfigurationHomeComponent implements OnInit
    return data["monitorState"];
   }
 
-  saveMonitorsConfigurationData(){
+  saveMonitorsConfigurationData() {
+    console.log("saveMonitorsConfigurationData method called",this.compData)
+    
+
   }
   
 }
