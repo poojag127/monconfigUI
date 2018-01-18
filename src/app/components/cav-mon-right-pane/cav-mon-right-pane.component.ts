@@ -35,6 +35,8 @@ import { ROUTING_PATH } from '../../constants/monconfig-url-constant';
 
   mJsonData:MJsonData;
 
+  topoName: String;
+
   /** Flag to show and hide search filter in the datatable */
    isShowFilter:boolean;
    
@@ -102,4 +104,14 @@ import { ROUTING_PATH } from '../../constants/monconfig-url-constant';
     this.showFilterEvent.emit(this.isShowFilter);
     console.log("CavMonRightPaneComponent", "showFilter", "isShowFilter = ", this.isShowFilter);
   }
+
+  /** Method to load profile data in the table for the selected topology */
+  loadProfileData(topoName)
+  {
+     this.cavMonHomeService.getProfileList(this.selectedTopology)
+     .subscribe(data => {
+        this.jsonsTableData = data;
+    })
+  }
+
 }

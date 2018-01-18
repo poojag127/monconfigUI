@@ -1,8 +1,8 @@
 export class MJsonData
 {
- name:string;
+ profileName:string;
  desc:string;
- monCount:number;
- lastModified:string;
- id:number;
+ lastUpdatedOn:string;
+ createdBy:string;
+ lastUpdatedBy:string;
 }

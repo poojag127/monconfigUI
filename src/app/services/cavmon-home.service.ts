@@ -19,4 +19,12 @@ export class CavmonHomeService
     return this._restApi.getDataByGetReq(URL.GET_TOPO_LIST);
   }
 
+  /** Method for getting profile list */
+  getProfileList(topoName)
+  {
+    let url = `${URL.GET_PROFILE_LIST}`+`${topoName}`;
+    console.log("url",url)
+    return this._restApi.getDataByGetReq(url);
+    
+  }
 }

@@ -9,6 +9,7 @@ export const ROUTING_PATH: string = "";
 /* Url for Home Screen */
 export const GET_TOPO_LIST = `${SERVICE_URL}/getListOfTopology`;
 export const GET_TIER_LIST = `${SERVICE_URL}/getTiers`;
+export const GET_PROFILE_LIST = `${SERVICE_URL}/getProfileListFromTopo/`;
 // export const UPDATE_TOPOLOGY = `${SERVICE_URL}/uploadtopology`;
 
 
