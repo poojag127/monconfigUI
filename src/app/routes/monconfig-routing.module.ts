@@ -11,8 +11,8 @@ import { ConfigureWeblogicComponent } from '../components/cav-mon-mjson/configur
 import { ConfigureWeblogic2Component } from '../components/cav-mon-mjson/configure-weblogic2/configure-weblogic2.component';
 import { ConfigurationMonitorsRoutingComponent } from '../components/cav-mon-mjson/configuration-monitors-routing/configuration-monitors-routing.component';
 import { MonitorsComponent } from '../components/cav-mon-mjson/monitors/monitors.component';
-
-
+import { TestComponent } from '../components/test/test.component';
+ 
 /**For ProductUI */
 // const routes: Routes = [
 //     {

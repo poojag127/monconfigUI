@@ -11,18 +11,19 @@ const initialState = {data:[],
                      
                    };
 
- export function MonitorCompReducer(state=initialState, action: Action) {
+ export function MonitorCompReducer(state:{}, action: Action) {
     console.log("reducer called--method comp reducer--",action)
     switch (action.type) {
        case "ADD_COMPONENTS_DATA":  //same reducer called 
             console.log("action.payload", action.payload);
             var newState = Object.assign({}, state);
-            newState.data= action.payload.data;
+            console.log("newState in add componnets reducer--",newState)
+            newState["data"]= action.payload.data;
             console.log("newState--in selecte mon reducer--",newState)
             return cloneObject(newState);
 
         case "CONFIGURED_MONDATA":
-         console.log("CONFIGURED_MONDA{TA switch case")
+         console.log("CONFIGURED_MONDA{TA switch case",newState)
          var newState = Object.assign({},state);
          let tierObj = [],tierUIObj = [];
          let monObj = [];
@@ -31,11 +32,14 @@ const initialState = {data:[],
          let data = action.payload.data;
         //  var newData = _.map(data, function(o) { return _.omit(o, 'arguments'); });
 
-         let configureUIData = newState.configuredUIData;
+         let configureUIData = newState["configuredUIData"];
          tierUIObj = _.find(configureUIData,function(each) { return each.hasOwnProperty(tierName)})
          if(tierUIObj == null)
          {
            let obj = {[tierName]:[{[monName]:data}]};
+           if(configureUIData == null)
+             configureUIData = [];
+
            configureUIData.push(obj);
          }
          else{
@@ -45,12 +49,15 @@ const initialState = {data:[],
 
          /*******For server side data***********/         
          console.log("action.payload data--",action.payload)
-         let configuredData = newState.configuredData;
+         let configuredData = newState["configuredData"];
          tierObj = _.find(configuredData,function(each) { return each.hasOwnProperty(tierName)})
         //  console.log("tierObj--",tierObj)
          if(tierObj == null )
          {
            let obj = {[tierName]:[{[monName]:data}]};
+           if(configuredData == null)
+              configuredData = [];
+              
            configuredData.push(obj);
          }
          else
@@ -61,6 +68,9 @@ const initialState = {data:[],
          console.log("configuredData--",configuredData)
          console.log("monObj--",monObj)
          console.log("newState--",newState)
+
+         newState["configuredUIData"]=configureUIData ;
+         newState["configuredData"] = configuredData;
          return cloneObject(newState);
            
        

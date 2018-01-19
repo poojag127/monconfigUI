@@ -47,6 +47,8 @@ export class MonitorsComponent implements OnInit {
 
   dropDownList:SelectItem[]=[];
 
+  configuredUIData:any[];
+
   /***Used to store clone data *****/
   tempData:any[];
 
@@ -85,6 +87,15 @@ export class MonitorsComponent implements OnInit {
   
          /******making a deep cloning of  data["data"] ,as initial object is used further ******/
          this.tempData = JSON.parse (JSON.stringify(data["data"])) 
+
+         that.configuredUIData = data["configuredUIData"];
+          // let tierUIObj = _.find(configuredUIData,function(each) { return each.hasOwnProperty(that.tierName)})
+          // if(tierUIObj != null)
+          // {
+          //   let monData =  _.find(tierUIObj,function(each) { return each.hasOwnProperty(that.monName)})
+          //   if(monData != null)
+          //      that.tableData = monData;
+          // }
         }
     })
 
@@ -98,7 +109,7 @@ export class MonitorsComponent implements OnInit {
                          this.serverList = ConfigUiUtility.createDropdown(data);
                         }
                       })
-    
+
    }
 
    getDataForDependentComp(dependentCompArr)
@@ -299,6 +310,9 @@ export class MonitorsComponent implements OnInit {
  ngOnDestroy() 
  {
   console.log("moving out of compoent--",this.tableData)
+    if (this.subscription)
+      this.subscription.unsubscribe();
+
   // var newData = _.map(this.tableData, function(o) { return _.omit(o, 'arguments'); });
   let obj = {"tier":this.tierName,"data":this.tableData,"monName":this.monName}
   this.store.dispatch({ type:"CONFIGURED_MONDATA" ,payload:obj });

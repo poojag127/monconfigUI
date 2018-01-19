@@ -10,6 +10,8 @@ import { CavmonHomeService } from '../../services/cavmon-home.service';
 import { ConfigUtilityService } from '../../services/config-utility.service';
 import { ImmutableArray } from '../../utility/immutable-array';
 import { ROUTING_PATH } from '../../constants/monconfig-url-constant';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-cav-mon-right-pane',
@@ -37,25 +39,31 @@ import { ROUTING_PATH } from '../../constants/monconfig-url-constant';
 
   topoName: String;
 
+ subscription: Subscription;
+
   /** Flag to show and hide search filter in the datatable */
    isShowFilter:boolean;
    
   /**This is used to emit "isShowFilter" value */
-     @Output()
-     showFilterEvent = new EventEmitter<boolean>();  
+   @Output()
+   showFilterEvent = new EventEmitter<boolean>();  
 
-  constructor(private cavMonHomeService :CavmonHomeService,private router: Router) 
+  constructor(private cavMonHomeService :CavmonHomeService,
+              private router: Router,
+              private store: Store<any>,) 
   {
 
   }
 
   ngOnInit() 
   {
+    
+      
     console.log("CavMonRightPaneComponent", "ngOnInit", "Method called ");
-    this.cavMonHomeService.getTopologyList()
-      .subscribe(data => {
-                 this.topologyList = ConfigUiUtility.createDropdown(data);
-                 });
+    // this.cavMonHomeService.getTopologyList()
+    //   .subscribe(data => {
+    //              this.topologyList = ConfigUiUtility.createDropdown(data);
+    //              });
     
     this.isShowFilter = false; //setting default value of show filter to false
   }

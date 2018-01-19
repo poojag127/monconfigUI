@@ -73,7 +73,7 @@ import { MonitorsComponent } from './components/cav-mon-mjson/monitors/monitors.
 import { DependentCompComponent } from './components/cav-mon-mjson/dependent-comp/dependent-comp.component';
 import { DynamicTableviewComponent } from './components/cav-mon-mjson/dynamic-tableview/dynamic-tableview.component';
 import { RenderCompComponent } from './components/cav-mon-mjson/render-comp/render-comp.component';
-import { TestComponent } from './components/cav-mon-mjson/test/test.component';
+import { TestComponent } from './components/test/test.component';
 
 
 @NgModule({
@@ -124,7 +124,7 @@ import { TestComponent } from './components/cav-mon-mjson/test/test.component';
     SpinnerModule,
     RadioButtonModule,
     AccordionModule,
-    StoreModule.provideStore({ monitorData: MonitorReducer ,selectedMon:MonitorCompReducer }),
+    StoreModule.provideStore({ monitorData: MonitorReducer ,selectedMon:MonitorCompReducer, }),
     GrowlModule
   ],
   providers: [CavmonHomeService,ConfigRestApiService,ConfigUtilityService,CavmonConfigService,CavmonMonitorsdataService,ConfirmationService
