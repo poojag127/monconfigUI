@@ -55,6 +55,10 @@ export class MonitorsComponent implements OnInit {
   /***Used to store clone data *****/
   tempData:any[];
 
+   /***It holds array of server name and corresponding app name  */
+   tempArr = [];
+   
+
   constructor( private router:Router,
                private route: ActivatedRoute,
                private cavMonConfigService:CavmonConfigService,
@@ -320,6 +324,13 @@ export class MonitorsComponent implements OnInit {
  */
  addData()
  {
+   /**Check for whether following combination of server name and app name existing in the table or not */
+   if(this.validateAppNameAndServerName())
+   {
+     console.log("this.validateAppNameAndServerNam()--",(this.validateAppNameAndServerName()))
+     this.monConfigUtilityService.errorMessage("Following combination of server name and app name already exists.Please enter different server name or app name")
+     return;
+   }
    console.log("compArgs--",this.compArgs)
    console.log("selectedTableDta-",this.selectedTableData)
    let option = '';         // for column to display to the user
@@ -343,6 +354,7 @@ export class MonitorsComponent implements OnInit {
      this.monConfigUtilityService.successMessage(this.monName + " has been configured for " + this.selectedTableData.serverName)
     }
     
+    
    let that = this;
    this.compArgs.map(function(each)
    {
@@ -359,7 +371,28 @@ export class MonitorsComponent implements OnInit {
 
    /** clearing the fields ****/
     this.compArgs =  this.tempData;
+    this.selectedTableData = new TableData(); // for clearing server name and app name fields in the form
  }
+
+ /** 
+  * Method to validate following combination of server name and app name 
+  * do exists in the configuration table or not
+  */
+  validateAppNameAndServerName() : boolean
+  {
+     let key = this.selectedTableData.serverName + this.selectedTableData.appName; // variable to hold server name and coresponding app name
+     console.log("key ---", key)
+ 
+     if(this.tempArr.includes(key))
+     {
+       return true;
+     }
+     else
+     {
+        this.tempArr.push(key); // add the key in a temporary array 
+        return false;
+     }
+  }
 
 
  ngOnDestroy() 
