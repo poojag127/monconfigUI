@@ -15,6 +15,13 @@
           <p-dropdown name="topoId" [(ngModel)]="selectedTableData.serverName" [options]="serverList" placeholder="-- Select Server Name --" [style]="{'width':'77%','margin-left': '-1px'}"  appendTo="body" required ngModel></p-dropdown>
         </div>
 
+        <div class="ui-g-1"  style="width:7.333%">
+          <label>App Name</label>
+        </div>
+        <div class="ui-g-4 monConfigRow">
+           <input style="width:150px" type="text" name="App Name" pInputText [(ngModel)]="selectedTableData.appName"/>
+        </div>
+
 
      </div>
 
@@ -50,6 +57,12 @@
             <span [title]="data[col.field]">{{data[col.field]}}</span> 
           </template>
         </p-column>
+
+        <p-column class="col-overflow" header="App Name" field="appName">
+          <template  let-col let-data="rowData" pTemplate="body">
+            <span [title]="data[col.field]">{{data[col.field]}}</span> 
+          </template>
+       </p-column>
 
          <p-column  class="col-overflow" header="Arguments" field="arguments">
             <template  let-col let-data="rowData" pTemplate="body">
