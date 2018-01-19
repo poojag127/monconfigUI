@@ -2,11 +2,24 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import {ConfigRestApiService} from './config-rest-api.service';
 import * as URL from '../constants/monconfig-url-constant';
+import { Subject } from 'rxjs/Subject';
+import * as _ from "lodash";
+
 
 @Injectable()
 export class CavmonMonitorsdataService {
 
   data :{};
+
+   //Make subset of keywords as per screen  
+  saveMonitorData: {};  
+
+  AIOpertation = new Subject<any>(); // for saving configuration data
+  
+  _AIOpertation$ = this.AIOpertation.asObservable();
+
+ 
+
 
   constructor(private http: Http,private _restApi: ConfigRestApiService) {
     //to do  convert into object 
@@ -22,7 +35,42 @@ export class CavmonMonitorsdataService {
    
   }
 
-   getMonitorData(){
+    saveConfiguredData(data)
+    {
+      console.log("saveConfiguredData--method called",data)
+      // this.modifyData(data);
+      if(this.saveMonitorData != null  && this.saveMonitorData.hasOwnProperty(data.tier))
+      {
+        console.log("existing tier case")
+        let isMonObjExist:boolean = false;
+        let tierObjList = this.saveMonitorData[data.tier];
+        let monObjList = _.find(tierObjList,function(each) { return each.hasOwnProperty(data.monName)})
+        for(let i = 0; i<tierObjList.length; i++) {
+          if(tierObjList[i].hasOwnProperty(data.monName))
+          {
+            console.log("existing monitor case")
+            isMonObjExist = true;
+            tierObjList[i][data.monName] = data.data
+            break;
+          }
+        }
+
+        if(!isMonObjExist)
+           tierObjList.push({[data.monName]:data.data})   //new entry of monitor Object
+
+      }
+      else
+      {
+        console.log("new tier entry case")
+        this.saveMonitorData = {};
+        this.saveMonitorData[data.tier] = [];
+        this.saveMonitorData[data.tier].push({[data.monName]:data.data})
+      }
+      console.log("this.saveMonitorData--",this.saveMonitorData)
+   }
+
+  
+   getMonitorData() {
      return  this.data;
    }
 

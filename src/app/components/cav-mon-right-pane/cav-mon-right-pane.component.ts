@@ -60,10 +60,10 @@ import { Subscription } from 'rxjs/Subscription';
     
       
     console.log("CavMonRightPaneComponent", "ngOnInit", "Method called ");
-    // this.cavMonHomeService.getTopologyList()
-    //   .subscribe(data => {
-    //              this.topologyList = ConfigUiUtility.createDropdown(data);
-    //              });
+    this.cavMonHomeService.getTopologyList()
+      .subscribe(data => {
+                 this.topologyList = ConfigUiUtility.createDropdown(data);
+                 });
     
     this.isShowFilter = false; //setting default value of show filter to false
   }

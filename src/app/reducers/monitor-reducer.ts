@@ -60,7 +60,8 @@ const DEFAULT_DATA = {
         rowData = _.find(childNodes, function(each) { return each['data']['id'] == id});
        }
        console.log("rowData---",rowData)
-      //  rowData["compArgsJson"] = action.payload.data; 
+       rowData["compArgsJson"] = action.payload.data; 
+       console.log("newState--",newState)
        return newState;
 
       //  case "SELECTED_MON":

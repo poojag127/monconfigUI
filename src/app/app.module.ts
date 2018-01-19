@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { CavMonHomeComponent } from './components/cav-mon-home/cav-mon-home.component';
@@ -20,6 +21,7 @@ import { MaterialModule } from '@angular/material';
 /**Reducer */
 import { MonitorReducer } from './reducers/monitor-reducer';
 import { MonitorCompReducer } from './reducers/monitor-comp-reducer';
+import { ConfiguredMonDataReducer} from './reducers/configuredMonData-reducer';
 
 
 /**Importing services  ****/
@@ -124,8 +126,12 @@ import { TestComponent } from './components/test/test.component';
     SpinnerModule,
     RadioButtonModule,
     AccordionModule,
-    StoreModule.provideStore({ monitorData: MonitorReducer ,selectedMon:MonitorCompReducer, }),
-    GrowlModule
+    GrowlModule,
+    StoreModule.provideStore({ monitorData: MonitorReducer ,selectedMon:MonitorCompReducer,configuredData:ConfiguredMonDataReducer}),
+    StoreDevtoolsModule.instrumentOnlyWithExtension({
+      maxAge: 5
+    })
+   
   ],
   providers: [CavmonHomeService,ConfigRestApiService,ConfigUtilityService,CavmonConfigService,CavmonMonitorsdataService,ConfirmationService
 ,  { provide: LocationStrategy, useClass: HashLocationStrategy},

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TreeNode } from 'primeng/primeng';
 import { CavmonConfigService } from '../../../services/cavmon-config.service';
+import { CavmonMonitorsdataService } from '../../../services/cavmon-monitorsdata.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import * as _ from "lodash";
 import { ROUTING_PATH } from '../../../constants/monconfig-url-constant';
@@ -50,7 +51,8 @@ export class ConfigurationHomeComponent implements OnInit
   constructor(private cavMonConfigService:CavmonConfigService,
               private router:Router,
               private route: ActivatedRoute,
-              private store: Store<any>
+              private store: Store<any>,
+              private cavMonDataService:CavmonMonitorsdataService
 
              )
   {
@@ -66,14 +68,13 @@ export class ConfigurationHomeComponent implements OnInit
       this.mjsonName = params['mjsonName'];
     });
     
-  //  /*** getting data of tierlist,treetable data ****/
+  // //  /*** getting data of tierlist,treetable data ****/
   //  this.cavMonConfigService.getTierMonitorsData(this.topoName,this.mjsonName).subscribe(data =>
   //  {
   //   this.createHeadersList(data.tierList);
   //   this.compData = data.treeTableData.data;
   //  })
 
-  this.cavMonConfigService.getTierMonitorsData(this.topoName,this.mjsonName)
   
   // this.cavMonConfigService.todos.subscribe(data => {
   //       console.log("data---",data)
@@ -96,11 +97,16 @@ export class ConfigurationHomeComponent implements OnInit
  
    this.subscription = this.store.select("monitorData")
             .subscribe(data => {
-              console.log("again constructing monitorTre  table")
+              console.log("again constructing monitorTre  table",data)
         if(data != null)
         {
+        console.log("data----",data)
          this.createHeadersList(data["data"]["tierList"]);
          this.compData = data["data"]["treeTableData"]["data"];
+        }
+        else
+        {
+          this.cavMonConfigService.getTierMonitorsData(this.topoName,this.mjsonName)
         }
       })
 
@@ -190,6 +196,7 @@ export class ConfigurationHomeComponent implements OnInit
 
   loadNode(event)
   {
+    console.log("event---",event)
     if(event.node) {
       //in a real application, make a call to a remote url to load children of the current node and add the new nodes as children
       if(event.node.children.length == 0)
@@ -267,8 +274,9 @@ export class ConfigurationHomeComponent implements OnInit
    return data["monitorState"];
   }
 
-  saveMonitorsConfigurationData() {
-    console.log("saveMonitorsConfigurationData method called",this.compData)
+  saveMonitorsConfigurationData()
+   {
+    console.log("saveMonitorsConfigurationData method called",this.cavMonDataService.saveMonitorData)
     
 
   }

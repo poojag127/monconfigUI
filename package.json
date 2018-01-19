@@ -26,6 +26,7 @@
     "@angular/router": "^4.2.4",
     "@ngrx/core": "1.2.0",
     "@ngrx/store": "2.2.1",
+    "@ngrx/store-devtools": "^3.2.4",
     "angular-prism": "0.1.20",
     "core-js": "^2.4.1",
     "font-awesome": "4.7.0",

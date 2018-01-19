@@ -11,6 +11,7 @@ import { ImmutableArray } from '../../../utility/immutable-array';
 import * as _ from "lodash";
 import {ConfigUtilityService} from '../../../services/config-utility.service';
 
+
 @Component({
   selector: 'app-monitors',
   templateUrl: './monitors.component.html',
@@ -23,6 +24,8 @@ export class MonitorsComponent implements OnInit {
   dependent: number;
 
   subscription: Subscription;
+
+ subscriptionConfiguredData: Subscription;
   
   tierField:string;
 
@@ -75,6 +78,15 @@ export class MonitorsComponent implements OnInit {
     });
 
 
+    this.getTableData();
+    
+
+    //  this.cavMonDataService._AIOpertation$.subscribe(data =>
+    //     {
+    //       console.log("configured data called",data)
+    //     })
+
+
     /** getting data of monitor selected ****/
     let that = this;
     this.subscription = this.store.select("selectedMon")
@@ -99,6 +111,26 @@ export class MonitorsComponent implements OnInit {
         }
     })
 
+    this.subscriptionConfiguredData = this.store.select("configuredData")
+        .subscribe(data => {
+        console.log("data configured monitors component ----",data)
+        // let data = val["selectedMon"];
+        if(data != null &&  Object.keys(data).length != 0)  /***handling case when data ="{}"****/
+        {
+         that.configuredUIData = data["configuredUIData"];
+          // let tierUIObj = _.find(configuredUIData,function(each) { return each.hasOwnProperty(that.tierName)})
+          // if(tierUIObj != null)
+          // {
+          //   let monData =  _.find(tierUIObj,function(each) { return each.hasOwnProperty(that.monName)})
+          //   if(monData != null)
+          //      that.tableData = monData;
+          // }
+        }
+    })
+
+
+    
+
      /*** To get the server list in the dropdown ****/
      /*** Here unshift is used to insert element at 0 position of array ****/
     this.cavMonDataService.getServerList(this.topoName,this.tierId)
@@ -110,6 +142,29 @@ export class MonitorsComponent implements OnInit {
                         }
                       })
 
+   }
+
+
+   getTableData()
+   {
+    let data = this.cavMonDataService.saveMonitorData;
+    if(data != null  && data.hasOwnProperty(this.tierName))
+    {
+     console.log("existing tier case")
+     let tierObjList = data[this.tierName];
+     if(tierObjList != null)
+     {
+      for(let i = 0; i < tierObjList.length; i++) {
+          if(tierObjList[i].hasOwnProperty(this.monName))
+          {
+            console.log("existing monitor case")
+            this.tableData = tierObjList[i][this.monName];
+            break;
+          }
+        }
+      }
+    }
+    console.log("this.tableData--",this.tableData)
    }
 
    getDataForDependentComp(dependentCompArr)
@@ -310,12 +365,16 @@ export class MonitorsComponent implements OnInit {
  ngOnDestroy() 
  {
   console.log("moving out of compoent--",this.tableData)
+    // var newData = _.map(this.tableData, function(o) { return _.omit(o, 'arguments'); });
+  let obj = {"tier":this.tierName,"data":this.tableData,"monName":this.monName}
+  this.store.dispatch({ type:"CONFIGURED_MONDATA" ,payload:obj });
+  this.cavMonDataService.saveConfiguredData(obj);
+
     if (this.subscription)
       this.subscription.unsubscribe();
 
-  // var newData = _.map(this.tableData, function(o) { return _.omit(o, 'arguments'); });
-  let obj = {"tier":this.tierName,"data":this.tableData,"monName":this.monName}
-  this.store.dispatch({ type:"CONFIGURED_MONDATA" ,payload:obj });
+    if(this.subscriptionConfiguredData)
+     this.subscriptionConfiguredData.unsubscribe();
  }
 
 

@@ -23,8 +23,8 @@ const initialState = {data:[],
             return cloneObject(newState);
 
         case "CONFIGURED_MONDATA":
-         console.log("CONFIGURED_MONDA{TA switch case",newState)
          var newState = Object.assign({},state);
+         console.log("CONFIGURED_MONDA{TA switch case=----------",newState)
          let tierObj = [],tierUIObj = [];
          let monObj = [];
          let tierName = action.payload.tier;
@@ -67,14 +67,12 @@ const initialState = {data:[],
          }
          console.log("configuredData--",configuredData)
          console.log("monObj--",monObj)
-         console.log("newState--",newState)
 
          newState["configuredUIData"]=configureUIData ;
          newState["configuredData"] = configuredData;
+         console.log("newState--",newState)
          return cloneObject(newState);
            
-       
-       
         default:
             // returns {}};
 
