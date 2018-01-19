@@ -18,10 +18,11 @@
                 <p-header>
                     <span style = "font-size:13px"><b>Available Monitor Profile(s)</b></span>
                     <div  class="appIcon-css">
-                        <button pButton type="button" (click)="openAddDialog()" title="Add Profile" icon="fa-plus"></button>
                         <!-- <button pButton class="toolbarIcon" type="button" icon="fa-pencil" (click)="editConfigData()" title="Edit Configuration"></button> -->
                         <button pButton class="toolbarIcon" *ngIf="!isShowFilter" type="button" icon="fa-search" (click)="showFilter()" title="Show Filter"></button>
                         <button pButton class="toolbarIcon" *ngIf="isShowFilter"  type="button" icon="fa-search" (click)="showFilter()" title="Hide Filter"></button>
+                        <button pButton type="button" (click)="openAddDialog()" title="Add Profile" icon="fa-plus"></button>
+                        <button pButton type="button" (click)="exportProfile()" title="Export Profile" icon="fa-file-excel-o"></button>
                     </div>
                 </p-header>
                 <p-headerColumnGroup> 

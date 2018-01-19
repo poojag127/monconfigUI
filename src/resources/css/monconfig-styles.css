@@ -450,7 +450,7 @@ ndegui-audit-logs:before {
 }
 
 /** Css for the second column i.e."All Tier" */
-.mon-ui .ui-treetable  th:nth-child(2)  span.ui-column-title  
+/* .mon-ui .ui-treetable  th:nth-child(2)  span.ui-column-title  
 {
     transform: rotate(0deg); 
     display: block;
@@ -458,7 +458,7 @@ ndegui-audit-logs:before {
     padding-bottom: 18px;
     font-size: 17px;
 }
-
+ */
 
 mon-ui .ui-treetable th.ui-state-default {
     background: #417ebf;
