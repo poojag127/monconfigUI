@@ -91,7 +91,7 @@ export class MonitorsComponent implements OnInit {
     let that = this;
     this.subscription = this.store.select("selectedMon")
         .subscribe(data => {
-        console.log("data- monitors component ----",data)
+        console.log("data- monitors selected mOnitor component ----",data)
         // let data = val["selectedMon"];
         if(data != null &&  Object.keys(data).length != 0)  /***handling case when data ="{}"****/
         {
@@ -100,7 +100,6 @@ export class MonitorsComponent implements OnInit {
          /******making a deep cloning of  data["data"] ,as initial object is used further ******/
          this.tempData = JSON.parse (JSON.stringify(data["data"])) 
 
-         that.configuredUIData = data["configuredUIData"];
           // let tierUIObj = _.find(configuredUIData,function(each) { return each.hasOwnProperty(that.tierName)})
           // if(tierUIObj != null)
           // {
@@ -111,22 +110,22 @@ export class MonitorsComponent implements OnInit {
         }
     })
 
-    this.subscriptionConfiguredData = this.store.select("configuredData")
-        .subscribe(data => {
-        console.log("data configured monitors component ----",data)
-        // let data = val["selectedMon"];
-        if(data != null &&  Object.keys(data).length != 0)  /***handling case when data ="{}"****/
-        {
-         that.configuredUIData = data["configuredUIData"];
-          // let tierUIObj = _.find(configuredUIData,function(each) { return each.hasOwnProperty(that.tierName)})
-          // if(tierUIObj != null)
-          // {
-          //   let monData =  _.find(tierUIObj,function(each) { return each.hasOwnProperty(that.monName)})
-          //   if(monData != null)
-          //      that.tableData = monData;
-          // }
-        }
-    })
+    // this.subscriptionConfiguredData = this.store.select("configuredData")
+    //     .subscribe(data => {
+    //     console.log("data configured monitors component ----",data)
+    //     // let data = val["selectedMon"];
+    //     if(data != null &&  Object.keys(data).length != 0)  /***handling case when data ="{}"****/
+    //     {
+    //      that.configuredUIData = data["configuredUIData"];
+    //       // let tierUIObj = _.find(configuredUIData,function(each) { return each.hasOwnProperty(that.tierName)})
+    //       // if(tierUIObj != null)
+    //       // {
+    //       //   let monData =  _.find(tierUIObj,function(each) { return each.hasOwnProperty(that.monName)})
+    //       //   if(monData != null)
+    //       //      that.tableData = monData;
+    //       // }
+    //     }
+    // })
 
 
     
@@ -148,6 +147,7 @@ export class MonitorsComponent implements OnInit {
    getTableData()
    {
     let data = this.cavMonDataService.saveMonitorData;
+    console.log("data i monitors component------",data)
     if(data != null  && data.hasOwnProperty(this.tierName))
     {
      console.log("existing tier case")

@@ -206,6 +206,14 @@ export class CavmonConfigService {
    return  this._restApi.getDataByGetReq(url);
   }
 
+  /***Send Request to Server  ****/
+  sendRequestToServer(data,topoName,jsonName)
+  {
+    console.log("sendRequestToServer method called--",data)
+    let url = `${URL.SAVE_DATA}` + "?topoName="+topoName+"&jsonName="+jsonName+"&userName=netstorm";
+    return this._restApi.getDataByPostReq(url,data)
+  }
+
    
  
    

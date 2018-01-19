@@ -62,7 +62,9 @@ export class CavmonMonitorsdataService {
       else
       {
         console.log("new tier entry case")
-        this.saveMonitorData = {};
+        if( this.saveMonitorData == null)
+           this.saveMonitorData = {};
+           
         this.saveMonitorData[data.tier] = [];
         this.saveMonitorData[data.tier].push({[data.monName]:data.data})
       }

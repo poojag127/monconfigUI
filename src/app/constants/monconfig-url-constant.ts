@@ -21,3 +21,6 @@ export const GET_COMPONENTS = `${SERVICE_URL}/getComponentByMon`;
 
 /** Url for getting server list***/
 export const GET_SERVER_LIST = `${SERVICE_URL}/getServerList`;
+
+/**Url for saving monitor Data ****/
+export const SAVE_DATA = `${SERVICE_URL}/saveProfile`;

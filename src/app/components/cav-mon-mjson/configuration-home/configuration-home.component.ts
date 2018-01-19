@@ -48,6 +48,8 @@ export class ConfigurationHomeComponent implements OnInit
 
   tierName:string;
 
+  tempObj:{}={};
+
   constructor(private cavMonConfigService:CavmonConfigService,
               private router:Router,
               private route: ActivatedRoute,
@@ -275,10 +277,67 @@ export class ConfigurationHomeComponent implements OnInit
   }
 
   saveMonitorsConfigurationData()
+  {
+   console.log("saveMonitorsConfigurationData method called",this.cavMonDataService.saveMonitorData)
+   let configuredData = Object.assign({},this.cavMonDataService.saveMonitorData);
+   let that = this;
+   for (var key in configuredData)
    {
-    console.log("saveMonitorsConfigurationData method called",this.cavMonDataService.saveMonitorData)
-    
+     let monList = configuredData[key];
+     monList.map(function(each)
+     {
+     console.log("each---",each)
+     let monName = Object.keys(each)[0];
+     let serverConfList = each[monName];
 
+     serverConfList.map(function(eachServerConf)
+     {
+     /**Here key = serverName ,enabled ***/
+       let key = eachServerConf["serverName"]+ ","+ true;
+       if(!that.tempObj.hasOwnProperty(key))
+           that.tempObj[key] = [];
+
+        that.tempObj[key].push(eachServerConf);
+       })
+      let serverMonList = that.createEachConfObject() 
+      each[monName] = serverMonList;
+     })
+   }
+   console.log("configuredData------------",configuredData)
+   this.sendRequestToServer(configuredData);
+  }
+
+  /****/
+  sendRequestToServer(configuredData)
+  {
+   console.log("sendRequestToServer method called")
+   this.cavMonConfigService.sendRequestToServer(configuredData,this.topoName,this.mjsonName).subscribe(data =>{
+
+   })
   }
   
+
+
+  createEachConfObject()
+  {
+    let serverMonList = [];
+    console.log(" this.tempObj--", this.tempObj)
+    for(var key in this.tempObj)
+    {
+     let obj = {};
+     let arrValues = key.split(",");
+     obj["serverName"] = arrValues[0];
+     obj["enabled"] = arrValues[1];
+     obj["app"] = [];
+     
+     let valueData = this.tempObj[key];
+     valueData.map(function(each){
+       console.log("each-Conf Data-----",each)
+       let appObj = {"appName":each["appName"],"options":each["options"]}
+       obj["app"].push(appObj);
+     })
+     serverMonList.push(obj);
+    }
+    return serverMonList;
+  }
 }
