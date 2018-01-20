@@ -303,10 +303,15 @@ export class ConfigurationHomeComponent implements OnInit
    console.log("saveMonitorsConfigurationData method called",this.cavMonDataService.saveMonitorData)
    console.log("treeTableData---",this.compData)
    let configuredData = Object.assign({},this.cavMonDataService.saveMonitorData);
+   console.log("configuredData--",configuredData)
    let that = this;
+   let newTierData = {};
    for (var key in configuredData)
    {
-     let newTierData = {};
+     console.log("key---",key)
+     console.log("configuredData--",configuredData)
+     console.log("")
+     console.log("configuredData[key]--",configuredData[key])
      let monList = configuredData[key];
      console.log("monList--",monList)
      monList.map(function(each)
@@ -316,7 +321,7 @@ export class ConfigurationHomeComponent implements OnInit
      
      let serverConfList = each[monName];
 
-     console.log("serverConfList--",serverConfList.size())
+     console.log("serverConfList--",serverConfList.length)
 
      serverConfList.map(function(eachServerConf)
      {
@@ -334,13 +339,13 @@ export class ConfigurationHomeComponent implements OnInit
       let serverMonList = that.createEachConfObject() 
       each[monName] = {"isEnabled":true,"serverDTOList":serverMonList};  //here value for isEnabled is enabling/disabling for tier
       console.log("each- after modifying---",each)
-      newTierData = {[key]: each  };
+      newTierData[key] = each ;
      })
      console.log("newTierData--",newTierData)
-     configuredData[key] = newTierData;
+    //  configuredData = newTierData;
    }
-   console.log("configuredData------------",configuredData)
-   this.sendRequestToServer(configuredData);
+   console.log("configuredData------------",newTierData)
+   this.sendRequestToServer(newTierData);
   }
 
 
@@ -364,14 +369,14 @@ export class ConfigurationHomeComponent implements OnInit
      let obj = {};
      let arrValues = key.split(",");
      obj["serverName"] = arrValues[0];
-     obj["enabled"] = arrValues[1];
-     obj["app"] = [];
+     obj["isEnabled"] = arrValues[1];
+     obj["appDTOList"] = [];
      
      let valueData = this.tempObj[key];
      valueData.map(function(each){
        console.log("each-Conf Data-----",each)
        let appObj = {"appName":each["appName"],"options":each["options"]}
-       obj["app"].push(appObj);
+       obj["appDTOList"].push(appObj);
      })
      serverMonList.push(obj);
     }

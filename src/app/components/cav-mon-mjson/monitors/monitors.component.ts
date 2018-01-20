@@ -384,9 +384,7 @@ export class MonitorsComponent implements OnInit {
      console.log("key ---", key)
  
      if(this.tempArr.includes(key))
-     {
        return true;
-     }
      else
      {
         this.tempArr.push(key); // add the key in a temporary array 
