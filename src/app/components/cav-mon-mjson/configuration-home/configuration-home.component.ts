@@ -212,6 +212,7 @@ export class ConfigurationHomeComponent implements OnInit
 
  nodeUnselect(event)
  {
+   
    let monitorName = event.node.data.monitor;
    let that = this;
    for(let each in event.node.data)
@@ -221,10 +222,15 @@ export class ConfigurationHomeComponent implements OnInit
    }
  }
 
- onCheckBoxChange(value,tierName)
+ onCheckBoxChange(value,tierName,monitorName)
  {
    console.log("onCheckBoxChange method called--",value)
    console.log("tierName--",tierName)
+   console.log("monName-- ", monitorName)
+ 
+   let key = monitorName + tierName;
+   console.log("key---" ,key)
+
    let isEntryExist:boolean = false;
    let temp = this.checkBoxStateArr;
    for(let i = 0;i < temp.length; i++)
@@ -239,9 +245,10 @@ export class ConfigurationHomeComponent implements OnInit
 
    if(!isEntryExist)
    {
-     let obj = {[tierName]:value}
+     let obj = {[key]:value}
      this.checkBoxStateArr.push(obj)
    }
+   console.log("this.checkBoxStateArr--",this.checkBoxStateArr)
  }
 
   /*** for advance settings ***/
