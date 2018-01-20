@@ -48,7 +48,11 @@ export class ConfigurationHomeComponent implements OnInit
 
   tierName:string;
 
-  tempObj:{}={};
+  tempObj:{}={};  //used for contructing data to send to the server
+
+  checkBoxStateArr:any[]=[]; //used for storing state of checkboxes at tier level
+
+
 
   constructor(private cavMonConfigService:CavmonConfigService,
               private router:Router,
@@ -217,9 +221,27 @@ export class ConfigurationHomeComponent implements OnInit
    }
  }
 
- onCheckBoxChange(event)
+ onCheckBoxChange(value,tierName)
  {
-   console.log("onCheckBoxChange method called--",event)
+   console.log("onCheckBoxChange method called--",value)
+   console.log("tierName--",tierName)
+   let isEntryExist:boolean = false;
+   let temp = this.checkBoxStateArr;
+   for(let i = 0;i < temp.length; i++)
+   {
+     if(Object.keys(temp[i])[0] == tierName)
+     {
+       isEntryExist = true;
+       temp[i] = value;
+       break;
+     }
+   }
+
+   if(!isEntryExist)
+   {
+     let obj = {[tierName]:value}
+     this.checkBoxStateArr.push(obj)
+   }
  }
 
   /*** for advance settings ***/
@@ -264,8 +286,8 @@ export class ConfigurationHomeComponent implements OnInit
     {
      if(each != 'monitor')
      {
-        rowData.data[each] = this.getValueOfTierCheckBox(rowData.data);
-        console.log(this.getValueOfTierCheckBox(rowData.data))
+      rowData.data[each] = this.getValueOfTierCheckBox(rowData.data);
+      console.log(this.getValueOfTierCheckBox(rowData.data))
      }
     }
   }
@@ -279,33 +301,48 @@ export class ConfigurationHomeComponent implements OnInit
   saveMonitorsConfigurationData()
   {
    console.log("saveMonitorsConfigurationData method called",this.cavMonDataService.saveMonitorData)
+   console.log("treeTableData---",this.compData)
    let configuredData = Object.assign({},this.cavMonDataService.saveMonitorData);
    let that = this;
    for (var key in configuredData)
    {
+     let newTierData = {};
      let monList = configuredData[key];
+     console.log("monList--",monList)
      monList.map(function(each)
      {
-     console.log("each---",each)
+     console.log("each--iterating monlist---",each)
      let monName = Object.keys(each)[0];
+     
      let serverConfList = each[monName];
+
+     console.log("serverConfList--",serverConfList.size())
 
      serverConfList.map(function(eachServerConf)
      {
-     /**Here key = serverName ,enabled ***/
+       console.log("eachServerConf----",eachServerConf)
+     
+     /****Here key = serverName ,enabled ***/
        let key = eachServerConf["serverName"]+ ","+ true;
+     
        if(!that.tempObj.hasOwnProperty(key))
            that.tempObj[key] = [];
 
         that.tempObj[key].push(eachServerConf);
        })
+
       let serverMonList = that.createEachConfObject() 
-      each[monName] = serverMonList;
+      each[monName] = {"isEnabled":true,"serverDTOList":serverMonList};  //here value for isEnabled is enabling/disabling for tier
+      console.log("each- after modifying---",each)
+      newTierData = {[key]: each  };
      })
+     console.log("newTierData--",newTierData)
+     configuredData[key] = newTierData;
    }
    console.log("configuredData------------",configuredData)
    this.sendRequestToServer(configuredData);
   }
+
 
   /****/
   sendRequestToServer(configuredData)
