@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+// import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { CavMonHomeComponent } from './components/cav-mon-home/cav-mon-home.component';
@@ -128,9 +128,9 @@ import { TestComponent } from './components/test/test.component';
     AccordionModule,
     GrowlModule,
     StoreModule.provideStore({ monitorData: MonitorReducer ,selectedMon:MonitorCompReducer,configuredData:ConfiguredMonDataReducer}),
-    StoreDevtoolsModule.instrumentOnlyWithExtension({
-      maxAge: 5
-    })
+    // StoreDevtoolsModule.instrumentOnlyWithExtension({
+    //   maxAge: 5
+    // })
    
   ],
   providers: [CavmonHomeService,ConfigRestApiService,ConfigUtilityService,CavmonConfigService,CavmonMonitorsdataService,ConfirmationService
