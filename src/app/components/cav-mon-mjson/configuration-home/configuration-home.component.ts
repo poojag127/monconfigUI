@@ -305,17 +305,85 @@ export class ConfigurationHomeComponent implements OnInit
    return data["monitorState"];
   }
 
+
+/**
+ * This method used to construct the data send that is used to send to the server
+ * Here 
+ * configuredData =  {
+      "TierName": [
+                    {
+                      "MQMonitor":[
+                             {
+                             "serverName": "10.10.50.5",
+                              "instanceName": "abc",
+                              "enabled": "true",
+                              "app": [
+                                  {
+                                   "appName": "default",
+                                   "options": "-m…."
+                                 }
+                               ]
+                            },
+                            {
+
+                            }]
+  
+  * ServerRequiredData as:
+                {
+   "T1": {"IBMMQStats":
+                      {
+                      "isEnabled":true,
+			                "serverDTOList":[{serverName :"",
+			                                  excludeServer :"",
+								                        instanceName :"",
+								                       isEnable :"true",
+								                      appDTOList:[{ appName = "default",options = "",javaHome = "",classPath = ""}]
+								                },
+								             {
+				                     serverName :"",
+			                       excludeServer :"",
+								             instanceName :"",
+								             isEnable :"true",
+								            appDTOList:[{ appName = "default",options = "",javaHome = "",classPath = ""}]
+								          }								 
+								       ]
+				      			},						
+			 "IBMMQStats2":
+			         {
+                "isEnabled":true,
+			          "serverDTOList":[{
+				          serverName :"",
+			             excludeServer :"",
+								   instanceName :"",
+								   isEnable :"true",
+								   appDTOList:[{ appName = "default",options = "",javaHome = "",classPath = ""}]
+								 },
+								 {
+				                   serverName :"",
+			                       excludeServer :"",
+								   instanceName :"",
+								   isEnable :"true",
+								   appDTOList:[{ appName = "default",options = "",javaHome = "",classPath = ""}]
+						          }							 
+								]}
+		}
+							  
+
+}
+     
+
+
+ */
   saveMonitorsConfigurationData()
   {
-   console.log("saveMonitorsConfigurationData method called",this.cavMonDataService.saveMonitorData)
    console.log("treeTableData---",this.compData)
+   console.log(" this.checkBoxStateArr---", this.checkBoxStateArr)
    let configuredData = Object.assign({},this.cavMonDataService.saveMonitorData);
    console.log("configuredData--",configuredData)
    let that = this;
    let newTierData = {};
    for (var key in configuredData)
    {
-     console.log("key---",key)
      console.log("configuredData--",configuredData)
      console.log("")
      console.log("configuredData[key]--",configuredData[key])
