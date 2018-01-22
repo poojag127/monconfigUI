@@ -4,7 +4,7 @@
 
 <div class="configure">
     <p-accordion class="mon-ui-accordion">
-       <p-accordionTab header="Configure monitor:{{monName}} for Tier:{{tierName}}" [selected]="true">
+       <p-accordionTab header="Configure monitor:{{monName}} for Tier:{{tierName}}" [selected]="tableAccordionState">
        <form  (ngSubmit)="addData()" #form="ngForm" ngNativeValidate>
 
         <div class = "ui-g-12"  *ngIf="tierId != -1" >
@@ -38,27 +38,27 @@
         </p-accordionTab>
 
 
-        <p-accordionTab header="Configured Data">
+        <p-accordionTab header="Configured Data" [selected]="!tableAccordionState">
         
-        <p-dataTable class="configured-datatable" [value]="tableData" [(selection)]="selectedTableData" [rows]="5" [paginator]="weblogicStatsTableData?.length >5" [pageLinks]="3"  [resizableColumns]='true' [style]="{'margin-top':'30px'}">
+        <p-dataTable class="configured-datatable" [value]="tableData" [(selection)]="selectedTableData" [rows]="5" [paginator]="weblogicStatsTableData?.length >5" [pageLinks]="3"  [resizableColumns]='true'>
        
             <p-header>
                 <div  class="appIcon-css">
                    <button pButton type="button" title="Add " (click)="openAddDialog()" icon="fa-plus"></button>
-                   <button pButton type="button" title="Edit "(click)="openEditMode()" icon="fa-pencil" ></button>
+                   <!-- <button pButton type="button" title="Edit "(click)="openEditMode()" icon="fa-pencil" ></button> -->
                     <button pButton type="button"class="ui-button-danger" title="Delete " (click)="deleteApp()" icon="fa-trash"></button>
                 </div>
              </p-header>
-        <p-column [style]="{'width':'50px'}" selectionMode="multiple">
+        <p-column [style]="{'width':'31px'}" selectionMode="multiple">
         </p-column>
 
-        <p-column  [style]="{'width':'326px'}" class="col-overflow" header="Server" field="serverName" >
+        <p-column  [style]="{'width':'109px'}" class="col-overflow" header="Server" field="serverName" >
           <template let-col let-data="rowData" pTemplate type="body">
             <span [title]="data[col.field]">{{data[col.field]}}</span> 
           </template>
         </p-column>
 
-        <p-column class="col-overflow" header="App Name" field="appName">
+        <p-column [style]="{'width':'130px'}" class="col-overflow" header="App Name" field="appName">
           <template  let-col let-data="rowData" pTemplate="body">
             <span [title]="data[col.field]">{{data[col.field]}}</span> 
           </template>
@@ -73,6 +73,14 @@
           <p-column  class="col-overflow" header="Server Arguments" field="options" hidden="true">
             <template  let-col let-data="rowData" pTemplate="body">
               <span [title]="data[col.field]">{{data[col.field]}}</span> 
+            </template>
+         </p-column>
+
+         <p-column [style]="{'width':'80px'}" class="col-overflow" header="Action">
+            <template let-col let-json="rowData" pTemplate type="body">
+                <a (click)="editConfiguredData()">
+                    <i class="fa fa-pencil" style="color: #2572b5;cursor:pointer; margin-left: 33px" title="Edit Configured Data"></i>
+                </a>
             </template>
          </p-column>
 

@@ -44,9 +44,13 @@ export class DynamicTableviewComponent implements OnInit {
    /**Used to hold temporary id of the selected row ,used in edit functionality */
    tempId:number = 0;
 
+   /**Used to display header for respective data tables */
+   headerForTable:string
+
   constructor(private monConfigUtilityService:ConfigUtilityService,private store: Store<Object>) { }
 
   ngOnInit() {
+    this.headerForTable = this.tableCompData["label"]; // assigning the header to the respective data tables
     console.log("columnData--", this.tableCompData["columnData"])
     this.columnData = this.tableCompData["columnData"];
     let that = this;

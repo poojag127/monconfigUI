@@ -1,5 +1,6 @@
 <p-dataTable class="mon-ui-config-datatable"  [value]="tableData" [(selection)]="selectedJson" [rows]="5" [paginator]="tableData?.length >5" [pageLinks]="3">
     <p-header>
+        <span><b style="font-size: 13px">{{headerForTable}}</b></span>
         <div  class="appIcon-css">
            <button pButton type="button" title="Add " (click)="openAddDialog()" icon="fa-plus" [disabled]="disabled"></button>
            <button pButton type="button" title="Edit "(click)="openEditDialog()" icon="fa-pencil" [disabled]="disabled"></button>

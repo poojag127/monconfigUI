@@ -58,6 +58,12 @@ export class MonitorsComponent implements OnInit {
    /***It holds array of server name and corresponding app name  */
    tempArr = [];
    
+  /** This boolean variable is used to hold the state of the accordion which holds the configured data table
+   *  i.e. the second accordion of the configuration screen  
+   *  When tableAccordionState is true then the configured Data table accordion is in collapsed state
+   *  else it is in expanded state 
+   */
+  tableAccordionState : boolean = true;
 
   constructor( private router:Router,
                private route: ActivatedRoute,
@@ -371,7 +377,11 @@ export class MonitorsComponent implements OnInit {
 
    /** clearing the fields ****/
     this.compArgs =  this.tempData;
-    this.selectedTableData = new TableData(); // for clearing server name and app name fields in the form
+
+   /**This is used to change the state of the Configured Data accordion from collapsed to expanded 
+    * to show the configured data table when data is configured for the selected monitor.
+    */
+    this.tableAccordionState = false;
  }
 
  /** 
@@ -390,6 +400,15 @@ export class MonitorsComponent implements OnInit {
         this.tempArr.push(key); // add the key in a temporary array 
         return false;
      }
+  }
+
+
+ /**
+  * Method to edit the configured data
+  */
+  editConfiguredData()
+  {
+    this.tableAccordionState = true;
   }
 
 
