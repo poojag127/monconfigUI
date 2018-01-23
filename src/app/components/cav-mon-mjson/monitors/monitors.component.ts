@@ -64,6 +64,12 @@ export class MonitorsComponent implements OnInit {
   /**Counter for adding id to the tableData */
    count: number = 0;
    
+  /** This boolean variable is used to hold the state of the accordion which holds the configured data table
+   *  i.e. the second accordion of the configuration screen  
+   *  When tableAccordionState is true then the configured Data table accordion is in collapsed state
+   *  else it is in expanded state 
+   */
+  tableAccordionState : boolean = true;
 
   constructor( private router:Router,
                private route: ActivatedRoute,
@@ -397,6 +403,11 @@ export class MonitorsComponent implements OnInit {
     this.formData = new TableData(); // for clearing server name and app name fields in the form
 
     console.log("this.formTable---",)
+
+   /**This is used to change the state of the Configured Data accordion from collapsed to expanded 
+    * to show the configured data table when data is configured for the selected monitor.
+    */
+    this.tableAccordionState = false;
  }
 
  /** 
@@ -415,6 +426,15 @@ export class MonitorsComponent implements OnInit {
         this.tempArr.push(key); // add the key in a temporary array 
         return false;
      }
+  }
+
+
+ /**
+  * Method to edit the configured data
+  */
+  editConfiguredData()
+  {
+    this.tableAccordionState = true;
   }
 
 
