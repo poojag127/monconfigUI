@@ -32,14 +32,12 @@
         <button type="submit" pButton  icon="fa-check" style="width: 93px ; float: right" *ngIf="isNewConfig == false" label="Update"></button>
       </div>
  
-       </form>
-      </p-accordionTab>
+    </form>
+  </p-accordionTab>
 
 
     <p-accordionTab header="Configured Data" [selected]="!tableAccordionState">
-        
         <p-dataTable class="configured-datatable" [value]="tableData" [(selection)]="selectedTableData" [rows]="5" [paginator]="weblogicStatsTableData?.length >5" [pageLinks]="3"  [resizableColumns]='true'>
-       
             <p-header>
                 <div  class="appIcon-css">
                    <button pButton type="button" title="Add " (click)="openAddDialog()" icon="fa-plus"></button>
@@ -75,9 +73,6 @@
             </template>
          </p-column>
  
-      </p-dataTable>
-     </p-accordionTab>
-    </p-accordion>
 
          <p-column [style]="{'width':'80px'}" class="col-overflow" header="Action">
             <template let-col let-json="rowData" pTemplate type="body">

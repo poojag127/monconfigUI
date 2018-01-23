@@ -28,7 +28,7 @@ export class DynamicTableviewComponent implements OnInit {
   cols: any[]=[];
 
   /**Flag for ADD/EDIT options of the dynamic dataTable */ 
-  isNewRow:boolean;
+  isNewRow:boolean = false;
 
   /** Flag for ADD/EDIT dialog box */
   addEditDialog:boolean;
@@ -162,6 +162,7 @@ export class DynamicTableviewComponent implements OnInit {
       //to insert new row in table ImmutableArray.push() is created as primeng 4.0.0 does not support above line 
       this.tableData=ImmutableArray.push(this.tableData, data); //adding new entries in the datatable when ADD is performed
       this.count = this.count + 1;
+    console.log("tableData--",this.tableData)
     }
     else
     { 
@@ -169,7 +170,6 @@ export class DynamicTableviewComponent implements OnInit {
       this.tableData=ImmutableArray.replace(this.tableData, data , this.getSelectedRowIndex(data))
     }
 
-    console.log("tableData--",this.tableData)
     
     /**** sending data to parent component *****/
    let obj = {"data":this.tableData,"id":this.tableCompData["id"]}
@@ -179,6 +179,7 @@ export class DynamicTableviewComponent implements OnInit {
 
    this.selectedJson = [];
    this.clearFieldData();
+   this.isNewRow = false;
   }
 
 
@@ -248,7 +249,7 @@ export class DynamicTableviewComponent implements OnInit {
     {
       if(compData[i]["id"] == id)
       {
-       this.tableData = compData[i]["value"]; 
+       this.tableData = compData[i]["value"] != null && compData[i]["value"] != '' ?  compData[i]["value"] :[];
        break; 
       }
       else if(compData[i]["dependentComp"] != null)
