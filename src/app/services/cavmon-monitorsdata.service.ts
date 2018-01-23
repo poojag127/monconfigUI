@@ -14,6 +14,9 @@ export class CavmonMonitorsdataService {
    //Make subset of keywords as per screen  
   saveMonitorData: {};  
 
+  /***hold arr of components ***/
+  compArgData:any[];
+
   AIOpertation = new Subject<any>(); // for saving configuration data
   
   _AIOpertation$ = this.AIOpertation.asObservable();
@@ -69,6 +72,13 @@ export class CavmonMonitorsdataService {
         this.saveMonitorData[data.tier].push({[data.monName]:data.data})
       }
       console.log("this.saveMonitorData--",this.saveMonitorData)
+   }
+   
+
+   setCompArgsData(data)
+   {
+     console.log("data--",data)
+     this.compArgData = data["data"];
    }
 
   

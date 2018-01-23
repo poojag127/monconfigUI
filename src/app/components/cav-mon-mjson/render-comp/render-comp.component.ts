@@ -21,6 +21,7 @@ export class RenderCompComponent implements OnInit {
 
   ngOnInit() 
   {
+    console.log("Class RenderCompComponent called ")
     if(this.item["type"] == 'Checkbox') 
        this.item["value"] = this.item["value"] == "true"
   }

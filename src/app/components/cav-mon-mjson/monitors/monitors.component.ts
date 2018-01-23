@@ -10,6 +10,7 @@ import { TableData } from '../../../containers/table-data';
 import { ImmutableArray } from '../../../utility/immutable-array';
 import * as _ from "lodash";
 import {ConfigUtilityService} from '../../../services/config-utility.service';
+import { ROUTING_PATH } from '../../../constants/monconfig-url-constant';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class MonitorsComponent implements OnInit {
 
   subscription: Subscription;
 
- subscriptionConfiguredData: Subscription;
+   subscriptionConfiguredData: Subscription;
   
   tierField:string;
 
@@ -40,6 +41,8 @@ export class MonitorsComponent implements OnInit {
   tableData:TableData[]=[];
 
   selectedTableData:TableData;
+
+  formData:TableData;
 
   isNewConfig:boolean=true;
 
@@ -57,6 +60,9 @@ export class MonitorsComponent implements OnInit {
 
    /***It holds array of server name and corresponding app name  */
    tempArr = [];
+
+  /**Counter for adding id to the tableData */
+   count: number = 0;
    
 
   constructor( private router:Router,
@@ -72,7 +78,7 @@ export class MonitorsComponent implements OnInit {
 
   ngOnInit() {
 
-    this.selectedTableData = new TableData();
+    this.formData = new TableData();
     this.route.params.subscribe((params: Params) => {
       console.log("params--",params)
       this.topoName = params['topoName'];
@@ -84,55 +90,15 @@ export class MonitorsComponent implements OnInit {
 
     this.getTableData();
     
-
-    //  this.cavMonDataService._AIOpertation$.subscribe(data =>
-    //     {
-    //       console.log("configured data called",data)
-    //     })
-
-
     /** getting data of monitor selected ****/
-    let that = this;
-    this.subscription = this.store.select("selectedMon")
-        .subscribe(data => {
-        console.log("data- monitors selected mOnitor component ----",data)
-        // let data = val["selectedMon"];
-        if(data != null &&  Object.keys(data).length != 0)  /***handling case when data ="{}"****/
-        {
-         this.compArgs = data["data"];
+    let data = this.cavMonDataService.compArgData;
+    if(data != null &&  Object.keys(data).length != 0)  /***handling case when data ="{}"****/
+    {
+      this.compArgs = data;
   
-         /******making a deep cloning of  data["data"] ,as initial object is used further ******/
-         this.tempData = JSON.parse (JSON.stringify(data["data"])) 
-
-          // let tierUIObj = _.find(configuredUIData,function(each) { return each.hasOwnProperty(that.tierName)})
-          // if(tierUIObj != null)
-          // {
-          //   let monData =  _.find(tierUIObj,function(each) { return each.hasOwnProperty(that.monName)})
-          //   if(monData != null)
-          //      that.tableData = monData;
-          // }
-        }
-    })
-
-    // this.subscriptionConfiguredData = this.store.select("configuredData")
-    //     .subscribe(data => {
-    //     console.log("data configured monitors component ----",data)
-    //     // let data = val["selectedMon"];
-    //     if(data != null &&  Object.keys(data).length != 0)  /***handling case when data ="{}"****/
-    //     {
-    //      that.configuredUIData = data["configuredUIData"];
-    //       // let tierUIObj = _.find(configuredUIData,function(each) { return each.hasOwnProperty(that.tierName)})
-    //       // if(tierUIObj != null)
-    //       // {
-    //       //   let monData =  _.find(tierUIObj,function(each) { return each.hasOwnProperty(that.monName)})
-    //       //   if(monData != null)
-    //       //      that.tableData = monData;
-    //       // }
-    //     }
-    // })
-
-
-    
+      /******making a deep cloning of  data["data"] ,as initial object is used further ******/
+       this.tempData = JSON.parse (JSON.stringify(data)) 
+     }
 
      /*** To get the server list in the dropdown ****/
      /*** Here unshift is used to insert element at 0 position of array ****/
@@ -151,7 +117,6 @@ export class MonitorsComponent implements OnInit {
    getTableData()
    {
     let data = this.cavMonDataService.saveMonitorData;
-    console.log("data i monitors component------",data)
     if(data != null  && data.hasOwnProperty(this.tierName))
     {
      console.log("existing tier case")
@@ -171,33 +136,79 @@ export class MonitorsComponent implements OnInit {
     console.log("this.tableData--",this.tableData)
    }
 
-   getDataForDependentComp(dependentCompArr)
+   getDataForDependentComp(dependentCompArr,idValObj)
    {
      let val='';
      let that = this;
      dependentCompArr.map(function(eachDepenComp)
      {
-       let data = that.getDataForComp(eachDepenComp);
+       let data = that.getDataForComp(eachDepenComp,idValObj);
        val = val + data["options"] + ",";
       })
       val = val.substring(0,val.length -1);
       console.log("Method getDataForDependentComp caleed value =",val.trim())
       return val.trim();
    }
-
+ 
+ /**
+  * This method is called when user clicks on edit button
+  */
 
    openEditMode()
    {
-     console.log("this.selectedTableData--",this.selectedTableData)
-
-
+     this.formData = Object.assign({}, this.selectedTableData[0]);
+     console.log(" this.formData--", this.formData)
+    
+     let that = this;
+     this.constructData(this.compArgs);
+     console.log("this.compArgs--after setting value---",this.compArgs)
    }
 
-   getDataForRadioButtons(item)
+ /**
+  * 
+  */
+   constructData(arrData)
+   {
+     let that = this;
+     arrData.map(function(eachComp)
+     {
+      that.setDataForComponents(eachComp)
+     })
+   }
+     
+
+
+   
+ 
+ /**
+  *  Function called setting value to the components for edit purpose 
+  *  @param item 
+  */
+
+  setDataForComponents(eachComp)
+  {
+   let data = this.formData.compValWithId;
+   eachComp["value"] = data[eachComp.id]
+
+   if(eachComp["type"] == 'Table')
+   {
+     console.log("dispatching store for table data")
+    this.store.dispatch({'type':"UPDATE_TABLECOMP_VALUE",'payload':{'id':eachComp["id"],'value':eachComp["value"]}})
+   }
+
+   if(eachComp.hasOwnProperty("dependentComp") && eachComp["dependentComp"] != null)
+      this.constructData(eachComp["dependentComp"]);
+
+   else if(eachComp.hasOwnProperty("items") && eachComp["items"] != null)
+      this.constructData(eachComp["items"]);
+
+  }
+  
+   getDataForRadioButtons(item, idValObj)
    {
      let val;
      if(item.hasOwnProperty("dependentComp") && item["dependentComp"] != null )
-        val = this.getDataForDependentComp(item.dependentComp)
+        val = this.getDataForDependentComp(item.dependentComp,idValObj)
 
      return val;
    }
@@ -244,21 +255,24 @@ export class MonitorsComponent implements OnInit {
    * @param eachCompData 
    */
 
-   getDataForComp(eachCompData)
+   getDataForComp(eachCompData,idValObj)
    {
     console.log("Method getDataForComp called for Component =  ",eachCompData)
     let data = '';
     let argumentData = '';
+    idValObj[eachCompData['id']] = eachCompData.value;
+
     
     /*** for radio buttons ***/
     if(eachCompData.hasOwnProperty("items") && eachCompData["items"] != null)
     {
+     
      /**  getting the object of selected radio   ****/
      let selectedObj = _.find(eachCompData["items"],function(each) { return each.value == eachCompData.value })
 
     //  data = data + " " + eachCompData.value;
 
-     let val = this.getDataForRadioButtons(selectedObj)
+     let val = this.getDataForRadioButtons(selectedObj,idValObj)
      
      console.log("val--",val)
      
@@ -267,12 +281,14 @@ export class MonitorsComponent implements OnInit {
        /****** case when selected radiobutton doesnot have dependent component ****/
        data = data + " " + eachCompData.value;
        argumentData = argumentData + selectedObj.label + ":" + eachCompData.value;
+       
      }  
      else
      {
       data = data + " " + val;
       argumentData = argumentData + selectedObj.label + ":" + val;
      }
+
     }
     else if(eachCompData.hasOwnProperty("columnData") && eachCompData["columnData"] != null && eachCompData.value != null)
     {
@@ -284,7 +300,7 @@ export class MonitorsComponent implements OnInit {
     }
     else if(eachCompData.hasOwnProperty("dependentComp") && eachCompData["dependentComp"] != null)
     {
-     let val = this.getDataForDependentComp(eachCompData.dependentComp)
+     let val = this.getDataForDependentComp(eachCompData.dependentComp,idValObj)
      
      if(eachCompData["arg"] != null && eachCompData["arg"] != "")
      {
@@ -322,6 +338,7 @@ export class MonitorsComponent implements OnInit {
  * This method is called when add button is clicked 
  * This method forms the data for the table 
  */
+
  addData()
  {
    /**Check for whether following combination of server name and app name existing in the table or not */
@@ -332,46 +349,54 @@ export class MonitorsComponent implements OnInit {
      return;
    }
    console.log("compArgs--",this.compArgs)
-   console.log("selectedTableDta-",this.selectedTableData)
+   console.log("selectedTableDta-",this.formData)
    let option = '';         // for column to display to the user
    let argumentData = '';  // for hidden column
    let arg = '';
+   let valIdObj = {};   
 
     /*** Check for whether selected monitor is configured for all tier or specific tier **/
     if(this.tierId == -1)
     {
-      this.selectedTableData.serverName = 'All Server';
+      this.formData.serverName = 'All Server';
       this.monConfigUtilityService.successMessage(this.monName + " has been configured for All Servers");
     }
     else
     {
-       if(this.selectedTableData.serverName == "" || this.selectedTableData.serverName == undefined)
+       if(this.formData.serverName == "" || this.formData.serverName == undefined)
        {
           this.monConfigUtilityService.errorMessage("Please select server ");
           return;
        }
        
-     this.monConfigUtilityService.successMessage(this.monName + " has been configured for " + this.selectedTableData.serverName)
+     this.monConfigUtilityService.successMessage(this.monName + " has been configured for " + this.formData.serverName)
     }
     
     
    let that = this;
    this.compArgs.map(function(each)
    {
-    let values = that.getDataForComp(each);
+    let values = that.getDataForComp(each,valIdObj);
     option = option + " " + values["options"];
     argumentData = argumentData + "  " + values["argumentData"] + ",";
    })
 
-   this.selectedTableData.arguments = argumentData
-   this.selectedTableData.options = option 
+   this.formData.arguments = argumentData
+   this.formData.options = option 
+   this.formData.id = this.count;
+   this.formData.compValWithId = valIdObj;
 
     //to insert new row in table ImmutableArray.push() is created as primeng 4.0.0 does not support above line 
-   this.tableData=ImmutableArray.push(this.tableData, this.selectedTableData);
+   this.tableData=ImmutableArray.push(this.tableData, this.formData);
+
+   this.count = this.count + 1;
 
    /** clearing the fields ****/
     this.compArgs =  this.tempData;
-    this.selectedTableData = new TableData(); // for clearing server name and app name fields in the form
+    
+    this.formData = new TableData(); // for clearing server name and app name fields in the form
+
+    console.log("this.formTable---",)
  }
 
  /** 
@@ -380,7 +405,7 @@ export class MonitorsComponent implements OnInit {
   */
   validateAppNameAndServerName() : boolean
   {
-     let key = this.selectedTableData.serverName + this.selectedTableData.appName; // variable to hold server name and coresponding app name
+     let key = this.formData.serverName + this.formData.appName; // variable to hold server name and coresponding app name
      console.log("key ---", key)
  
      if(this.tempArr.includes(key))
