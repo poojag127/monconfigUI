@@ -5,4 +5,5 @@ export class MJsonData
  lastUpdatedOn:string;
  createdBy:string;
  lastUpdatedBy:string;
+ id:number;
 }

@@ -1,6 +1,6 @@
 
-const  SERVICE_URL = 'http://10.10.40.7:8006/ProductUI/productSummary/MonitorWebService';
-// const  SERVICE_URL = 'https://10.10.50.5/ProductUI/productSummary/MonitorWebService';
+// const  SERVICE_URL = 'http://10.10.40.7:8006/ProductUI/productSummary/MonitorWebService';
+const  SERVICE_URL = 'https://10.10.50.5/ProductUI/productSummary/MonitorWebService';
 // const  SERVICE_URL = 'https://10.10.60.12/ProductUI/productSummary/MonitorWebService';
 
 //for running configUI as a standAlone
@@ -10,6 +10,7 @@ export const ROUTING_PATH: string = "";
 export const GET_TOPO_LIST = `${SERVICE_URL}/getListOfTopology`;
 export const GET_TIER_LIST = `${SERVICE_URL}/getTiers`;
 export const GET_PROFILE_LIST = `${SERVICE_URL}/getProfileListFromTopo/`;
+export const DEL_PROFILE = `${SERVICE_URL}/deleteProfile`; // url to delete profiles from the home screen
 // export const UPDATE_TOPOLOGY = `${SERVICE_URL}/uploadtopology`;
 
 

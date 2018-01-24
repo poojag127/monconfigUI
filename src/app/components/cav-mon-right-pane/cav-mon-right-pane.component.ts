@@ -27,7 +27,7 @@ import { Subscription } from 'rxjs/Subscription';
   
   jsonsTableData: MJsonData[] = [];
   
-  selectedJson:MJsonData;
+  selectedJson:MJsonData[];
 
    /**For add/edit MJson flag */
   isNewMJson: boolean = false;
@@ -38,6 +38,7 @@ import { Subscription } from 'rxjs/Subscription';
   mJsonData:MJsonData;
 
   topoName: String;
+  mjsonname: String;
 
  subscription: Subscription;
 
@@ -50,7 +51,8 @@ import { Subscription } from 'rxjs/Subscription';
 
   constructor(private cavMonHomeService :CavmonHomeService,
               private router: Router,
-              private store: Store<any>,) 
+              private store: Store<any>,
+              private monConfigUtilityService:ConfigUtilityService) 
   {
 
   }
@@ -121,5 +123,56 @@ import { Subscription } from 'rxjs/Subscription';
         this.jsonsTableData = data;
     })
   }
+
+  /**
+   * Method to delete profile(s) 
+   * This method is called when user clicks on the delete button in the profile list table
+   */
+  deleteProfile()
+  {
+    /**** Check whether user has selected rows to delete or not */
+    if (!this.selectedJson || this.selectedJson.length < 1) 
+    {
+      this.monConfigUtilityService.errorMessage("Select profile(s) to delete");
+      return;
+    }
+
+    let selectedProf = this.selectedJson; // used to hold selected row data of the table
+    let arrProf =[]; // this array holds profile name of the selected row in the profile list table
+    for (let index in selectedProf) 
+    {
+      arrProf.push(selectedProf[index].profileName);
+    }
+    console.log("arrProf contains following profileName for delete --", arrProf)
+
+    /**** here request is send to server to delete profiles  */
+    this.cavMonHomeService.deleteProfileData(this.selectedTopology,arrProf)
+                  .subscribe(data => {
+                         this.deleteProfileData(); // this is used to delete the profiles from the table from ui side
+                         this.monConfigUtilityService.infoMessage("Deleted Successfully");
+                     })
+
+  }
+
+  /**
+   * This method is used to delete profile data from ui
+   */
+  deleteProfileData()
+  {
+    let arrId = []; // array to hold id of each selected profile to perform delete operation
+    this.selectedJson.map(function(each)
+    {
+      arrId.push(each.id)
+    })
+
+    this.jsonsTableData = this.jsonsTableData.filter(function(val)
+    {
+      return arrId.indexOf(val.id) == -1;  //value to be deleted should return false
+    })
+
+    /**** clearing object used for storing data */
+    this.selectedJson = [];
+  }
+
 
 }

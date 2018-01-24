@@ -23,6 +23,7 @@
                         <button pButton class="toolbarIcon" *ngIf="isShowFilter"  type="button" icon="fa-search" (click)="showFilter()" title="Hide Filter"></button>
                         <button pButton type="button" (click)="openAddDialog()" title="Add Profile" icon="fa-plus"></button>
                         <button pButton type="button" (click)="exportProfile()" title="Export Profile" icon="fa-file-excel-o"></button>
+                        <button pButton type="button" class="ui-button-danger"  (click)="deleteProfile()" title="Delete Profile(s)" icon="fa-trash-o"></button>
                     </div>
                 </p-header>
                 <p-headerColumnGroup> 
@@ -70,9 +71,9 @@
                                     <i class="fa fa-pencil" style="color: #2572b5;cursor:pointer; margin-left: 28px" title="Edit Profile"></i>
                                 </a>
                                       
-                                <span  (click)="deleteProfile()">
+                                <!-- <span  (click)="deleteProfile(selectedTopology,json['profileName'])">
                                     <i class="fa fa-trash-o" style="color: #f12a2a;cursor:pointer; margin-left: 20px" title="Delete Profile"></i>
-                                </span>
+                                </span> -->
                                 <span  (click)="importProfile()">
                                     <i class="fa fa-download" style="color: #2572b5;cursor:pointer; margin-left: 20px" title="Import Profile"></i>
                                 </span>
@@ -97,7 +98,7 @@
                         <label>Profile Name</label>
                     </div>
                     <div class="ui-g-8">
-                          <input name="appName" type="text" class="config_app" pInputText [(ngModel)]="mJsonData.name" title="Please enter valid json name. &#013;json name is of maximum 32 characters.  &#013;First character must be Alpha.  &#013;Other characters are Alpha, Numeric, Dash or Underscore"
+                          <input name="appName" type="text" class="config_app" pInputText [(ngModel)]="mJsonData.profileName" title="Please enter valid json name. &#013;json name is of maximum 32 characters.  &#013;First character must be Alpha.  &#013;Other characters are Alpha, Numeric, Dash or Underscore"
                             autofocus required pattern="^[a-zA-Z][a-zA-Z0-9_-]{0,31}$" required ngModel />
                     </div>
                 </div>
@@ -112,7 +113,7 @@
                 </div>
                 <footer>
                     <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
-                        <button type="submit" pButton icon="fa-check" (click)="routeOnSave(mJsonData.name,selectedTopology)" label="Save"></button>
+                        <button type="submit" pButton icon="fa-check" (click)="routeOnSave(mJsonData.profileName,selectedTopology)" label="Save"></button>
                         <button type="button" pButton icon="fa-close" (click)="addEditMJsonDialog = false;" label="Cancel"></button>
                     </div>
                 </footer>
