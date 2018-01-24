@@ -94,25 +94,16 @@ export class ConfigurationHomeComponent implements OnInit
   // this.createHeadersList(data["tierList"]);
   // this.compData = data["treeTableData"]["data"];
 
-  //  this.cavMonConfigService.monitorsDataAsObservable$.subscribe((val)=> {
-  //    console.log("val--",val)
-  //     this.createHeadersList(val["tierList"]);
-  //     this.compData = val["treeTableData"]["data"];
-  // })
-
+   this.cavMonConfigService.getTierMonitorsData(this.topoName,this.mjsonName)
  
    this.subscription = this.store.select("monitorData")
             .subscribe(data => {
               console.log("again constructing monitorTre  table",data)
         if(data != null)
         {
-        console.log("data----",data)
+         console.log("data----",data)
          this.createHeadersList(data["data"]["tierList"]);
          this.compData = data["data"]["treeTableData"]["data"];
-        }
-        else
-        {
-          this.cavMonConfigService.getTierMonitorsData(this.topoName,this.mjsonName)
         }
       })
 
@@ -266,24 +257,27 @@ export class ConfigurationHomeComponent implements OnInit
       console.log("monData--",monName)
       console.log("advanceSettings mthod called--",monData['compArgJson'])
       let compData = '';
+      let obj ={};
       if(!monData.hasOwnProperty("compArgJson"))
       {
        this.cavMonConfigService.getComponentData(monData).subscribe(data => {
          console.log("data ---",data)
-        //  routeToMonitorComp(obj);
-        let obj = {'data':data,'id':monData["id"]}
+         obj['data']=data,
+         obj['id']= monData["id"] 
         this.store.dispatch({type:"ADD_COMPONENTS_DATA",payload: obj });
+        this.cavMonDataService.setCompArgsData(obj);
         this.router.navigate(['../../../advanceSettings',this.mjsonName,this.topoName,monName,tierId,tierName],{ relativeTo: this.route });
        })   
       }
       else
       {
        compData = monData['compArgJson'];
-       let obj = {'data':compData,'id':monData["id"]}
+       obj['data']=compData,
+       obj['id']= monData["id"] 
        this.store.dispatch({type:"ADD_COMPONENTS_DATA",payload: obj });
+       this.cavMonDataService.setCompArgsData(obj);
        this.router.navigate(['../../../advanceSettings',this.mjsonName,this.topoName,monName,tierId,tierName],{ relativeTo: this.route });
       }
-      // this.store.dispatch({type:SELECTED_MON ,payload:compData})
     }
   }
 
@@ -456,5 +450,12 @@ export class ConfigurationHomeComponent implements OnInit
      serverMonList.push(obj);
     }
     return serverMonList;
+  }
+
+  ngOnDestroy()
+  {
+    console.log("Method ngOnDestroy called ")
+    if(this.subscription)
+       this.subscription.unsubscribe;
   }
 }

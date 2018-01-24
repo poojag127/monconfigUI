@@ -20,7 +20,9 @@ export class DependentCompComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() 
+  {
+    console.log("Class DependentCompComponent called ")
 
   }
 

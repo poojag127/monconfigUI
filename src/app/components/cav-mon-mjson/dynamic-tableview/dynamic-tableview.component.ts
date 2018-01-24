@@ -1,6 +1,7 @@
 import { Component, OnInit ,Input ,Output, EventEmitter} from '@angular/core';
 import { ImmutableArray } from '../../../utility/immutable-array';
 import {ConfigUtilityService} from '../../../services/config-utility.service';
+import { Subscription } from 'rxjs/Subscription';
 import * as _ from "lodash";
 import { Store } from '@ngrx/store';
 
@@ -27,7 +28,7 @@ export class DynamicTableviewComponent implements OnInit {
   cols: any[]=[];
 
   /**Flag for ADD/EDIT options of the dynamic dataTable */ 
-  isNewRow:boolean;
+  isNewRow:boolean = false;
 
   /** Flag for ADD/EDIT dialog box */
   addEditDialog:boolean;
@@ -45,7 +46,9 @@ export class DynamicTableviewComponent implements OnInit {
    tempId:number = 0;
 
    /**Used to display header for respective data tables */
-   headerForTable:string
+   headerForTable:string;
+
+   subscription:Subscription;
 
   constructor(private monConfigUtilityService:ConfigUtilityService,private store: Store<Object>) { }
 
@@ -54,6 +57,17 @@ export class DynamicTableviewComponent implements OnInit {
     console.log("columnData--", this.tableCompData["columnData"])
     this.columnData = this.tableCompData["columnData"];
     let that = this;
+    this.subscription = this.store.select("selectedMon")
+               .subscribe(data => {
+ 
+         if(data != null &&  Object.keys(data).length != 0)  /***handling case when data ="{}"****/
+         {
+          let compArgs = data["data"];
+          that.getTableData(compArgs);
+         }
+    })
+    this.columnData = this.tableCompData["columnData"];
+   
     this.columnData.map(function(each)
     {
       console.log("each---",each)
@@ -106,8 +120,7 @@ export class DynamicTableviewComponent implements OnInit {
     this.isNewRow = false;
     this.addEditDialog = true;
   }
-
-
+  
 /** For SAVE Functionality-
   * This is common method used to submit and save data when ADD/EDIT is performed
   */
@@ -149,6 +162,7 @@ export class DynamicTableviewComponent implements OnInit {
       //to insert new row in table ImmutableArray.push() is created as primeng 4.0.0 does not support above line 
       this.tableData=ImmutableArray.push(this.tableData, data); //adding new entries in the datatable when ADD is performed
       this.count = this.count + 1;
+    console.log("tableData--",this.tableData)
     }
     else
     { 
@@ -156,7 +170,6 @@ export class DynamicTableviewComponent implements OnInit {
       this.tableData=ImmutableArray.replace(this.tableData, data , this.getSelectedRowIndex(data))
     }
 
-    console.log("tableData--",this.tableData)
     
     /**** sending data to parent component *****/
    let obj = {"data":this.tableData,"id":this.tableCompData["id"]}
@@ -166,6 +179,7 @@ export class DynamicTableviewComponent implements OnInit {
 
    this.selectedJson = [];
    this.clearFieldData();
+   this.isNewRow = false;
   }
 
 
@@ -219,8 +233,34 @@ export class DynamicTableviewComponent implements OnInit {
 
     return true;
   }
+ 
+ /**
+  * getting the value of tableData from store as data table as ngprime doesnot support ngModel
+  * which supports 2 way binding so on editing other component is reflecting ite new value but table not
+  * So it needs to rerender the component and that is acheived by store.
+  * @param compData 
+  */
 
-
+  getTableData(compData)
+  {
+    console.log("Method getTableData called")
+    let id = this.tableCompData["id"];
+    for(let i = 0;i < compData.length; i++)
+    {
+      if(compData[i]["id"] == id)
+      {
+       this.tableData = compData[i]["value"] != null && compData[i]["value"] != '' ?  compData[i]["value"] :[];
+       break; 
+      }
+      else if(compData[i]["dependentComp"] != null)
+        this.getTableData(compData[i]["dependentComp"])
+     
+     else if(compData[i]["items"] != null)
+        this.getTableData(compData[i]["items"])
+    }
+  }  
+ 
+ 
   /** clearing the form fields after use (safer side code)  */
   clearFieldData()
   {

@@ -11,6 +11,32 @@ const initialState = {data:[],
                      
                    };
 
+/**
+ *  This function updates the component's value of type table used basically for
+ *  edit purpose
+ * @param newState 
+ * @param tableObj 
+ */
+
+  function  getTableData(newState,tableObj)
+  {
+    let id = tableObj["id"];
+    let compData = newState;
+    for(let i = 0;i < compData.length; i++)
+    {
+      if(compData[i]["id"] == id)
+      {
+       compData[i]["value"] = tableObj["value"]
+       break; 
+      }
+      else if(compData[i]["dependentComp"] != null)
+         getTableData(compData[i]["dependentComp"],tableObj)
+     
+     else if(compData[i]["items"] != null)
+         getTableData(compData[i]["items"],tableObj)
+    }
+  }  
+
  export function MonitorCompReducer(state:{}, action: Action) {
     console.log("reducer called--method comp reducer--",action)
     switch (action.type) {
@@ -21,6 +47,12 @@ const initialState = {data:[],
             newState["data"]= action.payload.data;
             console.log("newState--in selecte mon reducer--",newState)
             return cloneObject(newState);
+
+       case "UPDATE_TABLECOMP_VALUE":
+          var newState = Object.assign({}, state);
+          getTableData(newState["data"],action.payload);
+          return cloneObject(newState);
+
 
         case "CONFIGURED_MONDATA":
          var newState = Object.assign({},state);
