@@ -18,7 +18,7 @@
 
 
   <!--Dialog for add/Edit funtionality-->
-  <p-dialog class="profile-dialog" header="{{isNewRow ? 'New ' : 'Edit '}}" *ngIf="addEditDialog" [(visible)]="addEditDialog" modal="modal" width="500" responsive="true">
+  <p-dialog class="profile-dialog" header="{{dialogHeaderForTable}}" *ngIf="addEditDialog" [(visible)]="addEditDialog" modal="modal" width="500" responsive="true">
      <form (ngSubmit)="saveData()" #groupForm="ngForm" ngNativeValidate>
        <div class="ui-g"  *ngFor="let item of columnData; let i = index">
           <span style="margin-bottom: 5px">
