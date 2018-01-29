@@ -93,6 +93,15 @@ export class CavmonMonitorsdataService {
      return this._restApi.getDataByGetReq(url);
   }
 
+  /**Method to call service to download(import) selected profile  */
+  getMprof(topoName,profileName)
+  {
+    console.log("topo---", topoName,profileName)
+    let url = `${URL.IMPORT_PROFILE}`+"?topoName="+`${topoName}`+"&profileName="+`${profileName}`+"&userName=netstorm";
+    console.log("url for download--", url)
+    return this._restApi.getDataByGetReq(url);
+  }
+
    
 
 }

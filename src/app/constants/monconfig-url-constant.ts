@@ -1,5 +1,8 @@
 
-const  SERVICE_URL = 'http://10.10.40.7:8006/ProductUI/productSummary/MonitorWebService';
+
+export const HOST_NAME = 'http://10.10.40.7:8006';
+
+const  SERVICE_URL = `${HOST_NAME}/ProductUI/productSummary/MonitorWebService`;
 // const  SERVICE_URL = 'https://10.10.50.5/ProductUI/productSummary/MonitorWebService';
 // const  SERVICE_URL = 'https://10.10.60.12/ProductUI/productSummary/MonitorWebService';
 
@@ -11,6 +14,7 @@ export const GET_TOPO_LIST = `${SERVICE_URL}/getListOfTopology`;
 export const GET_TIER_LIST = `${SERVICE_URL}/getTiers`;
 export const GET_PROFILE_LIST = `${SERVICE_URL}/getProfileListFromTopo/`;
 export const DEL_PROFILE = `${SERVICE_URL}/deleteProfile`; // url to delete profiles from the home screen
+export const IMPORT_PROFILE = `${SERVICE_URL}/downloadProfile`;//url  for downloading profile 
 // export const UPDATE_TOPOLOGY = `${SERVICE_URL}/uploadtopology`;
 
 
