@@ -47,7 +47,9 @@ export class DynamicTableviewComponent implements OnInit {
 
    /**Used to display header for respective data tables */
    headerForTable:string;
-
+ 
+  /**Used to display header for ADD/EDIT dialog box for respective data tables */
+   dialogHeaderForTable:string;
    subscription:Subscription;
 
   constructor(private monConfigUtilityService:ConfigUtilityService,private store: Store<Object>) { }
@@ -88,6 +90,7 @@ export class DynamicTableviewComponent implements OnInit {
      console.log("openAddDialog() method called")
      this.isNewRow = true;
      this.addEditDialog = true;
+     this.dialogHeaderForTable = "Add " + this.headerForTable;
      this.clearFieldData();
    }
 
@@ -96,6 +99,7 @@ export class DynamicTableviewComponent implements OnInit {
   * This method is used to show EDIT Dialog for editing existing entries in the dataTable 
   */
   openEditDialog(){
+    this.dialogHeaderForTable = "Edit " + this.headerForTable;
     console.log("openEditDialog method called",this.selectedJson );
     if (!this.selectedJson || this.selectedJson.length < 1) 
     {
