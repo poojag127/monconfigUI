@@ -13,7 +13,7 @@
         
         <span *ngIf="item.type == 'Spinner'" class="spanClass" >
              <label *ngIf="item.type == 'Spinner'" style="margin-right: 2%;">{{item.label}}</label>
-             <p-spinner  [disabled]="disabled" name="item.label" [min]="0" [max]="100" size="4"  [(ngModel)]="item.value"  *ngIf="item.type == 'Spinner'" class="spanClass2"></p-spinner>
+             <p-spinner  [disabled]="disabled" name={{item.label}} [min]="0" [max]="100" size="4"  [(ngModel)]="item.value"  *ngIf="item.type == 'Spinner'" class="spanClass2"></p-spinner>
         </span>
 
         <span *ngIf="item.type == 'Dropdown'" class="spanClass" >
@@ -23,7 +23,7 @@
 
         <span *ngIf="item.type == 'RadioButtonGroup'" class="spanClass" >
           <span  *ngFor="let each of item.items">
-            <p-radioButton  class="innerSpanClass" name="item.label"  [label] ="each.label" [value] ="each.value" [(ngModel)]="item.value"></p-radioButton>
+            <p-radioButton  inputId="each.id" class="innerSpanClass" name="item.label"  [label] ="each.label" [value] ="each.value" [(ngModel)]="item.value"></p-radioButton>
             <span  *ngIf="each.dependentComp != null" >
               <app-dependent-comp  (updateTableVal)="updateTableValue($event)"  [disabled]="item.value != each.arg" [dependentCompData]="each.dependentComp"></app-dependent-comp>
             </span>
