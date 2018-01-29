@@ -1,9 +1,4 @@
-<!--<p>
-  configuration-home works!
-</p>-->
-<!-- <p-toolbar styleClass="toolbarCss"> -->
-    
-    <p-panel class="monConfigPanel">
+  <p-panel class="monConfigPanel">
    <p-header>
    <b> Topology : {{topoName}}</b>
     <div style="float: right">
@@ -11,18 +6,8 @@
     <button pButton  (click)="saveMonitorsConfigurationData()" type="button" label="Save" icon="fa-check" ></button>
     </div>
    </p-header>
-
-  
-<!-- </p-toolbar> -->
-
-
-<!-- <div class="ui-g config-ui">
-</div> -->
    
-<!-- <div class="ui-g-12" id="top-div"> -->
- <p-treeTable class="mon-ui configTreeTable" (onNodeExpand)="loadNode($event)"  [value]="compData"  selection="false" [style]="{'max-height':'530px', 'overflow':'auto'}">
-    <!-- <div class="ui-g-12" id="top-div"> -->
-
+  <p-treeTable class="mon-ui configTreeTable" (onNodeExpand)="loadNode($event)"  [value]="compData"  selection="false" [style]="{'max-height':'530px', 'overflow':'auto'}">
     <p-column [style]="{'width':'176px'}" field="monitor" header="Monitor">
        <template  let-col let-data="rowData" pTemplate >
        <p-checkbox   [(ngModel)]="data.data['monitorState']" (click)="onTreeNodeCheckBoxChange(data)"   binary="false"></p-checkbox>
@@ -39,19 +24,11 @@
   
     <p-column   [style]="{'width':'46px'}" *ngFor="let col of cols" [field]="col.field" [header]="col.header">
       <template   let-data="rowData" pTemplate >
-         <!--{{data|json}}      -->
        <p-checkbox  *ngIf="!data.hasOwnProperty('children')" [(ngModel)]="data.data[col.field]"  (click)="onCheckBoxChange(data.data[col.field],col.header,data.data['monitor'])"   binary="false"></p-checkbox>
         <a *ngIf="col.field != 'monitor'"> <i class="fa fa-external-link" (click)="advanceSettings(data.data,col.field,col.header)" aria-hidden="true" title="Advance settings"></i> </a>
       </template>
     </p-column>
-
-
-    <!--<p-column field="name" header="Name"></p-column>
-    <p-column field="size" header="Size"></p-column>
-    <p-column field="type" header="Type"></p-column>-->
-    <!-- </div> -->
 </p-treeTable>
-<!-- </div> -->
 </p-panel>
 
     

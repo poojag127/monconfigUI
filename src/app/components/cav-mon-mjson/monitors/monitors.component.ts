@@ -168,6 +168,8 @@ export class MonitorsComponent implements OnInit {
      let that = this;
      this.constructData(this.compArgs);
      console.log("this.compArgs--after setting value---",this.compArgs)
+     this.tableAccordionState = true;
+     this.isNewConfig = false;
    }
 
  /**
@@ -389,20 +391,26 @@ export class MonitorsComponent implements OnInit {
 
    this.formData.arguments = argumentData
    this.formData.options = option 
-   this.formData.id = this.count;
    this.formData.compValWithId = valIdObj;
 
-    //to insert new row in table ImmutableArray.push() is created as primeng 4.0.0 does not support above line 
-   this.tableData=ImmutableArray.push(this.tableData, this.formData);
+   if(this.isNewConfig)
+   {
+    this.formData.id = this.count;
+     //to insert new row in table ImmutableArray.push() is created as primeng 4.0.0 does not support above line 
+    this.tableData=ImmutableArray.push(this.tableData, this.formData);
+    this.count = this.count + 1;
+   }
+   else {
+    //for edit functionality TO DO 
+    this.tableData=ImmutableArray.replace(this.tableData, this.formData , this.getSelectedRowIndex(this.formData["id"]))      
+   }
 
-   this.count = this.count + 1;
-
+   console.log("this.tableData after performing add/Edit Opertaion--",this.tableData)
    /** clearing the fields ****/
     this.compArgs =  this.tempData;
     
     this.formData = new TableData(); // for clearing server name and app name fields in the form
 
-    console.log("this.formTable---",)
 
    /**This is used to change the state of the Configured Data accordion from collapsed to expanded 
     * to show the configured data table when data is configured for the selected monitor.
@@ -428,14 +436,14 @@ export class MonitorsComponent implements OnInit {
      }
   }
 
-
- /**
-  * Method to edit the configured data
-  */
-  editConfiguredData()
-  {
-    this.tableAccordionState = true;
+ 
+    /**This method returns selected row on the basis of Id */
+   getSelectedRowIndex(data): number 
+   {
+    let index = this.tableData.findIndex(each => each["id"] == data)
+    return index;
   }
+
 
 
  ngOnDestroy() 
