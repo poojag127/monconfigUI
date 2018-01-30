@@ -31,6 +31,7 @@ export class DynamicTableviewComponent implements OnInit {
   isNewRow:boolean = false;
 
   /** Flag for ADD/EDIT dialog box */
+  
   addEditDialog:boolean;
 
   /** Used to store dataTable data */
@@ -55,6 +56,8 @@ export class DynamicTableviewComponent implements OnInit {
   constructor(private monConfigUtilityService:ConfigUtilityService,private store: Store<Object>) { }
 
   ngOnInit() {
+  
+    console.log("ngOnInit method this.tableCompData--", this.tableCompData)
     this.headerForTable = this.tableCompData["label"]; // assigning the header to the respective data tables
     console.log("columnData--", this.tableCompData["columnData"])
     this.columnData = this.tableCompData["columnData"];
@@ -166,7 +169,7 @@ export class DynamicTableviewComponent implements OnInit {
       //to insert new row in table ImmutableArray.push() is created as primeng 4.0.0 does not support above line 
       this.tableData=ImmutableArray.push(this.tableData, data); //adding new entries in the datatable when ADD is performed
       this.count = this.count + 1;
-    console.log("tableData--",this.tableData)
+      console.log("tableData--",this.tableData)
     }
     else
     { 
@@ -247,7 +250,7 @@ export class DynamicTableviewComponent implements OnInit {
 
   getTableData(compData)
   {
-    console.log("Method getTableData called")
+    console.log("Method getTableData called",compData)
     let id = this.tableCompData["id"];
     for(let i = 0;i < compData.length; i++)
     {

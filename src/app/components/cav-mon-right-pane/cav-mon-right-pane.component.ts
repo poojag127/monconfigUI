@@ -59,8 +59,6 @@ import { Subscription } from 'rxjs/Subscription';
 
   ngOnInit() 
   {
-    
-      
     console.log("CavMonRightPaneComponent", "ngOnInit", "Method called ");
     this.cavMonHomeService.getTopologyList()
       .subscribe(data => {

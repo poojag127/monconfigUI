@@ -39,6 +39,6 @@
         </span>
 
       <div class="tableCss" *ngIf="item.type == 'Table'" >
-         <app-dynamic-tableview  *ngIf="item.type == 'Table'"  (updateTableVal)="updateTableValue($event)"   [tableCompData]="item" [disabled]="disabled"></app-dynamic-tableview>
+         <app-dynamic-tableview  (updateTableVal)="updateTableValue($event)"   [tableCompData]="item" [disabled]="disabled"></app-dynamic-tableview>
       </div>
 

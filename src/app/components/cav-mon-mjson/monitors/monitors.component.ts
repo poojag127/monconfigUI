@@ -166,8 +166,9 @@ export class MonitorsComponent implements OnInit {
      console.log(" this.formData--", this.formData)
     
      let that = this;
+     console.log("this.compArgs--beforee setting value---",this.compArgs)
      this.constructData(this.compArgs);
-     console.log("this.compArgs--after setting value---",this.compArgs)
+    console.log("this.compArgs--after setting value---",this.compArgs)
      this.tableAccordionState = true;
      this.isNewConfig = false;
    }
@@ -196,20 +197,25 @@ export class MonitorsComponent implements OnInit {
   setDataForComponents(eachComp)
   {
    let data = this.formData.compValWithId;
-   eachComp["value"] = data[eachComp.id]
 
-   if(eachComp["type"] == 'Table')
+   if(data.hasOwnProperty(eachComp.id)) //skipping  those object whose value is not editable  by the  user (example -radioButton items)
    {
-     console.log("dispatching store for table data")
-    this.store.dispatch({'type':"UPDATE_TABLECOMP_VALUE",'payload':{'id':eachComp["id"],'value':eachComp["value"]}})
-   }
+    eachComp["value"] = data[eachComp.id]
+    console.log("eachComp component radio buttons--",eachComp)
 
-   if(eachComp.hasOwnProperty("dependentComp") && eachComp["dependentComp"] != null)
+    if(eachComp["type"] == 'Table')
+    {
+     console.log("dispatching store for table data")
+     this.store.dispatch({'type':"UPDATE_TABLECOMP_VALUE",'payload':{'id':eachComp["id"],'value':eachComp["value"]}})
+    }
+
+    if(eachComp.hasOwnProperty("dependentComp") && eachComp["dependentComp"] != null)
       this.constructData(eachComp["dependentComp"]);
 
-   else if(eachComp.hasOwnProperty("items") && eachComp["items"] != null)
+    else if(eachComp.hasOwnProperty("items") && eachComp["items"] != null)
       this.constructData(eachComp["items"]);
 
+   }
   }
   
    getDataForRadioButtons(item, idValObj)
@@ -350,7 +356,7 @@ export class MonitorsComponent implements OnInit {
  addData()
  {
    /**Check for whether following combination of server name and app name existing in the table or not */
-   if(this.validateAppNameAndServerName())
+   if(this.isNewConfig && this.validateAppNameAndServerName())
    {
      console.log("this.validateAppNameAndServerNam()--",(this.validateAppNameAndServerName()))
      this.monConfigUtilityService.errorMessage("Following combination of server name and app name already exists.Please enter different server name or app name")
